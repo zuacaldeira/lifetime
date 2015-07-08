@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings jaxb-support="false" id="_1428862322690393" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" xmlns:ns4="http://nbmodeler.java.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <jpa:entity class="Academic" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_1428862323041396">
+        <annotation>@javax.xml.bind.annotation.XmlRootElement</annotation>
+        <jpa:table name="academic"/>
+        <jpa:named-query name="Academic.findAll">
+            <jpa:query>SELECT a FROM Academic a</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Academic.findById">
+            <jpa:query>SELECT a FROM Academic a WHERE a.id = :id</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Academic.findByDegree">
+            <jpa:query>SELECT a FROM Academic a WHERE a.degree = :degree</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Academic.findByCourse">
+            <jpa:query>SELECT a FROM Academic a WHERE a.course = :course</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Academic.findByOrganization">
+            <jpa:query>SELECT a FROM Academic a WHERE a.organization = :organization</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Academic.findByGrade">
+            <jpa:query>SELECT a FROM Academic a WHERE a.grade = :grade</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Academic.findByStart">
+            <jpa:query>SELECT a FROM Academic a WHERE a.start = :start</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Academic.findByEnd">
+            <jpa:query>SELECT a FROM Academic a WHERE a.end = :end</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Academic.findByStatus">
+            <jpa:query>SELECT a FROM Academic a WHERE a.status = :status</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Academic.findByUserId">
+            <jpa:query>SELECT a FROM Academic a WHERE a.userId = :userId</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Academic.findByLanguage">
+            <jpa:query>SELECT a FROM Academic a WHERE a.language = :language</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Academic.findByOriginalId">
+            <jpa:query>SELECT a FROM Academic a WHERE a.originalId = :originalId</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Academic.findByUserIdAndLanguage">
+            <jpa:query>SELECT a FROM Academic a WHERE a.userId = :userId AND a.language = :language</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Academic.findByDescription">
+            <jpa:query>SELECT a FROM Academic a WHERE a.description = :description</jpa:query>
+        </jpa:named-query>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.lang.Integer" visibile="true" id="_1428862323041397">
+                <jpa:column name="id" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="id"/>
+            </jpa:id>
+            <jpa:basic name="grade" attribute-type="java.lang.Integer" visibile="true" id="_1428862323042401">
+                <jpa:column name="grade" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="start" attribute-type="java.util.Date" visibile="true" id="_1428862323042402">
+                <jpa:column name="start" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="end" attribute-type="java.util.Date" visibile="true" id="_1428862323042403">
+                <jpa:column name="end" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="status" attribute-type="java.lang.String" visibile="true" id="_1428862323042404">
+                <annotation>@javax.validation.constraints.Size(max=45)</annotation>
+                <jpa:column name="status" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="userId" optional="false" attribute-type="int" visibile="true" id="_1428862323042405">
+                <annotation>@javax.validation.constraints.NotNull</annotation>
+                <jpa:column name="userId" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="language" attribute-type="java.lang.String" visibile="true" id="_1428862323042406">
+                <annotation>@javax.validation.constraints.Size(max=11)</annotation>
+                <jpa:column name="language" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="description" attribute-type="java.lang.String" visibile="true" id="_1428862323042407">
+                <annotation>@javax.validation.constraints.Size(max=500)</annotation>
+                <jpa:column name="description" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="originalId" attribute-type="java.lang.Integer" visibile="true" id="_1428862323042408">
+                <jpa:column name="originalId" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="title" attribute-type="java.lang.String" visibile="true" id="_1428862323042409">
+                <annotation>@javax.validation.constraints.Size(max=45)</annotation>
+                <jpa:column name="title" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="gradeSystem" attribute-type="java.lang.String" visibile="true" id="_1428862323042410">
+                <annotation>@javax.validation.constraints.Size(max=45)</annotation>
+                <jpa:column name="gradeSystem" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="duration" attribute-type="java.lang.Integer" visibile="true" id="_1428862323043411">
+                <jpa:column name="duration" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="yearsCompleted" attribute-type="java.lang.Integer" visibile="true" id="_1428862323043412">
+                <jpa:column name="yearsCompleted" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="createdAt" optional="false" attribute-type="java.util.Date" visibile="true" id="_1428862323043413">
+                <annotation>@javax.validation.constraints.NotNull</annotation>
+                <jpa:column name="createdAt" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </jpa:basic>
+            <jpa:one-to-one name="degree" target-entity="Degree" primaryKey="false" connected-entity-id="_1428862323244419" visibile="true" id="_1428862323041398">
+                <jpa:cascade>
+                    <jpa:cascade-all/>
+                </jpa:cascade>
+            </jpa:one-to-one>
+            <jpa:one-to-one name="course" target-entity="Course" primaryKey="false" connected-entity-id="_1428862323080414" visibile="true" id="_1428862323041399">
+                <jpa:cascade>
+                    <jpa:cascade-all/>
+                </jpa:cascade>
+            </jpa:one-to-one>
+            <jpa:one-to-one name="organization" target-entity="Organization" primaryKey="false" connected-entity-id="_1428862323354424" visibile="true" id="_1428862323042400">
+                <jpa:cascade>
+                    <jpa:cascade-all/>
+                </jpa:cascade>
+            </jpa:one-to-one>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="Course" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_1428862323080414">
+        <annotation>@javax.xml.bind.annotation.XmlRootElement</annotation>
+        <jpa:table name="course"/>
+        <jpa:named-query name="Course.findAll">
+            <jpa:query>SELECT c FROM Course c</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Course.findById">
+            <jpa:query>SELECT c FROM Course c WHERE c.id = :id</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Course.findByName">
+            <jpa:query>SELECT c FROM Course c WHERE c.name = :name</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Course.findByLanguage">
+            <jpa:query>SELECT c FROM Course c WHERE c.language = :language</jpa:query>
+        </jpa:named-query>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.lang.Long" visibile="true" id="_1428862323085415">
+                <jpa:column name="id" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="id"/>
+            </jpa:id>
+            <jpa:basic name="name" attribute-type="java.lang.String" visibile="true" id="_1428862323085416">
+                <annotation>@javax.validation.constraints.Size(max=100)</annotation>
+                <jpa:column name="name" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="language" attribute-type="java.lang.String" visibile="true" id="_1428862323085417">
+                <annotation>@javax.validation.constraints.Size(max=45)</annotation>
+                <jpa:column name="language" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="url" attribute-type="java.lang.String" visibile="true" id="_1428862323085418">
+                <annotation>@javax.validation.constraints.Size(max=255)</annotation>
+                <jpa:column name="url" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="Degree" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_1428862323244419">
+        <annotation>@javax.xml.bind.annotation.XmlRootElement</annotation>
+        <jpa:table name="degree"/>
+        <jpa:named-query name="Degree.findAll">
+            <jpa:query>SELECT d FROM Degree d</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Degree.findById">
+            <jpa:query>SELECT d FROM Degree d WHERE d.id = :id</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Degree.findByFullname">
+            <jpa:query>SELECT d FROM Degree d WHERE d.fullname = :fullname</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Degree.findByShortname">
+            <jpa:query>SELECT d FROM Degree d WHERE d.shortname = :shortname</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Degree.findByLanguage">
+            <jpa:query>SELECT d FROM Degree d WHERE d.language = :language</jpa:query>
+        </jpa:named-query>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.lang.Long" visibile="true" id="_1428862323244420">
+                <jpa:column name="id" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="id"/>
+            </jpa:id>
+            <jpa:basic name="fullname" attribute-type="java.lang.String" visibile="true" id="_1428862323244421">
+                <annotation>@javax.validation.constraints.Size(max=100)</annotation>
+                <jpa:column name="fullname" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="shortname" attribute-type="java.lang.String" visibile="true" id="_1428862323244422">
+                <annotation>@javax.validation.constraints.Size(max=45)</annotation>
+                <jpa:column name="shortname" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="language" attribute-type="java.lang.String" visibile="true" id="_1428862323245423">
+                <annotation>@javax.validation.constraints.Size(max=45)</annotation>
+                <jpa:column name="language" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="Organization" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_1428862323354424">
+        <annotation>@javax.xml.bind.annotation.XmlRootElement</annotation>
+        <jpa:table name="organization"/>
+        <jpa:named-query name="Organization.findAll">
+            <jpa:query>SELECT o FROM Organization o</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Organization.findById">
+            <jpa:query>SELECT o FROM Organization o WHERE o.id = :id</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Organization.findByFullname">
+            <jpa:query>SELECT o FROM Organization o WHERE o.fullname = :fullname</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Organization.findByShortname">
+            <jpa:query>SELECT o FROM Organization o WHERE o.shortname = :shortname</jpa:query>
+        </jpa:named-query>
+        <jpa:named-query name="Organization.findByLanguage">
+            <jpa:query>SELECT o FROM Organization o WHERE o.language = :language</jpa:query>
+        </jpa:named-query>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.lang.Long" visibile="true" id="_1428862323354425">
+                <jpa:column name="id" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="id"/>
+            </jpa:id>
+            <jpa:basic name="fullname" optional="false" attribute-type="java.lang.String" visibile="true" id="_1428862323354426">
+                <annotation>@javax.validation.constraints.NotNull</annotation>
+                <annotation>@javax.validation.constraints.Size(min=1, max=100)</annotation>
+                <jpa:column name="fullname" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="shortname" attribute-type="java.lang.String" visibile="true" id="_1428862323354427">
+                <annotation>@javax.validation.constraints.Size(max=45)</annotation>
+                <jpa:column name="shortname" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="language" optional="false" attribute-type="java.lang.String" visibile="true" id="_1428862323354428">
+                <annotation>@javax.validation.constraints.NotNull</annotation>
+                <annotation>@javax.validation.constraints.Size(min=1, max=45)</annotation>
+                <jpa:column name="language" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="url" attribute-type="java.lang.String" visibile="true" id="_1428862323354429">
+                <annotation>@javax.validation.constraints.Size(max=255)</annotation>
+                <jpa:column name="url" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:diagram id="_1428862322690394">
+        <plane elementRef="_1428862322690393" id="_1428862322690395_p">
+            <shape elementRef="_1428862323041396" id="_1428862323041396_gui">
+                <Bounds x="509.0" y="48.0" width="155.0" height="401.0"/>
+            </shape>
+            <shape elementRef="_1428862323080414" id="_1428862323080414_gui">
+                <Bounds x="902.0" y="48.0" width="140.0" height="128.0"/>
+            </shape>
+            <shape elementRef="_1428862323244419" id="_1428862323244419_gui">
+                <Bounds x="744.0" y="48.0" width="140.0" height="128.0"/>
+            </shape>
+            <shape elementRef="_1428862323354424" id="_1428862323354424_gui">
+                <Bounds x="172.0" y="174.0" width="177.0" height="148.0"/>
+            </shape>
+        </plane>
+    </jpa:diagram>
+</jpa:entity-mappings>

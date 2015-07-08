@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />  
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite, 4 failed tests</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-Command_line_suite">
+              <span class="suite-name border-failed">Command line suite</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-Command_line_suite">
+                    <span>[unset file name]</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-Command_line_suite">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-Command_line_suite">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-Command_line_suite">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-Command_line_suite">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-Command_line_suite">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-Command_line_suite">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">47 methods, 4 failed,   43 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Command_line_suite" class="hide-methods failed suite-Command_line_suite"> (hide)</a> <!-- hide-methods failed suite-Command_line_suite -->
+                      <a href="#" panel-name="suite-Command_line_suite" class="show-methods failed suite-Command_line_suite"> (show)</a> <!-- show-methods failed suite-Command_line_suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Command_line_suite">
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.welcome.WelcomeViewSeleniumTest" hash-for-method="testContactButton">testContactButton</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.welcome.WelcomeViewSeleniumTest" hash-for-method="testRegisterButton(Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade)">testRegisterButton(Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.welcome.WelcomeViewSeleniumTest" hash-for-method="testRegisterButton(Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade)">testRegisterButton(Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.welcome.WelcomeViewSeleniumTest" hash-for-method="testRegisterButton(Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade)">testRegisterButton(Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Command_line_suite -->
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Command_line_suite" class="hide-methods passed suite-Command_line_suite"> (hide)</a> <!-- hide-methods passed suite-Command_line_suite -->
+                      <a href="#" panel-name="suite-Command_line_suite" class="show-methods passed suite-Command_line_suite"> (show)</a> <!-- show-methods passed suite-Command_line_suite -->
+                    </span>
+                    <div class="method-list-content passed suite-Command_line_suite">
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.welcome.WelcomeViewSeleniumTest" hash-for-method="testBackgroundExistence">testBackgroundExistence</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterViewUnitTest" hash-for-method="testCreateBackground">testCreateBackground</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.welcome.WelcomeViewUnitTest" hash-for-method="testCreateBackground">testCreateBackground</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterViewUnitTest" hash-for-method="testCreateContent">testCreateContent</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.welcome.WelcomeViewUnitTest" hash-for-method="testCreateContentView">testCreateContentView</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterViewUnitTest" hash-for-method="testCreateMenu">testCreateMenu</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.welcome.WelcomeViewUnitTest" hash-for-method="testCreateMenuView">testCreateMenuView</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testDefaultLanguageValueChange(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">testDefaultLanguageValueChange(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testDefaultLanguageValueChange(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testDefaultLanguageValueChange(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testDefaultLanguageValueChange(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testDefaultLanguageValueChange(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testFormAfterCreation">testFormAfterCreation</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="unit.views.LifetimeViewNGTest" hash-for-method="testGetBackground">testGetBackground</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetBirthDate(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testGetBirthDate(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetBirthDate(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">testGetBirthDate(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetBirthDate(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testGetBirthDate(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.welcome.WelcomeMenuUnitTest" hash-for-method="testGetContactButton">testGetContactButton</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="unit.views.LifetimeViewNGTest" hash-for-method="testGetContent">testGetContent</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterViewUnitTest" hash-for-method="testGetContent">testGetContent</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetDefaultLanguage(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">testGetDefaultLanguage(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetDefaultLanguage(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testGetDefaultLanguage(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetDefaultLanguage(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testGetDefaultLanguage(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetEmail(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testGetEmail(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetEmail(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">testGetEmail(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetEmail(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testGetEmail(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetFirstname(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testGetFirstname(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetFirstname(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testGetFirstname(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetFirstname(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">testGetFirstname(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.welcome.WelcomeMenuUnitTest" hash-for-method="testGetHomeButton">testGetHomeButton</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="unit.views.LifetimeViewNGTest" hash-for-method="testGetLanguage">testGetLanguage</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetLastname(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">testGetLastname(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetLastname(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testGetLastname(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetLastname(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testGetLastname(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.welcome.WelcomeMenuUnitTest" hash-for-method="testGetLoginButton">testGetLoginButton</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="unit.views.LifetimeViewNGTest" hash-for-method="testGetMenu">testGetMenu</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetPassword(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testGetPassword(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetPassword(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">testGetPassword(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetPassword(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testGetPassword(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetPasswordRepeat(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">testGetPasswordRepeat(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetPasswordRepeat(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testGetPasswordRepeat(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterFormUnitNGTest" hash-for-method="testGetPasswordRepeat(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">testGetPasswordRepeat(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.welcome.WelcomeMenuUnitTest" hash-for-method="testGetRegisterButton">testGetRegisterButton</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.welcome.WelcomeViewSeleniumTest" hash-for-method="testLoginButton(zuacaldeira1@gmail.com, unicidade)">testLoginButton(zuacaldeira1@gmail.com, unicidade)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Command_line_suite" title="views.register.RegisterContentUnitTest" hash-for-method="testSomeMethod">testSomeMethod</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Command_line_suite -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Command_line_suite" class="panel Command_line_suite">
+          <div class="suite-Command_line_suite-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">views.welcome.WelcomeViewSeleniumTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testContactButton">
+                  </a> <!-- testContactButton -->
+                  <span class="method-name">testContactButton</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected [http://localhost:8080/vitae/contact] but found [http://localhost:8080/vitae/#!Contact]
+	at views.welcome.WelcomeViewSeleniumTest.testContactButton(WelcomeViewSeleniumTest.java:103)
+... Removed 39 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testRegisterButton(Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade)">
+                  </a> <!-- testRegisterButton(Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade) -->
+                  <span class="method-name">testRegisterButton</span>
+                  <span class="parameters">(Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade)</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected [http://localhost:8080/vitae/register] but found [http://localhost:8080/vitae/#!Register]
+	at views.welcome.WelcomeViewSeleniumTest.testRegisterButton(WelcomeViewSeleniumTest.java:73)
+... Removed 39 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testRegisterButton(Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade)">
+                  </a> <!-- testRegisterButton(Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade) -->
+                  <span class="method-name">testRegisterButton</span>
+                  <span class="parameters">(Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade)</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected [http://localhost:8080/vitae/register] but found [http://localhost:8080/vitae/#!Register]
+	at views.welcome.WelcomeViewSeleniumTest.testRegisterButton(WelcomeViewSeleniumTest.java:73)
+... Removed 39 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testRegisterButton(Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade)">
+                  </a> <!-- testRegisterButton(Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade) -->
+                  <span class="method-name">testRegisterButton</span>
+                  <span class="parameters">(Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade)</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected [http://localhost:8080/vitae/register] but found [http://localhost:8080/vitae/#!Register]
+	at views.welcome.WelcomeViewSeleniumTest.testRegisterButton(WelcomeViewSeleniumTest.java:73)
+... Removed 39 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Command_line_suite-class-failed -->
+          <div class="suite-Command_line_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">views.welcome.WelcomeViewSeleniumTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testBackgroundExistence">
+                  </a> <!-- testBackgroundExistence -->
+                  <span class="method-name">testBackgroundExistence</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testLoginButton(zuacaldeira1@gmail.com, unicidade)">
+                  </a> <!-- testLoginButton(zuacaldeira1@gmail.com, unicidade) -->
+                  <span class="method-name">testLoginButton</span>
+                  <span class="parameters">(zuacaldeira1@gmail.com, unicidade)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Command_line_suite-class-passed -->
+          <div class="suite-Command_line_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">views.register.RegisterFormUnitNGTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDefaultLanguageValueChange(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">
+                  </a> <!-- testDefaultLanguageValueChange(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...) -->
+                  <span class="method-name">testDefaultLanguageValueChange</span>
+                  <span class="parameters">(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:12 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDefaultLanguageValueChange(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testDefaultLanguageValueChange(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testDefaultLanguageValueChange</span>
+                  <span class="parameters">(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:12 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDefaultLanguageValueChange(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testDefaultLanguageValueChange(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testDefaultLanguageValueChange</span>
+                  <span class="parameters">(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:12 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFormAfterCreation">
+                  </a> <!-- testFormAfterCreation -->
+                  <span class="method-name">testFormAfterCreation</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetBirthDate(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testGetBirthDate(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testGetBirthDate</span>
+                  <span class="parameters">(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:12 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetBirthDate(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">
+                  </a> <!-- testGetBirthDate(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...) -->
+                  <span class="method-name">testGetBirthDate</span>
+                  <span class="parameters">(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:12 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetBirthDate(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testGetBirthDate(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testGetBirthDate</span>
+                  <span class="parameters">(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:12 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetDefaultLanguage(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">
+                  </a> <!-- testGetDefaultLanguage(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...) -->
+                  <span class="method-name">testGetDefaultLanguage</span>
+                  <span class="parameters">(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:12 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetDefaultLanguage(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testGetDefaultLanguage(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testGetDefaultLanguage</span>
+                  <span class="parameters">(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:12 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetDefaultLanguage(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testGetDefaultLanguage(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testGetDefaultLanguage</span>
+                  <span class="parameters">(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:12 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetEmail(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testGetEmail(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testGetEmail</span>
+                  <span class="parameters">(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetEmail(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">
+                  </a> <!-- testGetEmail(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...) -->
+                  <span class="method-name">testGetEmail</span>
+                  <span class="parameters">(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetEmail(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testGetEmail(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testGetEmail</span>
+                  <span class="parameters">(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetFirstname(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testGetFirstname(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testGetFirstname</span>
+                  <span class="parameters">(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetFirstname(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testGetFirstname(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testGetFirstname</span>
+                  <span class="parameters">(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetFirstname(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">
+                  </a> <!-- testGetFirstname(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...) -->
+                  <span class="method-name">testGetFirstname</span>
+                  <span class="parameters">(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetLastname(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">
+                  </a> <!-- testGetLastname(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...) -->
+                  <span class="method-name">testGetLastname</span>
+                  <span class="parameters">(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetLastname(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testGetLastname(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testGetLastname</span>
+                  <span class="parameters">(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetLastname(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testGetLastname(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testGetLastname</span>
+                  <span class="parameters">(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetPassword(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testGetPassword(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testGetPassword</span>
+                  <span class="parameters">(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetPassword(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">
+                  </a> <!-- testGetPassword(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...) -->
+                  <span class="method-name">testGetPassword</span>
+                  <span class="parameters">(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetPassword(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testGetPassword(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testGetPassword</span>
+                  <span class="parameters">(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetPasswordRepeat(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)">
+                  </a> <!-- testGetPasswordRepeat(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...) -->
+                  <span class="method-name">testGetPasswordRepeat</span>
+                  <span class="parameters">(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetPasswordRepeat(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testGetPasswordRepeat(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testGetPasswordRepeat</span>
+                  <span class="parameters">(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetPasswordRepeat(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)">
+                  </a> <!-- testGetPasswordRepeat(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...) -->
+                  <span class="method-name">testGetPasswordRepeat</span>
+                  <span class="parameters">(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 12:59:13 CET 1974)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Command_line_suite-class-passed -->
+          <div class="suite-Command_line_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">views.register.RegisterViewUnitTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateBackground">
+                  </a> <!-- testCreateBackground -->
+                  <span class="method-name">testCreateBackground</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateContent">
+                  </a> <!-- testCreateContent -->
+                  <span class="method-name">testCreateContent</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateMenu">
+                  </a> <!-- testCreateMenu -->
+                  <span class="method-name">testCreateMenu</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetContent">
+                  </a> <!-- testGetContent -->
+                  <span class="method-name">testGetContent</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Command_line_suite-class-passed -->
+          <div class="suite-Command_line_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">views.welcome.WelcomeViewUnitTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateBackground">
+                  </a> <!-- testCreateBackground -->
+                  <span class="method-name">testCreateBackground</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateContentView">
+                  </a> <!-- testCreateContentView -->
+                  <span class="method-name">testCreateContentView</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateMenuView">
+                  </a> <!-- testCreateMenuView -->
+                  <span class="method-name">testCreateMenuView</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Command_line_suite-class-passed -->
+          <div class="suite-Command_line_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">unit.views.LifetimeViewNGTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetBackground">
+                  </a> <!-- testGetBackground -->
+                  <span class="method-name">testGetBackground</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetContent">
+                  </a> <!-- testGetContent -->
+                  <span class="method-name">testGetContent</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetLanguage">
+                  </a> <!-- testGetLanguage -->
+                  <span class="method-name">testGetLanguage</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetMenu">
+                  </a> <!-- testGetMenu -->
+                  <span class="method-name">testGetMenu</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Command_line_suite-class-passed -->
+          <div class="suite-Command_line_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">views.welcome.WelcomeMenuUnitTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetContactButton">
+                  </a> <!-- testGetContactButton -->
+                  <span class="method-name">testGetContactButton</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetHomeButton">
+                  </a> <!-- testGetHomeButton -->
+                  <span class="method-name">testGetHomeButton</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetLoginButton">
+                  </a> <!-- testGetLoginButton -->
+                  <span class="method-name">testGetLoginButton</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetRegisterButton">
+                  </a> <!-- testGetRegisterButton -->
+                  <span class="method-name">testGetRegisterButton</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Command_line_suite-class-passed -->
+          <div class="suite-Command_line_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">views.register.RegisterContentUnitTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testSomeMethod">
+                  </a> <!-- testSomeMethod -->
+                  <span class="method-name">testSomeMethod</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Command_line_suite-class-passed -->
+        </div> <!-- panel Command_line_suite -->
+        <div panel-name="test-xml-Command_line_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite verbose=&quot;0&quot; name=&quot;Command line suite&quot;&gt;
+  &lt;test name=&quot;Command line test&quot; preserve-order=&quot;false&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;unit.views.LifetimeViewNGTest&quot;/&gt;
+      &lt;class name=&quot;views.register.RegisterContentUnitTest&quot;/&gt;
+      &lt;class name=&quot;views.register.RegisterFormUnitNGTest&quot;/&gt;
+      &lt;class name=&quot;views.register.RegisterViewUnitTest&quot;/&gt;
+      &lt;class name=&quot;views.welcome.WelcomeMenuUnitTest&quot;/&gt;
+      &lt;class name=&quot;views.welcome.WelcomeViewSeleniumTest&quot;/&gt;
+      &lt;class name=&quot;views.welcome.WelcomeViewUnitTest&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Command line test --&gt;
+&lt;/suite&gt; &lt;!-- Command line suite --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Command_line_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Command line suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Command line test (7 classes)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Command_line_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Command line suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Command_line_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Command line suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Command_line_suite');
+function tableData_Command_line_suite() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(47);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'testLoginButton')
+data.setCell(0, 2, 'views.welcome.WelcomeViewSeleniumTest')
+data.setCell(0, 3, 78934);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'testBackgroundExistence')
+data.setCell(1, 2, 'views.welcome.WelcomeViewSeleniumTest')
+data.setCell(1, 3, 22002);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'testRegisterButton')
+data.setCell(2, 2, 'views.welcome.WelcomeViewSeleniumTest')
+data.setCell(2, 3, 14897);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'testContactButton')
+data.setCell(3, 2, 'views.welcome.WelcomeViewSeleniumTest')
+data.setCell(3, 3, 14321);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'testRegisterButton')
+data.setCell(4, 2, 'views.welcome.WelcomeViewSeleniumTest')
+data.setCell(4, 3, 13323);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'testRegisterButton')
+data.setCell(5, 2, 'views.welcome.WelcomeViewSeleniumTest')
+data.setCell(5, 3, 12719);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'testSomeMethod')
+data.setCell(6, 2, 'views.register.RegisterContentUnitTest')
+data.setCell(6, 3, 691);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'testGetBackground')
+data.setCell(7, 2, 'unit.views.LifetimeViewNGTest')
+data.setCell(7, 3, 226);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'testCreateBackground')
+data.setCell(8, 2, 'views.welcome.WelcomeViewUnitTest')
+data.setCell(8, 3, 146);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'testCreateBackground')
+data.setCell(9, 2, 'views.register.RegisterViewUnitTest')
+data.setCell(9, 3, 68);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'testGetContactButton')
+data.setCell(10, 2, 'views.welcome.WelcomeMenuUnitTest')
+data.setCell(10, 3, 36);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'testDefaultLanguageValueChange')
+data.setCell(11, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(11, 3, 32);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'testGetContent')
+data.setCell(12, 2, 'unit.views.LifetimeViewNGTest')
+data.setCell(12, 3, 23);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'testGetLanguage')
+data.setCell(13, 2, 'unit.views.LifetimeViewNGTest')
+data.setCell(13, 3, 15);
+data.setCell(14, 0, 14)
+data.setCell(14, 1, 'testDefaultLanguageValueChange')
+data.setCell(14, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(14, 3, 14);
+data.setCell(15, 0, 15)
+data.setCell(15, 1, 'testDefaultLanguageValueChange')
+data.setCell(15, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(15, 3, 12);
+data.setCell(16, 0, 16)
+data.setCell(16, 1, 'testGetBirthDate')
+data.setCell(16, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(16, 3, 11);
+data.setCell(17, 0, 17)
+data.setCell(17, 1, 'testGetRegisterButton')
+data.setCell(17, 2, 'views.welcome.WelcomeMenuUnitTest')
+data.setCell(17, 3, 10);
+data.setCell(18, 0, 18)
+data.setCell(18, 1, 'testGetMenu')
+data.setCell(18, 2, 'unit.views.LifetimeViewNGTest')
+data.setCell(18, 3, 8);
+data.setCell(19, 0, 19)
+data.setCell(19, 1, 'testGetPassword')
+data.setCell(19, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(19, 3, 8);
+data.setCell(20, 0, 20)
+data.setCell(20, 1, 'testGetDefaultLanguage')
+data.setCell(20, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(20, 3, 7);
+data.setCell(21, 0, 21)
+data.setCell(21, 1, 'testGetLastname')
+data.setCell(21, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(21, 3, 7);
+data.setCell(22, 0, 22)
+data.setCell(22, 1, 'testFormAfterCreation')
+data.setCell(22, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(22, 3, 7);
+data.setCell(23, 0, 23)
+data.setCell(23, 1, 'testGetBirthDate')
+data.setCell(23, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(23, 3, 6);
+data.setCell(24, 0, 24)
+data.setCell(24, 1, 'testGetDefaultLanguage')
+data.setCell(24, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(24, 3, 6);
+data.setCell(25, 0, 25)
+data.setCell(25, 1, 'testGetPasswordRepeat')
+data.setCell(25, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(25, 3, 6);
+data.setCell(26, 0, 26)
+data.setCell(26, 1, 'testGetFirstname')
+data.setCell(26, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(26, 3, 6);
+data.setCell(27, 0, 27)
+data.setCell(27, 1, 'testGetFirstname')
+data.setCell(27, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(27, 3, 6);
+data.setCell(28, 0, 28)
+data.setCell(28, 1, 'testCreateMenu')
+data.setCell(28, 2, 'views.register.RegisterViewUnitTest')
+data.setCell(28, 3, 5);
+data.setCell(29, 0, 29)
+data.setCell(29, 1, 'testGetPasswordRepeat')
+data.setCell(29, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(29, 3, 5);
+data.setCell(30, 0, 30)
+data.setCell(30, 1, 'testGetEmail')
+data.setCell(30, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(30, 3, 5);
+data.setCell(31, 0, 31)
+data.setCell(31, 1, 'testGetDefaultLanguage')
+data.setCell(31, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(31, 3, 4);
+data.setCell(32, 0, 32)
+data.setCell(32, 1, 'testGetFirstname')
+data.setCell(32, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(32, 3, 4);
+data.setCell(33, 0, 33)
+data.setCell(33, 1, 'testCreateContent')
+data.setCell(33, 2, 'views.register.RegisterViewUnitTest')
+data.setCell(33, 3, 4);
+data.setCell(34, 0, 34)
+data.setCell(34, 1, 'testGetLastname')
+data.setCell(34, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(34, 3, 4);
+data.setCell(35, 0, 35)
+data.setCell(35, 1, 'testGetEmail')
+data.setCell(35, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(35, 3, 3);
+data.setCell(36, 0, 36)
+data.setCell(36, 1, 'testCreateContentView')
+data.setCell(36, 2, 'views.welcome.WelcomeViewUnitTest')
+data.setCell(36, 3, 3);
+data.setCell(37, 0, 37)
+data.setCell(37, 1, 'testGetLastname')
+data.setCell(37, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(37, 3, 3);
+data.setCell(38, 0, 38)
+data.setCell(38, 1, 'testGetContent')
+data.setCell(38, 2, 'views.register.RegisterViewUnitTest')
+data.setCell(38, 3, 3);
+data.setCell(39, 0, 39)
+data.setCell(39, 1, 'testGetPassword')
+data.setCell(39, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(39, 3, 3);
+data.setCell(40, 0, 40)
+data.setCell(40, 1, 'testCreateMenuView')
+data.setCell(40, 2, 'views.welcome.WelcomeViewUnitTest')
+data.setCell(40, 3, 3);
+data.setCell(41, 0, 41)
+data.setCell(41, 1, 'testGetPasswordRepeat')
+data.setCell(41, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(41, 3, 3);
+data.setCell(42, 0, 42)
+data.setCell(42, 1, 'testGetBirthDate')
+data.setCell(42, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(42, 3, 3);
+data.setCell(43, 0, 43)
+data.setCell(43, 1, 'testGetEmail')
+data.setCell(43, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(43, 3, 3);
+data.setCell(44, 0, 44)
+data.setCell(44, 1, 'testGetPassword')
+data.setCell(44, 2, 'views.register.RegisterFormUnitNGTest')
+data.setCell(44, 3, 2);
+data.setCell(45, 0, 45)
+data.setCell(45, 1, 'testGetHomeButton')
+data.setCell(45, 2, 'views.welcome.WelcomeMenuUnitTest')
+data.setCell(45, 3, 2);
+data.setCell(46, 0, 46)
+data.setCell(46, 1, 'testGetLoginButton')
+data.setCell(46, 2, 'views.welcome.WelcomeMenuUnitTest')
+data.setCell(46, 3, 1);
+window.suiteTableData['Command_line_suite']= { tableData: data, tableDiv: 'times-div-Command_line_suite'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <div id="times-div-Command_line_suite">
+              </div> <!-- times-div-Command_line_suite -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Command_line_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Command line suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Command_line_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Command_line_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">unit.views.LifetimeViewNGTest</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">testGetBackground</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetContent</span>
+                <span class="method-start">226 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetLanguage</span>
+                <span class="method-start">250 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetMenu</span>
+                <span class="method-start">267 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">views.register.RegisterContentUnitTest</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">testSomeMethod</span>
+                <span class="method-start">276 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">views.register.RegisterFormUnitNGTest</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">testDefaultLanguageValueChange(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</span>
+                <span class="method-start">971 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testDefaultLanguageValueChange(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1004 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testDefaultLanguageValueChange(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1016 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testFormAfterCreation</span>
+                <span class="method-start">1031 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetBirthDate(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</span>
+                <span class="method-start">1039 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetBirthDate(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1050 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetBirthDate(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1056 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetDefaultLanguage(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</span>
+                <span class="method-start">1060 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetDefaultLanguage(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1067 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetDefaultLanguage(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1071 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetEmail(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</span>
+                <span class="method-start">1077 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetEmail(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1083 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetEmail(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1086 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetFirstname(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</span>
+                <span class="method-start">1089 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetFirstname(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1095 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetFirstname(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1103 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetLastname(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</span>
+                <span class="method-start">1108 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetLastname(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1115 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetLastname(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1118 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetPassword(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</span>
+                <span class="method-start">1123 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetPassword(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1126 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetPassword(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1135 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetPasswordRepeat(português - pt, Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade, Sun Jan 2...)</span>
+                <span class="method-start">1144 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetPasswordRepeat(english - en, Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1155 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetPasswordRepeat(deutsch - de, Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade, Sun Jan 20 ...)</span>
+                <span class="method-start">1158 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">views.register.RegisterViewUnitTest</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">testCreateBackground</span>
+                <span class="method-start">1165 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCreateContent</span>
+                <span class="method-start">1233 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCreateMenu</span>
+                <span class="method-start">1237 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetContent</span>
+                <span class="method-start">1243 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">views.welcome.WelcomeMenuUnitTest</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">testGetContactButton</span>
+                <span class="method-start">1247 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetHomeButton</span>
+                <span class="method-start">1284 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetLoginButton</span>
+                <span class="method-start">1287 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetRegisterButton</span>
+                <span class="method-start">1288 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">views.welcome.WelcomeViewSeleniumTest</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">setUpMethod</span>
+                <span class="method-start">1299 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testBackgroundExistence</span>
+                <span class="method-start">29524 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDownMethod</span>
+                <span class="method-start">51526 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setUpMethod</span>
+                <span class="method-start">52413 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">testContactButton</span>
+                <span class="method-start">56169 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDownMethod</span>
+                <span class="method-start">70493 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setUpMethod</span>
+                <span class="method-start">71421 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testLoginButton(zuacaldeira1@gmail.com, unicidade)</span>
+                <span class="method-start">76838 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDownMethod</span>
+                <span class="method-start">155772 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setUpMethod</span>
+                <span class="method-start">156586 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">testRegisterButton(Alexandre 1, Zua Caldeira 1, zuacaldeira1@gmail.com, unicidade, unicidade)</span>
+                <span class="method-start">159907 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDownMethod</span>
+                <span class="method-start">174828 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setUpMethod</span>
+                <span class="method-start">175675 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">testRegisterButton(Alexandre 2, Zua Caldeira 2, zuacaldeira2@gmail.com, unicidade, unicidade)</span>
+                <span class="method-start">178212 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDownMethod</span>
+                <span class="method-start">191536 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setUpMethod</span>
+                <span class="method-start">192264 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">testRegisterButton(Alexandre 3, Zua Caldeira 3, zuacaldeira3@gmail.com, unicidade, unicidade)</span>
+                <span class="method-start">195465 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDownMethod</span>
+                <span class="method-start">208185 ms</span>
+              </div> <!-- configuration-method after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">views.welcome.WelcomeViewUnitTest</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">testCreateBackground</span>
+                <span class="method-start">208958 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCreateContentView</span>
+                <span class="method-start">209104 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCreateMenuView</span>
+                <span class="method-start">209107 ms</span>
+              </div> <!-- test-method -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>
