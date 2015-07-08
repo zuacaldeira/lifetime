@@ -13,3 +13,10 @@ hs_err_pid*
 
 # target/ directories
 */target/
+
+# pdf files
+*.pdf
+
+# image files
+*.jpg
+*.gif
