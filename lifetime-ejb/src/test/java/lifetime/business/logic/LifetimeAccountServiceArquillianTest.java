@@ -38,7 +38,14 @@ public class LifetimeAccountServiceArquillianTest {
         JavaArchive result = ShrinkWrap.create(JavaArchive.class, "test.jar")
                 .addClasses(LifetimeAccountService.class)
                 .addPackage(User.class.getPackage().getName())
-                .addPackage(Package.getPackage("org.jboss.arquillian.junit"))
+                .addPackage("org.jboss.arquillian.junit")
+                .addClass("org.jboss.arquillian.container.test.api.Deployment")
+                .addClass("org.jboss.arquillian.junit.Arquillian")
+                .addClass("org.jboss.shrinkwrap.api.Archive")
+                .addClass("org.jboss.shrinkwrap.api.ArchivePaths")
+                .addClass("org.jboss.shrinkwrap.api.ShrinkWrap")
+                .addClass("org.jboss.shrinkwrap.api.spec.JavaArchive")
+                .addClass("org.jboss.shrinkwrap.api.asset.EmptyAsset")
                 .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
                         "META-INF/persistence.xml")
                 .addAsResource(EmptyAsset.INSTANCE,
