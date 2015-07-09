@@ -7,7 +7,7 @@
  
     <container qualifier="glassfish-managed-3.1" default="true">
         <configuration>
-            <property name="glassFishHome">~/Development/tools/glassfish4</property>
+            <property name="glassFishHome">/Applications/Netbeans/glassfish-4.1</property>
             <property name="adminHost">localhost</property>
             <property name="adminPort">4848</property>
             <property name="adminUser">admin</property>

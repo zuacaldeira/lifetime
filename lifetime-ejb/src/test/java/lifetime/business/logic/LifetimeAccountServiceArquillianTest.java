@@ -34,11 +34,9 @@ public class LifetimeAccountServiceArquillianTest {
     @Deployment
     public static Archive createDeployment() {
         // get all maven dependecies
-        /*File[] files = Maven.resolver().loadPomFromFile("pom.xml")
-                .importRuntimeDependencies().resolve().withTransitivity().asFile();*/
-
+        
         JavaArchive result = ShrinkWrap.create(JavaArchive.class, "test.jar")
-                //.addAsLibraries(files)
+                .addClasses(Deployment.class, Arquillian.class)
                 .addClasses(LifetimeAccountService.class)
                 .addPackage(User.class.getPackage().getName())
                 .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
