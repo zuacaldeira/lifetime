@@ -34,11 +34,11 @@ public class LifetimeAccountServiceArquillianTest {
     @Deployment
     public static Archive createDeployment() {
         // get all maven dependecies
-        
+        System.err.print("+++++++++++++++ " + Package.getPackage("org.jboss.arquillian.junit"));
         JavaArchive result = ShrinkWrap.create(JavaArchive.class, "test.jar")
-                .addClasses(Deployment.class, Arquillian.class)
                 .addClasses(LifetimeAccountService.class)
                 .addPackage(User.class.getPackage().getName())
+                .addPackage(Package.getPackage("org.jboss.arquillian.junit"))
                 .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
                         "META-INF/persistence.xml")
                 .addAsResource(EmptyAsset.INSTANCE,
