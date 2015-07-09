@@ -7,7 +7,7 @@
  
     <container qualifier="glassfish-managed-3.1" default="true">
         <configuration>
-            <property name="glassFishHome">/Users/zua/Development/tools/glassfish4</property>
+            <property name="glassFishHome">~/Development/tools/glassfish4</property>
             <property name="adminHost">localhost</property>
             <property name="adminPort">4848</property>
             <property name="adminUser">admin</property>
@@ -15,13 +15,4 @@
         </configuration>
     </container>
     
-       <container qualifier="glassfish-auth">
-                <configuration>
-                        <property name="glassFishHome">/Users/zua/Development/tools/glassfish4</property>
-                        <property name="adminHost">localhost</property>
-                        <property name="adminPort">4848</property>
-                        <property name="adminUser">admin</property>
-                        <property name="adminPassword">admin</property>
-                    </configuration>
-            </container>
 </arquillian>

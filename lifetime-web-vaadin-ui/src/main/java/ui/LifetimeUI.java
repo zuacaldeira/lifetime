@@ -12,7 +12,7 @@ import util.ServiceLocator;
  *
  */
 @Theme("mytheme")
-@Widgetset("lifetime.web.vaadin.MyAppWidgetset")
+@Widgetset("lifetime.MyAppWidgetset")
 public abstract class LifetimeUI extends UI  {
 
     @Override
