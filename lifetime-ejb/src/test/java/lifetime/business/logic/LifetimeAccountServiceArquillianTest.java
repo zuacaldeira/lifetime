@@ -16,7 +16,7 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,18 +34,10 @@ public class LifetimeAccountServiceArquillianTest {
     @Deployment
     public static Archive createDeployment() {
         // get all maven dependecies
-        System.err.print("+++++++++++++++ " + Package.getPackage("org.jboss.arquillian.junit"));
-        JavaArchive result = ShrinkWrap.create(JavaArchive.class, "test.jar")
+        WebArchive result = ShrinkWrap.create(WebArchive.class, "test.war")
+                //.addAsLibraries(files)
                 .addClasses(LifetimeAccountService.class)
                 .addPackage(User.class.getPackage().getName())
-                .addPackage("org.jboss.arquillian.junit")
-                .addClass("org.jboss.arquillian.container.test.api.Deployment")
-                .addClass("org.jboss.arquillian.junit.Arquillian")
-                .addClass("org.jboss.shrinkwrap.api.Archive")
-                .addClass("org.jboss.shrinkwrap.api.ArchivePaths")
-                .addClass("org.jboss.shrinkwrap.api.ShrinkWrap")
-                .addClass("org.jboss.shrinkwrap.api.spec.JavaArchive")
-                .addClass("org.jboss.shrinkwrap.api.asset.EmptyAsset")
                 .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
                         "META-INF/persistence.xml")
                 .addAsResource(EmptyAsset.INSTANCE,
