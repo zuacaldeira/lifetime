@@ -7,6 +7,7 @@ import com.vaadin.ui.UI;
 import java.security.Principal;
 import lifetime.business.persistence.User;
 import util.ServiceLocator;
+import views.LifetimeView;
 
 /**
  *
@@ -14,6 +15,7 @@ import util.ServiceLocator;
 @Theme("mytheme")
 @Widgetset("lifetime.MyAppWidgetset")
 public abstract class LifetimeUI extends UI  {
+    private LifetimeView lifetimeView;
 
     @Override
     protected abstract void init(VaadinRequest request);
@@ -28,6 +30,10 @@ public abstract class LifetimeUI extends UI  {
         } else {
             return "en";
         }
+    }
+
+    protected LifetimeView getLifetimeView() {
+        return lifetimeView;
     }
 
 }
