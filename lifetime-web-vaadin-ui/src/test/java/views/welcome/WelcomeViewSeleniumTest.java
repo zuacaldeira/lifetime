@@ -23,6 +23,7 @@ import com.vaadin.testbench.elements.ButtonElement;
 import com.vaadin.testbench.elements.ImageElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import ui.TestBundle;
 
 /**
  *
@@ -51,7 +52,7 @@ public class WelcomeViewSeleniumTest extends TestBenchTestCase {
 
     @org.testng.annotations.Test
     public void testBackgroundExistence() {
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>> testBackgroundExistence");
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>> WelcomeViewSeleniumTest#testBackgroundExistence");
         getDriver().get("http://localhost:8080/vitae");
         // Get backgroud
         ImageElement background = $(ImageElement.class).caption("").first();
@@ -61,7 +62,7 @@ public class WelcomeViewSeleniumTest extends TestBenchTestCase {
 
     @org.testng.annotations.Test(dataProviderClass = RegistrationDataProvider.class, dataProvider = "positive")
     public void testRegisterButton(String firstname, String lastname, String email, String password1, String password2) {
-        System.out.println("\n>>>>>>>>>>>>>>>>>>>>>> testRegisterButtonExistence");
+        System.out.println("\n>>>>>>>>>>>>>>>>>>>>>> WelcomeViewSeleniumTest#testRegisterButtonExistence");
         getDriver().get("http://localhost:8080/vitae");
         // Get Register Button
         ButtonElement registerButton = $(ButtonElement.class).caption("Register").first();
@@ -70,13 +71,13 @@ public class WelcomeViewSeleniumTest extends TestBenchTestCase {
         registerButton.click();
         // Assert we've navigated to user area
         String currentUrl = getDriver().getCurrentUrl();
-        Assert.assertEquals(currentUrl, "http://localhost:8080/vitae/register");
+        Assert.assertEquals(currentUrl, TestBundle.REGISTER_URL);
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     }
 
-    @Test(dataProviderClass = LoginDataProvider.class, dataProvider = "positive")
+    //@Test(dataProviderClass = LoginDataProvider.class, dataProvider = "positive")
     public void testLoginButton(String username, String password) {
-        System.out.println("\n>>>>>>>>>>>>>>>>>>>>>> testLoginButtonExistence");
+        System.out.println("\n>>>>>>>>>>>>>>>>>>>>>> WelcomeViewSeleniumTest#testLoginButtonExistence");
         getDriver().get("http://localhost:8080/vitae");
         // Get Login Botton
         ButtonElement loginButton = $(ButtonElement.class).caption("Login").first();
@@ -85,13 +86,13 @@ public class WelcomeViewSeleniumTest extends TestBenchTestCase {
         loginButton.click();
         // Assert we've navigated to user area
         String currentUrl = getDriver().getCurrentUrl();
-        Assert.assertEquals(currentUrl, "http://localhost:8080/vitae/user");
+        Assert.assertEquals(currentUrl, TestBundle.LOGIN_URL);
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     }
 
     @org.testng.annotations.Test
     public void testContactButton() {
-        System.out.println("\n>>>>>>>>>>>>>>>>>>>>>> testContactButtonExistence");
+        System.out.println("\n>>>>>>>>>>>>>>>>>>>>>> WelcomeViewSeleniumTest#testContactButtonExistence");
         getDriver().get("http://localhost:8080/vitae");
         // Get Contact Button
         ButtonElement contactButton = $(ButtonElement.class).caption("Contact").first();
@@ -100,7 +101,7 @@ public class WelcomeViewSeleniumTest extends TestBenchTestCase {
         contactButton.click();
         // Assert we've navigated to contact area
         String currentUrl = getDriver().getCurrentUrl();
-        Assert.assertEquals(currentUrl, "http://localhost:8080/vitae/contact");
+        Assert.assertEquals(currentUrl, TestBundle.CONTACT_URL);
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     }
 
