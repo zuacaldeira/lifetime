@@ -37,7 +37,7 @@ import views.LifetimeMenu;
  * @author lifetime
  *
  */
-public class RegisterView extends LifetimeView implements ClickListener {
+public class RegisterView extends WelcomeView implements ClickListener {
 
     public RegisterView(String language) {
         super(language);

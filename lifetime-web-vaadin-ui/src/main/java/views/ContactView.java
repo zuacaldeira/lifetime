@@ -22,7 +22,7 @@ import com.vaadin.ui.VerticalLayout;
  *
  * @author zua
  */
-public class ContactView extends LifetimeView {
+public class ContactView extends WelcomeView {
 
     public ContactView(String language) {
         super(language);
