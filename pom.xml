@@ -8,10 +8,6 @@
 	<version>1.0-SNAPSHOT</version>
 	<!-- <name>lifetime-web-vaadin - lifetime-web-vaadin-parent</name> -->
 	<name>lifetime</name>
-    <ciManagement>
-        <system>hudson</system>
-        <url>http://localhost:8080/job/lifetime/</url>
-    </ciManagement>
     <developers>
 		<developer>
 			<name>Petter Holmstr?m</name>
