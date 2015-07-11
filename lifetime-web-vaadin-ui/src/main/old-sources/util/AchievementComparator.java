@@ -15,6 +15,7 @@
  */
 package util;
 
+import facebook4j.Achievement;
 import java.util.Comparator;
 import old.Achievement;
 

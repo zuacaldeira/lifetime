@@ -26,7 +26,6 @@ import util.ServiceLocator;
 import util.Translator;
 import util.Util;
 
-
 /**
  *
  * @author lifetime
@@ -57,13 +56,13 @@ public class RegistrationForm extends FormLayout implements Property.ValueChange
         firstname.addValidator(new NameValidator()); // Register Validator
         firstname.setValidationVisible(true); // Automatic validation
         //firstname.addValueChangeListener(this);
-        
+
         /* Creates lastnames text field and registers a validator */
         lastname = new LifetimeTextField("Lastname");
         lastname.addValidator(new NameValidator());
         lastname.setValidationVisible(true);
         lastname.setRequired(true);
-        
+
         /* Creates email text field and registers a validator */
         email = new LifetimeTextField("Email / Username");
         email.addValidator(new EmailValidator("Invalid email address"));

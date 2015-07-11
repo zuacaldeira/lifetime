@@ -16,10 +16,9 @@
 package util;
 
 import java.util.Locale;
-import old.LifetimeBusiness;
-import old.Translation;
 
 /**
+ * Client side facade class to access translation services.
  *
  * @author lifetime
  */
@@ -27,27 +26,31 @@ public class Translator {
 
     public static final String SYSTEM_LANGUAGE = Locale.ENGLISH.getLanguage();
 
-    private static String getTranslation(String word, String from, String to) {
-        try {
-            LifetimeBusiness service = ServiceLocator.findLifetimeService();
-            Translation t = service.getTranslation(word, from, to);
-            if (t != null) {
-                return t.getTranslation();
-            }
-            return word;
-        } catch(UnavailableServiceException ex) {
-            return word;
-        }
-    }
+    /*    private static String getTranslation(String word, String from, String to) {
+     try {
+     LifetimeBusiness service = ServiceLocator.findLifetimeService();
+     Translation t = service.getTranslation(word, from, to);
+     if (t != null) {
+     return t.getTranslation();
+     }
+     return word;
+     } catch(UnavailableServiceException ex) {
+     return word;
+     }
+     }
 
+     public static String getTranslation(String word, String to) {
+     if (word == null) {
+     return "null";
+     }
+     if (to != null && !to.equals(SYSTEM_LANGUAGE)) {
+     return getTranslation(word, SYSTEM_LANGUAGE, to);
+     } else {
+     return word;
+     }
+     }
+     */
     public static String getTranslation(String word, String to) {
-        if (word == null) {
-            return "null";
-        }
-        if (to != null && !to.equals(SYSTEM_LANGUAGE)) {
-            return getTranslation(word, SYSTEM_LANGUAGE, to);
-        } else {
-            return word;
-        }
+        return word;
     }
 }

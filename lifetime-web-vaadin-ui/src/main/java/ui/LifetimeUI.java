@@ -55,8 +55,7 @@ public abstract class LifetimeUI extends UI {
 
         try {
             String name = p.getName();
-            Integer userId = ServiceLocator.findLifetimeService().getUserId(name);
-            LifetimeUser u = ServiceLocator.findLifetimeService().getUser(userId);
+            LifetimeUser u = ServiceLocator.findLifetimeAccountService().getUser(name);
             return u.getMotherLanguage();
         } catch (Exception ex) {
             throw new LifetimeSecurityException("Unknown User");

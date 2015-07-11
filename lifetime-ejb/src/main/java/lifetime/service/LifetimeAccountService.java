@@ -78,6 +78,12 @@ public class LifetimeAccountService {
         em.remove(getUserAccount(email));
     }
 
+    /**
+     * Returns the account associated with the given email.
+     *
+     * @param email The user's email
+     * @return
+     */
     private UserAccount getUserAccount(String email) {
         Query q = em.createNamedQuery("UserAccount.findByEmail", UserAccount.class);
         q.setParameter("email", email);
@@ -85,7 +91,13 @@ public class LifetimeAccountService {
         return account;
     }
 
-    private LifetimeUser getUser(String username) {
+    /**
+     * Returns the user with the given username, from the database.
+     *
+     * @param username The user's username
+     * @return
+     */
+    public LifetimeUser getUser(String username) {
         Query q = em.createNamedQuery("LifetimeUser.findByUsername", LifetimeUser.class);
         q.setParameter("username", username);
         LifetimeUser user = (LifetimeUser) q.getSingleResult();
