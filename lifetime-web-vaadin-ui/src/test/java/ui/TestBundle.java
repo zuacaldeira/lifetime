@@ -20,9 +20,29 @@ package ui;
  * @author zua
  */
 public class TestBundle {
+
+    /**
+     *
+     */
     public static final String WELCOME_URL = "http://localhost:8080/vitae/#!Welcome";
+
+    /**
+     *
+     */
     public static final String CONTACT_URL = "http://localhost:8080/vitae/#!Contact";
+
+    /**
+     *
+     */
     public static final String USER_URL = "http://localhost:8080/vitae/User";
+
+    /**
+     *
+     */
     public static final String REGISTER_URL = "http://localhost:8080/vitae/#!Register";
+
+    /**
+     *
+     */
     public static final String LOGIN_URL = "http://localhost:8080/vitae/user";
 }

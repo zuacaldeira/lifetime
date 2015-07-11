@@ -24,9 +24,9 @@ public abstract class LifetimeUI extends UI {
     private LifetimeView lifetimeView;
 
     /**
-     * LifetimeUser interaction view initialization procedure. Initiates the view for
-     * user interaction, depending on the incoming request. Subclasses must
-     * respect, at least, the <b>bridge design pattern</b> and the security
+     * LifetimeUser interaction view initialization procedure. Initiates the
+     * view for user interaction, depending on the incoming request. Subclasses
+     * must respect, at least, the <b>bridge design pattern</b> and the security
      * specification.
      *
      * @param request The current internal of an http request
@@ -46,7 +46,7 @@ public abstract class LifetimeUI extends UI {
      *
      * @todo The system language should be a persistent value and hard-coded
      */
-    protected String getLanguage(VaadinRequest request) throws LifetimeSecurityException {
+    protected String getLanguage(VaadinRequest request) {
         Principal p = request.getUserPrincipal();
         if (p == null) {
             //TODO
@@ -58,13 +58,14 @@ public abstract class LifetimeUI extends UI {
             LifetimeUser u = ServiceLocator.findLifetimeAccountService().getUser(name);
             return u.getMotherLanguage();
         } catch (Exception ex) {
-            throw new LifetimeSecurityException("Unknown User");
+            return "en";
         }
     }
 
     /**
      * Returns the current lifetime view.
-     * @return  The lifetime view
+     *
+     * @return The lifetime view
      */
     public LifetimeView getLifetimeView() {
         return lifetimeView;
@@ -72,7 +73,8 @@ public abstract class LifetimeUI extends UI {
 
     /**
      * Updates the current lifetime view.
-     * @param lifetimeView  The new lifetime view
+     *
+     * @param lifetimeView The new lifetime view
      */
     public void setLifetimeView(LifetimeView lifetimeView) {
         this.lifetimeView = lifetimeView;

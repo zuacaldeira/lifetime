@@ -23,6 +23,10 @@ import org.testng.annotations.DataProvider;
  */
 public class RegistrationDataProvider {
 
+    /**
+     *
+     * @return
+     */
     @DataProvider(name = "positive")
     public static Object[][] getData() {
         Object[][] dataArray = {

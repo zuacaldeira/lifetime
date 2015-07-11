@@ -15,12 +15,20 @@
  */
 package lifetime.service;
 
+import javax.ejb.ApplicationException;
+
 /**
  *
- * @author zua
+ * @author Alexandre Zua Caldeira
  */
-public class LifetimeSecurityException extends RuntimeException {
+@ApplicationException(rollback = true)
+public class LifetimeSecurityException extends Exception {
 
+    /**
+     * Creates a new exception with the given message.
+     *
+     * @param message Message explaining the causes of this exception
+     */
     public LifetimeSecurityException(String message) {
         super(message);
     }

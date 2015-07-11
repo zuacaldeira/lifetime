@@ -19,9 +19,11 @@ import com.vaadin.data.Property;
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
 import java.util.Locale;
-import lifetime.service.LifetimeAccountService;
+import lifetime.service.LifetimeAccountBusiness;
+import lifetime.service.LifetimeSecurityException;
 import util.ServiceLocator;
 import util.Translator;
 import util.Util;
@@ -147,9 +149,13 @@ public class RegistrationForm extends FormLayout implements Property.ValueChange
     }
 
     void submit() {
-        LifetimeAccountService service = ServiceLocator.findLifetimeAccountService();
-        service.register(firstname.getValue(), lastname.getValue(), email.getValue(), password.getValue(), defaultLanguage.getValue().toString(), birthDate.getValue());
-        clear();
+        try {
+            LifetimeAccountBusiness service = ServiceLocator.findLifetimeAccountService();
+            service.register(firstname.getValue(), lastname.getValue(), email.getValue(), password.getValue(), defaultLanguage.getValue().toString(), birthDate.getValue());
+        } catch (LifetimeSecurityException ex) {
+            Notification.show("Security Exception", ex.getMessage(), Notification.Type.WARNING_MESSAGE);
+            clear();
+        }
     }
 
 }

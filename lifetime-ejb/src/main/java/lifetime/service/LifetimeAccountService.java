@@ -7,11 +7,11 @@ package lifetime.service;
 
 import java.util.Date;
 import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import lifetime.persistence.UserRole;
 import lifetime.persistence.LifetimeUser;
 import lifetime.persistence.UserAccount;
 
@@ -22,8 +22,7 @@ import lifetime.persistence.UserAccount;
  * @author zua
  */
 @Stateless
-@LocalBean
-public class LifetimeAccountService {
+public class LifetimeAccountService implements LifetimeAccountBusiness {
 
     /**
      * The entity manager managing our entities. It is associated with the
@@ -44,8 +43,10 @@ public class LifetimeAccountService {
      * @param password The user's password
      * @param language The user's default language
      * @param birthdate The user's birth date
+     * @throws lifetime.service.LifetimeSecurityException
      */
-    public void register(String firstname, String lastname, String email, String password, String language, Date birthdate) {
+    @Override
+    public void register(String firstname, String lastname, String email, String password, String language, Date birthdate) throws LifetimeSecurityException {
         // Creates the user
         LifetimeUser user = new LifetimeUser(null, firstname, lastname, email, birthdate, null, language);
         // Initialize the user account entity
@@ -53,9 +54,15 @@ public class LifetimeAccountService {
         account.setEmail(email);
         account.setPassword(password);
         account.setUser(user);
+
+        UserRole lRole = new UserRole();
+        lRole.setRoleName(Roles.USER);
+        lRole.setUsername(user.getUsername());
+
         // Persist the user account object graph
         try {
             em.persist(account);
+            em.persist(lRole);
         } catch (EntityExistsException eex) {
             throw new LifetimeSecurityException("Account already exists");
         } catch (Exception ex) {
@@ -69,13 +76,17 @@ public class LifetimeAccountService {
      * @param email The user email and username
      * @return {@code true } if the user exists, {@code false} otherwise
      */
+    @Override
     public boolean existsUser(String email) {
         return getUserAccount(email) != null && getUser(email) != null;
     }
 
+    @Override
     public void delete(String email) {
-        em.remove(getUser(email));
-        em.remove(getUserAccount(email));
+        if (getUserAccount(email) != null) {
+            em.remove(getUserAccount(email));
+            em.remove(getLifetimeRole(email));
+        }
     }
 
     /**
@@ -97,11 +108,19 @@ public class LifetimeAccountService {
      * @param username The user's username
      * @return
      */
+    @Override
     public LifetimeUser getUser(String username) {
         Query q = em.createNamedQuery("LifetimeUser.findByUsername", LifetimeUser.class);
         q.setParameter("username", username);
         LifetimeUser user = (LifetimeUser) q.getSingleResult();
         return user;
+    }
+
+    private UserRole getLifetimeRole(String username) {
+        Query q = em.createNamedQuery("LifetimeRole.findByUsername", UserRole.class);
+        q.setParameter("username", username);
+        UserRole role = (UserRole) q.getSingleResult();
+        return role;
     }
 
 }

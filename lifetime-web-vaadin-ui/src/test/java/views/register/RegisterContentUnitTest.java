@@ -26,6 +26,9 @@ import views.RegisterContent;
  */
 public class RegisterContentUnitTest {
 
+    /**
+     *
+     */
     public RegisterContentUnitTest() {
     }
 

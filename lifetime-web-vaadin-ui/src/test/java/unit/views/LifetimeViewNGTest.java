@@ -34,6 +34,9 @@ import views.LifetimeView;
  */
 public class LifetimeViewNGTest {
 
+    /**
+     *
+     */
     @Test
     public void testGetBackground() {
         System.out.println("getBackground");

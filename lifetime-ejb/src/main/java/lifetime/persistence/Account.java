@@ -18,26 +18,41 @@ import javax.persistence.InheritanceType;
  * @author zua
  */
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Account implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
+    /**
+     * Default constructor.
+     */
     public Account() {
     }
 
-    public Account(Long id) {
+    /**
+     *
+     * @param id
+     */
+    public Account(Integer id) {
         this.id = id;
     }
 
-    
-    public Long getId() {
+    /**
+     *
+     * @return
+     */
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    /**
+     *
+     * @param id
+     */
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -65,5 +80,5 @@ public abstract class Account implements Serializable {
     public String toString() {
         return "lifetime.business.persistence.Account[ id=" + id + " ]";
     }
-    
+
 }

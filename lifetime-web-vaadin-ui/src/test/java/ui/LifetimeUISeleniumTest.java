@@ -30,6 +30,9 @@ import org.testng.annotations.Test;
  */
 public class LifetimeUISeleniumTest extends TestBenchTestCase {
 
+    /**
+     *
+     */
     public LifetimeUISeleniumTest() {
     }
 
@@ -88,6 +91,9 @@ public class LifetimeUISeleniumTest extends TestBenchTestCase {
         Assert.assertNotNull(content);
     }
 
+    /**
+     *
+     */
     public class LifetimeUIImpl extends LifetimeUI {
 
         public void init(VaadinRequest request) {

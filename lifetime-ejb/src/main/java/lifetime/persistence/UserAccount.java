@@ -45,35 +45,64 @@ public class UserAccount extends Account implements Serializable {
     @JoinColumn(name = "lifetimeUser")
     private LifetimeUser user;
     
-    
+    /**
+     *
+     */
     public UserAccount() {
     }
 
-
-    public UserAccount(Long id) {
+    /**
+     *
+     * @param id
+     */
+    public UserAccount(Integer id) {
         super(id);
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @return
+     */
     public LifetimeUser getUser() {
         return user;
     }
 
+    /**
+     *
+     * @param user
+     */
     public void setUser(LifetimeUser user) {
         this.user = user;
     }

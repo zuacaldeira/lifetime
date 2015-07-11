@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lifetime.business.logic;
+package lifetime.service;
 
 import lifetime.service.LifetimeAccountService;
 import java.io.File;
@@ -11,6 +11,8 @@ import java.util.Date;
 import javax.ejb.EJB;
 import javax.naming.NamingException;
 import lifetime.persistence.UserAccount;
+import lifetime.service.LifetimeAccountBusiness;
+import lifetime.service.LifetimeSecurityException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -19,24 +21,25 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-@Test
-public class LifetimeAccountServiceArquillianTest extends Arquillian {
+//@Test
+public class LifetimeAccountServiceTestIT extends Arquillian {
 
-    @EJB(name = "java:global/test/LifetimeAccountService!lifetime.business.logic.LifetimeAccountService")
-    private LifetimeAccountService accountService;
+    @EJB(name = "java:global/test/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness")
+    private LifetimeAccountBusiness accountService;
 
     @Deployment
     public static Archive createDeployment() {
         // get all maven dependecies
         WebArchive result = ShrinkWrap.create(WebArchive.class, "test.war")
                 //.addAsLibraries(files)
-                .addPackage(LifetimeAccountService.class.getPackage().getName())
+                .addPackage(LifetimeAccountBusiness.class.getPackage().getName())
                 .addPackage(UserAccount.class.getPackage().getName())
                 .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
                         "META-INF/persistence.xml")
@@ -48,22 +51,32 @@ public class LifetimeAccountServiceArquillianTest extends Arquillian {
     /**
      * Test of register method, of class LifetimeAccountService.
      *
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param language
+     * @param password
+     * @param birthDate
+     *
      * @throws javax.naming.NamingException If lookup fails while looking for a
      * {@link LifetimeAccountService}
      */
-    @Test
-    public void testRegister() throws NamingException {
-        System.out.println("register");
-        String firstname = "Alexandre2";
-        String lastname = "Caldeira2";
-        String email = "zuacaldeira@lifetime.com";
-        String password = "unicidade";
-        String language = "unicidade";
-        Date birthdate = new Date();
+    @Test(dataProvider = "registerData")
+    public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language) throws NamingException, LifetimeSecurityException {
+        System.out.println("IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT register");
         Assert.assertNotNull(accountService, "Service not initialized");
-        accountService.register(firstname, lastname, email, password, language, birthdate);
+        accountService.register(firstName, lastName, email, password, language, birthDate);
         Assert.assertTrue(accountService.existsUser(email));
         accountService.delete(email);
     }
 
+    @DataProvider(name = "registerData")
+    public static Object[][] getData() {
+        Object[][] dataArray = {
+            {"Alexandre 1", "Zua Caldeira 1", "zuacaldeira1@gmail.com", "unicidade", new Date(), "pt"},
+            {"Alexandre 2", "Zua Caldeira 2", "zuacaldeira2@gmail.com", "unicidade", new Date(), "pt"},
+            {"Alexandre 3", "Zua Caldeira 3", "zuacaldeira3@gmail.com", "unicidade", new Date(), "pt"}
+        };
+        return dataArray;
+    }
 }

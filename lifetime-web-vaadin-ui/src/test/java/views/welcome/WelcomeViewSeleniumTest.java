@@ -50,6 +50,9 @@ public class WelcomeViewSeleniumTest extends TestBenchTestCase {
         getDriver().quit();
     }
 
+    /**
+     *
+     */
     @org.testng.annotations.Test
     public void testBackgroundExistence() {
         System.out.println(">>>>>>>>>>>>>>>>>>>>>> WelcomeViewSeleniumTest#testBackgroundExistence");
@@ -60,6 +63,14 @@ public class WelcomeViewSeleniumTest extends TestBenchTestCase {
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     }
 
+    /**
+     *
+     * @param firstname
+     * @param lastname
+     * @param email
+     * @param password1
+     * @param password2
+     */
     @org.testng.annotations.Test(dataProviderClass = RegistrationDataProvider.class, dataProvider = "positive")
     public void testRegisterButton(String firstname, String lastname, String email, String password1, String password2) {
         System.out.println("\n>>>>>>>>>>>>>>>>>>>>>> WelcomeViewSeleniumTest#testRegisterButtonExistence");
@@ -76,7 +87,13 @@ public class WelcomeViewSeleniumTest extends TestBenchTestCase {
     }
 
     //@Test(dataProviderClass = LoginDataProvider.class, dataProvider = "positive")
-    public void testLoginButton(String username, String password) {
+
+    /**
+     *
+     * @param username
+     * @param password
+     */
+        public void testLoginButton(String username, String password) {
         System.out.println("\n>>>>>>>>>>>>>>>>>>>>>> WelcomeViewSeleniumTest#testLoginButtonExistence");
         getDriver().get("http://localhost:8080/vitae");
         // Get Login Botton
@@ -90,6 +107,9 @@ public class WelcomeViewSeleniumTest extends TestBenchTestCase {
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     }
 
+    /**
+     *
+     */
     @org.testng.annotations.Test
     public void testContactButton() {
         System.out.println("\n>>>>>>>>>>>>>>>>>>>>>> WelcomeViewSeleniumTest#testContactButtonExistence");

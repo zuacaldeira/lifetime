@@ -54,7 +54,7 @@ public class LifetimeUserNGTest {
      * @param firstname A test first name
      */
     @org.testng.annotations.Test(dataProvider = "firstNameProvider")
-    public void testGetFirstname(String firstname) {
+    public void testGetFirstNames(String firstname) {
         System.out.println("getFirstname");
         LifetimeUser instance = new LifetimeUser(null);
         assertNull(instance.getFirstName());
@@ -342,4 +342,5 @@ public class LifetimeUserNGTest {
         };
         return data;
     }
+
 }

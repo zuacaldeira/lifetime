@@ -126,6 +126,16 @@ public class LifetimeUser implements Serializable {
         isConfirmed = false;
     }
 
+    /**
+     *
+     * @param id
+     * @param firstname
+     * @param lastname
+     * @param username
+     * @param birthDate
+     * @param birthPlace
+     * @param motherLanguage
+     */
     public LifetimeUser(Integer id, String firstname, String lastname, String username, Date birthDate, String birthPlace, String motherLanguage) {
         this(id);
         this.firstName = firstname;
@@ -136,74 +146,146 @@ public class LifetimeUser implements Serializable {
         this.motherLanguage = motherLanguage;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     *
+     * @param firstname
+     */
     public void setFirstName(String firstname) {
         this.firstName = firstname;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     *
+     * @param lastname
+     */
     public void setLastName(String lastname) {
         this.lastName = lastname;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getBirthDate() {
         return birthDate;
     }
 
+    /**
+     *
+     * @param birthDate
+     */
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBirthPlace() {
         return birthPlace;
     }
 
+    /**
+     *
+     * @param birthPlace
+     */
     public void setBirthPlace(String birthPlace) {
         this.birthPlace = birthPlace;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMotherLanguage() {
         return motherLanguage;
     }
 
+    /**
+     *
+     * @param motherLanguage
+     */
     public void setMotherLanguage(String motherLanguage) {
         this.motherLanguage = motherLanguage;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getIsLoggedIn() {
         return isLoggedIn;
     }
 
+    /**
+     *
+     * @param isLoggedIn
+     */
     public void setIsLoggedIn(Boolean isLoggedIn) {
         this.isLoggedIn = isLoggedIn;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getIsConfirmed() {
         return isConfirmed;
     }
 
+    /**
+     *
+     * @param isConfirmed
+     */
     public void setIsConfirmed(Boolean isConfirmed) {
         this.isConfirmed = isConfirmed;
     }

@@ -31,6 +31,9 @@ import views.WelcomeView;
  */
 public class WelcomeUINGTest {
 
+    /**
+     *
+     */
     public WelcomeUINGTest() {
     }
 

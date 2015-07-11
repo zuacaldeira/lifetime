@@ -79,6 +79,7 @@ public class RegisterFormUnitNGTest {
      * @param email
      * @param password
      * @param passwordRepeat
+     * @param date
      */
     @Test(dataProvider = "positive")
     public void testDefaultLanguageValueChange(String language, String firstname, String lastname, String email, String password, String passwordRepeat, Date date) {
@@ -251,6 +252,10 @@ public class RegisterFormUnitNGTest {
         assertEquals(form.getBirthDate().getValue(), birthDate, "Invalid birth date");
     }
 
+    /**
+     *
+     * @return
+     */
     @DataProvider(name = "positive")
     public static Object[][] getData() {
         Calendar calendar = Calendar.getInstance();

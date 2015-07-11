@@ -16,6 +16,7 @@
 package ui;
 
 import com.vaadin.server.VaadinRequest;
+import lifetime.service.LifetimeSecurityException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import views.LifetimeView;
@@ -26,6 +27,9 @@ import views.LifetimeView;
  */
 public class LifetimeUINGTest {
 
+    /**
+     *
+     */
     public LifetimeUINGTest() {
     }
 
@@ -35,9 +39,10 @@ public class LifetimeUINGTest {
      * service context.
      *
      * @exception NullPointerException
+     * @throws lifetime.service.LifetimeSecurityException
      */
     @Test(expectedExceptions = NullPointerException.class)
-    public void testGetLanguage() {
+    public void testGetLanguage() throws LifetimeSecurityException {
         System.out.println("getLanguage");
         VaadinRequest request = null;
         LifetimeUI instance = new LifetimeUIImpl();
