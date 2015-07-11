@@ -5,14 +5,11 @@
  */
 package lifetime.service;
 
-import lifetime.service.LifetimeAccountService;
 import java.io.File;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.naming.NamingException;
 import lifetime.persistence.UserAccount;
-import lifetime.service.LifetimeAccountBusiness;
-import lifetime.service.LifetimeSecurityException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -28,7 +25,7 @@ import org.testng.annotations.Test;
  *
  * @author zua
  */
-//@Test
+@Test
 public class LifetimeAccountServiceTestIT extends Arquillian {
 
     @EJB(name = "java:global/test/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness")
@@ -65,9 +62,15 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
     public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language) throws NamingException, LifetimeSecurityException {
         System.out.println("IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT register");
         Assert.assertNotNull(accountService, "Service not initialized");
-        accountService.register(firstName, lastName, email, password, language, birthDate);
-        Assert.assertTrue(accountService.existsUser(email));
-        accountService.delete(email);
+        
+        if (!accountService.existsUser(email)) {
+            accountService.register(firstName, lastName, email, password, language, birthDate);
+            Assert.assertTrue(accountService.existsUser(email));
+        }
+        if (accountService.existsUser(email)) {
+            accountService.delete(email);
+            Assert.assertFalse(accountService.existsUser(email));
+        }
     }
 
     @DataProvider(name = "registerData")

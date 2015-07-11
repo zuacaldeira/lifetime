@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import static org.testng.Assert.*;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 /**
  *
@@ -27,10 +28,10 @@ public class LifetimeUserNGTest {
     @org.testng.annotations.Test(dataProvider = "idProvider")
     public void testGetId(Integer id) {
         System.out.println("getId");
-        LifetimeUser instance = new LifetimeUser(null);
-        Integer expResult = null;
+        LifetimeUser instance = new LifetimeUser();
+        instance.setId(id);
         Integer result = instance.getId();
-        assertEquals(result, expResult);
+        assertEquals(result, id);
     }
 
     /**
@@ -42,7 +43,7 @@ public class LifetimeUserNGTest {
     @org.testng.annotations.Test(dataProvider = "idProvider")
     public void testSetId(Integer id) {
         System.out.println("setId");
-        LifetimeUser instance = new LifetimeUser(null);
+        LifetimeUser instance = new LifetimeUser();
         assertNull(instance.getId());
         instance.setId(id);
         assertEquals(instance.getId(), id);
@@ -51,14 +52,18 @@ public class LifetimeUserNGTest {
     /**
      * Test of getFirstName method, of class LifetimeUser.
      *
+     * @param id
      * @param firstname A test first name
+     * @param lastname
+     * @param motherLanguage
+     * @param username
+     * @param birthDate
+     * @param birthPlace
      */
-    @org.testng.annotations.Test(dataProvider = "firstNameProvider")
-    public void testGetFirstNames(String firstname) {
+    @org.testng.annotations.Test(dataProvider = "userProvider")
+    public void testGetFirstNames(Integer id, String firstname, String lastname, String username, Date birthDate, String birthPlace, String motherLanguage) {
         System.out.println("getFirstname");
-        LifetimeUser instance = new LifetimeUser(null);
-        assertNull(instance.getFirstName());
-        instance.setFirstName(firstname);
+        LifetimeUser instance = new LifetimeUser(id, firstname, lastname, username, birthDate, birthPlace, motherLanguage);
         assertEquals(instance.getFirstName(), firstname);
 
     }
@@ -66,43 +71,61 @@ public class LifetimeUserNGTest {
     /**
      * Test of setFirstName method, of class LifetimeUser.
      *
+     * @param id
      * @param firstname A test first name
+     * @param lastname
+     * @param motherLanguage
+     * @param username
+     * @param birthDate
+     * @param birthPlace
      */
-    @org.testng.annotations.Test(dataProvider = "firstNameProvider")
-    public void testSetFirstname(String firstname) {
+    @org.testng.annotations.Test(dataProvider = "userProvider")
+    public void testSetFirstname(Integer id, String firstname, String lastname, String username, Date birthDate, String birthPlace, String motherLanguage) {
         System.out.println("setFirstname");
-        LifetimeUser instance = new LifetimeUser(null);
-        assertNull(instance.getFirstName());
-        instance.setFirstName(firstname);
-        assertEquals(instance.getFirstName(), firstname);
+        String newFirstName = "a new firts name";
+        LifetimeUser instance = new LifetimeUser(id, firstname, lastname, username, birthDate, birthPlace, motherLanguage);
+        instance.setFirstName(newFirstName);
+        assertEquals(instance.getFirstName(), newFirstName);
     }
 
     /**
      * Test of getLastName method, of class LifetimeUser.
      *
-     * @param lastname A test last name
+     * @param id
+     * @param firstname A test first name
+     * @param lastname
+     * @param motherLanguage
+     * @param username
+     * @param birthDate
+     * @param birthPlace
      */
-    @org.testng.annotations.Test(dataProvider = "lastNameProvider")
-    public void testGetLastname(String lastname) {
+    @org.testng.annotations.Test(dataProvider = "userProvider")
+    public void testGetLastname(Integer id, String firstname, String lastname, String username, Date birthDate, String birthPlace, String motherLanguage) {
         System.out.println("getLastname");
-        LifetimeUser instance = new LifetimeUser(null);
-        assertNull(instance.getFirstName());
-        instance.setLastName(lastname);
+        LifetimeUser instance = new LifetimeUser(id, firstname, lastname, username, birthDate, birthPlace, motherLanguage);
         assertEquals(instance.getLastName(), lastname);
     }
 
     /**
      * Test of setLastName method, of class LifetimeUser.
      *
-     * @param lastname A test last name
+     * @param id
+     * @param firstname A test first name
+     * @param lastname
+     * @param motherLanguage
+     * @param username
+     * @param birthDate
+     * @param birthPlace
+     *
      */
-    @org.testng.annotations.Test(dataProvider = "lastNameProvider")
-    public void testSetLastname(String lastname) {
+    @org.testng.annotations.Test(dataProvider = "userProvider")
+    public void testSetLastname(Integer id, String firstname, String lastname, String username, Date birthDate, String birthPlace, String motherLanguage) {
         System.out.println("setLastname");
-        LifetimeUser instance = new LifetimeUser(null);
-        assertNull(instance.getFirstName());
-        instance.setLastName(lastname);
+        LifetimeUser instance = new LifetimeUser(id, firstname, lastname, username, birthDate, birthPlace, motherLanguage);
         assertEquals(instance.getLastName(), lastname);
+        String newLastName = "new last name";
+        instance.setLastName(newLastName);
+        assertEquals(instance.getLastName(), newLastName);
     }
 
     /**
@@ -113,7 +136,7 @@ public class LifetimeUserNGTest {
     @org.testng.annotations.Test(dataProvider = "birthDateProvider")
     public void testGetBirthdate(Date birthDate) {
         System.out.println("getBirthdate");
-        LifetimeUser instance = new LifetimeUser(null);
+        LifetimeUser instance = new LifetimeUser();
         assertNull(instance.getBirthDate());
         instance.setBirthDate(birthDate);
         assertEquals(instance.getBirthDate(), birthDate);
@@ -127,7 +150,7 @@ public class LifetimeUserNGTest {
     @org.testng.annotations.Test(dataProvider = "birthDateProvider")
     public void testSetBirthdate(Date birthDate) {
         System.out.println("setBirthdate");
-        LifetimeUser instance = new LifetimeUser(null);
+        LifetimeUser instance = new LifetimeUser();
         assertNull(instance.getBirthDate());
         instance.setBirthDate(birthDate);
         assertEquals(instance.getBirthDate(), birthDate);
@@ -141,7 +164,7 @@ public class LifetimeUserNGTest {
     @org.testng.annotations.Test(dataProvider = "birthPlaceProvider")
     public void testGetBirthplace(String birthPlace) {
         System.out.println("getBirthplace");
-        LifetimeUser instance = new LifetimeUser(null);
+        LifetimeUser instance = new LifetimeUser();
         assertNull(instance.getBirthPlace());
         instance.setBirthPlace(birthPlace);
         assertEquals(instance.getBirthPlace(), birthPlace);
@@ -155,7 +178,7 @@ public class LifetimeUserNGTest {
     @org.testng.annotations.Test(dataProvider = "birthPlaceProvider")
     public void testSetBirthplace(String birthPlace) {
         System.out.println("setBirthplace");
-        LifetimeUser instance = new LifetimeUser(null);
+        LifetimeUser instance = new LifetimeUser();
         assertNull(instance.getBirthPlace());
         instance.setBirthPlace(birthPlace);
         assertEquals(instance.getBirthPlace(), birthPlace);
@@ -169,7 +192,7 @@ public class LifetimeUserNGTest {
     @org.testng.annotations.Test(dataProvider = "usernameProvider")
     public void testGetUsername(String username) {
         System.out.println("getUsername");
-        LifetimeUser instance = new LifetimeUser(null);
+        LifetimeUser instance = new LifetimeUser();
         assertNull(instance.getUsername());
         instance.setUsername(username);
         assertEquals(instance.getUsername(), username);
@@ -183,7 +206,7 @@ public class LifetimeUserNGTest {
     @org.testng.annotations.Test(dataProvider = "usernameProvider")
     public void testSetUsername(String username) {
         System.out.println("setUsername");
-        LifetimeUser instance = new LifetimeUser(null);
+        LifetimeUser instance = new LifetimeUser();
         assertNull(instance.getUsername());
         instance.setUsername(username);
         assertEquals(instance.getUsername(), username);
@@ -197,7 +220,7 @@ public class LifetimeUserNGTest {
     @org.testng.annotations.Test(dataProvider = "languageProvider")
     public void testGetMotherLanguage(String motherLanguage) {
         System.out.println("getMotherLanguage");
-        LifetimeUser instance = new LifetimeUser(null);
+        LifetimeUser instance = new LifetimeUser();
         assertNull(instance.getMotherLanguage());
         instance.setMotherLanguage(motherLanguage);
         assertEquals(instance.getMotherLanguage(), motherLanguage);
@@ -211,7 +234,7 @@ public class LifetimeUserNGTest {
     @org.testng.annotations.Test(dataProvider = "languageProvider")
     public void testSetMotherLanguage(String motherLanguage) {
         System.out.println("setMotherLanguage");
-        LifetimeUser instance = new LifetimeUser(null);
+        LifetimeUser instance = new LifetimeUser();
         assertNull(instance.getMotherLanguage());
         instance.setMotherLanguage(motherLanguage);
         assertEquals(instance.getMotherLanguage(), motherLanguage);
@@ -223,7 +246,7 @@ public class LifetimeUserNGTest {
     @org.testng.annotations.Test
     public void testGetIsLoggedIn() {
         System.out.println("getIsLoggedIn");
-        LifetimeUser instance = new LifetimeUser(null);
+        LifetimeUser instance = new LifetimeUser();
         assertFalse(instance.getIsLoggedIn());
         instance.setIsLoggedIn(!instance.getIsLoggedIn());
         assertTrue(instance.getIsLoggedIn());
@@ -237,7 +260,7 @@ public class LifetimeUserNGTest {
     @org.testng.annotations.Test
     public void testSetIsLoggedIn() {
         System.out.println("setIsLoggedIn");
-        LifetimeUser instance = new LifetimeUser(null);
+        LifetimeUser instance = new LifetimeUser();
         assertFalse(instance.getIsLoggedIn());
         instance.setIsLoggedIn(!instance.getIsLoggedIn());
         assertTrue(instance.getIsLoggedIn());
@@ -251,7 +274,7 @@ public class LifetimeUserNGTest {
     @org.testng.annotations.Test
     public void testGetIsConfirmed() {
         System.out.println("getIsConfirmed");
-        LifetimeUser instance = new LifetimeUser(null);
+        LifetimeUser instance = new LifetimeUser();
         assertFalse(instance.getIsConfirmed());
         instance.setIsConfirmed(!instance.getIsConfirmed());
         assertTrue(instance.getIsConfirmed());
@@ -265,7 +288,7 @@ public class LifetimeUserNGTest {
     @org.testng.annotations.Test
     public void testSetIsConfirmed() {
         System.out.println("setIsConfirmed");
-        LifetimeUser instance = new LifetimeUser(null);
+        LifetimeUser instance = new LifetimeUser();
         assertFalse(instance.getIsConfirmed());
         instance.setIsConfirmed(!instance.getIsConfirmed());
         assertTrue(instance.getIsConfirmed());
@@ -273,13 +296,69 @@ public class LifetimeUserNGTest {
         assertFalse(instance.getIsConfirmed());
     }
 
-    @DataProvider(name = "firstNameProvider")
-    public Object[][] provideFirstNames() {
+    /**
+     * Test of setIsConfirmed method, of class LifetimeUser.
+     */
+    @org.testng.annotations.Test
+    public void testEquals() {
+        System.out.println("equals");
+        LifetimeUser instance1 = new LifetimeUser();
+        LifetimeUser instance2 = new LifetimeUser();
+        assertTrue(instance1.equals(instance2));
+    }
+
+    /**
+     * Test of setIsConfirmed method, of class LifetimeUser.
+     */
+    @org.testng.annotations.Test
+    public void testNotEquals() {
+        System.out.println("equals");
+        LifetimeUser instance1 = new LifetimeUser();
+        LifetimeUser instance2 = new LifetimeUser();
+        instance2.setId(2);
+        assertFalse(instance1.equals(instance2));
+    }
+
+    /**
+     * Test of setIsConfirmed method, of class LifetimeUser.
+     */
+    @org.testng.annotations.Test
+    public void testEqualsWithIncompatibleObject() {
+        System.out.println("equals");
+        LifetimeUser instance1 = new LifetimeUser();
+        SecurityRole instance2 = new SecurityRole();
+        assertFalse(instance1.equals(instance2));
+    }
+
+    /**
+     * Test hash code.
+     */
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        LifetimeUser instance1 = new LifetimeUser();
+        LifetimeUser instance2 = new LifetimeUser();
+        assertEquals(instance1.hashCode(), instance2.hashCode());
+    }
+    
+    /**
+     * Test toString.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        LifetimeUser instance1 = new LifetimeUser();
+        LifetimeUser instance2 = new LifetimeUser();
+        assertEquals(instance1.toString(), instance2.toString());
+    }
+    
+    
+    @DataProvider(name = "userProvider")
+    public Object[][] provideUserData() {
         Object[][] data = new Object[][]{
-            {"Alexandre"},
-            {"Pedro"},
-            {"João"}
-        };
+            {1, "firstname1", "lastname1", "username1", new Date(), "birthPlace", "en"},
+            {2, "firstname2", "lastname2", "username2", new Date(), "birthPlace", "en"},
+            {3, "firstname3", "lastname3", "username3", new Date(), "birthPlace", "en"},};
         return data;
     }
 

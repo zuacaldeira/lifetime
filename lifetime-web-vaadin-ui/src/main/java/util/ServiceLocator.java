@@ -16,10 +16,6 @@ import lifetime.service.LifetimeAccountBusiness;
  */
 public class ServiceLocator {
 
-    // public static final String LIFETIME_BUSINESS_PRODUCTION = "java:global/lifetime-web-vaadin_-_lifetime-web-vaadin-production/LifetimeService!lifetime.business.logic.LifetimeBusiness";
-    // public static final String LIFETIME_BUSINESS = "java:global/lifetime-web-vaadin-ui/LifetimeService!lifetime.business.logic.LifetimeBusiness";
-    //private static LifetimeBusiness service;
-    //private static LifetimeBusiness serviceProduction;
     private static LifetimeAccountBusiness accountService;
     public static final String LIFETIME_ACCOUNT_BUSINESS = "java:global/lifetime-web-vaadin-ui/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness";
 

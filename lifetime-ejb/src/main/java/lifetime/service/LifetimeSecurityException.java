@@ -21,8 +21,9 @@ import javax.ejb.ApplicationException;
  *
  * @author Alexandre Zua Caldeira
  */
-@ApplicationException(rollback = true)
+@ApplicationException(rollback = false)
 public class LifetimeSecurityException extends Exception {
+    static final long serialVersionUID = -3387516995463229948L;
 
     /**
      * Creates a new exception with the given message.

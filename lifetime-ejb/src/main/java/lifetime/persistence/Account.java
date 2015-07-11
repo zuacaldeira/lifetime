@@ -6,6 +6,8 @@
 package lifetime.persistence;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,8 +24,13 @@ import javax.persistence.InheritanceType;
 public abstract class Account implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    /**
+     * Entity unique identifier.
+     */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
     private Integer id;
 
     /**

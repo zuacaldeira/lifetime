@@ -111,14 +111,66 @@ public class SecurityRoleNGTest {
 
         // First role
         SecurityRole role = new SecurityRole(id, roleName);
-        role.setRoleName(Roles.USER);
+        // Second role
+        SecurityRole role2 = new SecurityRole(id, roleName);
+        // Check for equality
+        assertTrue(role.equals(role2));
+    }
+
+    /**
+     * Test of equals method, of class SecurityRole.
+     */
+    @Test
+    public void testNotEquals() {
+        System.out.println("equals");
+        Integer id = 1;
+        String roleName = Roles.USER;
+
+        // First role
+        SecurityRole role = new SecurityRole(id, roleName);
+
+        // Second role
+        SecurityRole role2 = new SecurityRole(2, roleName);
+
+        // Check for equality
+        assertFalse(role.equals(role2));
+    }
+
+    /**
+     * Test of equals method, of class SecurityRole.
+     */
+    @Test
+    public void testEqualsWithIncompatibleObject() {
+        System.out.println("equals");
+        Integer id = 1;
+        String roleName = Roles.USER;
+
+        // First role
+        SecurityRole role = new SecurityRole(id, roleName);
+
+        // Second role
+        UserRole role2 = new UserRole(2, roleName, "");
+
+        // Check for equality
+        assertFalse(role.equals(role2));
+    }
+
+    /**
+     * Test of toString method, of class SecurityRole.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        Integer id = 1;
+        String roleName = Roles.USER;
+
+        // First role
+        SecurityRole role = new SecurityRole(id, roleName);
 
         // Second role
         SecurityRole role2 = new SecurityRole(id, roleName);
-        role2.setRoleName(Roles.USER);
 
         // Check for equality
-        assertEquals(role, role2);
+        assertEquals(role.toString(), role2.toString());
     }
-
 }

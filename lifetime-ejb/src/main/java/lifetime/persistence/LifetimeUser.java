@@ -42,7 +42,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "LifetimeUser.findByIsConfirmed", query = "SELECT u FROM LifetimeUser u WHERE u.isConfirmed = :isConfirmed")})
 public class LifetimeUser implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     /**
      * Entity unique identifier.
      */
@@ -112,19 +111,10 @@ public class LifetimeUser implements Serializable {
      * Default constructor.
      */
     public LifetimeUser() {
-
-    }
-
-    /**
-     * Initializes a user's {@code id}.
-     *
-     * @param id
-     */
-    public LifetimeUser(Integer id) {
-        this.id = id;
-        isLoggedIn = false;
         isConfirmed = false;
+        isLoggedIn = false;
     }
+
 
     /**
      *
@@ -137,7 +127,7 @@ public class LifetimeUser implements Serializable {
      * @param motherLanguage
      */
     public LifetimeUser(Integer id, String firstname, String lastname, String username, Date birthDate, String birthPlace, String motherLanguage) {
-        this(id);
+        this.id = id;
         this.firstName = firstname;
         this.lastName = lastname;
         this.username = username;

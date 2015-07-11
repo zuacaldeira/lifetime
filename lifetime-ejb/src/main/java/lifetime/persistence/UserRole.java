@@ -6,11 +6,14 @@
 package lifetime.persistence;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -22,6 +25,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "userRole")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "UserRole.findByUsername", query = "SELECT u FROM UserRole u WHERE u.username = :username"),
+})
 public class UserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,8 +35,13 @@ public class UserRole implements Serializable {
     /**
      * Entity's identifier.
      */
+    /**
+     * Entity unique identifier.
+     */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
     private Integer id;
 
     /**

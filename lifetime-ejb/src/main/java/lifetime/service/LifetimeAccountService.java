@@ -6,6 +6,7 @@
 package lifetime.service;
 
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -85,7 +86,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
     public void delete(String email) {
         if (getUserAccount(email) != null) {
             em.remove(getUserAccount(email));
-            em.remove(getLifetimeRole(email));
+            em.remove(getUserRole(email));
         }
     }
 
@@ -98,8 +99,11 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
     private UserAccount getUserAccount(String email) {
         Query q = em.createNamedQuery("UserAccount.findByEmail", UserAccount.class);
         q.setParameter("email", email);
-        UserAccount account = (UserAccount) q.getSingleResult();
-        return account;
+        List<UserAccount> accounts = q.getResultList();
+        if(accounts.isEmpty()) {
+            return null;
+        }
+        return accounts.get(0);
     }
 
     /**
@@ -112,12 +116,15 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
     public LifetimeUser getUser(String username) {
         Query q = em.createNamedQuery("LifetimeUser.findByUsername", LifetimeUser.class);
         q.setParameter("username", username);
-        LifetimeUser user = (LifetimeUser) q.getSingleResult();
-        return user;
+        List<LifetimeUser> users = q.getResultList();
+        if(users.isEmpty()) {
+            return null;
+        }
+        return users.get(0);
     }
 
-    private UserRole getLifetimeRole(String username) {
-        Query q = em.createNamedQuery("LifetimeRole.findByUsername", UserRole.class);
+    private UserRole getUserRole(String username) {
+        Query q = em.createNamedQuery("UserRole.findByUsername", UserRole.class);
         q.setParameter("username", username);
         UserRole role = (UserRole) q.getSingleResult();
         return role;
