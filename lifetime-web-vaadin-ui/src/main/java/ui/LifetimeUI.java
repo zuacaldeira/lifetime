@@ -1,11 +1,12 @@
 package ui;
 
+import lifetime.service.LifetimeSecurityException;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Widgetset;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 import java.security.Principal;
-import lifetime.business.persistence.User;
+import lifetime.persistence.LifetimeUser;
 import util.ServiceLocator;
 import views.LifetimeView;
 
@@ -23,7 +24,7 @@ public abstract class LifetimeUI extends UI {
     private LifetimeView lifetimeView;
 
     /**
-     * User interaction view initialization procedure. Initiates the view for
+     * LifetimeUser interaction view initialization procedure. Initiates the view for
      * user interaction, depending on the incoming request. Subclasses must
      * respect, at least, the <b>bridge design pattern</b> and the security
      * specification.
@@ -55,7 +56,7 @@ public abstract class LifetimeUI extends UI {
         try {
             String name = p.getName();
             Integer userId = ServiceLocator.findLifetimeService().getUserId(name);
-            User u = ServiceLocator.findLifetimeService().getUser(userId);
+            LifetimeUser u = ServiceLocator.findLifetimeService().getUser(userId);
             return u.getMotherLanguage();
         } catch (Exception ex) {
             throw new LifetimeSecurityException("Unknown User");

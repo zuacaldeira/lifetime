@@ -16,8 +16,8 @@
 package util;
 
 import java.util.Locale;
-import lifetime.business.logic.LifetimeBusiness;
-import lifetime.business.persistence.Translation;
+import old.LifetimeBusiness;
+import old.Translation;
 
 /**
  *

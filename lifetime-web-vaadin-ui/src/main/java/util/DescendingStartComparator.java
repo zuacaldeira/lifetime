@@ -15,7 +15,7 @@
  */
 package util;
 
-import lifetime.business.persistence.Achievement;
+import old.Achievement;
 
 /**
  *

@@ -21,7 +21,7 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.PasswordField;
 import java.util.Locale;
-import lifetime.business.logic.LifetimeAccountService;
+import lifetime.service.LifetimeAccountService;
 import util.ServiceLocator;
 import util.Translator;
 import util.Util;

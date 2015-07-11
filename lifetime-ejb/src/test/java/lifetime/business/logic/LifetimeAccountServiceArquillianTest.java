@@ -5,28 +5,28 @@
  */
 package lifetime.business.logic;
 
+import lifetime.service.LifetimeAccountService;
 import java.io.File;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.naming.NamingException;
-import lifetime.business.persistence.User;
+import lifetime.persistence.UserAccount;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import static org.junit.Assert.assertNotNull;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-@RunWith(Arquillian.class)
-public class LifetimeAccountServiceArquillianTest {
+@Test
+public class LifetimeAccountServiceArquillianTest extends Arquillian {
 
     @EJB(name = "java:global/test/LifetimeAccountService!lifetime.business.logic.LifetimeAccountService")
     private LifetimeAccountService accountService;
@@ -36,8 +36,8 @@ public class LifetimeAccountServiceArquillianTest {
         // get all maven dependecies
         WebArchive result = ShrinkWrap.create(WebArchive.class, "test.war")
                 //.addAsLibraries(files)
-                .addClasses(LifetimeAccountService.class)
-                .addPackage(User.class.getPackage().getName())
+                .addPackage(LifetimeAccountService.class.getPackage().getName())
+                .addPackage(UserAccount.class.getPackage().getName())
                 .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
                         "META-INF/persistence.xml")
                 .addAsResource(EmptyAsset.INSTANCE,
@@ -60,9 +60,10 @@ public class LifetimeAccountServiceArquillianTest {
         String password = "unicidade";
         String language = "unicidade";
         Date birthdate = new Date();
-        assertNotNull("Service not initialized", accountService);
+        Assert.assertNotNull(accountService, "Service not initialized");
         accountService.register(firstname, lastname, email, password, language, birthdate);
-
+        Assert.assertTrue(accountService.existsUser(email));
+        accountService.delete(email);
     }
 
 }

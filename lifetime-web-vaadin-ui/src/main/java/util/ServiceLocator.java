@@ -8,8 +8,8 @@ package util;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import lifetime.business.logic.LifetimeAccountService;
-import lifetime.business.logic.LifetimeBusiness;
+import lifetime.service.LifetimeAccountService;
+import old.LifetimeBusiness;
 
 /**
  *

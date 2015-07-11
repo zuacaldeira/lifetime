@@ -5,7 +5,7 @@
  */
 package util;
 
-import lifetime.business.persistence.Language;
+import old.Language;
 
 /**
  *

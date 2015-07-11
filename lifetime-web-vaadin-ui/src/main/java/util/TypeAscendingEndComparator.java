@@ -15,14 +15,14 @@
  */
 package util;
 
-import lifetime.business.persistence.Academic;
-import lifetime.business.persistence.Achievement;
-import lifetime.business.persistence.Certification;
-import lifetime.business.persistence.Entrepeneurship;
-import lifetime.business.persistence.Linguistic;
-import lifetime.business.persistence.Other;
-import lifetime.business.persistence.Professional;
-import lifetime.business.persistence.Social;
+import old.Academic;
+import old.Achievement;
+import old.Certification;
+import old.Entrepeneurship;
+import old.Linguistic;
+import old.Other;
+import old.Professional;
+import old.Social;
 
 /**
  *
