@@ -1,5 +1,6 @@
 package ui;
 
+import com.vaadin.annotations.Theme;
 import lifetime.service.LifetimeSecurityException;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
@@ -11,6 +12,7 @@ import views.LifetimeView;
 /**
  *
  */
+@Theme("mytheme")
 public abstract class LifetimeUI extends UI {
 
     /**
