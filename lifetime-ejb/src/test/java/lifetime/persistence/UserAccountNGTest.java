@@ -83,6 +83,28 @@ public class UserAccountNGTest {
         System.out.println("setUser");
         testGetUser();
     }
+    
+    /**
+     * Test user accounts have same hash.
+     *
+     * @param a1 A user account
+     * @param a2 Another user account
+     */
+    @Test(dataProvider = "equality")
+    public void testHash(UserAccount a1, UserAccount a2) {
+        assertEquals(a1.hashCode(), a2.hashCode());
+    }
+
+    /**
+     * Test user accounts are equal.
+     *
+     * @param a1 A user account
+     * @param a2 Another user account
+     */
+    @Test(dataProvider = "equality")
+    public void testEquals(UserAccount a1, UserAccount a2) {
+        assertEquals(a1.hashCode(), a2.hashCode());
+    }
 
     /**
      * Test user accounts are not equals.
