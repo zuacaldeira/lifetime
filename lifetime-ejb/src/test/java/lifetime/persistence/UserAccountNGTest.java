@@ -91,14 +91,13 @@ public class UserAccountNGTest {
      * @param a2 Another user account
      */
     @Test(dataProvider = "non-equality")
-    public void testNotEquals(UserAccount a1, UserAccount a2) {
+    public void testNotEquals(UserAccount a1, Object a2) {
         assertFalse(a1.equals(a2));
     }
 
     @DataProvider(name = "non-equality")
     public Object[][] getEqualityNegativeData() {
         Object[][] data = new Object[][]{
-            {null, new UserAccount(2, "username1", "passord")},
             {new UserAccount(1, "username1", "passord"), null},
             {new UserAccount(1, "username1", "passord"), new UserRole(2, "USER", "username")},
             {new UserAccount(1, "username1", "passord"), new UserAccount(2, "username1", "passord")},
