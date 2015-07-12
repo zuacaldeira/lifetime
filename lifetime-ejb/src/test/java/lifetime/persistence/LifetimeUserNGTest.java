@@ -433,7 +433,7 @@ public class LifetimeUserNGTest {
             {new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
                 new LifetimeUser(null, "Alexandre", "Zua Caldeira", null, d, "birthPlace", "en")},
             {new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
-                new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", new Date(), "birthPlace", "en")},
+                new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", new Date(1000000), "birthPlace", "en")},
             {new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
                 new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, null, "en")},
             {new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
