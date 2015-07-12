@@ -51,6 +51,18 @@ public class AccountNGTest {
     }
 
     /**
+     * Test of hashCode method, of class Account.
+     */
+    @Test
+    public void testHashCode2() {
+        System.out.println("hashCode");
+        Integer id = 2;
+        Account instance1 = new AccountImpl();
+        Account instance2 = new AccountImpl();
+        assertEquals(instance1.hashCode(), instance2.hashCode());
+    }
+
+    /**
      * Test of equals method, of class Account.
      */
     @Test
@@ -74,7 +86,31 @@ public class AccountNGTest {
         assertFalse(instance1.equals(instance2));
     }
 
-        /**
+    /**
+     * Test of equals method, of class Account.
+     */
+    @Test
+    public void testNotEquals2() {
+        System.out.println("equals");
+        Integer id = 2;
+        Account instance1 = new AccountImpl(id);
+        Account instance2 = new AccountImpl(null);
+        assertFalse(instance1.equals(instance2));
+    }
+
+    /**
+     * Test of equals method, of class Account.
+     */
+    @Test
+    public void testNotEquals3() {
+        System.out.println("equals");
+        Integer id = 2;
+        Account instance1 = new AccountImpl(null);
+        Account instance2 = new AccountImpl(id);
+        assertFalse(instance1.equals(instance2));
+    }
+
+    /**
      * Test of equals method, of class Account.
      */
     @Test

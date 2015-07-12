@@ -5,7 +5,9 @@
  */
 package lifetime.persistence;
 
+import java.util.Date;
 import static org.testng.Assert.*;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
@@ -83,4 +85,30 @@ public class UserAccountNGTest {
         testGetUser();
     }
     
+    /**
+     * Test user accounts are not equals.
+     * @param a1 A user account
+     * @param a2 Another user account
+     */
+    @Test(dataProvider = "non-equality")
+    public void testNotEquals(UserAccount a1, UserAccount a2) {
+        assertFalse(a1.equals(a2));
+    }
+    
+    
+            @DataProvider(name = "non-equality")
+    public Object[][] getEqualityNegativeData() {
+        Object[][] data = new Object[][]{
+            {new UserAccount(1, "username1", "passord"), new UserAccount(2, "username1", "passord")},
+            {new UserAccount(null, "username1", "passord"), new UserAccount(1, "username1", "passord")},
+            {new UserAccount(1, "username1", "passord"), new UserAccount(null, "username1", "passord")},
+            {new UserAccount(1, "username1", "passord"), new UserAccount(1, "username2", "passord")},
+            {new UserAccount(1, null, "passord"), new UserAccount(1, "username1", "passord")},
+            {new UserAccount(1, "username1", "passord"), new UserAccount(1, null, "passord")},
+            {new UserAccount(1, "username1", "passord"), new UserAccount(1, "username2", "passord")},
+            {new UserAccount(1, "username1", null), new UserAccount(1, "username1", "passord")},
+            {new UserAccount(1, "username1", "passord"), new UserAccount(1, "username1", null)}
+        };
+        return data;
+    }    
 }
