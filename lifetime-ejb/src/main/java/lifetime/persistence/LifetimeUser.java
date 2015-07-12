@@ -6,8 +6,8 @@
 package lifetime.persistence;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,14 +16,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -84,16 +82,10 @@ public class LifetimeUser implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "username")
     private String username;
-    @OneToMany(mappedBy = "lifetimeUser")
-    private Collection<UserAccount> userAccountCollection;
 
     public LifetimeUser() {
         isConfirmed = false;
         isLoggedIn = false;
-    }
-
-    public LifetimeUser(Integer id) {
-        this.id = id;
     }
 
     public LifetimeUser(Integer id, String firstName, String lastName, String username, Date birthDate, String birthPlace, String motherLanguage) {
@@ -178,34 +170,43 @@ public class LifetimeUser implements Serializable {
         this.username = username;
     }
 
-    @XmlTransient
-    public Collection<UserAccount> getUserAccountCollection() {
-        return userAccountCollection;
-    }
-
-    public void setUserAccountCollection(Collection<UserAccount> userAccountCollection) {
-        this.userAccountCollection = userAccountCollection;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.birthPlace);
+        hash = 53 * hash + Objects.hashCode(this.firstName);
+        hash = 53 * hash + Objects.hashCode(this.lastName);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LifetimeUser)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        LifetimeUser other = (LifetimeUser) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final LifetimeUser other = (LifetimeUser) obj;
+        if (!Objects.equals(this.birthDate, other.birthDate)) {
+            return false;
+        }
+        if (!Objects.equals(this.birthPlace, other.birthPlace)) {
+            return false;
+        }
+        if (!Objects.equals(this.firstName, other.firstName)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastName, other.lastName)) {
+            return false;
+        }
+        if (!Objects.equals(this.username, other.username)) {
             return false;
         }
         return true;
     }
+
+
 
     @Override
     public String toString() {
