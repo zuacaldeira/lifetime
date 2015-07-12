@@ -53,8 +53,10 @@ public class UserAccount implements Serializable {
     public UserAccount() {
     }
 
-    public UserAccount(Integer id) {
+    public UserAccount(Integer id, String email, String password) {
         this.id = id;
+        this.email = email;
+        this.password = password;
     }
 
     public Integer getId() {

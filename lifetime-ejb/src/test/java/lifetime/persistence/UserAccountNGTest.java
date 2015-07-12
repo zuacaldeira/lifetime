@@ -24,10 +24,11 @@ public class UserAccountNGTest {
     public void testGetEmail() {
         System.out.println("getEmail");
         String email = "email";
-        UserAccount instance = new UserAccount(1);
-        assertNull(instance.getEmail());
-        instance.setEmail(email);
+        String email2 = "email2";
+        UserAccount instance = new UserAccount(1, email, "password");
         assertEquals(instance.getEmail(), email);
+        instance.setEmail(email2);
+        assertEquals(instance.getEmail(), email2);
     }
 
     /**
@@ -47,7 +48,6 @@ public class UserAccountNGTest {
         System.out.println("getPassword");
         String password = "password";
         UserAccount instance = new UserAccount();
-        assertNull(instance.getPassword());
         instance.setPassword(password);
         assertEquals(instance.getPassword(), password);
     }

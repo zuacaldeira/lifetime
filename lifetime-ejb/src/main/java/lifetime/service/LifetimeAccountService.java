@@ -51,9 +51,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
         // Creates the user
         LifetimeUser user = new LifetimeUser(null, firstname, lastname, email, birthdate, null, language);
         // Initialize the user account entity
-        UserAccount account = new UserAccount(null);
-        account.setEmail(email);
-        account.setPassword(password);
+        UserAccount account = new UserAccount(null, email, password);
         account.setLifetimeUser(user);
 
         UserRole lRole = new UserRole();

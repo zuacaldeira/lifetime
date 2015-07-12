@@ -52,10 +52,6 @@ public class UserRole implements Serializable {
     public UserRole() {
     }
 
-    public UserRole(Integer id) {
-        this.id = id;
-    }
-
     public UserRole(Integer id, String roleName, String username) {
         this.id = id;
         this.roleName = roleName;
