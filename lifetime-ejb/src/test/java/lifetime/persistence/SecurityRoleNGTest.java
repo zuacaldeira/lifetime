@@ -7,6 +7,7 @@ package lifetime.persistence;
 
 import lifetime.service.Roles;
 import static org.testng.Assert.*;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
@@ -79,80 +80,64 @@ public class SecurityRoleNGTest {
 
     /**
      * Test of hashCode method, of class SecurityRole.
+     *
+     * @param role1
+     * @param role2
      */
-    @Test
-    public void testHashCode() {
+    @Test(dataProvider = "equality")
+    public void testHashCode(SecurityRole role1, SecurityRole role2) {
         System.out.println("hashCode");
-
-        //
-        Integer id = 1;
-        String roleName = Roles.USER;
-
-        // First role
-        SecurityRole role = new SecurityRole(id, roleName);
-        role.setRoleName(Roles.USER);
-
-        // Second role
-        SecurityRole role2 = new SecurityRole(id, roleName);
-        role2.setRoleName(Roles.USER);
-
         // Check for equality
-        assertEquals(role.hashCode(), role2.hashCode());
+        assertEquals(role1.hashCode(), role2.hashCode());
     }
 
     /**
      * Test of equals method, of class SecurityRole.
+     *
+     * @param role1
+     * @param role2
      */
-    @Test
-    public void testEquals() {
+    @Test(dataProvider = "equality")
+    public void testEquals(SecurityRole role1, SecurityRole role2) {
         System.out.println("equals");
-        Integer id = 1;
-        String roleName = Roles.USER;
+        assertTrue(role1.equals(role2));
+    }
 
-        // First role
-        SecurityRole role = new SecurityRole(id, roleName);
-        // Second role
-        SecurityRole role2 = new SecurityRole(id, roleName);
-        // Check for equality
-        assertTrue(role.equals(role2));
+    @DataProvider(name = "equality")
+    public Object[][] provideEqualityData() {
+        Object[][] data = new Object[][]{
+            {new SecurityRole(1, Roles.USER), new SecurityRole(1, Roles.USER)},
+            {new SecurityRole(null, Roles.USER), new SecurityRole(null, Roles.USER)},
+            {new SecurityRole(1, null), new SecurityRole(1, null)},
+            {new SecurityRole(null, null), new SecurityRole(null, null)}
+        };
+
+        return data;
     }
 
     /**
      * Test of equals method, of class SecurityRole.
+     *
+     * @param role1
+     * @param role2
      */
-    @Test
-    public void testNotEquals() {
+    @Test(dataProvider = "non-equality")
+    public void testNotEquals(SecurityRole role1, SecurityRole role2) {
         System.out.println("equals");
-        Integer id = 1;
-        String roleName = Roles.USER;
-
-        // First role
-        SecurityRole role = new SecurityRole(id, roleName);
-
-        // Second role
-        SecurityRole role2 = new SecurityRole(2, roleName);
-
-        // Check for equality
-        assertFalse(role.equals(role2));
+        assertFalse(role1.equals(role2));
     }
 
-    /**
-     * Test of equals method, of class SecurityRole.
-     */
-    @Test
-    public void testEqualsWithIncompatibleObject() {
-        System.out.println("equals");
-        Integer id = 1;
-        String roleName = Roles.USER;
+    @DataProvider(name = "non-equality")
+    public Object[][] provideNonEqualityData() {
+        Object[][] data = new Object[][]{
+            {new SecurityRole(1, Roles.USER), null},
+            {new SecurityRole(1, Roles.USER), new SecurityRole(2, Roles.USER)},
+            {new SecurityRole(1, Roles.USER), new SecurityRole(null, Roles.USER)},
+            {new SecurityRole(1, Roles.USER), new SecurityRole(1, null)},
+            {new SecurityRole(1, Roles.USER), new UserRole(1, "a", "b")}
+        };
 
-        // First role
-        SecurityRole role = new SecurityRole(id, roleName);
-
-        // Second role
-        UserRole role2 = new UserRole(2, roleName, "");
-
-        // Check for equality
-        assertFalse(role.equals(role2));
+        return data;
     }
 
     /**
