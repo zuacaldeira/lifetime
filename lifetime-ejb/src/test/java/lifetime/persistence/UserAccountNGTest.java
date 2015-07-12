@@ -112,4 +112,47 @@ public class UserAccountNGTest {
         };
         return data;
     }
+
+    /**
+     * Test user accounts are not equals.
+     *
+     * @param a1 A user account
+     * @param a2 Another user account
+     */
+    @Test(dataProvider = "equality")
+    public void testEquals(UserAccount a1, Object a2) {
+        assertTrue(a1.equals(a2));
+    }
+
+    @DataProvider(name = "equality")
+    public Object[][] getEqualityPositiveData() {
+        Object[][] data = new Object[][]{
+            {new UserAccount(1, "username1", "password"), 
+             new UserAccount(1, "username1", "password")},
+            
+            {new UserAccount(null, "username", "password"), 
+             new UserAccount(null, "username", "password")},
+            
+            {new UserAccount(1, null, "passord"), 
+             new UserAccount(1, null, "passord")},
+            
+            {new UserAccount(1, "username1", null), 
+             new UserAccount(1, "username1", null)},
+            
+            {new UserAccount(1, null, null), 
+             new UserAccount(1, null, null)},
+            
+            {new UserAccount(null, "username1", null), 
+             new UserAccount(null, "username1", null)},
+            
+            {new UserAccount(null, null, "password"), 
+            new UserAccount(null, null, "password")},
+            
+            {new UserAccount(null, null, null), 
+             new UserAccount(null, null, null)}
+        };
+        
+        return data;
+    }
+
 }

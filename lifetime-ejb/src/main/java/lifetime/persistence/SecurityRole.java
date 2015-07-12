@@ -46,10 +46,6 @@ public class SecurityRole implements Serializable {
     public SecurityRole() {
     }
 
-    public SecurityRole(Integer id) {
-        this.id = id;
-    }
-
     public SecurityRole(Integer id, String roleName) {
         this.id = id;
         this.roleName = roleName;
