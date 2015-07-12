@@ -1,0 +1,364 @@
+;; RefTeX parse info file
+;; File: /Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/main.tex
+;; User: zua (Alexandre Caldeira)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi t)
+
+(bibview-cache)
+
+(master-dir . "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/")
+
+(label-numbers ("sec:tests" . 1) ("sec:class-diagram" . 1) ("sec:use-cases" . 1) ("sec:requirements" . 1) ("sec:register" . 1))
+
+(bof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/main.tex")
+
+(bof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/macros.tex")
+
+(eof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/macros.tex")
+
+(bof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/introduction.tex")
+
+(toc "toc" "    * Introduction" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/introduction.tex" nil 2 "*" "\\section*{Introduction}" 1)
+
+("sec:introduction" "s" "%%% Local Variables: %%% mode: latex %%% TeX-master: \"main\" %%% End: " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/introduction.tex" nil)
+
+(eof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/introduction.tex")
+
+(bof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex")
+
+(toc "toc" "  1 Architecture" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil 1 "1" "\\chapter{Architecture}" 2)
+
+(toc "toc" "    1.1 Vaadin Architecture" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil 2 "1.1" "\\section{Vaadin Architecture}" 26)
+
+("sec:vaadin-architecture" "s" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil "")
+
+(toc "toc" "    1.1 Vaadin Architecture" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil 2 "1.1" "\\section{Vaadin Architecture}" 26)
+
+("fig:vaadin-architecture" "f" "Vaadin Java Web Application Architecture" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil)
+
+(toc "toc" "    1.2 Frontend Subsystem" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil 2 "1.2" "\\section{Frontend Subsystem}" 3728)
+
+("sec:frontend" "s" "\\section{Backend Subsystem}  \\section{Storage Subsystem} \\label{sec:storage} %%% Local Variables: %%" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil)
+
+(toc "toc" "        1.2.0.1 LifetimeUI" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil 4 "1.2.0.1" "\\subsubsection{LifetimeUI}" 4489)
+
+("sec:lifetimeui" "s" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil "")
+
+(toc "toc" "      1.2.1  " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil 3 "1.2.1" "\\subsection{}" 5530)
+
+(toc "toc" "        1.2.0.2 LifetimeView" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil 4 "1.2.0.2" "\\subsubsection{LifetimeView}" 5530)
+
+("sec:lifetimeview" "s" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil "")
+
+(toc "toc" "    1.3 Backend Subsystem" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil 2 "1.3" "\\section{Backend Subsystem}" 6135)
+
+("sec:backend" "s" "\\section{Storage Subsystem}  %%% Local Variables: %%% mode: latex %%% TeX-master: \"main\" %%% End: " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil)
+
+(toc "toc" "    1.4 Storage Subsystem" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil 2 "1.4" "\\section{Storage Subsystem}" 6193)
+
+("sec:storage" "s" "%%% Local Variables: %%% mode: latex %%% TeX-master: \"main\" %%% End: " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex" nil)
+
+(eof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/architecture.tex")
+
+(bof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/analysis.tex")
+
+(toc "toc" "  2 Analysis" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/analysis.tex" nil 1 "2" "\\chapter{Analysis}" 2)
+
+(bof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex")
+
+(toc "toc" "    2.1 Requirements" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 2 "2.1" "\\section{Requirements}" 2)
+
+("sec:requirements" "s" "\\vitae is a Vaadin Java Web Application, following the Vaadin architecture \\subsection{Applications " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil)
+
+(toc "toc" "      2.1.1 Applications UIs" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 3 "2.1.1" "\\subsection{Applications UIs}" 129)
+
+("sec:applications-uis" "s" "\\vitae offers differentiated services to users, dependending on the role they play inside the applic" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil)
+
+("fig:uis" "f" "\\vitae Application UIs" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil)
+
+(toc "toc" "      2.1.2 Functional" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 3 "2.1.2" "\\subsection{Functional}" 891)
+
+("sec:requirements" "s" "\\subsection{Security}  \\paragraph{Roles} \\subparagraph{Application Server Roles} \\subparagraph{Progr" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil)
+
+(toc "toc" "      2.1.3 Security" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 3 "2.1.3" "\\subsection{Security}" 941)
+
+("sec:security" "s" "\\paragraph{Roles} \\subparagraph{Application Server Roles} \\subparagraph{Programatic Roles} \\subparag" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil)
+
+(toc "toc" "          2.1.3.0.1 Roles" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 5 "2.1.3.0.1" "\\paragraph{Roles}" 985)
+
+(toc "toc" "            2.1.3.0.1.1 Application Server Roles" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 6 "2.1.3.0.1.1" "\\subparagraph{Application Server Roles}" 1004)
+
+(toc "toc" "            2.1.3.0.1.2 Programatic Roles" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 6 "2.1.3.0.1.2" "\\subparagraph{Programatic Roles}" 1045)
+
+(toc "toc" "            2.1.3.0.1.3 Role Mapping" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 6 "2.1.3.0.1.3" "\\subparagraph{Role Mapping}" 1079)
+
+(toc "toc" "            2.1.3.0.1.4 Service Access" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 6 "2.1.3.0.1.4" "\\subparagraph{Service Access}" 1108)
+
+(toc "toc" "            2.1.3.0.1.5 Secure UIs" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 6 "2.1.3.0.1.5" "\\subparagraph{Secure UIs}" 1139)
+
+(toc "toc" "            2.1.3.0.1.6 Unsecure UIs" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 6 "2.1.3.0.1.6" "\\subparagraph{Unsecure UIs}" 1166)
+
+(toc "toc" "          2.1.3.0.2 Services" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 5 "2.1.3.0.2" "\\paragraph{Services}" 1195)
+
+(toc "toc" "            2.1.3.0.2.1 Guest Services" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 6 "2.1.3.0.2.1" "\\subparagraph{Guest Services}" 1217)
+
+(toc "toc" "            2.1.3.0.2.2 Private Member Services" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 6 "2.1.3.0.2.2" "\\subparagraph{Private Member Services}" 1247)
+
+(toc "toc" "            2.1.3.0.2.3 Corporal Member Services" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 6 "2.1.3.0.2.3" "\\subparagraph{Corporal Member Services}" 1286)
+
+(toc "toc" "            2.1.3.0.2.4 Administration Services" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 6 "2.1.3.0.2.4" "\\subparagraph{Administration Services}" 1326)
+
+(toc "toc" "            2.1.3.0.2.5 Developer Services" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 6 "2.1.3.0.2.5" "\\subparagraph{Developer Services}" 1365)
+
+(toc "toc" "      2.1.4 Others" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil 3 "2.1.4" "\\subsection{Others}" 1405)
+
+("sec:requirements" "s" "%%% Local Variables: %%% mode: latex %%% TeX-master: \"main\" %%% End: " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex" nil)
+
+(eof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/requirements.tex")
+
+(bof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex")
+
+(toc "toc" "    2.2 System Flow" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil 2 "2.2" "\\section{System Flow}" 1)
+
+("sec:system-flow" "s" "The system flow can be specified by session types, as in the following sections. \\subsection{Session" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil)
+
+(toc "toc" "      2.2.1 Session Types" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil 3 "2.2.1" "\\subsection{Session Types}" 130)
+
+("sec:session-types" "s" "\\subsubsection{Welcome}  \\begin{align} Welcome &= \\& \\begin{cases} \\boption{register}{Reg" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil)
+
+(toc "toc" "        2.2.1.1 Welcome" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil 4 "2.2.1.1" "\\subsubsection{Welcome}" 186)
+
+("sec:welcome" "s" "\\begin{align} Welcome &= \\& \\begin{cases} \\boption{register}{Register}" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil)
+
+(toc "toc" "        2.2.1.2 Registration" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil 4 "2.2.1.2" "\\subsubsection{Registration}" 524)
+
+("sec:registration" "s" "\\begin{align} Register &= \\& \\begin{cases} \\boption{input}{ConfirmR} " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil)
+
+(toc "toc" "        2.2.1.3 Login" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil 4 "2.2.1.3" "\\subsubsection{Login}" 1041)
+
+("sec:login" "s" "\\begin{align} Login &= \\& \\begin{cases} \\boption{input}{ConfirmL} " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil)
+
+(toc "toc" "        2.2.1.4 Services Access" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil 4 "2.2.1.4" "\\subsubsection{Services Access}" 1396)
+
+("sec:services-access" "s" "\\begin{align} Home &= + \\begin{cases} \\boption{user}{UserHome}" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil)
+
+(toc "toc" "        2.2.1.5 Impressum" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil 4 "2.2.1.5" "\\subsubsection{Impressum}" 2242)
+
+("sec:impressum" "s" "\\begin{align} Contact &= \\& \\begin{cases} \\boption{read}{Contact}" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil)
+
+(toc "toc" "      2.2.2 Navigation" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil 3 "2.2.2" "\\subsection{Navigation}" 2485)
+
+("sec:navigation" "s" "%%% Local Variables: %%% mode: latex %%% TeX-master: \"main\" %%% End: " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex" nil)
+
+(eof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/flow.tex")
+
+(bof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex")
+
+(toc "toc" "    2.3 Use cases" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil 2 "2.3" "\\section{Use cases}" 1)
+
+("sec:use-cases" "s" "\\subsection{Registration}  \\begin{figure}[htpb] \\centering \\includegraphics[scale=.75]{figures/UseCa" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil)
+
+(toc "toc" "      2.3.1 Registration" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil 3 "2.3.1" "\\subsection{Registration}" 46)
+
+("sec:register" "s" "\\begin{figure}[htpb] \\centering \\includegraphics[scale=.75]{figures/UseCaseRegister.png} \\caption{Re" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil)
+
+("fig:usecase-register" "f" "Registration Use Case" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil)
+
+(toc "toc" "        2.3.1.1 Register new User" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil 4 "2.3.1.1" "\\subsubsection{Register new User}" 269)
+
+("sec:register-new-user" "s" "\\begin{figure}[htpb] \\centering \\includegraphics[scale=.75]{figures/UseCaseRegisterUser.png} \\captio" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil)
+
+("fig:usecase-register-user" "f" "User Registration Use Case" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil)
+
+(toc "toc" "        2.3.1.2 Register new Organization" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil 4 "2.3.1.2" "\\subsubsection{Register new Organization}" 521)
+
+("sec:regist-new-organ" "s" "\\begin{figure}[htpb] \\centering \\includegraphics[scale=.75]{figures/UseCaseRegisterOrg.png} \\caption" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil)
+
+("fig:usecase-register-org" "f" "Org Registration Use Case" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil)
+
+(toc "toc" "      2.3.2 Login" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil 3 "2.3.2" "\\subsection{Login}" 777)
+
+("sec:login" "s" "\\begin{enumerate} " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil)
+
+(toc "toc" "      2.3.3 Account Management" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil 3 "2.3.3" "\\subsection{Account Management}" 898)
+
+("sec:accounts" "s" "\\begin{enumerate} " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil)
+
+(toc "toc" "      2.3.4 Life Event Management" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil 3 "2.3.4" "\\subsection{Life Event Management}" 1164)
+
+("sec:life-events" "s" "\\begin{enumerate} " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil)
+
+(toc "toc" "      2.3.5 Timeline" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil 3 "2.3.5" "\\subsection{Timeline}" 1371)
+
+("sec:timeline" "s" "\\begin{enumerate} " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil)
+
+(toc "toc" "      2.3.6 Yellow Pages" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil 3 "2.3.6" "\\subsection{Yellow Pages}" 1578)
+
+("sec:timeline" "s" "\\begin{enumerate} " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex" nil)
+
+(eof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/usecases.tex")
+
+(eof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/analysis.tex")
+
+(bof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex")
+
+(toc "toc" "  3 Design" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil 1 "3" "\\chapter{Design}" 1)
+
+("sec:design" "s" "\\input{views} \\input{classes} \\input{sequence} \\input{interaction} %%% Local Variables: %%% mode: la" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil)
+
+(toc "toc" "      3.0.1 Activity Diagram" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil 3 "3.0.1" "\\subsection{Activity Diagram}" 4006)
+
+("sec:user-activity-diagram" "s" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil "")
+
+(toc "toc" "        3.0.1.1 tests" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil 4 "3.0.1.1" "\\subsubsection{tests}" 5990)
+
+("sec:tests-1" "s" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil "")
+
+(toc "toc" "        3.0.0.1 Register" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil 4 "3.0.0.1" "\\subsubsection{Register}" 1346)
+
+(toc "toc" "          3.0.0.1.1 Add Firstnames" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil 5 "3.0.0.1.1" "\\paragraph{Add Firstnames}" 3377)
+
+(toc "toc" "        3.0.0.2 Enter User Services" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil 4 "3.0.0.2" "\\subsubsection{Enter User Services}" 3379)
+
+("sec:enter-user-services" "s" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil "")
+
+(toc "toc" "        3.0.0.3 View Contact" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil 4 "3.0.0.3" "\\subsubsection{View Contact}" 3820)
+
+("sec:view-contact" "s" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil "")
+
+("sec:uc-register" "s" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil "")
+
+(toc "toc" "        3.0.0.1 Tests" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil 4 "3.0.0.1" "\\subsubsection{Tests}" 973)
+
+("sec:tests" "s" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil "")
+
+(toc "toc" "      3.0.1 Class Diagram" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil 3 "3.0.1" "\\subsection{Class Diagram}" 4969)
+
+("sec:user-class-diagram" "s" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil "")
+
+(toc "toc" "        3.0.1.1 Activity Diagram" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil 4 "3.0.1.1" "\\subsubsection{Activity Diagram}" 5925)
+
+("sec:user-activity-diagram" "s" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil "")
+
+(toc "toc" "      3.0.1 Requirements" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil 3 "3.0.1" "\\subsection{Requirements}" 5271)
+
+("sec:user-requirements" "s" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil "")
+
+(toc "toc" "      3.0.2 Use Cases" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil 3 "3.0.2" "\\subsection{Use Cases}" 5328)
+
+("sec:user-use-cases" "s" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil "")
+
+("fig:user-use-case-diagram" "f" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil "")
+
+(toc "toc" "        3.0.1.1  " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil 4 "3.0.1.1" "\\subsubsection{}" 5328)
+
+("subsubsection" "s" nil "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex" nil "")
+
+(bof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex")
+
+(toc "toc" "    3.1 Views" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil 2 "3.1" "\\section{Views}" 1)
+
+("sec:class-diagram" "s" "\\subsection{WelcomeView}  \\subsection{RegisterView} \\label{sec:registerview} \\subsection{ConfirmRegi" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil)
+
+(toc "toc" "      3.1.1 WelcomeView" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil 3 "3.1.1" "\\subsection{WelcomeView}" 44)
+
+("sec:welcomeview" "s" "\\subsection{RegisterView}  \\subsection{ConfirmRegistrationView} \\label{sec:conf} \\subsection{SaveReg" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil)
+
+(toc "toc" "      3.1.2 RegisterView" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil 3 "3.1.2" "\\subsection{RegisterView}" 94)
+
+("sec:registerview" "s" "\\subsection{ConfirmRegistrationView}  \\subsection{SaveRegistrationView} \\label{sec:saveregistrationv" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil)
+
+(toc "toc" "      3.1.3 ConfirmRegistrationView" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil 3 "3.1.3" "\\subsection{ConfirmRegistrationView}" 146)
+
+("sec:conf" "s" "\\subsection{SaveRegistrationView}  \\subsection{LoginView} \\label{sec:loginview} \\subsection{ConfirmL" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil)
+
+(toc "toc" "      3.1.4 SaveRegistrationView" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil 3 "3.1.4" "\\subsection{SaveRegistrationView}" 201)
+
+("sec:saveregistrationview" "s" "\\subsection{LoginView}  \\subsection{ConfirmLoginView} \\label{sec:conf} \\subsection{HomeSelectorView}" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil)
+
+(toc "toc" "      3.1.5 LoginView" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil 3 "3.1.5" "\\subsection{LoginView}" 269)
+
+("sec:loginview" "s" "\\subsection{ConfirmLoginView}  \\subsection{HomeSelectorView} \\label{sec:homeselectorview} \\subsectio" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil)
+
+(toc "toc" "      3.1.6 ConfirmLoginView" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil 3 "3.1.6" "\\subsection{ConfirmLoginView}" 315)
+
+("sec:conf" "s" "\\subsection{HomeSelectorView}  \\subsection{UserHomeView} \\label{sec:homeselectorview} \\subsection{Or" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil)
+
+(toc "toc" "      3.1.7 HomeSelectorView" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil 3 "3.1.7" "\\subsection{HomeSelectorView}" 363)
+
+("sec:homeselectorview" "s" "\\subsection{UserHomeView}  \\subsection{OrganizationHomeView} \\label{sec:homeselectorview} \\subsectio" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil)
+
+(toc "toc" "      3.1.8 UserHomeView" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil 3 "3.1.8" "\\subsection{UserHomeView}" 423)
+
+("sec:homeselectorview" "s" "\\subsection{OrganizationHomeView}  \\subsection{ContactView} \\label{sec:contactview} \\subsection{Tran" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil)
+
+(toc "toc" "      3.1.9 OrganizationHomeView" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil 3 "3.1.9" "\\subsection{OrganizationHomeView}" 479)
+
+("sec:homeselectorview" "s" "\\subsection{ContactView}  \\subsection{TranslateView} \\label{sec:translationview} %%% Local Variables" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil)
+
+(toc "toc" "      3.1.10 ContactView" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil 3 "3.1.10" "\\subsection{ContactView}" 543)
+
+("sec:contactview" "s" "\\subsection{TranslateView}  %%% Local Variables: %%% mode: latex %%% TeX-master: \"main\" %%% End: " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil)
+
+(toc "toc" "      3.1.11 TranslateView" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil 3 "3.1.11" "\\subsection{TranslateView}" 593)
+
+("sec:translationview" "s" "%%% Local Variables: %%% mode: latex %%% TeX-master: \"main\" %%% End: " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex" nil)
+
+(eof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/views.tex")
+
+(bof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/classes.tex")
+
+(toc "toc" "    3.2 Class Diagram" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/classes.tex" nil 2 "3.2" "\\section{Class Diagram}" 1)
+
+("sec:class-diagram" "s" "%%% Local Variables: %%% mode: latex %%% TeX-master: \"main\" %%% End: " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/classes.tex" nil)
+
+(eof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/classes.tex")
+
+(bof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/sequence.tex")
+
+(toc "toc" "    3.3 Sequence Diagrams" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/sequence.tex" nil 2 "3.3" "\\section{Sequence Diagrams}" 1)
+
+("sec:sequence-diagrams" "s" " " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/sequence.tex" nil)
+
+(eof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/sequence.tex")
+
+(bof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/interaction.tex")
+
+(toc "toc" "    3.4 Interaction Diagrams" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/interaction.tex" nil 2 "3.4" "\\section{Interaction Diagrams}" 1)
+
+("sec:interaction-diagrams" "s" "%%% Local Variables: %%% mode: latex %%% TeX-master: \"main\" %%% End: " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/interaction.tex" nil)
+
+(eof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/interaction.tex")
+
+(eof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/design.tex")
+
+(bof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/implementation.tex")
+
+(toc "toc" "  4 Implementation" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/implementation.tex" nil 1 "4" "\\chapter{Implementation}" 1)
+
+("sec:implementation" "s" "\\section{Architecture}  \\section{User Interface} \\label{sec:user-interface} \\section{Backend Service" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/implementation.tex" nil)
+
+(toc "toc" "    4.1 Architecture" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/implementation.tex" nil 2 "4.1" "\\section{Architecture}" 54)
+
+("sec:architecture" "s" "\\section{User Interface}  \\section{Backend Services} \\label{sec:backend} %%% Local Variables: %%% mo" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/implementation.tex" nil)
+
+(toc "toc" "    4.2 User Interface" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/implementation.tex" nil 2 "4.2" "\\section{User Interface}" 103)
+
+("sec:user-interface" "s" "\\section{Backend Services}  %%% Local Variables: %%% mode: latex %%% TeX-master: \"main\" %%% End: " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/implementation.tex" nil)
+
+(toc "toc" "    4.3 Backend Services" "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/implementation.tex" nil 2 "4.3" "\\section{Backend Services}" 156)
+
+("sec:backend" "s" "%%% Local Variables: %%% mode: latex %%% TeX-master: \"main\" %%% End: " "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/implementation.tex" nil)
+
+(eof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/implementation.tex")
+
+(eof "/Users/zua/NetBeansProjects/lifetime-web/lifetime-web-vaadin-ui/docs/tex-report/main.tex")
+))
+

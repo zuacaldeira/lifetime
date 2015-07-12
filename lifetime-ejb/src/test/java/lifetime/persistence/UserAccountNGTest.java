@@ -69,9 +69,9 @@ public class UserAccountNGTest {
         System.out.println("getUser");
         LifetimeUser user = new LifetimeUser();
         UserAccount instance = new UserAccount();
-        assertNull(instance.getUser());
-        instance.setUser(user);
-        assertEquals(instance.getUser(), user);
+        assertNull(instance.getLifetimeUser());
+        instance.setLifetimeUser(user);
+        assertEquals(instance.getLifetimeUser(), user);
     }
 
     /**

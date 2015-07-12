@@ -1,0 +1,80 @@
+\usepackage{xspace}
+
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+
+\newtheorem{req}{Requirement}
+\newtheorem{use-case}{Use Case}
+\newtheorem{sub-use-case}{Use Case}[use-case]
+\newtheorem{todo}{Todo}
+\newtheorem{risk}{Risk}
+\newtheorem{risk-mitigation}{Risk Mitigation}
+\newtheorem{test}{Test}
+\newtheorem{test-suite}{Test Suite}
+\newtheorem{test-case}[test-suite]{Test Case}
+
+
+\newcommand{\boption}[2]{\textbf{#1} : \texttt{#2}}
+
+\newcommand{\vitae}{\app{vitae}}
+\newcommand{\timeline}{\app{timeline}}
+\newcommand{\yellowpages}{\app{yellow pages}}
+\newcommand{\lifetime}{\app{lifetime}}
+\newcommand{\vaadin}{\app{vaadin}}
+\newcommand{\app}[1]{\textsf{#1}\xspace}
+
+
+\newcommand{\code}[1]{\texttt{#1}\xspace}
+
+
+
+
+
+\usepackage{color}
+\definecolor{sh_comment}{rgb}{0.12, 0.38, 0.18 } %adjusted, in Eclipse: {0.25, 0.42, 0.30 } = #3F6A4D
+\definecolor{sh_keyword}{rgb}{0.37, 0.08, 0.25}  % #5F1441
+\definecolor{sh_string}{rgb}{0.06, 0.10, 0.98} % #101AF9
+\def\lstsmallmath{\leavevmode\ifmmode \scriptstyle \else  \fi}
+\def\lstsmallmathend{\leavevmode\ifmmode  \else  \fi}
+
+\lstset {
+language=Java,
+ frame=shadowbox,
+ rulesepcolor=\color{black},
+ showspaces=false,showtabs=false,tabsize=2,
+ numberstyle=\tiny,numbers=left,
+ basicstyle= \small\ttfamily\bfseries,
+ stringstyle=\color{sh_string},
+ keywordstyle = \color{sh_keyword}\bfseries,
+ commentstyle=\color{sh_comment}\itshape,
+ captionpos=b,
+ xleftmargin=0.7cm, xrightmargin=0.5cm,
+ lineskip=-0.3em,
+ escapebegin={\lstsmallmath}, escapeend={\lstsmallmathend}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

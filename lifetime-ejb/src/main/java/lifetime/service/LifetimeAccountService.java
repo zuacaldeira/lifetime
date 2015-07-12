@@ -54,7 +54,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
         UserAccount account = new UserAccount(null);
         account.setEmail(email);
         account.setPassword(password);
-        account.setUser(user);
+        account.setLifetimeUser(user);
 
         UserRole lRole = new UserRole();
         lRole.setRoleName(Roles.USER);

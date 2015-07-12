@@ -6,6 +6,7 @@
 package lifetime.service;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.naming.NamingException;
@@ -44,6 +45,7 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
                         ArchivePaths.create("beans.xml"));
         return result;
     }
+    private String currentEmail;
 
     /**
      * Test of register method, of class LifetimeAccountService.
@@ -62,15 +64,8 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
     public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language) throws NamingException, LifetimeSecurityException {
         System.out.println("IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT register");
         Assert.assertNotNull(accountService, "Service not initialized");
-        
-        if (!accountService.existsUser(email)) {
-            accountService.register(firstName, lastName, email, password, language, birthDate);
-            Assert.assertTrue(accountService.existsUser(email));
-        }
-        if (accountService.existsUser(email)) {
-            accountService.delete(email);
-            Assert.assertFalse(accountService.existsUser(email));
-        }
+        currentEmail = email;
+        accountService.register(firstName, lastName, email, password, language, birthDate);
     }
 
     @DataProvider(name = "registerData")
@@ -82,4 +77,14 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
         };
         return dataArray;
     }
+
+    @Override
+    public void arquillianAfterTest(Method testMethod) throws Exception {
+        accountService.delete(currentEmail);
+        super.arquillianAfterTest(testMethod);
+    }
+    
+    
+    
+    
 }

@@ -6,13 +6,16 @@
 package lifetime.persistence;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,95 +24,94 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author zua
  */
-
 @Entity
 @Table(name = "userAccount")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "UserAccount.findAll", query = "SELECT a FROM UserAccount a"),
-    @NamedQuery(name = "UserAccount.findByEmail", query = "SELECT a FROM UserAccount a WHERE a.email = :email")    
-})
-public class UserAccount extends Account implements Serializable {
+    @NamedQuery(name = "UserAccount.findAll", query = "SELECT u FROM UserAccount u"),
+    @NamedQuery(name = "UserAccount.findById", query = "SELECT u FROM UserAccount u WHERE u.id = :id"),
+    @NamedQuery(name = "UserAccount.findByEmail", query = "SELECT u FROM UserAccount u WHERE u.email = :email"),
+    @NamedQuery(name = "UserAccount.findByPassword", query = "SELECT u FROM UserAccount u WHERE u.password = :password")})
+public class UserAccount implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    
-    @Size(max = 45)
-    @Column(name = "email", unique = true)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 255)
+    @Column(name = "email")
     private String email;
-    
-    @Size(max = 45)
+    @Size(max = 255)
     @Column(name = "password")
     private String password;
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "lifetimeUser")
-    private LifetimeUser user;
-    
-    /**
-     *
-     */
+    @JoinColumn(name = "lifetimeUser", referencedColumnName = "id")
+    @ManyToOne
+    private LifetimeUser lifetimeUser;
+
     public UserAccount() {
     }
 
-    /**
-     *
-     * @param id
-     */
     public UserAccount(Integer id) {
-        super(id);
+        this.id = id;
     }
 
-    /**
-     *
-     * @return
-     */
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getEmail() {
         return email;
     }
 
-    /**
-     *
-     * @param email
-     */
     public void setEmail(String email) {
         this.email = email;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getPassword() {
         return password;
     }
 
-    /**
-     *
-     * @param password
-     */
     public void setPassword(String password) {
         this.password = password;
     }
 
-    /**
-     *
-     * @return
-     */
-    public LifetimeUser getUser() {
-        return user;
+    public LifetimeUser getLifetimeUser() {
+        return lifetimeUser;
     }
 
-    /**
-     *
-     * @param user
-     */
-    public void setUser(LifetimeUser user) {
-        this.user = user;
+    public void setLifetimeUser(LifetimeUser lifetimeUser) {
+        this.lifetimeUser = lifetimeUser;
     }
-    
-    
 
-    
-    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof UserAccount)) {
+            return false;
+        }
+        UserAccount other = (UserAccount) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "lifetime.persistence.UserAccount[ id=" + id + " ]";
+    }
     
 }
