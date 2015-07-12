@@ -22,6 +22,29 @@ public class UserAccountNGTest {
      * Test of getEmail method, of class UserAccount.
      */
     @Test
+    public void testGetId() {
+        System.out.println("getId");
+        Integer id = 1;
+        Integer id2 = 2;
+        UserAccount instance = new UserAccount(id, "email", "password");
+        assertEquals(instance.getId(), id);
+        instance.setId(id2);
+        assertEquals(instance.getId(), id2);
+    }
+
+    /**
+     * Test of setEmail method, of class UserAccount.
+     */
+    @Test
+    public void testSetId() {
+        System.out.println("setId");
+        testGetId();
+    }
+
+    /**
+     * Test of getEmail method, of class UserAccount.
+     */
+    @Test
     public void testGetEmail() {
         System.out.println("getEmail");
         String email = "email";

@@ -90,7 +90,7 @@ public class UserRoleNGTest {
     @Test(dataProvider = "equality")
     public void testHashCode(UserRole role, UserRole role2) {
         System.out.println("hashCode");
-        assertTrue(role.equals(role2));
+        assertEquals(role.hashCode(), role2.hashCode());
     }
 
     /**
