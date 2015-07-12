@@ -427,11 +427,24 @@ public class LifetimeUserNGTest {
         Date d = new Date();
         Object[][] data = new Object[][]{
             {new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
-                new LifetimeUser(1, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en")},
+             new LifetimeUser(1, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en")},
+            
             {new LifetimeUser(1, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
-                new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en")},
+             new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en")},
+            
+            {new LifetimeUser(1, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
+             new LifetimeUser(1, null, "Zua Caldeira", "username", d, "birthPlace", "en")},
+
+            {new LifetimeUser(1, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
+             new LifetimeUser(1, "Alexandre", "ZECA", "username", d, "birthPlace", "en")},
+
             {new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
-                new LifetimeUser(null, "Alexandre", "Zua Caldeira", null, d, "birthPlace", "en")},
+             new LifetimeUser(null, "Alexandre", "Zua Caldeira", null, d, "birthPlace", "en")},
+            
+            {new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
+                new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", new Date(1000000), "birthPlace", "en")},
+            {new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
+                new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", new Date(1000000), "birthPlace", "en")},
             {new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
                 new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", new Date(1000000), "birthPlace", "en")},
             {new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
