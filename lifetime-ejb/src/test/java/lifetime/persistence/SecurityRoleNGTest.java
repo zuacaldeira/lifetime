@@ -122,7 +122,7 @@ public class SecurityRoleNGTest {
      * @param role2
      */
     @Test(dataProvider = "non-equality")
-    public void testNotEquals(SecurityRole role1, SecurityRole role2) {
+    public void testNotEquals(SecurityRole role1, Object role2) {
         System.out.println("equals");
         assertFalse(role1.equals(role2));
     }
