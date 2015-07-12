@@ -7,6 +7,7 @@ package lifetime.persistence;
 
 import lifetime.service.Roles;
 import static org.testng.Assert.*;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
@@ -48,7 +49,7 @@ public class UserRoleNGTest {
         UserRole instance = new UserRole();
         assertNull(instance.getUsername());
         instance.setUsername("new_username");
-        assertEquals(instance.getUsername(), "new_username");        
+        assertEquals(instance.getUsername(), "new_username");
     }
 
     /**
@@ -69,7 +70,7 @@ public class UserRoleNGTest {
         UserRole instance = new UserRole();
         assertNull(instance.getId());
         instance.setId(1);
-        assertEquals(instance.getId(), new Integer(1));        
+        assertEquals(instance.getId(), new Integer(1));
     }
 
     /**
@@ -83,38 +84,62 @@ public class UserRoleNGTest {
 
     /**
      * Test of hashCode method, of class UserRole.
+     * @param role
+     * @param role2
      */
-    @Test
-    public void testHashCode() {
+    @Test(dataProvider = "equality")
+    public void testHashCode(UserRole role, UserRole role2) {
         System.out.println("hashCode");
-        UserRole instance = new UserRole();
-        UserRole instance2 = new UserRole();
-        assertEquals(instance.hashCode(),instance2.hashCode());
+        assertTrue(role.equals(role2));
     }
 
     /**
      * Test of equals method, of class UserRole.
+     *
+     * @param role
+     * @param role2
      */
-    @Test
-    public void testEquals() {
+    @Test(dataProvider = "equality")
+    public void testEquals(UserRole role, UserRole role2) {
         System.out.println("equals");
-        String username = "username";
-        UserRole instance = new UserRole(null, username, Roles.USER);
-        UserRole instance2 = new UserRole(null, username, Roles.USER);
-        assertTrue(instance.equals(instance2));
+        assertTrue(role.equals(role2));
+    }
+
+    @DataProvider(name = "equality")
+    public Object[][] provideEqualityData() {
+        Object[][] data = new Object[][]{
+            {new UserRole(1, Roles.USER, "username"), new UserRole(1, Roles.USER, "username")},
+            {new UserRole(null, Roles.USER, "username"), new UserRole(null, Roles.USER, "username")},
+            {new UserRole(1, null, "username"), new UserRole(1, null, "username")},
+            {new UserRole(1, Roles.USER, null), new UserRole(1, Roles.USER, null)}
+        };
+
+        return data;
     }
 
     /**
      * Test of equals method, of class UserRole.
+     *
+     * @param role
+     * @param role2
      */
-    @Test
-    public void testNotEquals() {
-        System.out.println("equals");
-        String username1 = "username1";
-        String username2 = "username2";
-        UserRole instance = new UserRole(1, username1, Roles.USER);
-        UserRole instance2 = new UserRole(2, username2, Roles.USER);
-        assertFalse(instance.equals(instance2));
+    @Test(dataProvider = "inequality")
+    public void testNotEquals(UserRole role, Object role2) {
+        System.out.println("!equals");
+        assertFalse(role.equals(role2));
+    }
+
+    @DataProvider(name = "inequality")
+    public Object[][] provideInequalityData() {
+        Object[][] data = new Object[][]{
+            {new UserRole(1, Roles.USER, "username"), new UserRole(null, Roles.USER, "username")},
+            {new UserRole(1, Roles.USER, "username"), new UserRole(1, null, "username")},
+            {new UserRole(1, Roles.USER, "username"), new UserRole(1, Roles.USER, null)},
+            {new UserRole(1, Roles.USER, "username"), null},
+            {new UserRole(1, Roles.USER, "username"), new SecurityRole(1, Roles.USER)}
+        };
+
+        return data;
     }
 
     /**
@@ -138,7 +163,7 @@ public class UserRoleNGTest {
         String username = "username";
         UserRole instance = new UserRole(1, username, Roles.USER);
         UserRole instance2 = new UserRole(1, username, Roles.USER);
-        assertEquals(instance.toString(),instance2.toString());
+        assertEquals(instance.toString(), instance2.toString());
     }
 
 }
