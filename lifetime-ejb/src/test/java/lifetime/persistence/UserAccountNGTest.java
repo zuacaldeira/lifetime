@@ -97,7 +97,14 @@ public class UserAccountNGTest {
 
     @DataProvider(name = "non-equality")
     public Object[][] getEqualityNegativeData() {
+        UserAccount a1 = new UserAccount(null, null, null);
+        a1.setLifetimeUser(new LifetimeUser());
+
+        UserAccount a2 = new UserAccount(null, null, null);
+        a2.setLifetimeUser(new LifetimeUser(null, "Alexandre", null, null, null, null, null));
+
         Object[][] data = new Object[][]{
+            {a1, a2},
             {new UserAccount(1, "username1", "passord"), null},
             {new UserAccount(1, "username1", "passord"), new UserRole(2, "USER", "username")},
             {new UserAccount(1, "username1", "passord"), new UserAccount(2, "username1", "passord")},
@@ -127,31 +134,24 @@ public class UserAccountNGTest {
     @DataProvider(name = "equality")
     public Object[][] getEqualityPositiveData() {
         Object[][] data = new Object[][]{
-            {new UserAccount(1, "username1", "password"), 
-             new UserAccount(1, "username1", "password")},
-            
-            {new UserAccount(null, "username", "password"), 
-             new UserAccount(null, "username", "password")},
-            
-            {new UserAccount(1, null, "passord"), 
-             new UserAccount(1, null, "passord")},
-            
-            {new UserAccount(1, "username1", null), 
-             new UserAccount(1, "username1", null)},
-            
-            {new UserAccount(1, null, null), 
-             new UserAccount(1, null, null)},
-            
-            {new UserAccount(null, "username1", null), 
-             new UserAccount(null, "username1", null)},
-            
-            {new UserAccount(null, null, "password"), 
-            new UserAccount(null, null, "password")},
-            
-            {new UserAccount(null, null, null), 
-             new UserAccount(null, null, null)}
+            {new UserAccount(1, "username1", "password"),
+                new UserAccount(1, "username1", "password")},
+            {new UserAccount(null, "username", "password"),
+                new UserAccount(null, "username", "password")},
+            {new UserAccount(1, null, "passord"),
+                new UserAccount(1, null, "passord")},
+            {new UserAccount(1, "username1", null),
+                new UserAccount(1, "username1", null)},
+            {new UserAccount(1, null, null),
+                new UserAccount(1, null, null)},
+            {new UserAccount(null, "username1", null),
+                new UserAccount(null, "username1", null)},
+            {new UserAccount(null, null, "password"),
+                new UserAccount(null, null, "password")},
+            {new UserAccount(null, null, null),
+                new UserAccount(null, null, null)}
         };
-        
+
         return data;
     }
 
