@@ -172,10 +172,13 @@ public class LifetimeUser implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.birthPlace);
-        hash = 53 * hash + Objects.hashCode(this.firstName);
-        hash = 53 * hash + Objects.hashCode(this.lastName);
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.birthDate);
+        hash = 89 * hash + Objects.hashCode(this.birthPlace);
+        hash = 89 * hash + Objects.hashCode(this.firstName);
+        hash = 89 * hash + Objects.hashCode(this.lastName);
+        hash = 89 * hash + Objects.hashCode(this.motherLanguage);
+        hash = 89 * hash + Objects.hashCode(this.username);
         return hash;
     }
 
@@ -188,6 +191,9 @@ public class LifetimeUser implements Serializable {
             return false;
         }
         final LifetimeUser other = (LifetimeUser) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         if (!Objects.equals(this.birthDate, other.birthDate)) {
             return false;
         }
@@ -200,11 +206,15 @@ public class LifetimeUser implements Serializable {
         if (!Objects.equals(this.lastName, other.lastName)) {
             return false;
         }
+        if (!Objects.equals(this.motherLanguage, other.motherLanguage)) {
+            return false;
+        }
         if (!Objects.equals(this.username, other.username)) {
             return false;
         }
         return true;
     }
+
 
 
 

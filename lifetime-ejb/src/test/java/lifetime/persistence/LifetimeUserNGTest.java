@@ -298,25 +298,26 @@ public class LifetimeUserNGTest {
 
     /**
      * Test of setIsConfirmed method, of class LifetimeUser.
+     *
+     * @param aUser the user we are comparing
+     * @param another the user we are comparing against
      */
-    @org.testng.annotations.Test
-    public void testEquals() {
+    @org.testng.annotations.Test(dataProvider = "equalsProvider")
+    public void testEquals(LifetimeUser aUser, Object another) {
         System.out.println("equals");
-        LifetimeUser instance1 = new LifetimeUser();
-        LifetimeUser instance2 = new LifetimeUser();
-        assertTrue(instance1.equals(instance2));
+        assertTrue(aUser.equals(another));
     }
 
     /**
-     * Test of setIsConfirmed method, of class LifetimeUser.
+     * Test of notEquals method, of class LifetimeUser.
+     *
+     * @param aUser
+     * @param another
      */
-    @org.testng.annotations.Test
-    public void testNotEquals() {
-        System.out.println("equals");
-        LifetimeUser instance1 = new LifetimeUser();
-        LifetimeUser instance2 = new LifetimeUser();
-        instance2.setId(2);
-        assertFalse(instance1.equals(instance2));
+    @org.testng.annotations.Test(dataProvider = "nonEqualsProvider")
+    public void testNotEquals(LifetimeUser aUser, Object another) {
+        System.out.println("non-equals");
+        assertFalse(aUser.equals(another));
     }
 
     /**
@@ -340,7 +341,7 @@ public class LifetimeUserNGTest {
         LifetimeUser instance2 = new LifetimeUser();
         assertEquals(instance1.hashCode(), instance2.hashCode());
     }
-    
+
     /**
      * Test toString.
      */
@@ -351,14 +352,13 @@ public class LifetimeUserNGTest {
         LifetimeUser instance2 = new LifetimeUser();
         assertEquals(instance1.toString(), instance2.toString());
     }
-    
-    
+
     @DataProvider(name = "userProvider")
     public Object[][] provideUserData() {
         Object[][] data = new Object[][]{
             {1, "firstname1", "lastname1", "username1", new Date(), "birthPlace", "en"},
             {2, "firstname2", "lastname2", "username2", new Date(), "birthPlace", "en"},
-            {3, "firstname3", "lastname3", "username3", new Date(), "birthPlace", "en"},};
+            {3, "firstname3", "lastname3", "username3", new Date(), "birthPlace", "en"}};
         return data;
     }
 
@@ -422,4 +422,37 @@ public class LifetimeUserNGTest {
         return data;
     }
 
+    @DataProvider(name = "nonEqualsProvider")
+    public Object[][] provideNonEqualsData() {
+        Date d = new Date();
+        Object[][] data = new Object[][]{
+            {new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
+                new LifetimeUser(1, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en")},
+            {new LifetimeUser(1, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
+                new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en")},
+            {new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
+                new LifetimeUser(null, "Alexandre", "Zua Caldeira", null, d, "birthPlace", "en")},
+            {new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
+                null},
+            {new LifetimeUser(null, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
+                new UserAccount(1, "gmal", "pass")}
+        };
+        return data;
+    }
+
+    @DataProvider(name = "equalsProvider")
+    public Object[][] provideEqualsData() {
+        Date d = new Date();
+        Object[][] data = new Object[][]{
+            {new LifetimeUser(1, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en"),
+                new LifetimeUser(1, "Alexandre", "Zua Caldeira", "username", d, "birthPlace", "en")},
+            {new LifetimeUser(1, null, "Zua Caldeira", "username", d, "birthPlace", "en"),
+                new LifetimeUser(1, null, "Zua Caldeira", "username", d, "birthPlace", "en")},
+            {new LifetimeUser(1, "Alexandre", null, "username", d, "birthPlace", "en"),
+                new LifetimeUser(1, "Alexandre", null, "username", d, "birthPlace", "en")},
+            {new LifetimeUser(1, "Alexandre", "Zua Caldeira", null, d, "birthPlace", "en"),
+                new LifetimeUser(1, "Alexandre", "Zua Caldeira", null, d, "birthPlace", "en")}
+        };
+        return data;
+    }
 }
