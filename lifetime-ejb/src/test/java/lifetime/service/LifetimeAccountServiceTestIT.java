@@ -12,6 +12,7 @@ import javax.ejb.EJB;
 import javax.naming.NamingException;
 import lifetime.persistence.UserAccount;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ArchivePaths;
@@ -66,6 +67,7 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
         Assert.assertNotNull(accountService, "Service not initialized");
         currentEmail = email;
         accountService.register(firstName, lastName, email, password, language, birthDate);
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
     }
 
     @DataProvider(name = "registerData")

@@ -13,18 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package views.welcome;
+package views;
 
 import com.vaadin.testbench.parallel.TestCategory;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
-import views.LifetimeBackground;
-import views.LifetimeContent;
-import views.LifetimeMenu;
-import views.WelcomeBackground;
-import views.WelcomeContent;
-import views.WelcomeMenu;
-import views.WelcomeView;
 
 /**
  * This unit test is responsible to check that {@link WelcomeView} implements
@@ -35,7 +28,7 @@ import views.WelcomeView;
  * @author zua
  */
 @TestCategory("Unit")
-public class WelcomeViewUnitTest {
+public class WelcomeViewNGTest {
 
     /**
      * Test of {@link WelcomeView#createMenu()}. Test that the the method

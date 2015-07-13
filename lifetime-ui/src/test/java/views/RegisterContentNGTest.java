@@ -13,23 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package views.register;
+package views;
 
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
-import views.RegistrationForm;
-import views.RegisterContent;
 
 /**
  *
  * @author zua
  */
-public class RegisterContentUnitTest {
+public class RegisterContentNGTest {
 
     /**
      *
      */
-    public RegisterContentUnitTest() {
+    public RegisterContentNGTest() {
     }
 
     /**

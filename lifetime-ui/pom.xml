@@ -166,11 +166,14 @@
                     <execution>
                         <id>default</id>
                         <configuration>
-                            <skip>true</skip>
+                            <skipITs>true</skipITs>
                         </configuration>
                     </execution>
                     <execution>
                         <id>integration-test</id>
+                        <configuration>
+                            <skipITs>false</skipITs>
+                        </configuration>
                         <goals>
                             <goal>integration-test</goal>
                         </goals>

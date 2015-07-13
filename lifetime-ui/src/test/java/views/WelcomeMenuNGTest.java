@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package views.welcome;
+package views;
 
 import com.vaadin.ui.Button;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
-import views.WelcomeMenu;
 
 /**
  * Unit structural test for the welcome menu. Structural tests provide a mean to
@@ -33,7 +32,7 @@ import views.WelcomeMenu;
  *
  * @author zua
  */
-public class WelcomeMenuUnitTest {
+public class WelcomeMenuNGTest {
 
     /**
      * Test of getHomeButton method, of class WelcomeMenuView.

@@ -13,14 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package views.register;
+package views;
 
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
-import views.RegisterContent;
-import views.RegisterMenu;
-import views.RegisterView;
-import views.WelcomeBackground;
 
 /**
  * Unit tests the {@code RegisterView}. A {@code RegisterView} is composed, as
@@ -30,7 +26,7 @@ import views.WelcomeBackground;
  *
  * @author zua
  */
-public class RegisterViewUnitTest {
+public class RegisterViewNGTest {
 
     /**
      * Test of getContent method, of class RegisterView. Creates a new instance

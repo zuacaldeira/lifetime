@@ -13,23 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package views.welcome;
+package views;
 
 import data.RegistrationDataProvider;
-import data.LoginDataProvider;
 import org.openqa.selenium.chrome.ChromeDriver;
 import com.vaadin.testbench.TestBenchTestCase;
 import com.vaadin.testbench.elements.ButtonElement;
 import com.vaadin.testbench.elements.ImageElement;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 import ui.TestBundle;
 
 /**
  *
  * @author zua
  */
-public class WelcomeViewSeleniumTest extends TestBenchTestCase {
+public class WelcomeViewNGTestIT extends TestBenchTestCase {
 
     /**
      *

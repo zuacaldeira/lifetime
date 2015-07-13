@@ -13,20 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package views.register;
+package views;
 
 import java.util.Calendar;
 import java.util.Date;
 import static org.testng.Assert.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import views.RegistrationForm;
 
 /**
  *
  * @author zua
  */
-public class RegisterFormUnitNGTest {
+public class RegisterFormNGTest {
 
     /**
      * Test correct instantiation. This means:

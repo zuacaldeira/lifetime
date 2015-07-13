@@ -28,12 +28,12 @@ import org.testng.annotations.Test;
  *
  * @author zua
  */
-public class LifetimeUISeleniumTest extends TestBenchTestCase {
+public class LifetimeUINGTestIT extends TestBenchTestCase {
 
     /**
      *
      */
-    public LifetimeUISeleniumTest() {
+    public LifetimeUINGTestIT() {
     }
 
     /**

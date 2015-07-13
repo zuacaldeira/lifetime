@@ -37,7 +37,6 @@
         <project.target.version>1.7</project.target.version>
         <project.encoding>UTF-8</project.encoding>
     </properties>
-
     <build>
         <plugins>
             <plugin>
