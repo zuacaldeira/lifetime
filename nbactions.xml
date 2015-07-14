@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-Deploy</actionName>
+            <displayName>Deploy</displayName>
+            <goals>
+                <goal>deploy:deploy</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>glassfish_managed</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-GlassfishDeploy</actionName>
+            <displayName>GlassfishDeploy</displayName>
+            <goals>
+                <goal>glassfish:deploy</goal>
+                <goal>-e</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>glassfish_managed</activatedProfile>
+            </activatedProfiles>
+        </action>
+    </actions>

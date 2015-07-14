@@ -66,4 +66,11 @@
                 <skipTests>true</skipTests>
             </properties>
         </action>
+        <action>
+            <actionName>CUSTOM-deploy:deploy</actionName>
+            <displayName>deploy:deploy</displayName>
+            <goals>
+                <goal>deploy:deploy</goal>
+            </goals>
+        </action>
     </actions>

@@ -30,17 +30,28 @@
     </licenses>
 
     <properties>
+        <!-- Vaadin specific properties -->
         <vaadin.version>7.4.1</vaadin.version>
         <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
         <jetty.plugin.version>9.2.3.v20140905</jetty.plugin.version>
         <project.source.version>1.7</project.source.version>
         <project.target.version>1.7</project.target.version>
         <project.encoding>UTF-8</project.encoding>
+        
+        <!-- glassfish specific properties -->
+        <local.glassfish.home>/Applications/NetBeans/glassfish-4.1/glassfish</local.glassfish.home>
+        <local.glassfish.user>admin</local.glassfish.user>
+        <local.glassfish.domain>domain1</local.glassfish.domain>
+        <local.glassfish.passwordFile>
+            ${local.glassfish.home}/domains/${local.glassfish.domain}/config/domain-passwords
+        </local.glassfish.passwordFile>
     </properties>
     
+    
     <profiles>
+
         <profile>
-            <id>glassfish</id>
+            <id>glassfish_managed</id>
             <activation>
                 <activeByDefault>
                     true
@@ -218,11 +229,15 @@
                         </execution>
                     </executions>
                 </plugin>
+                
+                
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
                     <version>2.4</version>
                 </plugin>
+        
+                
             </plugins>
         </pluginManagement>
     </build>
