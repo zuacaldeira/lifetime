@@ -17,7 +17,7 @@ import lifetime.service.LifetimeAccountBusiness;
 public class ServiceLocator {
 
     private static LifetimeAccountBusiness accountService;
-    public static final String LIFETIME_ACCOUNT_BUSINESS = "java:global/lifetime-web-vaadin-ui/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness";
+    public static final String LIFETIME_ACCOUNT_BUSINESS = "java:global/lifetime-ui/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness";
 
     public static LifetimeAccountBusiness findLifetimeAccountService() {
         if (accountService == null) {
