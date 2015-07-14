@@ -22,7 +22,7 @@
 
     <profiles>
         <profile>
-            <id>glassfish_managed</id>
+            <id>glassfish</id>
             <activation>
                 <activeByDefault>
                     true

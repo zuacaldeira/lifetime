@@ -37,6 +37,9 @@
         <project.target.version>1.7</project.target.version>
         <project.encoding>UTF-8</project.encoding>
     </properties>
+    
+    
+    
     <build>
         <plugins>
             <plugin>
@@ -129,11 +132,13 @@
                             <id>default</id>
                             <configuration>
                                 <skipTests>false</skipTests>
+                                <skipITs>true</skipITs>
                             </configuration>
                         </execution>
                         <execution>
                             <id>integration-test</id>
                             <configuration>
+                                <skipTests>true</skipTests>
                                 <skipITs>false</skipITs>
                             </configuration>
                             <goals>
