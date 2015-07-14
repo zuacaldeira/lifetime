@@ -8,6 +8,7 @@ package lifetime.persistence;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,7 +49,7 @@ public class UserAccount implements Serializable {
     @Column(name = "password")
     private String password;
     @JoinColumn(name = "lifetimeUser", referencedColumnName = "id")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private LifetimeUser lifetimeUser;
 
     public UserAccount() {

@@ -1,7 +1,6 @@
 package ui;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.annotations.Widgetset;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 import java.security.Principal;

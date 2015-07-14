@@ -27,6 +27,8 @@ public interface LifetimeAccountBusiness {
      * @param password Candidate's password
      * @param language Candidate's language
      * @param birthdate Candidate's birth date
+     * @throws lifetime.service.LifetimeSecurityException If there is a user
+     * with the same email already exists
      */
     public void register(String firstname, String lastname, String email, String password, String language, Date birthdate) throws LifetimeSecurityException;
 

@@ -12,13 +12,12 @@ import javax.ejb.EJB;
 import javax.naming.NamingException;
 import lifetime.persistence.UserAccount;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -36,7 +35,7 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
     @Deployment
     public static Archive createDeployment() {
         // get all maven dependecies
-        WebArchive result = ShrinkWrap.create(WebArchive.class, "test.war")
+        JavaArchive result = ShrinkWrap.create(JavaArchive.class, "test.jar")
                 //.addAsLibraries(files)
                 .addPackage(LifetimeAccountBusiness.class.getPackage().getName())
                 .addPackage(UserAccount.class.getPackage().getName())
@@ -62,12 +61,15 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
      * {@link LifetimeAccountService}
      */
     @Test(dataProvider = "registerData")
-    public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language) throws NamingException, LifetimeSecurityException {
+    public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language) throws NamingException {
         System.out.println("IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT register");
         Assert.assertNotNull(accountService, "Service not initialized");
         currentEmail = email;
-        accountService.register(firstName, lastName, email, password, language, birthDate);
-        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+        try{
+            accountService.register(firstName, lastName, email, password, language, birthDate);
+        } catch(LifetimeSecurityException lsx) {
+            System.out.println("Security Exception");
+        }
     }
 
     @DataProvider(name = "registerData")

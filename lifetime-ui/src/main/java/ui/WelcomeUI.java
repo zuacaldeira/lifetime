@@ -5,6 +5,7 @@ import views.WelcomeView;
 import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.annotations.Widgetset;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
@@ -13,6 +14,7 @@ import views.ContactView;
 import views.RegisterView;
 
 @Theme("mytheme")
+@Widgetset("ui.lifetimeWidgetSet")
 public class WelcomeUI extends LifetimeUI implements ViewChangeListener /* implements Button.ClickListener */ {
 
     @Override
