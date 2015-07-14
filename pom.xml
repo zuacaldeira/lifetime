@@ -207,6 +207,7 @@
                         <execution>
                             <id>default</id>
                             <configuration>
+                                <skipITs>true</skipITs>
                                 <excludes>**/Selenium*.java</excludes>
                             </configuration>
                         </execution>
@@ -214,6 +215,7 @@
                             <id>integration-test</id>
                             <configuration>
                                 <skipITs>false</skipITs>
+                                <includes>**/Selenium*.java</includes>
                             </configuration>
                             <goals>
                                 <goal>integration-test</goal>

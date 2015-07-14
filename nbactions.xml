@@ -4,11 +4,10 @@
             <actionName>CUSTOM-Deploy</actionName>
             <displayName>Deploy</displayName>
             <goals>
-                <goal>deploy:deploy</goal>
+                <goal>clean</goal>
+                <goal>install</goal>
+                <goal>-DskipTests</goal>
             </goals>
-            <activatedProfiles>
-                <activatedProfile>glassfish_managed</activatedProfile>
-            </activatedProfiles>
         </action>
         <action>
             <actionName>CUSTOM-GlassfishDeploy</actionName>
