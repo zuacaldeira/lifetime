@@ -27,7 +27,7 @@ import ui.TestBundle;
  *
  * @author zua
  */
-public class WelcomeViewNGTestIT extends TestBenchTestCase {
+public class SeleniumWelcomeViewNGTestIT extends TestBenchTestCase {
 
     /**
      *

@@ -17,7 +17,6 @@ package views;
 
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
-import views.RegisterContent;
 
 /**
  *

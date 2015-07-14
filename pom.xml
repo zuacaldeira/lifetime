@@ -207,7 +207,7 @@
                         <execution>
                             <id>default</id>
                             <configuration>
-                                <skipITs>true</skipITs>
+                                <excludes>**/Selenium*.java</excludes>
                             </configuration>
                         </execution>
                         <execution>

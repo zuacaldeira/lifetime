@@ -21,4 +21,14 @@
                 <activatedProfile>glassfish_managed</activatedProfile>
             </activatedProfiles>
         </action>
+        <action>
+            <actionName>CUSTOM-Arquillian</actionName>
+            <displayName>Arquillian</displayName>
+            <goals>
+                <goal>arquillian-test</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>glassfish_managed</activatedProfile>
+            </activatedProfiles>
+        </action>
     </actions>

@@ -17,10 +17,6 @@ package views;
 
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
-import views.RegisterContent;
-import views.RegisterMenu;
-import views.RegisterView;
-import views.WelcomeBackground;
 
 /**
  * Unit tests the {@code RegisterView}. A {@code RegisterView} is composed, as

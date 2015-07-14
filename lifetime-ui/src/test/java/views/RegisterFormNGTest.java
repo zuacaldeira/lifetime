@@ -20,7 +20,6 @@ import java.util.Date;
 import static org.testng.Assert.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import views.RegistrationForm;
 
 /**
  *
