@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package views;
+package backend.views;
 
-import data.RegistrationDataProvider;
+import backend.data.RegistrationDataProvider;
 import org.openqa.selenium.chrome.ChromeDriver;
 import com.vaadin.testbench.TestBenchTestCase;
 import com.vaadin.testbench.elements.ButtonElement;
 import com.vaadin.testbench.elements.ImageElement;
 import org.testng.Assert;
-import ui.TestBundle;
+import backend.ui.TestBundle;
 
 /**
  *

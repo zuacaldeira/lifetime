@@ -32,7 +32,7 @@ import views.WelcomeView;
 public class WelcomeUINGTest {
 
     /**
-     *
+     * Default constructor.
      */
     public WelcomeUINGTest() {
     }

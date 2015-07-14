@@ -13,11 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package views;
+package backend.views;
 
 import com.vaadin.testbench.parallel.TestCategory;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
+import views.LifetimeBackground;
+import views.LifetimeContent;
+import views.LifetimeMenu;
+import views.WelcomeBackground;
+import views.WelcomeContent;
+import views.WelcomeMenu;
+import views.WelcomeView;
 
 /**
  * This unit test is responsible to check that {@link WelcomeView} implements

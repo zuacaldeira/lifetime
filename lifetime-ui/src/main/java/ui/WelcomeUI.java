@@ -1,5 +1,6 @@
 package ui;
 
+import com.vaadin.annotations.Theme;
 import views.WelcomeView;
 import javax.servlet.annotation.WebServlet;
 
@@ -11,11 +12,7 @@ import com.vaadin.server.VaadinServlet;
 import views.ContactView;
 import views.RegisterView;
 
-/**
- *
 @Theme("mytheme")
-@Widgetset("lifetime.MyAppWidgetset")
- */
 public class WelcomeUI extends LifetimeUI implements ViewChangeListener /* implements Button.ClickListener */ {
 
     @Override

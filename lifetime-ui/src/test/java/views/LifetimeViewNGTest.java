@@ -13,12 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package views;
+package backend.views;
 
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Image;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
+import views.LifetimeBackground;
+import views.LifetimeContent;
+import views.LifetimeMenu;
+import views.LifetimeView;
 
 /**
  * Test of the abstract class {@link LifetimeView}, the top-level abstract

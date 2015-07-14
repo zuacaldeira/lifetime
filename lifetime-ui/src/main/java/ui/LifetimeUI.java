@@ -1,7 +1,7 @@
 package ui;
 
 import com.vaadin.annotations.Theme;
-import lifetime.service.LifetimeSecurityException;
+import com.vaadin.annotations.Widgetset;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 import java.security.Principal;
@@ -40,7 +40,6 @@ public abstract class LifetimeUI extends UI {
      *
      * @param request The incoming request with user information
      * @return The current user language
-     * @throws LifetimeSecurityException
      *
      * @todo The system language should be a persistent value and hard-coded
      */

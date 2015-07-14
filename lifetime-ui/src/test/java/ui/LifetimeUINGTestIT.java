@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ui;
+package backend.ui;
 
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.testbench.TestBenchTestCase;
@@ -23,6 +23,7 @@ import com.vaadin.testbench.elements.VerticalLayoutElement;
 import org.junit.Assert;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import ui.LifetimeUI;
 
 /**
  *
