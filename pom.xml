@@ -39,38 +39,6 @@
     </properties>
     
     <profiles>
-        <profile> 
-            <id>ci</id> 
-            <activation> 
-                <activeByDefault>false</activeByDefault> 
-                <property> 
-                    <name>profile</name> 
-                    <value>ci</value> 
-                </property> 
-            </activation> 
-            <properties> 
-                <as.domain.dir>/tmp</as.domain.dir> 
-            </properties> 
-            <build> 
-                <pluginManagement> 
-                    <plugins> 
-                        <plugin> 
-                            <groupId>org.glassfish.maven.plugin</groupId> 
-                            <artifactId>maven-glassfish-plugin</artifactId> 
-                            <executions> 
-                                <execution> 
-                                    <goals> 
-                                        <goal>create-domain</goal> 
-                                        <goal>deploy</goal> 
-                                        <goal>delete-domain</goal> 
-                                    </goals> 
-                                </execution> 
-                            </executions> 
-                        </plugin> 
-                    </plugins> 
-                </pluginManagement> 
-            </build> 
-        </profile>
         <profile>
             <id>glassfish</id>
             <activation>
