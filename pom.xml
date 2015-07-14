@@ -60,7 +60,7 @@
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-glassfish-managed-3.1</artifactId>
+                    <artifactId>arquillian-glassfish-remote-3.1</artifactId>
                     <version>1.0.0.CR4</version>
                     <scope>test</scope>
                 </dependency>
@@ -207,14 +207,12 @@
                         <execution>
                             <id>default</id>
                             <configuration>
-                                <skipTests>false</skipTests>
                                 <skipITs>true</skipITs>
                             </configuration>
                         </execution>
                         <execution>
                             <id>integration-test</id>
                             <configuration>
-                                <skipTests>true</skipTests>
                                 <skipITs>false</skipITs>
                             </configuration>
                             <goals>
