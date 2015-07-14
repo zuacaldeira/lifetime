@@ -229,7 +229,7 @@
                     <scanIntervalSeconds>2</scanIntervalSeconds>
                 </configuration>
             </plugin>
-            <!-- TODO remove? -->
+            <!-- TODO remove? 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -238,7 +238,7 @@
                     <execution>
                         <id>default</id>
                         <configuration>
-                            <skipITs>true</skipITs>
+                            <skipTests>false</skipTests>
                         </configuration>
                     </execution>
                     <execution>
@@ -257,7 +257,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
         </plugins>
     </build>
 </project>
