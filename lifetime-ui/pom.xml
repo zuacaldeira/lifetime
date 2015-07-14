@@ -164,7 +164,7 @@
                     <scanIntervalSeconds>2</scanIntervalSeconds>
                 </configuration>
             </plugin>
-            
+
         </plugins>
     </build>
 </project>
