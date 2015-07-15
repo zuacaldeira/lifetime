@@ -43,7 +43,7 @@ import org.testng.annotations.Test;
 @RunAsClient
 public class WelcomeViewNGTestIT extends Arquillian {
 
-    private static final String TEST_APP_NAME = WelcomeViewNGTestIT.class.getSimpleName() + "-test.jar";
+    private static final String TEST_APP_NAME = "drone.jar";
 
     @Drone
     private WebDriver webDriver;
