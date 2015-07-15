@@ -72,11 +72,6 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
         return dataArray;
     }
 
-    @Override
-    public void arquillianAfterTest(Method testMethod) throws Exception {
-        super.arquillianAfterTest(testMethod);
-    }
-
     private static class Deployments {
 
         public static Archive getDeploymentLifetimeAccountService() {
