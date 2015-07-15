@@ -9,9 +9,7 @@ import lifetime.persistence.exceptions.LifetimeSecurityException;
 import java.io.File;
 import java.util.Date;
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.naming.NamingException;
-import javax.transaction.UserTransaction;
 import lifetime.persistence.UserAccount;
 import lifetime.persistence.exceptions.NonexistentEntityException;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -66,21 +64,34 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
         System.out.println("register IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT ");
     }
 
-    /*    
-     @Test(dataProvider = "registerData", priority = 2)
-     public void testDeleteAccount(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) throws NamingException, LifetimeSecurityException {
-     System.out.println("IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT delete account");
-     Assert.assertNotNull(accountService, "Service not initialized");
-     accountService.deleteAccount(email);
-     System.out.println("delete account IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT");
-     }
-     */
+    @Test(dataProvider = "registerNegativeData", expectedExceptions = Exception.class)
+    public void testBadRegistration(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) throws NamingException, LifetimeSecurityException {
+        System.out.println("IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT NEGATIVE register");
+        Assert.assertNotNull(accountService, "Service not initialized");
+        accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace);
+        System.out.println("NEGATIVE register IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT ");
+    }
+
     @DataProvider(name = "registerData")
     public static Object[][] getData() {
         Object[][] dataArray = {
             {"Alexandre 1", "Zua Caldeira 1", "zuacaldeira1@gmail.com", "unicidade", new Date(), "pt", "Lisbon, Portugal"},
             {"Alexandre 2", "Zua Caldeira 2", "zuacaldeira2@gmail.com", "unicidade", new Date(), "pt", "Lisbon, Portugal"},
             {"Alexandre 3", "Zua Caldeira 3", "zuacaldeira3@gmail.com", "unicidade", new Date(), "pt", "Lisbon, Portugal"}
+        };
+        return dataArray;
+    }
+
+    @DataProvider(name = "registerNegativeData")
+    public static Object[][] getNegativeData() {
+        Object[][] dataArray = {
+            {null, "Zua Caldeira 1", "zuacaldeira1@gmail.com", "unicidade", new Date(), "pt", "Lisbon, Portugal"},
+            {"Alexandre 2", null, "zuacaldeira2@gmail.com", "unicidade", new Date(), "pt", "Lisbon, Portugal"},
+            {"Alexandre 3", "Zua Caldeira 3", null, "unicidade", new Date(), "pt", "Lisbon, Portugal"},
+            {"Alexandre 3", "Zua Caldeira 3", "zuacaldeira4@gmail.com", null, new Date(), "pt", "Lisbon, Portugal"},
+            {"Alexandre 3", "Zua Caldeira 3", "zuacaldeira5@gmail.com", "unicidade", null, "pt", "Lisbon, Portugal"},
+            {"Alexandre 3", "Zua Caldeira 3", "zuacaldeira6@gmail.com", "unicidade", new Date(), null, "Lisbon, Portugal"},
+            {"Alexandre 3", "Zua Caldeira 3", "zuacaldeira7@gmail.com", "unicidade", new Date(), "pt", null}
         };
         return dataArray;
     }
