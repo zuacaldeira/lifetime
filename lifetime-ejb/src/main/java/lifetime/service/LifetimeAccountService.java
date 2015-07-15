@@ -46,7 +46,6 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      * @param password The user's password
      * @param language The user's default language
      * @param birthdate The user's birth date
-     * @throws lifetime.service.LifetimeSecurityException
      */
     @Override
     public void register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace) throws LifetimeSecurityException {
@@ -54,6 +53,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
         LifetimeUser user = new LifetimeUser(null, firstname, lastname, email, birthdate, birthPlace, language);
         account.setLifetimeUser(user);
         accountController.create(account);
+        System.out.println("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
     }
 
     @Override

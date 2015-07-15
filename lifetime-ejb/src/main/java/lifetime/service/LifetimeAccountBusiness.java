@@ -28,9 +28,7 @@ public interface LifetimeAccountBusiness {
      * @param language Candidate's language
      * @param birthdate Candidate's birth date
      * @param birthPlace Candidate's birth place
-     *
-     * @throws lifetime.service.LifetimeSecurityException If there is a user
-     * with the same email already exists
+     * @throws lifetime.persistence.exceptions.LifetimeSecurityException
      */
     public void register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace) throws LifetimeSecurityException;
 
@@ -38,8 +36,7 @@ public interface LifetimeAccountBusiness {
      * Delete all user data from the system.
      *
      * @param email User's email
-     * @throws lifetime.service.LifetimeSecurityException If no account with
-     * this email was found
+     * @throws lifetime.persistence.exceptions.LifetimeSecurityException
      */
     public void deleteAccount(String email) throws LifetimeSecurityException;
 
