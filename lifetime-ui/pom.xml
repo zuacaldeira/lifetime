@@ -139,9 +139,6 @@
                 <executions>
                     <execution>
                         <id>default</id>
-                        <configuration>
-                            <skipITs>true</skipITs>
-                        </configuration>
                     </execution>
                     <execution>
                         <id>integration-test</id>
@@ -157,6 +154,12 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+            </plugin>
+
         </plugins>
         
 
