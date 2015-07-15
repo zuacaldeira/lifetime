@@ -23,7 +23,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
 import java.util.Locale;
 import lifetime.service.LifetimeAccountBusiness;
-import lifetime.service.LifetimeSecurityException;
+import lifetime.persistence.exceptions.LifetimeSecurityException;
 import util.ServiceLocator;
 import util.Translator;
 import util.Util;
@@ -42,6 +42,7 @@ public class RegistrationForm extends FormLayout implements Property.ValueChange
     private final PasswordField passwordRepeat;
     private final LocalesComboBox defaultLanguage;
     private final LifetimeDateField birthDate;
+    private final LifetimeTextField birthPlace;
 
     public RegistrationForm(String language) {
         super();
@@ -78,8 +79,11 @@ public class RegistrationForm extends FormLayout implements Property.ValueChange
         birthDate = new LifetimeDateField("Birthdate", language);
         birthDate.addValueChangeListener(this);
         birthDate.setLocale(new Locale(language));
+        //
+        birthPlace = new LifetimeTextField("Birth place");
+        birthPlace.addValueChangeListener(this);
 
-        addComponents(text, defaultLanguage, firstname, lastname, email, password, passwordRepeat, birthDate);
+        addComponents(text, defaultLanguage, firstname, lastname, email, password, passwordRepeat, birthDate, birthPlace);
         setStyleName("forms");
     }
 
@@ -151,7 +155,7 @@ public class RegistrationForm extends FormLayout implements Property.ValueChange
     void submit() {
         try {
             LifetimeAccountBusiness service = ServiceLocator.findLifetimeAccountService();
-            service.register(firstname.getValue(), lastname.getValue(), email.getValue(), password.getValue(), defaultLanguage.getValue().toString(), birthDate.getValue());
+            service.register(firstname.getValue(), lastname.getValue(), email.getValue(), password.getValue(), defaultLanguage.getValue().toString(), birthDate.getValue(), birthPlace.getValue());
         } catch (LifetimeSecurityException ex) {
             Notification.show("Security Exception", ex.getMessage(), Notification.Type.WARNING_MESSAGE);
             clear();

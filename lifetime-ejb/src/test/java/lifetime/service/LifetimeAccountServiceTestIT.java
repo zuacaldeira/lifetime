@@ -5,12 +5,15 @@
  */
 package lifetime.service;
 
+import lifetime.persistence.exceptions.LifetimeSecurityException;
 import java.io.File;
-import java.lang.reflect.Method;
 import java.util.Date;
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.naming.NamingException;
+import javax.transaction.UserTransaction;
 import lifetime.persistence.UserAccount;
+import lifetime.persistence.exceptions.NonexistentEntityException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -31,7 +34,7 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
 
     private static final String TEST_APP_NAME = "test.jar";
 
-    @EJB(name = "java:global/test/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness",  beanInterface = LifetimeAccountBusiness.class)
+    @EJB(name = "java:global/test/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness", beanInterface = LifetimeAccountBusiness.class)
     private LifetimeAccountBusiness accountService;
 
     @Deployment
@@ -49,34 +52,44 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
      * @param language
      * @param password
      * @param birthDate
+     * @param birthPlace Candidate's birth place
      *
      * @throws javax.naming.NamingException If lookup fails while looking for a
      * {@link LifetimeAccountService}
      */
-    @Test(dataProvider = "registerData")
-    public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language) throws NamingException, LifetimeSecurityException {
+    @Test(dataProvider = "registerData", priority = 1)
+    public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) throws NamingException, LifetimeSecurityException {
         System.out.println("IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT register");
         Assert.assertNotNull(accountService, "Service not initialized");
-        //accountService.register(firstName, lastName, email, password, language, birthDate);
-        //accountService.delete(currentEmail);
+        accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace);
+        accountService.deleteAccount(email);
         System.out.println("register IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT ");
     }
 
+    /*    
+     @Test(dataProvider = "registerData", priority = 2)
+     public void testDeleteAccount(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) throws NamingException, LifetimeSecurityException {
+     System.out.println("IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT delete account");
+     Assert.assertNotNull(accountService, "Service not initialized");
+     accountService.deleteAccount(email);
+     System.out.println("delete account IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT");
+     }
+     */
     @DataProvider(name = "registerData")
     public static Object[][] getData() {
         Object[][] dataArray = {
-            {"Alexandre 1", "Zua Caldeira 1", "zuacaldeira1@gmail.com", "unicidade", new Date(), "pt"},
-            {"Alexandre 2", "Zua Caldeira 2", "zuacaldeira2@gmail.com", "unicidade", new Date(), "pt"},
-            {"Alexandre 3", "Zua Caldeira 3", "zuacaldeira3@gmail.com", "unicidade", new Date(), "pt"}
+            {"Alexandre 1", "Zua Caldeira 1", "zuacaldeira1@gmail.com", "unicidade", new Date(), "pt", "Lisbon, Portugal"},
+            {"Alexandre 2", "Zua Caldeira 2", "zuacaldeira2@gmail.com", "unicidade", new Date(), "pt", "Lisbon, Portugal"},
+            {"Alexandre 3", "Zua Caldeira 3", "zuacaldeira3@gmail.com", "unicidade", new Date(), "pt", "Lisbon, Portugal"}
         };
         return dataArray;
     }
 
     private static class Deployments {
-
         public static Archive getDeploymentLifetimeAccountService() {
             JavaArchive result = ShrinkWrap.create(JavaArchive.class, TEST_APP_NAME)
                     //.addAsLibraries(files)
+                    .addPackage(NonexistentEntityException.class.getPackage())
                     .addPackage(LifetimeAccountBusiness.class.getPackage())
                     .addPackage(UserAccount.class.getPackage().getName())
                     .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),

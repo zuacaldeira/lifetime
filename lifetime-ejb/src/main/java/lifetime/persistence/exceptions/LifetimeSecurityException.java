@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.service;
+package lifetime.persistence.exceptions;
 
 import javax.ejb.ApplicationException;
 

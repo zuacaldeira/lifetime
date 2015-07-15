@@ -16,8 +16,10 @@
 package views;
 
 import java.io.File;
+import javax.ejb.EJB;
 import lifetime.persistence.UserAccount;
 import lifetime.service.LifetimeAccountBusiness;
+import lifetime.persistence.exceptions.LifetimeSecurityException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
@@ -47,6 +49,9 @@ public class WelcomeViewNGTestIT extends Arquillian {
 
     @Drone
     private WebDriver webDriver;
+
+    @EJB(name = "java:global/test/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness", beanInterface = LifetimeAccountBusiness.class)
+    private LifetimeAccountBusiness accountService;
 
     public WelcomeViewNGTestIT() {
     }
@@ -118,6 +123,7 @@ public class WelcomeViewNGTestIT extends Arquillian {
         public static Archive getDeploymentWelcomeView() {
             JavaArchive result = ShrinkWrap.create(JavaArchive.class, TEST_APP_NAME)
                     //.addAsLibraries(files)
+                    .addPackage(LifetimeSecurityException.class.getPackage())
                     .addPackage(LifetimeAccountBusiness.class.getPackage().getName())
                     .addPackage(UserAccount.class.getPackage().getName())
                     .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),

@@ -5,9 +5,9 @@
  */
 package lifetime.service;
 
+import lifetime.persistence.exceptions.LifetimeSecurityException;
 import java.util.Date;
 import javax.ejb.Remote;
-import lifetime.persistence.LifetimeUser;
 
 /**
  * This interface defines the contract between the clients and the account
@@ -27,33 +27,20 @@ public interface LifetimeAccountBusiness {
      * @param password Candidate's password
      * @param language Candidate's language
      * @param birthdate Candidate's birth date
+     * @param birthPlace Candidate's birth place
+     *
      * @throws lifetime.service.LifetimeSecurityException If there is a user
      * with the same email already exists
      */
-    public void register(String firstname, String lastname, String email, String password, String language, Date birthdate) throws LifetimeSecurityException;
-
-    /**
-     * Checks if the system contains a user with the given email.
-     *
-     * @param email The user's email
-     * @return true if there is a user u, such that,
-     * {@code u.getEmail() == email}
-     */
-    public boolean existsUser(String email);
+    public void register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace) throws LifetimeSecurityException;
 
     /**
      * Delete all user data from the system.
      *
      * @param email User's email
+     * @throws lifetime.service.LifetimeSecurityException If no account with
+     * this email was found
      */
-    public void delete(String email);
-
-    /**
-     * Returns the user with the given email.
-     *
-     * @param email The user's email
-     * @return
-     */
-    public LifetimeUser getUser(String email);
+    public void deleteAccount(String email) throws LifetimeSecurityException;
 
 }

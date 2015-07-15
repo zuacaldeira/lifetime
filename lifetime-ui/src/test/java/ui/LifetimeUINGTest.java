@@ -16,7 +16,7 @@
 package ui;
 
 import com.vaadin.server.VaadinRequest;
-import lifetime.service.LifetimeSecurityException;
+import lifetime.persistence.exceptions.LifetimeSecurityException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import views.LifetimeView;
@@ -39,25 +39,24 @@ public class LifetimeUINGTest {
      * service context.
      *
      * @exception NullPointerException
-     * @throws lifetime.service.LifetimeSecurityException
+     * @throws lifetime.persistence.exceptions.LifetimeSecurityException
      */
-    @Test(expectedExceptions = NullPointerException.class)
+    @Test
     public void testGetLanguage() throws LifetimeSecurityException {
         System.out.println("getLanguage");
         VaadinRequest request = null;
         LifetimeUI instance = new LifetimeUIImpl();
-        instance.getLanguage(request);
+        Assert.assertEquals(instance.getLanguage(request), "en");
     }
 
     /**
      * Test of getView method, of class LifetimeUI. This test must check that
      * class has a not initialized, i.e, null assigned {@link LifetimeView},
      * which will be implemented using the <b>bridge design pattern</b>.
-     *
      */
     @Test
     public void testGetView() {
-        System.out.println("getLanguage");
+        System.out.println("getView");
         LifetimeUI instance = new LifetimeUIImpl();
         Assert.assertNull(instance.getLifetimeView());
     }

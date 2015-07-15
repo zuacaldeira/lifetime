@@ -48,6 +48,7 @@ public class UserAccount implements Serializable {
     @Size(max = 255)
     @Column(name = "password")
     private String password;
+   
     @JoinColumn(name = "lifetimeUser", referencedColumnName = "id")
     @OneToOne(cascade = CascadeType.ALL)
     private LifetimeUser lifetimeUser;
@@ -59,6 +60,7 @@ public class UserAccount implements Serializable {
         this.id = id;
         this.email = email;
         this.password = password;
+        lifetimeUser = null;
     }
 
     public Integer getId() {

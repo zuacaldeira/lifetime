@@ -48,35 +48,43 @@ public class LifetimeUser implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "birthDate")
     @Temporal(TemporalType.DATE)
     private Date birthDate;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "birthPlace")
     private String birthPlace;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "firstName")
     private String firstName;
+    
     @Column(name = "isConfirmed")
     private Boolean isConfirmed;
+    
     @Column(name = "isLoggedIn")
     private Boolean isLoggedIn;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "lastName")
     private String lastName;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "motherLanguage")
     private String motherLanguage;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)

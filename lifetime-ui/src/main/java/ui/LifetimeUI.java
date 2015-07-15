@@ -4,8 +4,6 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 import java.security.Principal;
-import lifetime.persistence.LifetimeUser;
-import util.ServiceLocator;
 import views.LifetimeView;
 
 /**
@@ -43,19 +41,7 @@ public abstract class LifetimeUI extends UI {
      * @todo The system language should be a persistent value and hard-coded
      */
     protected String getLanguage(VaadinRequest request) {
-        Principal p = request.getUserPrincipal();
-        if (p == null) {
-            //TODO
-            return "en";
-        }
-
-        try {
-            String name = p.getName();
-            LifetimeUser u = ServiceLocator.findLifetimeAccountService().getUser(name);
-            return u.getMotherLanguage();
-        } catch (Exception ex) {
-            return "en";
-        }
+        return "en";
     }
 
     /**
