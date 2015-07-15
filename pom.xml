@@ -88,6 +88,7 @@
                     <version>6.8.1</version>
                     <scope>test</scope>
                 </dependency>
+                
             </dependencies>
             <!-- clip -->
             <dependencyManagement>
@@ -99,6 +100,14 @@
                         <scope>import</scope>
                         <type>pom</type>
                     </dependency>
+                    <!-- Arquillian Drone dependencies and WebDriver/Selenium dependencies -->
+                    <dependency>
+                        <groupId>org.jboss.arquillian.extension</groupId>
+                        <artifactId>arquillian-drone-bom</artifactId>
+                        <version>1.3.1.Final</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>            
                 </dependencies>
             </dependencyManagement>
             <!-- clip -->            
@@ -199,36 +208,6 @@
                     </executions>
                 </plugin>
                 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>2.16</version>
-                    <executions>
-                        <execution>
-                            <id>default</id>
-                            <configuration>
-                                <skipITs>true</skipITs>
-                                <excludes>**/Selenium*.java</excludes>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>integration-test</id>
-                            <configuration>
-                                <skipITs>false</skipITs>
-                                <includes>**/Selenium*.java</includes>
-                            </configuration>
-                            <goals>
-                                <goal>integration-test</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>verify</id>
-                            <goals>
-                                <goal>verify</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
                 
                 
                 <plugin>

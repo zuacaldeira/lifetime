@@ -5,19 +5,13 @@
  */
 package lifetime.service;
 
-import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.naming.NamingException;
-import lifetime.persistence.UserAccount;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.ArchivePaths;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -31,19 +25,13 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
 
     @EJB(name = "java:global/test/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness")
     private LifetimeAccountBusiness accountService;
+    
+    
 
-    @Deployment
+    @Deployment(testable = false)
     public static Archive createDeployment() {
-        // get all maven dependecies
-        JavaArchive result = ShrinkWrap.create(JavaArchive.class, "test.jar")
-                //.addAsLibraries(files)
-                .addPackage(LifetimeAccountBusiness.class.getPackage().getName())
-                .addPackage(UserAccount.class.getPackage().getName())
-                .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
-                        "META-INF/persistence.xml")
-                .addAsResource(EmptyAsset.INSTANCE,
-                        ArchivePaths.create("beans.xml"));
-        return result;
+        // pick up a deployment
+        return Deployments.getDeploymentLifetimeAccountService();
     }
     private String currentEmail;
 
@@ -61,15 +49,13 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
      * {@link LifetimeAccountService}
      */
     @Test(dataProvider = "registerData")
-    public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language) throws NamingException {
+    public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language) throws NamingException, LifetimeSecurityException {
         System.out.println("IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT register");
         Assert.assertNotNull(accountService, "Service not initialized");
         currentEmail = email;
-        try{
-            accountService.register(firstName, lastName, email, password, language, birthDate);
-        } catch(LifetimeSecurityException lsx) {
-            System.out.println("Security Exception");
-        }
+        accountService.register(firstName, lastName, email, password, language, birthDate);
+        accountService.delete(currentEmail);
+        System.out.println("register IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT ");
     }
 
     @DataProvider(name = "registerData")
@@ -84,11 +70,7 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
 
     @Override
     public void arquillianAfterTest(Method testMethod) throws Exception {
-        accountService.delete(currentEmail);
         super.arquillianAfterTest(testMethod);
     }
-    
-    
-    
-    
+
 }

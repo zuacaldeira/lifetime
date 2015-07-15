@@ -60,8 +60,8 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
 
         // Persist the user account object graph
         try {
-            em.persist(account);
             em.persist(lRole);
+            em.persist(account);
         } catch (EntityExistsException eex) {
             throw new LifetimeSecurityException("Account already exists");
         } catch (Exception ex) {
