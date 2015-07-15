@@ -33,7 +33,7 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
     private static final String TEST_APP_NAME = "test.jar";
 
     @EJB(name = "java:global/test/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness", beanInterface = LifetimeAccountBusiness.class)
-    private LifetimeAccountBusiness accountService;
+    private LifetimeAccountService accountService;
 
     @Deployment
     public static Archive createDeployment() {
