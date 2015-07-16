@@ -19,17 +19,19 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
+import java.util.Objects;
 
 /**
  *
  * @author zua
  */
 public class WelcomeMenu extends LifetimeMenu implements ClickListener {
+
     private final LifetimeHomeButton homeButton;
     private final RegisterButton registerButton;
     private final LoginButton loginButton;
     private final ContactButton contactButton;
-    
+
     public WelcomeMenu(String language) {
         super(language);
         setSizeFull();
@@ -43,30 +45,28 @@ public class WelcomeMenu extends LifetimeMenu implements ClickListener {
         contactButton.addClickListener(this);
         addControl(homeButton);
         addControl(registerButton);
-        addControl(loginButton);        
-        addControl(contactButton);        
+        addControl(loginButton);
+        addControl(contactButton);
     }
-    
-    
 
     @Override
     public void buttonClick(Button.ClickEvent event) {
         Notification.show("Welcome Menu View -> " + event.getButton());
         String context = VaadinServlet.getCurrent().getServletContext().getContextPath();
-        
-        if(event.getButton() == homeButton) {
+
+        if (event.getButton() == homeButton) {
             Notification.show("--> WelcomeView -> " + context);
             getUI().getNavigator().navigateTo("Welcome");
         }
-        if(event.getButton() == registerButton) {
+        if (event.getButton() == registerButton) {
             Notification.show("--> RegisterView -> " + context);
             getUI().getNavigator().navigateTo("Register");
         }
-        if(event.getButton() == loginButton) {
+        if (event.getButton() == loginButton) {
             Notification.show("--> Login View -> " + context);
-            getUI().getPage().setLocation(context+"/user");
+            getUI().getPage().setLocation(context + "/user");
         }
-        if(event.getButton() == contactButton) {
+        if (event.getButton() == contactButton) {
             Notification.show("Contact View -> " + context);
             getUI().getNavigator().navigateTo("Contact");
         }
@@ -87,8 +87,27 @@ public class WelcomeMenu extends LifetimeMenu implements ClickListener {
     public ContactButton getContactButton() {
         return contactButton;
     }
-    
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + Objects.hashCode(this.homeButton);
+        hash = 79 * hash + Objects.hashCode(this.registerButton);
+        hash = 79 * hash + Objects.hashCode(this.loginButton);
+        hash = 79 * hash + Objects.hashCode(this.contactButton);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        final WelcomeMenu other = (WelcomeMenu) obj;
+        return Objects.equals(this.homeButton, other.homeButton)
+                && Objects.equals(this.registerButton, other.registerButton)
+                && Objects.equals(this.loginButton, other.loginButton)
+                && Objects.equals(this.contactButton, other.contactButton);
+    }
 
 }

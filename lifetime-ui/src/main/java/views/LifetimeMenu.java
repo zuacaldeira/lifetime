@@ -19,6 +19,7 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.HorizontalLayout;
+import java.util.Objects;
 
 /**
  *
@@ -50,6 +51,28 @@ public abstract class LifetimeMenu extends HorizontalLayout {
             ((Button)controls.getComponent(i)).addClickListener(listener);
         }
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.language);
+        hash = 41 * hash + Objects.hashCode(this.controls);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        final LifetimeMenu other = (LifetimeMenu) obj;
+        if (!Objects.equals(this.language, other.language)) {
+            return false;
+        }
+        return Objects.equals(this.controls, other.controls);
+    }
+    
+    
     
     
     

@@ -16,6 +16,7 @@
 package views;
 
 import com.vaadin.server.FontAwesome;
+import java.util.Objects;
 import util.Translator;
 
 /**
@@ -26,9 +27,30 @@ public class LoginButton extends LifetimeButtonLink {
     private final String text;
 
     public LoginButton(String language) {
-        super(Translator.getTranslation("Login", language), FontAwesome.USER);
+        super(Translator.getTranslation("Login", language), language, FontAwesome.USER);
         this.text = Translator.getTranslation("Login", language);
         setDescription(text);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + Objects.hashCode(this.text);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final LoginButton other = (LoginButton) obj;
+        return Objects.equals(this.text, other.text);
+    }
+    
+    
     
 }

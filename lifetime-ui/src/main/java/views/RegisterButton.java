@@ -23,11 +23,13 @@ import util.Translator;
  * @author lifetime
  */
 public class RegisterButton extends LifetimeButtonLink {
-    private final String language;
 
     public RegisterButton(String language) {
-        super(Translator.getTranslation("Register", language), FontAwesome.PLUS);
-        this.language = language;
+        super(Translator.getTranslation("Register", language), language, FontAwesome.PLUS);
     }
+
+    
+    
+    
 
 }

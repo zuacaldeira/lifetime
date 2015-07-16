@@ -25,7 +25,7 @@ import util.Translator;
 public class LifetimeHomeButton extends LifetimeButtonLink {
 
     public LifetimeHomeButton(String language) {
-        super(Translator.getTranslation("Vitae", language), FontAwesome.HOME);
+        super(Translator.getTranslation("Vitae", language), language, FontAwesome.HOME);
         setDescription(Translator.getTranslation("Vitae", language));
     }
 

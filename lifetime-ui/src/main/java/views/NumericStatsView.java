@@ -19,12 +19,14 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 /**
  *
  * @author zua
  */
 class NumericStatsView extends VerticalLayout {
+
     private final Label tag;
     private final Label value;
 
@@ -43,5 +45,25 @@ class NumericStatsView extends VerticalLayout {
         tag.setStyleName("tag");
         value.setStyleName("value");
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.tag);
+        hash = 79 * hash + Objects.hashCode(this.value);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final NumericStatsView other = (NumericStatsView) obj;
+        return Objects.equals(this.tag, other.tag) && Objects.equals(this.value, other.value);
+    }
+
 }

@@ -20,6 +20,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
+import java.util.Objects;
 
 /**
  * <p>
@@ -50,10 +51,10 @@ import com.vaadin.ui.VerticalLayout;
  * abstract classes. This classes act as <b>adapters</b> of concrete menus and
  * view-specific content data.
  *
- * <i>Adapter Design Pattern</i> provide us with a clean solution for the
- * problem of instantiating the correct menus and content data for each subclass
- * of {@code LifetimeView}. The contract of this abstract class includes
- * concrete implementations for the following abstract methods:
+ * <i>Bridge Design Pattern</i> provide us with a clean solution for the problem
+ * of instantiating the correct menus and content data for each subclass of
+ * {@code LifetimeView}. The contract of this abstract class includes concrete
+ * implementations for the following abstract methods:
  * {@link LifetimeView#createBackground()}, {@link LifetimeView#createMenu()}
  * and {@link LifetimeView#createContent()}.
  *
@@ -192,10 +193,46 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
      * @return an instance of {@link LifetimeBackground}.
      */
     protected abstract LifetimeBackground createBackground();
-    
-        @Override
+
+    @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         Notification.show("new view is " + event.getViewName());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.background);
+        hash = 29 * hash + Objects.hashCode(this.menu);
+        hash = 29 * hash + Objects.hashCode(this.content);
+        hash = 29 * hash + Objects.hashCode(this.language);
+        hash = 29 * hash + Objects.hashCode(this.base);
+        return hash;
+    }
+
+    /**
+     * Compares this view with another object for equality.
+     *
+     * @param obj The object we are comparing with
+     * @return {@code true} if the current object and {@code obj}
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        final LifetimeView other = (LifetimeView) obj;
+        return equalBase(other) && equalStructure(other) && Objects.equals(this.language, other.language);
+    }
+
+    private boolean equalBase(LifetimeView other) {
+        return Objects.equals(this.background, other.background)
+                && Objects.equals(this.base, other.base);
+    }
+
+    private boolean equalStructure(LifetimeView other) {
+        return Objects.equals(this.menu, other.menu)
+                && Objects.equals(this.content, other.content);
     }
 
 }

@@ -17,6 +17,7 @@ package views;
 
 import views.LifetimeContent;
 import com.vaadin.ui.Alignment;
+import java.util.Objects;
 
 /**
  * The Register Content Wrapper. This class implements the <b>Wrapper Design
@@ -55,6 +56,22 @@ public class RegisterContent extends LifetimeContent {
      */
     public RegistrationForm getRegisterForm() {
         return registerForm;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = super.hashCode();
+        hash = 53 * hash + Objects.hashCode(this.registerForm);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        final RegisterContent other = (RegisterContent) obj;
+        return Objects.equals(this.registerForm, other.registerForm);
     }
 
 }

@@ -23,6 +23,7 @@ import java.util.Objects;
  * @author zua
  */
 public abstract class LifetimeContent extends VerticalLayout {
+
     private final String language;
 
     public LifetimeContent(String language) {
@@ -36,26 +37,18 @@ public abstract class LifetimeContent extends VerticalLayout {
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = super.hashCode();
         hash = 79 * hash + Objects.hashCode(this.language);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (!super.equals(obj)) {
             return false;
         }
         final LifetimeContent other = (LifetimeContent) obj;
         return Objects.equals(this.language, other.language);
     }
-    
-    
-    
-    
-    
-    
+
 }

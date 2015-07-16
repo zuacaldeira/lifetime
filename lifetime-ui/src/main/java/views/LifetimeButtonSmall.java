@@ -14,8 +14,8 @@ import com.vaadin.ui.themes.Reindeer;
  */
 public class LifetimeButtonSmall extends LifetimeButton {
 
-    public LifetimeButtonSmall(String caption, Resource icon) {
-        super(caption, icon);
+    public LifetimeButtonSmall(String caption, String language, Resource icon) {
+        super(caption, language, icon);
         setDescription(caption);
         setStyleName(Reindeer.BUTTON_SMALL);
     }

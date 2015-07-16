@@ -36,7 +36,7 @@ public class SecurityRoleNGTest {
          * Check updates to the security role name
          */
         role.setRoleName(Roles.USER.name());
-        assertEquals(role.getRoleName(), Roles.USER);
+        assertEquals(role.getRoleName(), Roles.USER.name());
     }
 
     /**

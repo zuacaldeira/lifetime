@@ -15,6 +15,8 @@
  */
 package views;
 
+import java.util.Objects;
+
 
 /**
  *
@@ -46,6 +48,31 @@ public class RegisterMenu extends LifetimeMenu {
 
     public OKButton getOkButton() {
         return okButton;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = super.hashCode();
+        hash = 37 * hash + Objects.hashCode(this.homeButton);
+        hash = 37 * hash + Objects.hashCode(this.cancelButton);
+        hash = 37 * hash + Objects.hashCode(this.okButton);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+
+        final RegisterMenu other = (RegisterMenu) obj;
+        if (!Objects.equals(this.homeButton, other.homeButton)) {
+            return false;
+        }
+        if (!Objects.equals(this.cancelButton, other.cancelButton)) {
+            return false;
+        }
+        return Objects.equals(this.okButton, other.okButton);
     }
     
     

@@ -27,9 +27,9 @@ public abstract class LifetimeButton extends Button {
         showCaption();
     }
 
-    public LifetimeButton(String caption, Resource icon) {
+    public LifetimeButton(String caption, String language, Resource icon) {
         super("", icon);
-        this.language = "en";
+        this.language = language;
         setDescription(caption);
         showCaption();
     }

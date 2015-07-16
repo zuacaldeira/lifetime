@@ -17,6 +17,7 @@ package views;
 
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.HorizontalLayout;
+import java.util.Objects;
 
 /**
  *
@@ -38,8 +39,35 @@ public class HomeView extends HorizontalLayout {
         setComponentAlignment(nCourses, Alignment.MIDDLE_CENTER);
     }
 
+    /**
+     * Returns the language associated with this view.
+     *
+     * @return
+     */
     public String getLanguage() {
         return language;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.language);
+        return hash;
+    }
+
+    /**
+     * Compares this view with another object for equality.
+     *
+     * @param obj the object we are comparing with
+     * @return {@code true} if they are equal
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        final HomeView other = (HomeView) obj;
+        return Objects.equals(this.language, other.language);
     }
 
 }

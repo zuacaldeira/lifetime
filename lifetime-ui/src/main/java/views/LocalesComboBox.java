@@ -15,9 +15,6 @@
  */
 package views;
 
-
-
-
 /**
  *
  * @author lifetime
@@ -30,7 +27,6 @@ public class LocalesComboBox extends LifetimeComboBox {
         select(language);
         setImmediate(true);
         setRequired(true);
-        //setComponentError(null);
     }
-    
+
 }
