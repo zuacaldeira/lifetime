@@ -11,12 +11,10 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import lifetime.persistence.UserAccount;
-import lifetime.persistence.exceptions.NonexistentEntityException;
 
 /**
  *
@@ -31,7 +29,7 @@ public class UserAccountJpaController implements Serializable {
      * server-specific resource @{literal "jdbc/lifetime"}
      */
     @PersistenceContext(name = "jdbc/lifetime", unitName = "lifetimePU")
-    private EntityManager em;
+    private transient EntityManager em;
 
     public UserAccountJpaController() {
     }
@@ -40,29 +38,14 @@ public class UserAccountJpaController implements Serializable {
         em.persist(userAccount);
     }
 
-    public void edit(UserAccount userAccount) throws NonexistentEntityException, Exception {
-        try {
-            userAccount = em.merge(userAccount);
-        } catch (Exception ex) {
-            String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
-                Integer id = userAccount.getId();
-                if (findUserAccount(id) == null) {
-                    throw new NonexistentEntityException("The userAccount with id " + id + " no longer exists.");
-                }
-            }
-            throw ex;
-        }
+    public void edit(UserAccount userAccount) {
+        em.merge(userAccount);
     }
 
-    public void destroy(Integer id) throws NonexistentEntityException {
-        try {
-            UserAccount userAccount = em.getReference(UserAccount.class, id);
-            userAccount.getId();
-            em.remove(userAccount);
-        } catch (EntityNotFoundException enfe) {
-            throw new NonexistentEntityException("The userAccount with id " + id + " no longer exists.");
-        }
+    public void destroy(Integer id) {
+        UserAccount userAccount = em.getReference(UserAccount.class, id);
+        userAccount.getId();
+        em.remove(userAccount);
     }
 
     public List<UserAccount> findUserAccountEntities() {
@@ -96,7 +79,7 @@ public class UserAccountJpaController implements Serializable {
         return ((Long) q.getSingleResult()).intValue();
     }
 
-    public void delete(String email) throws NonexistentEntityException {
+    public void delete(String email) {
         Integer id = getAccountId(email);
         destroy(id);
     }

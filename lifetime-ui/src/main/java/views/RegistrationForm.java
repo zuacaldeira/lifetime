@@ -19,11 +19,14 @@ import com.vaadin.data.Property;
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
+import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
-import lifetime.service.LifetimeAccountBusiness;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
 import lifetime.persistence.exceptions.LifetimeSecurityException;
+import lifetime.service.LifetimeAccountBusiness;
 import util.ServiceLocator;
 import util.Translator;
 import util.Util;
@@ -92,7 +95,7 @@ public class RegistrationForm extends FormLayout implements Property.ValueChange
         return language;
     }
 
-    private String sha256Base64(String value) {
+    private String sha256Base64(String value) throws NoSuchAlgorithmException {
         return Util.getEncodedPassword(value);
     }
 
@@ -156,9 +159,10 @@ public class RegistrationForm extends FormLayout implements Property.ValueChange
         try {
             LifetimeAccountBusiness service = ServiceLocator.findLifetimeAccountService();
             service.register(firstname.getValue(), lastname.getValue(), email.getValue(), password.getValue(), defaultLanguage.getValue().toString(), birthDate.getValue(), birthPlace.getValue());
+        } catch (NamingException ex) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Lifetime Account Service NOt Found", ex);
         } catch (LifetimeSecurityException ex) {
-            Notification.show("Security Exception", ex.getMessage(), Notification.Type.WARNING_MESSAGE);
-            clear();
+            Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, "Security Issue During Registration", ex);
         }
     }
 

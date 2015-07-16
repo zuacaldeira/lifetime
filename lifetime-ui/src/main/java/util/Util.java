@@ -17,8 +17,9 @@ package util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
-import java.util.Random;
+import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,27 +27,33 @@ import java.util.Random;
  */
 public class Util {
 
-  private static Random random = new Random((new Date()).getTime());
-  
-  /**
-   * Encrypt password by using SHA-256 algorithm, encryptedPassword length is 32 bits
-   * @param clearTextPassword
-   * @return
-   */
-  public static String getEncodedPassword(String clearTextPassword)   {  
-    try {
-      MessageDigest md = MessageDigest.getInstance("SHA-256");
-      md.update(clearTextPassword.getBytes());
-      return new sun.misc.BASE64Encoder().encode(md.digest());
-    } catch (NoSuchAlgorithmException e) {
-      //_log.error("Failed to encrypt password.", e);
+    /**
+     * Private constructor disables client instantiation of this class.
+     */
+    private Util() {
     }
-    return "";
-  }
-  
-  
-  public static void main(String[] args) {
-      System.out.println(getEncodedPassword("unicidade"));
-  }
-    
+
+    /**
+     * Encrypt password by using SHA-256 algorithm, encryptedPassword length is
+     * 32 bits
+     *
+     * @param clearTextPassword A clear unsafe password string
+     * @return An encode string representing the input value.
+     * @throws java.security.NoSuchAlgorithmException If there is a problem
+     * choosing the encoding algorithm
+     */
+    public static String getEncodedPassword(String clearTextPassword) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(clearTextPassword.getBytes());
+        return Base64.getEncoder().encodeToString(md.digest());
+    }
+
+    public static void main(String[] args) {
+        try {
+            System.out.println(getEncodedPassword("unicidade"));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

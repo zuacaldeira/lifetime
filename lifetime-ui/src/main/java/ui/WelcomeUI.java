@@ -19,7 +19,7 @@ public class WelcomeUI extends LifetimeUI implements ViewChangeListener /* imple
 
     @Override
     protected void init(VaadinRequest request) {
-        new Navigator(this, this);
+        setNavigator(new Navigator(this, this));
         getNavigator().addView("Welcome", new WelcomeView(getLanguage(request)));
         getNavigator().addView("Register", new RegisterView(getLanguage(request)));
         getNavigator().addView("Contact", new ContactView(getLanguage(request)));
@@ -40,9 +40,12 @@ public class WelcomeUI extends LifetimeUI implements ViewChangeListener /* imple
     }
 
     /**
+     * Defines the set of actions that must be performed before the navigator
+     * changes the view for this UI.
+     *
      * @todo Javadoc
-     * @param event
-     * @return
+     * @param event The event being fired
+     * @return <b>true</b> iff the view must change.
      */
     @Override
     public boolean beforeViewChange(ViewChangeEvent event) {
@@ -50,13 +53,18 @@ public class WelcomeUI extends LifetimeUI implements ViewChangeListener /* imple
     }
 
     /**
-     * @todo Javadoc
+     * Defines actions that must be performed immediately after a view change.
+     *
+     * @param event The event being fired
      */
     @Override
     public void afterViewChange(ViewChangeEvent event) {
         setLifetimeView((WelcomeView) event.getNewView());
     }
 
+    /**
+     * Servlet listening to requests at non secure part of the application.
+     */
     @WebServlet(urlPatterns = "/*", name = "WelcomesUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = WelcomeUI.class, productionMode = false)
     public static class WelcomeUIServlet extends VaadinServlet {

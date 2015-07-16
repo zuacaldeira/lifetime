@@ -39,12 +39,12 @@ public class UserRole implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
+    
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "roleName")
     private String roleName;
-    @Basic(optional = false)
+    
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "username")

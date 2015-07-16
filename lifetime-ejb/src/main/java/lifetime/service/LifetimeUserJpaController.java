@@ -11,7 +11,6 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -31,38 +30,20 @@ public class LifetimeUserJpaController implements Serializable {
      * server-specific resource @{literal "jdbc/lifetime"}
      */
     @PersistenceContext(name = "jdbc/lifetime", unitName = "lifetimePU")
-    private EntityManager em;
-
-    public LifetimeUserJpaController() {
-    }
+    private transient EntityManager em;
 
     public void create(LifetimeUser lifetimeUser) {
         em.persist(lifetimeUser);
     }
 
-    public void edit(LifetimeUser lifetimeUser) throws NonexistentEntityException, Exception {
-        try {
-            lifetimeUser = em.merge(lifetimeUser);
-        } catch (Exception ex) {
-            String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
-                Integer id = lifetimeUser.getId();
-                if (findLifetimeUser(id) == null) {
-                    throw new NonexistentEntityException("The lifetimeUser with id " + id + " no longer exists.");
-                }
-            }
-            throw ex;
-        }
+    public void edit(LifetimeUser lifetimeUser) {
+        em.merge(lifetimeUser);
     }
 
-    public void destroy(Integer id) throws NonexistentEntityException {
-        try {
-            LifetimeUser lifetimeUser = em.getReference(LifetimeUser.class, id);
-            lifetimeUser.getId();
-            em.remove(lifetimeUser);
-        } catch (EntityNotFoundException enfe) {
-            throw new NonexistentEntityException("The lifetimeUser with id " + id + " no longer exists.");
-        }
+    public void destroy(Integer id) {
+        LifetimeUser lifetimeUser = em.getReference(LifetimeUser.class, id);
+        lifetimeUser.getId();
+        em.remove(lifetimeUser);
     }
 
     public List<LifetimeUser> findLifetimeUserEntities() {
@@ -74,30 +55,21 @@ public class LifetimeUserJpaController implements Serializable {
     }
 
     private List<LifetimeUser> findLifetimeUserEntities(boolean all, int maxResults, int firstResult) {
-        try {
-            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq
-                    .select(cq.from(LifetimeUser.class
-                            ));
-            Query q = em.createQuery(cq);
-            if (!all) {
-                q.setMaxResults(maxResults);
-                q.setFirstResult(firstResult);
-            }
-
-            return q.getResultList();
-        } finally {
-            em.close();
+        CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+        cq
+                .select(cq.from(LifetimeUser.class
+                        ));
+        Query q = em.createQuery(cq);
+        if (!all) {
+            q.setMaxResults(maxResults);
+            q.setFirstResult(firstResult);
         }
+
+        return q.getResultList();
     }
 
-    public LifetimeUser
-            findLifetimeUser(Integer id) {
-        try {
-            return em.find(LifetimeUser.class, id);
-        } finally {
-            em.close();
-        }
+    public LifetimeUser findLifetimeUser(Integer id) {
+        return em.find(LifetimeUser.class, id);
     }
 
     public int getLifetimeUserCount() {
@@ -109,7 +81,7 @@ public class LifetimeUserJpaController implements Serializable {
         return ((Long) q.getSingleResult()).intValue();
     }
 
-    public void delete(String email) throws NonexistentEntityException {
+    public void delete(String email) {
         Integer id = getUserId(email);
         destroy(id);
     }

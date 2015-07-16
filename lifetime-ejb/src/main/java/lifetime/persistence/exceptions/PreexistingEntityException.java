@@ -1,6 +1,6 @@
 package lifetime.persistence.exceptions;
 
-public class PreexistingEntityException extends Exception {
+public class PreexistingEntityException extends LifetimeSecurityException {
     public PreexistingEntityException(String message, Throwable cause) {
         super(message, cause);
     }

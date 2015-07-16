@@ -42,49 +42,50 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "LifetimeUser.findByMotherLanguage", query = "SELECT l FROM LifetimeUser l WHERE l.motherLanguage = :motherLanguage"),
     @NamedQuery(name = "LifetimeUser.findByUsername", query = "SELECT l FROM LifetimeUser l WHERE l.username = :username")})
 public class LifetimeUser implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "birthDate")
     @Temporal(TemporalType.DATE)
     private Date birthDate;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "birthPlace")
     private String birthPlace;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "firstName")
     private String firstName;
-    
+
     @Column(name = "isConfirmed")
     private Boolean isConfirmed;
-    
+
     @Column(name = "isLoggedIn")
     private Boolean isLoggedIn;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "lastName")
     private String lastName;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "motherLanguage")
     private String motherLanguage;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -192,43 +193,34 @@ public class LifetimeUser implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
+        if (validObject(obj)) {
+            final LifetimeUser other = (LifetimeUser) obj;
+            return Objects.equals(this.id, other.id)
+                    && equalNames(other)
+                    && equalBirthData(other);
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final LifetimeUser other = (LifetimeUser) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.birthDate, other.birthDate)) {
-            return false;
-        }
-        if (!Objects.equals(this.birthPlace, other.birthPlace)) {
-            return false;
-        }
-        if (!Objects.equals(this.firstName, other.firstName)) {
-            return false;
-        }
-        if (!Objects.equals(this.lastName, other.lastName)) {
-            return false;
-        }
-        if (!Objects.equals(this.motherLanguage, other.motherLanguage)) {
-            return false;
-        }
-        if (!Objects.equals(this.username, other.username)) {
-            return false;
-        }
-        return true;
+        return false;
     }
-
-
-
 
     @Override
     public String toString() {
         return "lifetime.persistence.LifetimeUser[ id=" + id + " ]";
     }
-    
+
+    private boolean validObject(Object obj) {
+        return (obj != null) && (getClass() == obj.getClass());
+    }
+
+    private boolean equalNames(LifetimeUser other) {
+        return Objects.equals(this.firstName, other.firstName)
+                && Objects.equals(this.lastName, other.lastName)
+                && Objects.equals(this.username, other.username);
+    }
+
+    private boolean equalBirthData(LifetimeUser other) {
+        return Objects.equals(this.birthDate, other.birthDate)
+                && Objects.equals(this.birthPlace, other.birthPlace)
+                && Objects.equals(this.motherLanguage, other.motherLanguage);
+    }
+
 }

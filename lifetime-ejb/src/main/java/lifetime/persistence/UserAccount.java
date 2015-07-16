@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "UserAccount.findByEmail", query = "SELECT u FROM UserAccount u WHERE u.email = :email"),
     @NamedQuery(name = "UserAccount.findByPassword", query = "SELECT u FROM UserAccount u WHERE u.password = :password")})
 public class UserAccount implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +49,7 @@ public class UserAccount implements Serializable {
     @Size(max = 255)
     @Column(name = "password")
     private String password;
-   
+
     @JoinColumn(name = "lifetimeUser", referencedColumnName = "id")
     @OneToOne(cascade = CascadeType.ALL)
     private LifetimeUser lifetimeUser;
@@ -107,33 +108,32 @@ public class UserAccount implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
+        if (validObject(obj)) {
+            final UserAccount other = (UserAccount) obj;
+            return validData(other) && validateUser(other);
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final UserAccount other = (UserAccount) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        if (!Objects.equals(this.password, other.password)) {
-            return false;
-        }
-        if (!Objects.equals(this.lifetimeUser, other.lifetimeUser)) {
-            return false;
-        }
-        return true;
+        return false;
     }
 
+    private boolean validObject(Object obj) {
+        return obj != null && getClass() == obj.getClass();
+    }
 
+    private boolean validData(UserAccount other) {
+        return Objects.equals(this.id, other.id)
+                && Objects.equals(this.email, other.email)
+                && Objects.equals(this.password, other.password);
+    }
 
-    @Override
+    private boolean validateUser(UserAccount other) {
+        return Objects.equals(this.lifetimeUser, other.lifetimeUser);
+    }
+    
+        @Override
     public String toString() {
         return "lifetime.persistence.UserAccount[ id=" + id + " ]";
     }
-    
+
+
+
 }

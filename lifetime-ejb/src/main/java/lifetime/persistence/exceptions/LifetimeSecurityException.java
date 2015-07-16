@@ -23,6 +23,7 @@ import javax.ejb.ApplicationException;
  */
 @ApplicationException(rollback = false)
 public class LifetimeSecurityException extends Exception {
+
     static final long serialVersionUID = -3387516995463229948L;
 
     /**
@@ -32,6 +33,10 @@ public class LifetimeSecurityException extends Exception {
      */
     public LifetimeSecurityException(String message) {
         super(message);
+    }
+
+    public LifetimeSecurityException(String message, Throwable cause) {
+        super(message, cause);
     }
 
 }
