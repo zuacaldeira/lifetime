@@ -21,6 +21,7 @@ import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.PasswordField;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -38,7 +39,6 @@ public class RegistrationForm extends FormLayout {
     private final LifetimeTextField firstname;
     private final LifetimeTextField lastname;
     private final LifetimeTextField email;
-    //private  LifetimeDateField birthDate;
     private final PasswordField password;
     private final PasswordField passwordRepeat;
     private final LocalesComboBox defaultLanguage;
@@ -141,6 +141,46 @@ public class RegistrationForm extends FormLayout {
         } catch (LifetimeSecurityException ex) {
             Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, "Security Issue During Registration", ex);
         }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.firstname);
+        hash = 17 * hash + Objects.hashCode(this.lastname);
+        hash = 17 * hash + Objects.hashCode(this.email);
+        hash = 17 * hash + Objects.hashCode(this.password);
+        hash = 17 * hash + Objects.hashCode(this.passwordRepeat);
+        hash = 17 * hash + Objects.hashCode(this.defaultLanguage);
+        hash = 17 * hash + Objects.hashCode(this.birthDate);
+        hash = 17 * hash + Objects.hashCode(this.birthPlace);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        final RegistrationForm other = (RegistrationForm) obj;
+        return validUserData(other) && validAccountData(other) && validBirthData(other);
+    }
+
+    private boolean validUserData(RegistrationForm other) {
+        return Objects.equals(this.firstname, other.firstname)
+                && Objects.equals(this.lastname, other.lastname)
+                && Objects.equals(this.defaultLanguage, other.defaultLanguage);
+    }
+
+    private boolean validAccountData(RegistrationForm other) {
+        return Objects.equals(this.email, other.email)
+                && Objects.equals(this.password, other.password)
+                && Objects.equals(this.passwordRepeat, other.passwordRepeat);
+    }
+
+    private boolean validBirthData(RegistrationForm other) {
+        return Objects.equals(this.birthDate, other.birthDate)
+                && Objects.equals(this.birthPlace, other.birthPlace);
     }
 
 }

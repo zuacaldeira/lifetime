@@ -27,7 +27,7 @@ class MaxSizeValidator implements Validator {
     }
 
     @Override
-    public void validate(Object value) throws InvalidValueException {
+    public void validate(Object value) {
         if (((String) value).length() > 16) {
             throw new InvalidValueException("Too big");
         }

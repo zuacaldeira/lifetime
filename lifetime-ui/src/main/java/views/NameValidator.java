@@ -27,7 +27,7 @@ class NameValidator implements Validator {
     }
 
     @Override
-    public void validate(Object value) throws InvalidValueException {
+    public void validate(Object value) {
         if (value instanceof String) {
             String stringValue = (String) value;
             if(stringValue.length() == 0) {

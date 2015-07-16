@@ -24,7 +24,7 @@ import com.vaadin.data.Validator;
 class PasswordValidator implements Validator {
 
     @Override
-    public void validate(Object value) throws InvalidValueException {
+    public void validate(Object value) {
         new MinSizeValidator().validate(value);
         new MaxSizeValidator().validate(value);
         new AllCharTypesValidator().validate(value);

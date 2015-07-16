@@ -43,7 +43,6 @@ public class WelcomeUI extends LifetimeUI implements ViewChangeListener /* imple
      * Defines the set of actions that must be performed before the navigator
      * changes the view for this UI.
      *
-     * @todo Javadoc
      * @param event The event being fired
      * @return <b>true</b> iff the view must change.
      */

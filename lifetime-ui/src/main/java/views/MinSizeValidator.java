@@ -27,10 +27,10 @@ class MinSizeValidator implements Validator {
     }
 
     @Override
-    public void validate(Object value) throws InvalidValueException {
-        if(((String)value).length() < 6) {
+    public void validate(Object value) {
+        if (((String) value).length() < 6) {
             throw new InvalidValueException("Too small");
         }
     }
-    
+
 }

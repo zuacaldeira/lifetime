@@ -15,12 +15,6 @@
  */
 package views;
 
-import com.vaadin.navigator.ViewChangeListener;
-import views.LifetimeMenu;
-import views.LifetimeContent;
-import views.LifetimeView;
-import views.LifetimeBackground;
-
 /**
  *
  * The Welcome View. This is the visible part of the user interface where the
