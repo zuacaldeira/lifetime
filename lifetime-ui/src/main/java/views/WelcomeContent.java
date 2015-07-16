@@ -15,8 +15,8 @@
  */
 package views;
 
-import views.LifetimeContent;
 import com.vaadin.ui.Alignment;
+import java.util.Objects;
 
 /**
  *
@@ -33,5 +33,26 @@ public class WelcomeContent extends LifetimeContent {
         setComponentAlignment(homeView, Alignment.MIDDLE_CENTER);
         setStyleName("content");
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.homeView);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final WelcomeContent other = (WelcomeContent) obj;
+        return Objects.equals(this.homeView, other.homeView);
+    }
+    
+    
 
 }
