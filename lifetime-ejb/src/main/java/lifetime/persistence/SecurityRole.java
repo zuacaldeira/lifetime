@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "SecurityRole.findById", query = "SELECT s FROM SecurityRole s WHERE s.id = :id"),
     @NamedQuery(name = "SecurityRole.findByRoleName", query = "SELECT s FROM SecurityRole s WHERE s.roleName = :roleName")})
 public class SecurityRole implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,26 +79,20 @@ public class SecurityRole implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
+        if (validObejct(obj)) {
+            final SecurityRole other = (SecurityRole) obj;
+            return Objects.equals(this.id, other.id) && Objects.equals(this.roleName, other.roleName);
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final SecurityRole other = (SecurityRole) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.roleName, other.roleName)) {
-            return false;
-        }
-        return true;
+        return false;
     }
-
 
     @Override
     public String toString() {
         return "lifetime.persistence.SecurityRole[ id=" + id + " ]";
     }
-    
+
+    private boolean validObejct(Object obj) {
+        return (obj != null) && (getClass() == obj.getClass());
+    }
+
 }

@@ -3,7 +3,6 @@ package ui;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
-import java.security.Principal;
 import views.LifetimeView;
 
 /**
@@ -35,12 +34,11 @@ public abstract class LifetimeUI extends UI {
      * asks the backend for the mother language of the user with the principal
      * username. If there is no principal, we return the system language.
      *
-     * @param request The incoming request with user information
      * @return The current user language
      *
      * @todo The system language should be a persistent value and hard-coded
      */
-    protected String getLanguage(VaadinRequest request) {
+    protected String getLanguage() {
         return "en";
     }
 

@@ -5,6 +5,7 @@
  */
 package lifetime.service;
 
+import com.sun.istack.internal.logging.Logger;
 import lifetime.persistence.exceptions.LifetimeSecurityException;
 import java.util.Date;
 import javax.ejb.EJB;
@@ -21,12 +22,6 @@ import lifetime.persistence.exceptions.NonexistentEntityException;
  */
 @Stateless
 public class LifetimeAccountService implements LifetimeAccountBusiness {
-
-    /**
-     * JPA Controller.
-     */
-    @EJB
-    private LifetimeUserJpaController userController;
 
     /**
      * JPA Controller.
@@ -53,7 +48,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
         LifetimeUser user = new LifetimeUser(null, firstname, lastname, email, birthdate, birthPlace, language);
         account.setLifetimeUser(user);
         accountController.create(account);
-        System.out.println("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+        Logger.getLogger(getClass()).info("New user resgistered: " + email);
     }
 
     @Override

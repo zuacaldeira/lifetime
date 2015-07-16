@@ -44,9 +44,8 @@ public class LifetimeUINGTest {
     @Test
     public void testGetLanguage() throws LifetimeSecurityException {
         System.out.println("getLanguage");
-        VaadinRequest request = null;
         LifetimeUI instance = new LifetimeUIImpl();
-        Assert.assertEquals(instance.getLanguage(request), "en");
+        Assert.assertEquals(instance.getLanguage(), "en");
     }
 
     /**

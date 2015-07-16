@@ -13,7 +13,7 @@ public class RegisterUI extends LifetimeUI /* implements Button.ClickListener */
 
     @Override
     protected void init(VaadinRequest request) {
-        setContent(new RegisterView(getLanguage(request)));
+        setContent(new RegisterView(getLanguage()));
     }
 
 

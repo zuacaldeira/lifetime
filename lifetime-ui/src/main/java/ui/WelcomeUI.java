@@ -20,9 +20,9 @@ public class WelcomeUI extends LifetimeUI implements ViewChangeListener /* imple
     @Override
     protected void init(VaadinRequest request) {
         setNavigator(new Navigator(this, this));
-        getNavigator().addView("Welcome", new WelcomeView(getLanguage(request)));
-        getNavigator().addView("Register", new RegisterView(getLanguage(request)));
-        getNavigator().addView("Contact", new ContactView(getLanguage(request)));
+        getNavigator().addView("Welcome", new WelcomeView(getLanguage()));
+        getNavigator().addView("Register", new RegisterView(getLanguage()));
+        getNavigator().addView("Contact", new ContactView(getLanguage()));
         getNavigator().navigateTo("Welcome");
         getNavigator().addViewChangeListener(this);
     }
