@@ -21,7 +21,6 @@ public abstract class LifetimeComboBox extends ComboBox {
         super(Translator.getTranslation(caption, language), options);
         this.language = language;
         setWidth("400px");
-        setStyleName("combo-box");
         setImmediate(true);
         setInvalidAllowed(false);
         setComponentError(null);
@@ -31,7 +30,6 @@ public abstract class LifetimeComboBox extends ComboBox {
         super(Translator.getTranslation(caption, language), source);
         this.language = language;
         setWidth("400px");
-        setStyleName("combo-box");
         setImmediate(true);
         setInvalidAllowed(false);
         setComponentError(null);
@@ -41,7 +39,6 @@ public abstract class LifetimeComboBox extends ComboBox {
         super(Translator.getTranslation(caption, language));
         this.language = language;
         setValue(value);
-        setStyleName("combo-box");
         setImmediate(true);
         setInvalidAllowed(false);
         setComponentError(null);

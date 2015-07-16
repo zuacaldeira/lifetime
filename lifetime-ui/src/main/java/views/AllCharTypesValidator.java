@@ -35,7 +35,10 @@ class AllCharTypesValidator implements Validator {
      * this default implementation.
      */
     @Override
-    public void validate(Object value) throws InvalidValueException {
+    public void validate(Object value) {
+        if (!(value instanceof String)) {
+            throw new InvalidValueException("Invalid Value. Expecting a String");
+        }
     }
 
 }

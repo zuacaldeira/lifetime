@@ -15,7 +15,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import lifetime.persistence.LifetimeUser;
-import lifetime.persistence.exceptions.NonexistentEntityException;
 
 /**
  *

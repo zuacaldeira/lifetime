@@ -26,31 +26,28 @@ public class Translator {
 
     public static final String SYSTEM_LANGUAGE = Locale.ENGLISH.getLanguage();
 
-    /*    private static String getTranslation(String word, String from, String to) {
-     try {
-     LifetimeBusiness service = ServiceLocator.findLifetimeService();
-     Translation t = service.getTranslation(word, from, to);
-     if (t != null) {
-     return t.getTranslation();
-     }
-     return word;
-     } catch(UnavailableServiceException ex) {
-     return word;
-     }
-     }
+    /**
+     * Private default constructor disallows direct instantiation of this
+     * utility class.
+     */
+    private Translator() {
 
-     public static String getTranslation(String word, String to) {
-     if (word == null) {
-     return "null";
-     }
-     if (to != null && !to.equals(SYSTEM_LANGUAGE)) {
-     return getTranslation(word, SYSTEM_LANGUAGE, to);
-     } else {
-     return word;
-     }
-     }
+    }
+
+    /**
+     * Translates a word to another language.
+     *
+     * @param word The word we want to translate
+     * @param to the target language we are translating to
+     *
+     * @return The translated word, or the same if there is no translation
      */
     public static String getTranslation(String word, String to) {
-        return word;
+        if("en".equals(to)) {
+            return word;
+        }
+        else {
+            return "unknown";
+        }
     }
 }

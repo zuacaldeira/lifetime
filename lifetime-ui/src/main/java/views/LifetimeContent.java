@@ -16,6 +16,7 @@
 package views;
 
 import com.vaadin.ui.VerticalLayout;
+import java.util.Objects;
 
 /**
  *
@@ -32,6 +33,27 @@ public abstract class LifetimeContent extends VerticalLayout {
     public String getLanguage() {
         return language;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.language);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final LifetimeContent other = (LifetimeContent) obj;
+        return Objects.equals(this.language, other.language);
+    }
+    
+    
     
     
     

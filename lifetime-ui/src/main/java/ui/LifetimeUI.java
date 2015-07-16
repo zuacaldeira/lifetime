@@ -3,10 +3,11 @@ package ui;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
+import java.util.Objects;
 import views.LifetimeView;
 
 /**
- *
+ * Top level class of our application UI hierarchy.
  */
 @Theme("mytheme")
 public abstract class LifetimeUI extends UI {
@@ -35,8 +36,6 @@ public abstract class LifetimeUI extends UI {
      * username. If there is no principal, we return the system language.
      *
      * @return The current user language
-     *
-     * @todo The system language should be a persistent value and hard-coded
      */
     protected String getLanguage() {
         return "en";
@@ -58,6 +57,33 @@ public abstract class LifetimeUI extends UI {
      */
     public void setLifetimeView(LifetimeView lifetimeView) {
         this.lifetimeView = lifetimeView;
+    }
+
+    /**
+     * Calculates this Object hash code.
+     *
+     * @return the current instance hash code
+     */
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.lifetimeView);
+        return hash;
+    }
+
+    /**
+     * Compares this UI with another for equality.
+     *
+     * @param obj The other object we are comparing this object with
+     * @return {@code true} if they both semantically equivalent
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (null == obj || getClass() != obj.getClass()) {
+            return false;
+        }
+        final LifetimeUI other = (LifetimeUI) obj;
+        return Objects.equals(this.lifetimeView, other.lifetimeView);
     }
 
 }

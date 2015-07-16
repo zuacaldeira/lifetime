@@ -9,11 +9,7 @@ package lifetime.service;
  *
  * @author zua
  */
-public interface Roles {
+public enum Roles {
 
-    /**
-     *
-     */
-    public static final String USER = "USER";
-    
+    USER
 }

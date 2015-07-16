@@ -16,6 +16,7 @@
 package views;
 
 import com.vaadin.server.FontAwesome;
+import java.util.Objects;
 import util.Translator;
 
 /**
@@ -23,12 +24,29 @@ import util.Translator;
  * @author lifetime
  */
 public class ContactButton extends LifetimeButtonLink {
+
     private final String text;
 
     public ContactButton(String language) {
         super(Translator.getTranslation("Contact", language), FontAwesome.USER);
         this.text = Translator.getTranslation("Contact", language);
         setDescription(text);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.text);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        final ContactButton other = (ContactButton) obj;
+        return Objects.equals(this.text, other.text);
     }
 
 }

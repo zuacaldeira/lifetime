@@ -26,21 +26,34 @@ import java.util.Locale;
  */
 public class AllLanguagesDataContainer extends IndexedContainer {
 
+    private final String language;
+
     public AllLanguagesDataContainer(String language) {
         super(getLanguages(Locale.getAvailableLocales()));
-    } 
-    
+        this.language = language;
+    }
+
     private static List<String> getLanguages(Locale[] locales) {
-        LinkedList<String> ll = new LinkedList();
-        
-        for(Locale l: locales) {
+        List<String> ll = new LinkedList();
+
+        for (Locale l : locales) {
             ll.add(getInternalName(l));
         }
-        
+
         return ll;
     }
-    
-    public static String getInternalName(Locale l) {
-        return l.getDisplayLanguage(l);// + " - " + l.getLanguage();
+
+    private static String getInternalName(Locale l) {
+        return l.getDisplayLanguage(l);
     }
+
+    /**
+     * Return the current language for the current object.
+     *
+     * @return The two-letters language name
+     */
+    public String getLanguage() {
+        return language;
+    }
+
 }

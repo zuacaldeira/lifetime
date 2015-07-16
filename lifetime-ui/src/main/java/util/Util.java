@@ -50,7 +50,7 @@ public class Util {
 
     public static void main(String[] args) {
         try {
-            System.out.println(getEncodedPassword("unicidade"));
+            Logger.getLogger(Util.class.getName()).log(Level.INFO, getEncodedPassword("unicidade"));
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
         }

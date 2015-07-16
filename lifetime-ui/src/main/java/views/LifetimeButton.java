@@ -7,6 +7,7 @@ package views;
 
 import com.vaadin.server.Resource;
 import com.vaadin.ui.Button;
+import java.util.Objects;
 import util.Translator;
 
 /**
@@ -14,6 +15,7 @@ import util.Translator;
  * @author azc
  */
 public abstract class LifetimeButton extends Button {
+
     private Integer userId;
     private String language;
 
@@ -39,12 +41,32 @@ public abstract class LifetimeButton extends Button {
     public String getLanguage() {
         return language;
     }
-    
+
     public void showCaption() {
         setCaption(getDescription());
     }
+
     public void hideCaption() {
         setCaption(null);
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7 + super.hashCode();
+        hash = 31 * hash + Objects.hashCode(this.userId);
+        hash = 31 * hash + Objects.hashCode(this.language);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+
+        final LifetimeButton other = (LifetimeButton) obj;
+        return Objects.equals(this.userId, other.userId)
+                && Objects.equals(this.language, other.language);
+    }
+
 }

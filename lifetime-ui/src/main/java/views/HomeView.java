@@ -24,7 +24,10 @@ import com.vaadin.ui.HorizontalLayout;
  */
 public class HomeView extends HorizontalLayout {
 
+    private final String language;
+
     public HomeView(String language) {
+        this.language = language;
         setSizeFull();
         NumericStatsView nUsers = new NumericStatsView("# Users", 10000000);
         NumericStatsView nJobs = new NumericStatsView("# Job Offers", 10000);
@@ -34,5 +37,9 @@ public class HomeView extends HorizontalLayout {
         setComponentAlignment(nJobs, Alignment.MIDDLE_CENTER);
         setComponentAlignment(nCourses, Alignment.MIDDLE_CENTER);
     }
-    
+
+    public String getLanguage() {
+        return language;
+    }
+
 }

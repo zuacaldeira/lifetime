@@ -19,6 +19,13 @@ public class ServiceLocator {
     private static LifetimeAccountBusiness accountService;
     public static final String LIFETIME_ACCOUNT_BUSINESS = "java:global/lifetime-ui/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness";
 
+    /**
+     * Private constructor prevents direct instantiation of this utility class.
+     */
+    private ServiceLocator() {
+
+    }
+
     public static LifetimeAccountBusiness findLifetimeAccountService() throws NamingException {
         if (accountService == null) {
             Context context = new InitialContext();

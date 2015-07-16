@@ -27,8 +27,8 @@ public class UserRoleNGTest {
         System.out.println("getRoleName");
         UserRole instance = new UserRole();
         assertNull(instance.getRoleName());
-        instance.setRoleName(Roles.USER);
-        assertEquals(instance.getRoleName(), Roles.USER);
+        instance.setRoleName(Roles.USER.name());
+        assertEquals(instance.getRoleName(), Roles.USER.name());
     }
 
     /**
@@ -84,6 +84,7 @@ public class UserRoleNGTest {
 
     /**
      * Test of hashCode method, of class UserRole.
+     *
      * @param role
      * @param role2
      */
@@ -108,10 +109,10 @@ public class UserRoleNGTest {
     @DataProvider(name = "equality")
     public Object[][] provideEqualityData() {
         Object[][] data = new Object[][]{
-            {new UserRole(1, Roles.USER, "username"), new UserRole(1, Roles.USER, "username")},
-            {new UserRole(null, Roles.USER, "username"), new UserRole(null, Roles.USER, "username")},
+            {new UserRole(1, Roles.USER.name(), "username"), new UserRole(1, Roles.USER.name(), "username")},
+            {new UserRole(null, Roles.USER.name(), "username"), new UserRole(null, Roles.USER.name(), "username")},
             {new UserRole(1, null, "username"), new UserRole(1, null, "username")},
-            {new UserRole(1, Roles.USER, null), new UserRole(1, Roles.USER, null)}
+            {new UserRole(1, Roles.USER.name(), null), new UserRole(1, Roles.USER.name(), null)}
         };
 
         return data;
@@ -132,11 +133,11 @@ public class UserRoleNGTest {
     @DataProvider(name = "inequality")
     public Object[][] provideInequalityData() {
         Object[][] data = new Object[][]{
-            {new UserRole(1, Roles.USER, "username"), new UserRole(null, Roles.USER, "username")},
-            {new UserRole(1, Roles.USER, "username"), new UserRole(1, null, "username")},
-            {new UserRole(1, Roles.USER, "username"), new UserRole(1, Roles.USER, null)},
-            {new UserRole(1, Roles.USER, "username"), null},
-            {new UserRole(1, Roles.USER, "username"), new SecurityRole(1, Roles.USER)}
+            {new UserRole(1, Roles.USER.name(), "username"), new UserRole(null, Roles.USER.name(), "username")},
+            {new UserRole(1, Roles.USER.name(), "username"), new UserRole(1, null, "username")},
+            {new UserRole(1, Roles.USER.name(), "username"), new UserRole(1, Roles.USER.name(), null)},
+            {new UserRole(1, Roles.USER.name(), "username"), null},
+            {new UserRole(1, Roles.USER.name(), "username"), new SecurityRole(1, Roles.USER.name())}
         };
 
         return data;
@@ -149,7 +150,7 @@ public class UserRoleNGTest {
     public void testEqualsWithIncompatibleObject() {
         System.out.println("equals");
         String username = "username";
-        UserRole instance = new UserRole(null, username, Roles.USER);
+        UserRole instance = new UserRole(null, username, Roles.USER.name());
         LifetimeUser instance2 = new LifetimeUser();
         assertFalse(instance.equals(instance2));
     }
@@ -161,8 +162,8 @@ public class UserRoleNGTest {
     public void testToString() {
         System.out.println("toString");
         String username = "username";
-        UserRole instance = new UserRole(1, username, Roles.USER);
-        UserRole instance2 = new UserRole(1, username, Roles.USER);
+        UserRole instance = new UserRole(1, username, Roles.USER.name());
+        UserRole instance2 = new UserRole(1, username, Roles.USER.name());
         assertEquals(instance.toString(), instance2.toString());
     }
 

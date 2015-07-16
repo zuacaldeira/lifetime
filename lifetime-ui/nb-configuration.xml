@@ -30,5 +30,6 @@ Any value defined here will override the pom.xml file value but is only applicab
         <word>iff</word>
         <word>init</word>
         <word>Servlet</word>
+        <word>vaadin</word>
     </spellchecker-wordlist>
 </project-shared-configuration>

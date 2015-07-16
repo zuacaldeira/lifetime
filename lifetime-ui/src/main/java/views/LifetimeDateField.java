@@ -16,8 +16,7 @@
 package views;
 
 import com.vaadin.ui.InlineDateField;
-import java.text.DateFormat;
-import java.util.Locale;
+import java.util.Objects;
 import util.Translator;
 
 /**
@@ -26,13 +25,35 @@ import util.Translator;
  */
 public class LifetimeDateField extends InlineDateField {
 
-    private DateFormat df;
     private final String language;
 
     public LifetimeDateField(String birthdate, String language) {
         super(Translator.getTranslation(birthdate, language));
         this.language = language;
-        df = DateFormat.getDateInstance(DateFormat.SHORT, new Locale(language));
         setImmediate(true);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7 + super.hashCode();
+        hash = 53 * hash + Objects.hashCode(this.language);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final LifetimeDateField other = (LifetimeDateField) obj;
+        return Objects.equals(this.language, other.language);
+    }
+
+    /**
+     * Returns the component language. We should check the location login on
+     * vaadin components.
+     */
 }

@@ -33,18 +33,19 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "UserRole.findByRoleName", query = "SELECT u FROM UserRole u WHERE u.roleName = :roleName"),
     @NamedQuery(name = "UserRole.findByUsername", query = "SELECT u FROM UserRole u WHERE u.username = :username")})
 public class UserRole implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    
+
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "roleName")
     private String roleName;
-    
+
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "username")
@@ -94,29 +95,22 @@ public class UserRole implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (!validObject(obj)) {
             return false;
         }
         final UserRole other = (UserRole) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.roleName, other.roleName)) {
-            return false;
-        }
-        if (!Objects.equals(this.username, other.username)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id)
+                && Objects.equals(this.roleName, other.roleName)
+                && Objects.equals(this.username, other.username);
     }
 
+    private boolean validObject(Object obj) {
+        return obj != null && getClass() == obj.getClass();
+    }
 
     @Override
     public String toString() {
         return "lifetime.persistence.UserRole[ id=" + id + " ]";
     }
-    
+
 }

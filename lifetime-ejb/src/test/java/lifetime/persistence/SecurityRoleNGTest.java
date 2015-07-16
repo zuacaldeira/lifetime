@@ -35,7 +35,7 @@ public class SecurityRoleNGTest {
         /*
          * Check updates to the security role name
          */
-        role.setRoleName(Roles.USER);
+        role.setRoleName(Roles.USER.name());
         assertEquals(role.getRoleName(), Roles.USER);
     }
 
@@ -106,8 +106,8 @@ public class SecurityRoleNGTest {
     @DataProvider(name = "equality")
     public Object[][] provideEqualityData() {
         Object[][] data = new Object[][]{
-            {new SecurityRole(1, Roles.USER), new SecurityRole(1, Roles.USER)},
-            {new SecurityRole(null, Roles.USER), new SecurityRole(null, Roles.USER)},
+            {new SecurityRole(1, Roles.USER.name()), new SecurityRole(1, Roles.USER.name())},
+            {new SecurityRole(null, Roles.USER.name()), new SecurityRole(null, Roles.USER.name())},
             {new SecurityRole(1, null), new SecurityRole(1, null)},
             {new SecurityRole(null, null), new SecurityRole(null, null)}
         };
@@ -130,11 +130,11 @@ public class SecurityRoleNGTest {
     @DataProvider(name = "non-equality")
     public Object[][] provideNonEqualityData() {
         Object[][] data = new Object[][]{
-            {new SecurityRole(1, Roles.USER), null},
-            {new SecurityRole(1, Roles.USER), new SecurityRole(2, Roles.USER)},
-            {new SecurityRole(1, Roles.USER), new SecurityRole(null, Roles.USER)},
-            {new SecurityRole(1, Roles.USER), new SecurityRole(1, null)},
-            {new SecurityRole(1, Roles.USER), new UserRole(1, "a", "b")}
+            {new SecurityRole(1, Roles.USER.name()), null},
+            {new SecurityRole(1, Roles.USER.name()), new SecurityRole(2, Roles.USER.name())},
+            {new SecurityRole(1, Roles.USER.name()), new SecurityRole(null, Roles.USER.name())},
+            {new SecurityRole(1, Roles.USER.name()), new SecurityRole(1, null)},
+            {new SecurityRole(1, Roles.USER.name()), new UserRole(1, "a", "b")}
         };
 
         return data;
@@ -147,7 +147,7 @@ public class SecurityRoleNGTest {
     public void testToString() {
         System.out.println("toString");
         Integer id = 1;
-        String roleName = Roles.USER;
+        String roleName = Roles.USER.name();
 
         // First role
         SecurityRole role = new SecurityRole(id, roleName);

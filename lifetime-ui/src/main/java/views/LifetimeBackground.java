@@ -18,15 +18,19 @@ package views;
 import com.vaadin.server.StreamResource;
 import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.Image;
+import java.util.Objects;
 
 /**
  *
  * @author lifetime
  */
-public abstract class LifetimeBackground  extends AbsoluteLayout {
+public abstract class LifetimeBackground extends AbsoluteLayout {
+
     private final Image image;
+    private final String language;
 
     public LifetimeBackground(String language, Image image) {
+        this.language = language;
         this.image = image;
         setSizeFull();
         image.setSizeFull();
@@ -35,6 +39,28 @@ public abstract class LifetimeBackground  extends AbsoluteLayout {
 
     public void setSource(StreamResource streamResource) {
         image.setSource(streamResource);
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.image);
+        hash = 83 * hash + Objects.hashCode(this.language);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final LifetimeBackground other = (LifetimeBackground) obj;
+        return Objects.equals(this.image, other.image) 
+                && Objects.equals(this.language, other.language);
     }
 
 }

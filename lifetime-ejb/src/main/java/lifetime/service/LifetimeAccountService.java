@@ -5,14 +5,13 @@
  */
 package lifetime.service;
 
-import com.sun.istack.internal.logging.Logger;
 import lifetime.persistence.exceptions.LifetimeSecurityException;
 import java.util.Date;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import lifetime.persistence.LifetimeUser;
 import lifetime.persistence.UserAccount;
-import lifetime.persistence.exceptions.NonexistentEntityException;
 
 /**
  * The Lifetime Account Management Service. It provides services for users to
@@ -48,11 +47,11 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
         LifetimeUser user = new LifetimeUser(null, firstname, lastname, email, birthdate, birthPlace, language);
         account.setLifetimeUser(user);
         accountController.create(account);
-        Logger.getLogger(getClass()).info("New user resgistered: " + email);
+        Logger.getLogger(getClass().getName()).info("New user resgistered");
     }
 
     @Override
-    public void deleteAccount(String email) throws NonexistentEntityException {
+    public void deleteAccount(String email) {
         accountController.delete(email);
     }
 
