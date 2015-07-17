@@ -11,7 +11,6 @@ import java.util.Date;
 import javax.ejb.EJB;
 import javax.naming.NamingException;
 import lifetime.persistence.UserAccount;
-import lifetime.persistence.exceptions.NonexistentEntityException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -22,6 +21,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.log4testng.Logger;
 
 /**
  *
@@ -34,6 +34,8 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
 
     @EJB(name = "java:global/test/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness", beanInterface = LifetimeAccountBusiness.class)
     private LifetimeAccountBusiness accountService;
+    
+    private final Logger logger = Logger.getLogger(LifetimeAccountServiceTestIT.class);
 
     @Deployment
     public static Archive createDeployment() {
@@ -57,18 +59,43 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
      */
     @Test(dataProvider = "registerData", priority = 1)
     public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) throws NamingException, LifetimeSecurityException {
-        System.out.println("IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT register");
+        logger.info("--- Enter testResgister --- " + firstName + ":" + lastName + ":" + email);
+        
         Assert.assertNotNull(accountService, "Service not initialized");
+        
+        logger.info("--- Before register() --- ");
+        
         accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace);
-        accountService.deleteAccount(email);
-        System.out.println("register IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT ");
+        
+        logger.info("--- After register() --- Before deleteAccount() ---");
+        
+        //@todo accountService.deleteAccount(email);
+        
+        logger.info("--- After deleteAccount() --- ");
+        logger.info("--- Leave testResgister --- " + firstName + ":" + lastName + ":" + email);
     }
 
-    @Test(dataProvider = "registerNegativeData", expectedExceptions = Exception.class)
+    @Test(dataProvider = "registerData", priority = 5)
+    public void testDeleteAccount(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) throws NamingException, LifetimeSecurityException {
+        // Enter
+        logger.info("--- Enter testDeleteAccount --- " + email);
+        Assert.assertNotNull(accountService, "Service not initialized");
+        
+        // Work
+        logger.info("--- Before deleteAccount() ---");
+        accountService.deleteAccount(email);
+        
+        // Leave
+        logger.info("--- After deleteAccount() --- ");
+        logger.info("--- Leave deleteAccount() --- " + email);
+    }
+
+    
+    @Test(dataProvider = "registerNegativeData", expectedExceptions = {LifetimeSecurityException.class})
     public void testBadRegistration(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) throws NamingException, LifetimeSecurityException {
         System.out.println("IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT NEGATIVE register");
-        Assert.assertNotNull(accountService, "Service not initialized");
-        accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace);
+        //Assert.assertNotNull(accountService, "Service not initialized");
+        //accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace);
         System.out.println("NEGATIVE register IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT ");
     }
 
@@ -100,7 +127,7 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
         public static Archive getDeploymentLifetimeAccountService() {
             JavaArchive result = ShrinkWrap.create(JavaArchive.class, TEST_APP_NAME)
                     //.addAsLibraries(files)
-                    .addPackage(NonexistentEntityException.class.getPackage())
+                    .addPackage(LifetimeSecurityException.class.getPackage())
                     .addPackage(LifetimeAccountBusiness.class.getPackage())
                     .addPackage(UserAccount.class.getPackage().getName())
                     .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),

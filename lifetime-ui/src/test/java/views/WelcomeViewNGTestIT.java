@@ -16,10 +16,6 @@
 package views;
 
 import java.io.File;
-import javax.ejb.EJB;
-import lifetime.persistence.UserAccount;
-import lifetime.service.LifetimeAccountBusiness;
-import lifetime.persistence.exceptions.LifetimeSecurityException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
@@ -28,10 +24,11 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.openqa.selenium.WebDriver;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import ui.TestBundle;
 
 /**
  * Test suite for <b>structural, navigational and functional</b> requirements of
@@ -45,13 +42,10 @@ import org.testng.annotations.Test;
 @RunAsClient
 public class WelcomeViewNGTestIT extends Arquillian {
 
-    private static final String TEST_APP_NAME = "test.jar";
+    private static final String TEST_APP_NAME = "test.war";
 
     @Drone
-    private WebDriver webDriver;
-
-    @EJB(name = "java:global/test/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness", beanInterface = LifetimeAccountBusiness.class)
-    private LifetimeAccountBusiness accountService;
+    private ChromeDriver webDriver;
 
     public WelcomeViewNGTestIT() {
     }
@@ -81,11 +75,23 @@ public class WelcomeViewNGTestIT extends Arquillian {
      */
     @Test
     public void testCreation() {
-        Assert.assertNotNull(webDriver);
+        System.out.println("testCreation");
+        Assert.assertNotNull(webDriver, "Drone web driver not injected.");
+        /**
+         * Reachability. Get page at http://localhost:8080/vitae
+         */
+        webDriver.get(TestBundle.WELCOME_URL);
+        Assert.assertEquals(webDriver.getCurrentUrl(), TestBundle.WELCOME_URL);
+        /**
+         * Has welcome menu of type lifetime menu.
+         */
+        Assert.assertNotNull(webDriver.findElementByName("Login"));
+        webDriver.close();
     }
 
     @Test
     public void testBehaviour() {
+        System.out.println("testBehaviour");
         Assert.assertNotNull(webDriver);
     }
 
@@ -121,11 +127,8 @@ public class WelcomeViewNGTestIT extends Arquillian {
     private static class Deployments {
 
         public static Archive getDeploymentWelcomeView() {
-            JavaArchive result = ShrinkWrap.create(JavaArchive.class, TEST_APP_NAME)
+            WebArchive result = ShrinkWrap.create(WebArchive.class, TEST_APP_NAME)
                     //.addAsLibraries(files)
-                    .addPackage(LifetimeSecurityException.class.getPackage())
-                    .addPackage(LifetimeAccountBusiness.class.getPackage().getName())
-                    .addPackage(UserAccount.class.getPackage().getName())
                     .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
                             "META-INF/persistence.xml")
                     .addAsResource(EmptyAsset.INSTANCE,

@@ -7,7 +7,6 @@ package lifetime.service;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -15,13 +14,13 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import lifetime.persistence.UserAccount;
+import lifetime.persistence.exceptions.LifetimeSecurityException;
 
 /**
  *
  * @author zua
  */
 @Stateless
-@LocalBean
 public class UserAccountJpaController implements Serializable {
 
     /**
@@ -34,9 +33,13 @@ public class UserAccountJpaController implements Serializable {
     public UserAccountJpaController() {
     }
 
-    public void create(UserAccount userAccount) {
-        em.persist(userAccount);
-    }
+    public void create(UserAccount userAccount) throws LifetimeSecurityException {
+        try{
+            em.persist(userAccount);
+        } catch(Exception ex) {
+            throw new LifetimeSecurityException("Problem persisiting " + userAccount, ex);
+        }
+     }
 
     public void edit(UserAccount userAccount) {
         em.merge(userAccount);

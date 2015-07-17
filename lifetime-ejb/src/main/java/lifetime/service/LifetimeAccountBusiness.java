@@ -30,7 +30,7 @@ public interface LifetimeAccountBusiness {
      * @param birthPlace Candidate's birth place
      * @throws lifetime.persistence.exceptions.LifetimeSecurityException
      */
-    public void register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace) throws LifetimeSecurityException;
+    public boolean register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace) throws LifetimeSecurityException;
 
     /**
      * Delete all user data from the system.

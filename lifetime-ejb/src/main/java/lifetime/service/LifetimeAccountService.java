@@ -7,11 +7,13 @@ package lifetime.service;
 
 import lifetime.persistence.exceptions.LifetimeSecurityException;
 import java.util.Date;
-import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import lifetime.persistence.LifetimeUser;
 import lifetime.persistence.UserAccount;
+import org.slf4j.Logger;
 
 /**
  * The Lifetime Account Management Service. It provides services for users to
@@ -29,6 +31,17 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
     private UserAccountJpaController accountController;
 
     /**
+     * Session Context.
+     */
+    @Resource
+    private SessionContext sessionContext;
+
+    /**
+     * sl4j Logger
+     */
+    private Logger logger = org.slf4j.LoggerFactory.getLogger(LifetimeAccountService.class);
+
+    /**
      * Registers a new user into the system. Given a set of assumed input data,
      * creates a new account related entities and persist them un the underlying
      * database. At least instances of {@link UserAccount} and
@@ -42,12 +55,18 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      * @param birthdate The user's birth date
      */
     @Override
-    public void register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace) throws LifetimeSecurityException {
+    public boolean register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace) throws LifetimeSecurityException {
         UserAccount account = new UserAccount(null, email, password);
         LifetimeUser user = new LifetimeUser(null, firstname, lastname, email, birthdate, birthPlace, language);
         account.setLifetimeUser(user);
-        accountController.create(account);
-        Logger.getLogger(getClass().getName()).info("New user resgistered");
+        try {
+            accountController.create(account);
+            logger.info("New user resgistered: " + email);
+            return true;
+        } catch (LifetimeSecurityException lf) {
+            logger.info("Account not created for " + email + ": " + lf.getLocalizedMessage());
+            return false;
+        }
     }
 
     @Override

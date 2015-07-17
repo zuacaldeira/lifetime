@@ -16,7 +16,7 @@
 package ui;
 
 import com.vaadin.server.VaadinRequest;
-import org.junit.Assert;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import views.WelcomeView;
 
