@@ -5,7 +5,6 @@
  */
 package lifetime.service;
 
-import lifetime.persistence.exceptions.LifetimeSecurityException;
 import java.util.Date;
 import javax.ejb.Remote;
 
@@ -28,16 +27,17 @@ public interface LifetimeAccountBusiness {
      * @param language Candidate's language
      * @param birthdate Candidate's birth date
      * @param birthPlace Candidate's birth place
-     * @throws lifetime.persistence.exceptions.LifetimeSecurityException
+     * @return {@code true} if the registration process succeeds, {@code false}
+     * otherwise
      */
-    public boolean register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace) throws LifetimeSecurityException;
+    public boolean register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace);
 
     /**
      * Delete all user data from the system.
      *
      * @param email User's email
-     * @throws lifetime.persistence.exceptions.LifetimeSecurityException
+     * @return {@code true} if the account data is successfully removed
      */
-    public void deleteAccount(String email) throws LifetimeSecurityException;
+    public boolean deleteAccount(String email);
 
 }

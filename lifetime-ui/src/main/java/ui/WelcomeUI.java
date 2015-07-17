@@ -14,15 +14,15 @@ import views.RegisterView;
 
 @Theme("mytheme")
 //@Widgetset("ui.lifetimeWidgetSet")
-public class WelcomeUI extends LifetimeUI implements ViewChangeListener /* implements Button.ClickListener */ {
+public class WelcomeUI extends LifetimeUI implements ViewChangeListener  {
 
     @Override
     protected void init(VaadinRequest request) {
         setNavigator(new Navigator(this, this));
-        getNavigator().addView("Welcome", new WelcomeView(getLanguage()));
-        getNavigator().addView("Register", new RegisterView(getLanguage()));
-        getNavigator().addView("Contact", new ContactView(getLanguage()));
-        getNavigator().navigateTo("Welcome");
+        getNavigator().addView(Navigation.WELCOME_VIEW, new WelcomeView(getLanguage()));
+        getNavigator().addView(Navigation.REGISTER_VIEW, new RegisterView(getLanguage()));
+        getNavigator().addView(Navigation.CONTACT_VIEW, new ContactView(getLanguage()));
+        getNavigator().navigateTo(Navigation.WELCOME_VIEW);
         getNavigator().addViewChangeListener(this);
     }
 

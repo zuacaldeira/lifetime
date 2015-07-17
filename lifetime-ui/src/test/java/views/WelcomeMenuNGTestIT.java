@@ -45,8 +45,14 @@ public class WelcomeMenuNGTestIT extends LifetimeArquillian {
     @Test
     public void testGetHomeButton() {
         getLogger().debug("testGetHomeButton");
+        /**
+         * If the web driver is injected then navigate to welcome page.
+         */
         Assert.assertNotNull(webDriver);
         webDriver.get(TestBundle.WELCOME_URL);
+        /**
+         * Find the home button.
+         */
         WebElement homeButton = webDriver.findElement(By.className(StyleClassName.V_BUTTON_HOME));
         Assert.assertNotNull(homeButton);        
     }

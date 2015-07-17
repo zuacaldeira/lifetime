@@ -41,7 +41,15 @@
         .menu{
             background: white;
             opacity: 0.75;
-            .v-button-link {
+            .v-button-home {
+                background-color: deeppink;
+                margin-top: 1mm;
+                margin-right: 1mm;
+                margin-bottom: 1mm;
+                color: white;
+                font-family: Roboto;
+            }
+            .v-button-home {
                 background-color: deeppink;
                 margin-top: 1mm;
                 margin-right: 1mm;

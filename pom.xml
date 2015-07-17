@@ -80,19 +80,18 @@
                         plugin are executed.
                     -->
                     <execution>
-                        <id>integration-tests</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
+                        <id>default</id>
+                        <phase>test-compile</phase>
                         <configuration>
-                            <!-- Sets the VM argument line used when integration tests are run. -->
-                            <argLine>${failsafeArgLine}</argLine>
-                            <!--
-                                Skips integration tests if the value of skip.integration.tests property
-                                is true
-                            -->
-                            <skipTests>${skip.integration.tests}</skipTests>
+                            <skipITs>true</skipITs>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>integration-test</id>
+                        <phase>integration-test</phase>
+                        <configuration>
+                            <skipITs>false</skipITs>
                         </configuration>
                     </execution>
                 </executions>

@@ -5,12 +5,13 @@
  */
 package lifetime.service;
 
-import lifetime.persistence.exceptions.LifetimeSecurityException;
 import java.util.Date;
-import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import lifetime.persistence.LifetimeUser;
 import lifetime.persistence.UserAccount;
 import org.slf4j.Logger;
@@ -22,6 +23,8 @@ import org.slf4j.Logger;
  * @author zua
  */
 @Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class LifetimeAccountService implements LifetimeAccountBusiness {
 
     /**
@@ -29,12 +32,6 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      */
     @EJB
     private UserAccountJpaController accountController;
-
-    /**
-     * Session Context.
-     */
-    @Resource
-    private SessionContext sessionContext;
 
     /**
      * sl4j Logger
@@ -47,6 +44,11 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      * database. At least instances of {@link UserAccount} and
      * {@link LifetimeUser} will be created.
      *
+     * <p>
+     * @todo After the end returns without error the new transaction should be
+     * persisted: Check if the client transaction must be refreshed.
+     * </p>
+     *
      * @param firstname The user's first name.
      * @param lastname The user's last name
      * @param email The user's email
@@ -55,23 +57,33 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      * @param birthdate The user's birth date
      */
     @Override
-    public boolean register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace) throws LifetimeSecurityException {
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public boolean register(String firstname, 
+                            String lastname, 
+                            String email, 
+                            String password, 
+                            String language,
+                            Date birthdate,
+                            String birthPlace) {
         UserAccount account = new UserAccount(null, email, password);
         LifetimeUser user = new LifetimeUser(null, firstname, lastname, email, birthdate, birthPlace, language);
         account.setLifetimeUser(user);
-        try {
-            accountController.create(account);
-            logger.info("New user resgistered: " + email);
-            return true;
-        } catch (LifetimeSecurityException lf) {
-            logger.info("Account not created for " + email + ": " + lf.getLocalizedMessage());
-            return false;
-        }
+        accountController.create(account);
+        logger.info("New user resgistered: " + email);
+        return true;
     }
 
+    /**
+     * Deletes the account associated with the given email.
+     *
+     * @param email account email
+     * @return true if terminates
+     */
     @Override
-    public void deleteAccount(String email) {
+    public boolean deleteAccount(String email) {
         accountController.delete(email);
+        logger.info("User account removed: " + email);
+        return true;
     }
 
 }

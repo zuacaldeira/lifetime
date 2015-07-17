@@ -33,13 +33,9 @@ public class UserAccountJpaController implements Serializable {
     public UserAccountJpaController() {
     }
 
-    public void create(UserAccount userAccount) throws LifetimeSecurityException {
-        try{
-            em.persist(userAccount);
-        } catch(Exception ex) {
-            throw new LifetimeSecurityException("Problem persisiting " + userAccount, ex);
-        }
-     }
+    public void create(UserAccount userAccount) {
+        em.persist(userAccount);
+    }
 
     public void edit(UserAccount userAccount) {
         em.merge(userAccount);
@@ -92,13 +88,7 @@ public class UserAccountJpaController implements Serializable {
         q.setParameter("email", email);
 
         UserAccount account = (UserAccount) q.getSingleResult();
-
-        if (account
-                == null) {
-            return null;
-        } else {
-            return account.getId();
-        }
+        return account.getId();
     }
 
 }

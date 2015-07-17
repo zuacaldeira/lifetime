@@ -13,16 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package views;
+package ui;
 
 /**
  *
  * @author zua
  */
-public interface StyleClassName {
-    public static final String UI = "ui";
-    public static final String LIFETIME_VIEW = "lifetime-view";
-    public static final String MENU = "menu";
-    public static final String CONTENT = "content";
-    public static final String V_BUTTON_HOME = "v-button-home";
+public class Navigation {
+    public static final String WELCOME_VIEW = "Welcome";
+    public static final String REGISTER_VIEW = "Register";
+    public static final String CONTACT_VIEW = "Contact";
+    
 }

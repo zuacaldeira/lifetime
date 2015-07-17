@@ -15,14 +15,11 @@
  */
 package lifetime.persistence.exceptions;
 
-import javax.ejb.ApplicationException;
-
 /**
  *
  * @author Alexandre Zua Caldeira
  */
-@ApplicationException(rollback = false)
-public class LifetimeSecurityException extends Exception {
+public class LifetimeSecurityException extends RuntimeException {
 
     static final long serialVersionUID = -3387516995463229948L;
 

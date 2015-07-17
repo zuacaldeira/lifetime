@@ -5,6 +5,7 @@
  */
 package util;
 
+import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -16,7 +17,9 @@ import lifetime.service.LifetimeAccountBusiness;
  */
 public class ServiceLocator {
 
+    @EJB(name = "java:global/lifetime-ui/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness", beanInterface = LifetimeAccountBusiness.class)
     private static LifetimeAccountBusiness accountService;
+
     public static final String LIFETIME_ACCOUNT_BUSINESS = "java:global/lifetime-ui/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness";
 
     /**

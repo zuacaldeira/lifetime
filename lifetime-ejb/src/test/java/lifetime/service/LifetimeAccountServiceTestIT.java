@@ -9,7 +9,6 @@ import lifetime.persistence.exceptions.LifetimeSecurityException;
 import java.io.File;
 import java.util.Date;
 import javax.ejb.EJB;
-import javax.naming.NamingException;
 import lifetime.persistence.UserAccount;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
@@ -17,7 +16,7 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -30,14 +29,14 @@ import org.testng.log4testng.Logger;
 @Test
 public class LifetimeAccountServiceTestIT extends Arquillian {
 
-    private static final String TEST_APP_NAME = "test.jar";
+    private static final String TEST_APP_NAME = "test.war";
 
-    @EJB(name = "java:global/test/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness", beanInterface = LifetimeAccountBusiness.class)
+    @EJB(name = "java:global/lifetime-ui/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness", beanInterface = LifetimeAccountBusiness.class)
     private LifetimeAccountBusiness accountService;
     
     private final Logger logger = Logger.getLogger(LifetimeAccountServiceTestIT.class);
 
-    @Deployment
+    @Deployment(testable = true)
     public static Archive createDeployment() {
         // pick up a deployment
         return Deployments.getDeploymentLifetimeAccountService();
@@ -53,50 +52,32 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
      * @param password
      * @param birthDate
      * @param birthPlace Candidate's birth place
-     *
-     * @throws javax.naming.NamingException If lookup fails while looking for a
-     * {@link LifetimeAccountService}
      */
     @Test(dataProvider = "registerData", priority = 1)
-    public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) throws NamingException, LifetimeSecurityException {
+    public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
         logger.info("--- Enter testResgister --- " + firstName + ":" + lastName + ":" + email);
         
         Assert.assertNotNull(accountService, "Service not initialized");
         
         logger.info("--- Before register() --- ");
         
-        accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace);
+        Assert.assertTrue(accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace));
         
         logger.info("--- After register() --- Before deleteAccount() ---");
         
-        //@todo accountService.deleteAccount(email);
+        Assert.assertTrue(accountService.deleteAccount(email));
         
         logger.info("--- After deleteAccount() --- ");
         logger.info("--- Leave testResgister --- " + firstName + ":" + lastName + ":" + email);
     }
 
-    @Test(dataProvider = "registerData", priority = 5)
-    public void testDeleteAccount(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) throws NamingException, LifetimeSecurityException {
-        // Enter
-        logger.info("--- Enter testDeleteAccount --- " + email);
-        Assert.assertNotNull(accountService, "Service not initialized");
-        
-        // Work
-        logger.info("--- Before deleteAccount() ---");
-        accountService.deleteAccount(email);
-        
-        // Leave
-        logger.info("--- After deleteAccount() --- ");
-        logger.info("--- Leave deleteAccount() --- " + email);
-    }
 
     
-    @Test(dataProvider = "registerNegativeData", expectedExceptions = {LifetimeSecurityException.class})
-    public void testBadRegistration(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) throws NamingException, LifetimeSecurityException {
+    @Test(dataProvider = "registerNegativeData", expectedExceptions = {RuntimeException.class})
+    public void testBadRegistration(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
         System.out.println("IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT NEGATIVE register");
-        //Assert.assertNotNull(accountService, "Service not initialized");
-        //accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace);
-        System.out.println("NEGATIVE register IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT ");
+        Assert.assertNotNull(accountService, "Service not initialized");
+        accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace);
     }
 
     @DataProvider(name = "registerData")
@@ -125,11 +106,11 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
 
     private static class Deployments {
         public static Archive getDeploymentLifetimeAccountService() {
-            JavaArchive result = ShrinkWrap.create(JavaArchive.class, TEST_APP_NAME)
+            WebArchive result = ShrinkWrap.create(WebArchive.class, TEST_APP_NAME)
                     //.addAsLibraries(files)
-                    .addPackage(LifetimeSecurityException.class.getPackage())
-                    .addPackage(LifetimeAccountBusiness.class.getPackage())
-                    .addPackage(UserAccount.class.getPackage().getName())
+                    .addClass(LifetimeAccountBusiness.class)
+                    .addClass(LifetimeSecurityException.class)
+                    .addClass(UserAccount.class)
                     .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
                             "META-INF/persistence.xml")
                     .addAsResource(EmptyAsset.INSTANCE,

@@ -8,7 +8,7 @@ Without this configuration present, some functionality in the IDE may be limited
 -->
     <config-data xmlns="http://www.netbeans.org/ns/maven-config-data/1">
         <configurations>
-            <configuration id="arquillian_managed" profiles="arquillian_managed"/>
+            <configuration id="glassfish_remote" profiles="glassfish_remote"/>
         </configurations>
     </config-data>
 </project-shared-configuration>
