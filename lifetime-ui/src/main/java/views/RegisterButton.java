@@ -26,6 +26,7 @@ public class RegisterButton extends LifetimeButtonLink {
 
     public RegisterButton(String language) {
         super(Translator.getTranslation("Register", language), language, FontAwesome.PLUS);
+        setStyleName("v-button-register");
     }
 
     

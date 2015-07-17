@@ -25,6 +25,8 @@ import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -42,19 +44,36 @@ import ui.TestBundle;
 @RunAsClient
 public class WelcomeViewNGTestIT extends Arquillian {
 
-    private static final String TEST_APP_NAME = "test.war";
-
     @Drone
     private ChromeDriver webDriver;
 
     public WelcomeViewNGTestIT() {
     }
-
+    
+        /**
+     * Factory of deployments or scenarios for this test case.
+     *
+     * @return A web archive with the test application
+     */
     @Deployment(testable = false)
     public static Archive createDeployment() {
         // pick up a deployment
         return Deployments.getDeploymentWelcomeView();
     }
+
+    private static class Deployments {
+
+        public static Archive getDeploymentWelcomeView() {
+            WebArchive result = ShrinkWrap.create(WebArchive.class, "test.war")
+                    //.addAsLibraries(files)
+                    .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
+                            "META-INF/persistence.xml")
+                    .addAsResource(EmptyAsset.INSTANCE,
+                            ArchivePaths.create("beans.xml"));
+            return result;
+        }
+    }
+
 
     /**
      * *************************************************************************
@@ -74,66 +93,38 @@ public class WelcomeViewNGTestIT extends Arquillian {
      ***************************************************************************
      */
     @Test
-    public void testCreation() {
+    public void testWelcomeViewStructure() {
         System.out.println("testCreation");
         Assert.assertNotNull(webDriver, "Drone web driver not injected.");
         /**
-         * Reachability. Get page at http://localhost:8080/vitae
+         * Has a welcome view...
          */
-        webDriver.get(TestBundle.WELCOME_URL);
-        Assert.assertEquals(webDriver.getCurrentUrl(), TestBundle.WELCOME_URL);
+        WebElement welcomeView = getWelcomeView();
+        Assert.assertNotNull(welcomeView);
         /**
-         * Has welcome menu of type lifetime menu.
+         * ... with a welcome menu...
          */
-        Assert.assertNotNull(webDriver.findElementByName("Login"));
-        webDriver.close();
+        WebElement welcomeMenu = getWelcomeMenu(welcomeView);
+        Assert.assertNotNull(welcomeMenu);
+        /**
+         * ... and a welcome content
+         */
+        WebElement welcomeContent = getWelcomeContent(welcomeView);
+        Assert.assertNotNull(welcomeContent);
     }
 
-    @Test
-    public void testBehaviour() {
-        System.out.println("testBehaviour");
-        Assert.assertNotNull(webDriver);
+
+    private WebElement getWelcomeView() {
+        webDriver.get(TestBundle.WELCOME_URL);
+        return webDriver.findElement(By.className(StyleClassName.LIFETIME_VIEW));
     }
 
-    /**
-     * Test of createMenu method, of class WelcomeView.
-     */
-    @Test
-    public void testCreateMenu() {
-        System.out.println("createMenu");
-        Assert.assertNotNull(webDriver);
+    private WebElement getWelcomeMenu(WebElement welcomeView) {
+        return welcomeView.findElement(By.className(StyleClassName.MENU));
     }
 
-    /**
-     * Test of createContent method, of class WelcomeView.
-     */
-    @Test
-    public void testCreateContent() {
-        System.out.println("createContent");
+    private WebElement getWelcomeContent(WebElement welcomeView) {
+        return welcomeView.findElement(By.className(StyleClassName.CONTENT));
     }
 
-    /**
-     * Test of createBackground method, of class WelcomeView.
-     */
-    @Test
-    public void testCreateBackground() {
-        System.out.println("createBackground");
-    }
-
-    /**
-     * Factory of deployments or scenarios for this test case.
-     *
-     */
-    private static class Deployments {
-
-        public static Archive getDeploymentWelcomeView() {
-            WebArchive result = ShrinkWrap.create(WebArchive.class, TEST_APP_NAME)
-                    //.addAsLibraries(files)
-                    .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
-                            "META-INF/persistence.xml")
-                    .addAsResource(EmptyAsset.INSTANCE,
-                            ArchivePaths.create("beans.xml"));
-            return result;
-        }
-    }
 }

@@ -48,7 +48,7 @@ public class WelcomeView extends LifetimeView {
 
     public WelcomeView(String language) {
         super(language);
-        setStyleName("welcome-view");
+        setStyleName(StyleClassName.LIFETIME_VIEW);
     }
 
     /**

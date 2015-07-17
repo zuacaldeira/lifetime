@@ -29,7 +29,7 @@ public class WelcomeMenu extends LifetimeMenu implements ClickListener {
 
     private final LifetimeHomeButton homeButton;
     private final RegisterButton registerButton;
-    private final LoginButton loginButton;
+    private final VitaeButton loginButton;
     private final ContactButton contactButton;
 
     public WelcomeMenu(String language) {
@@ -37,7 +37,7 @@ public class WelcomeMenu extends LifetimeMenu implements ClickListener {
         setSizeFull();
         homeButton = new LifetimeHomeButton(language);
         registerButton = new RegisterButton(language);
-        loginButton = new LoginButton(language);
+        loginButton = new VitaeButton(language);
         contactButton = new ContactButton(language);
         homeButton.addClickListener(this);
         registerButton.addClickListener(this);
@@ -80,7 +80,7 @@ public class WelcomeMenu extends LifetimeMenu implements ClickListener {
         return registerButton;
     }
 
-    public LoginButton getLoginButton() {
+    public VitaeButton getLoginButton() {
         return loginButton;
     }
 

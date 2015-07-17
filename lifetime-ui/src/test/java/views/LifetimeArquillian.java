@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 lifetime.
+ * Copyright 2015 zua.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,19 +15,25 @@
  */
 package views;
 
-import com.vaadin.server.FontAwesome;
-import util.Translator;
+import org.jboss.arquillian.testng.Arquillian;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
- * @author lifetime
+ * @author zua
  */
-public class LifetimeHomeButton extends LifetimeButtonLink {
+public abstract class LifetimeArquillian extends Arquillian {
+    
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public LifetimeHomeButton(String language) {
-        super(Translator.getTranslation("Vitae", language), language, FontAwesome.HOME);
-        setDescription(Translator.getTranslation("Vitae", language));
-        setStyleName("v-button-home");
+    public Logger getLogger() {
+        return logger;
     }
+    
+    
+    
+    
+
 
 }

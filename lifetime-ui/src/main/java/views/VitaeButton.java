@@ -23,13 +23,14 @@ import util.Translator;
  *
  * @author lifetime
  */
-public class LoginButton extends LifetimeButtonLink {
+public class VitaeButton extends LifetimeButtonLink {
     private final String text;
 
-    public LoginButton(String language) {
+    public VitaeButton(String language) {
         super(Translator.getTranslation("Login", language), language, FontAwesome.USER);
         this.text = Translator.getTranslation("Login", language);
         setDescription(text);
+        setStyleName("v-button-vitae");
     }
 
     @Override
@@ -47,7 +48,7 @@ public class LoginButton extends LifetimeButtonLink {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final LoginButton other = (LoginButton) obj;
+        final VitaeButton other = (VitaeButton) obj;
         return Objects.equals(this.text, other.text);
     }
     

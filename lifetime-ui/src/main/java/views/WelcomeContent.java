@@ -31,7 +31,7 @@ public class WelcomeContent extends LifetimeContent {
         homeView = new HomeView(getLanguage());
         addComponent(homeView);
         setComponentAlignment(homeView, Alignment.MIDDLE_CENTER);
-        setStyleName("content");
+        setStyleName(StyleClassName.CONTENT);
     }
 
     @Override
