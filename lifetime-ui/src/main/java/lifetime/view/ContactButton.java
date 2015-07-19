@@ -26,6 +26,7 @@ public class ContactButton extends LifetimeButtonLink {
 
     public ContactButton(String language) {
         super(Translator.getTranslation("Contact", language), language, FontAwesome.USER);
+        setId(StyleClassName.CONTACT_BUTTON);
     }
 
 }

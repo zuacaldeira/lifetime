@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 lifetime.
+ * Copyright 2015 zua.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,19 +15,14 @@
  */
 package lifetime.view;
 
-import com.vaadin.server.FontAwesome;
-import util.Translator;
-
 /**
  *
- * @author lifetime
+ * @author zua
  */
-public class LifetimeHomeButton extends LifetimeButtonLink {
+class XPathHelper {
 
-    public LifetimeHomeButton(String language) {
-        super(Translator.getTranslation("Vitae", language), language, FontAwesome.HOME);
-        setDescription(Translator.getTranslation("Vitae", language));
-        setId(StyleClassName.HOME_BUTTON);
+    static String getXPathExpression(String id) {
+        return "//div[@id='" + id + "']";
     }
-
+    
 }

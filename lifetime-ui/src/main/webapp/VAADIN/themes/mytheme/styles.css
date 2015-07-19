@@ -12741,31 +12741,26 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .lifetime-ui {
-	id: "lifetime-ui";
 	background-color: transparent;
 }
 
-.mytheme .lifetime-view {
-	id: "lifetime-view";
-}
-
-.mytheme .lifetime-menu {
+.mytheme .lifetime-ui .lifetime-view .lifetime-menu {
 	background: white;
 	opacity: 0.75;
 }
 
-.mytheme .lifetime-content {
+.mytheme .lifetime-ui .lifetime-view .lifetime-content {
 	background: black;
 	opacity: 0.75;
 	color: white;
 	font-weight: bold;
 }
 
-.mytheme .lifetime-content .tag {
+.mytheme .lifetime-ui .lifetime-view .lifetime-content .tag {
 	font-size: 150%;
 }
 
-.mytheme .lifetime-content .value {
+.mytheme .lifetime-ui .lifetime-view .lifetime-content .value {
 	font-size: 350%;
 	font-weight: bold;
 	color: deeppink;

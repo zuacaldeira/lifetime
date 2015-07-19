@@ -27,4 +27,8 @@ public interface StyleClassName {
     public static final String LIFETIME_MENU = "lifetime-menu";
     public static final String LIFETIME_CONTENT = "lifetime-content";
     public static final String V_BUTTON_LINK = Reindeer.BUTTON_LINK;
+    public static final String HOME_BUTTON= "home-button";
+    public static final String REGISTER_BUTTON = "register-button";
+    public static final String LOGIN_BUTTON = "login-button";
+    public static final String CONTACT_BUTTON = "contact-button";
 }

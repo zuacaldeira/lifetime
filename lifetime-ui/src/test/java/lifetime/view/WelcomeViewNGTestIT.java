@@ -93,23 +93,22 @@ public class WelcomeViewNGTestIT extends LifetimeArquillian {
      */
     @Test
     public void testWelcomeViewStructure() {
-        System.out.println("testCreation");
+        getLogger().info("IT-TEST: testWelcomeViewStructure()".toUpperCase());
         Assert.assertNotNull(webDriver, "Drone web driver not injected.");
 
         webDriver.get(TestBundle.HOME_URL);
+        getLogger().info("Page title: " + webDriver.getTitle());
         
         /**
          * Has a top level element...
          */
-        getLogger().info("Page title: " + webDriver.getTitle());
         getLogger().info("Looking for a lifetime page...");
         List<WebElement> lifetimeWebPage = webDriver.findElements(By.xpath("*"));
-        getLogger().info("Found: " + lifetimeWebPage.size());
+        getLogger().info("Found: " + lifetimeWebPage);
         Assert.assertFalse(lifetimeWebPage.isEmpty());
         /**
          * Has a welcome ui...
          */
-        getLogger().info("Page title: " + webDriver.getTitle());
         getLogger().info("Looking for a lifetime ui...");
         WebElement lifetimeUi = lifetimeWebPage.get(0).findElement(By.xpath(".//div[@id='lifetime-ui']"));
         getLogger().info("Found: " + lifetimeUi);
@@ -126,20 +125,16 @@ public class WelcomeViewNGTestIT extends LifetimeArquillian {
          * and with a welcome menu...
          */
         getLogger().info("Looking for a lifetime menu...");
-        WebElement lifetimeMenu = lifetimeUi.findElement(By.xpath(".//div[@id='lifetime-menu']"));
+        WebElement lifetimeMenu = lifetimeView.findElement(By.xpath(".//div[@id='lifetime-menu']"));
         getLogger().info("Found: " + lifetimeMenu);
         Assert.assertNotNull(lifetimeMenu);
         /**
          * and a welcome content.
          */
-        /**
-         * and with a welcome menu...
-         */
         getLogger().info("Looking for a lifetime content...");
-        WebElement lifetimeContent = lifetimeUi.findElement(By.xpath(".//div[@id='lifetime-content']"));
+        WebElement lifetimeContent = lifetimeView.findElement(By.xpath(".//div[@id='lifetime-content']"));
         getLogger().info("Found: " + lifetimeContent);
         Assert.assertNotNull(lifetimeContent);
         webDriver.close();
-
     }
 }

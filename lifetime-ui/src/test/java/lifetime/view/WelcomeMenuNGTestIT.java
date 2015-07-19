@@ -15,18 +15,17 @@
  */
 package lifetime.view;
 
+import java.util.List;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 import lifetime.ui.TestBundle;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
- *
  * @author zua
  */
 @Test
@@ -39,82 +38,43 @@ public class WelcomeMenuNGTestIT extends LifetimeArquillian {
     @Drone
     private ChromeDriver webDriver;
 
+    private List<WebElement> topElements;
+    private WebElement lifetimeUI;
+    private WebElement lifetimeView;
+    private WebElement lifetimeMenu;
+
     /**
      * Test of getHomeButton method, of class WelcomeMenu.
      */
     @Test
     public void testGetHomeButton() {
-        getLogger().debug("testGetHomeButton");
-        /**
-         * If the web driver is injected then navigate to welcome page.
-         */
-        Assert.assertNotNull(webDriver);
+        getLogger().info("IT-TEST: testGetHomeButton()".toUpperCase());
+        Assert.assertNotNull(webDriver, "Drone web driver not injected.");
         webDriver.get(TestBundle.HOME_URL);
-        /**
-         * Find the home button.
-         */
-        
-        WebElement ui = webDriver.findElementByName(StyleClassName.LIFETIME_UI);
-        Assert.assertNotNull(ui, "WelcomeUI Not Found");
-    }
+        getLogger().info("\tWeb page loaded");
 
-    /**
-     * Test of getRegisterButton method, of class WelcomeMenu.
-     */
-    @Test
-    public void testGetRegisterButton() {
-        getLogger().debug("testGetRegisterButton");
-        Assert.assertNotNull(webDriver);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+        topElements = webDriver.findElements(By.xpath("*"));
+        Assert.assertNotNull(topElements, "WebPage not found");
+        Assert.assertFalse(topElements.isEmpty(), "WebPage not found");
+        getLogger().info("\tFound content");
 
-    /**
-     * Test of getLoginButton method, of class WelcomeMenu.
-     */
-    @Test
-    public void testGetLoginButton() {
-        getLogger().debug("testGetLoginButton");
-        Assert.assertNotNull(webDriver);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+        lifetimeUI = topElements.get(0).findElement(By.xpath("*"));
+        Assert.assertNotNull(lifetimeUI, "Lifetime UI not found");
+        getLogger().info("\tFound lifetime-ui" + lifetimeUI.getText());
+        // Find the menu
+        lifetimeView = lifetimeUI.findElement(By.xpath(XPathHelper.getXPathExpression(StyleClassName.LIFETIME_VIEW)));
+        Assert.assertNotNull(lifetimeView, "Lifetime VIEW not found");
+        getLogger().info("\tFound lifetime-view" + lifetimeView.getText());
 
-    /**
-     * Test of getContactButton method, of class WelcomeMenu.
-     */
-    @Test
-    public void testGetContactButton() {
-        getLogger().debug("testGetContactButton");
-        Assert.assertNotNull(webDriver);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+        lifetimeMenu = lifetimeView.findElement(By.xpath(XPathHelper.getXPathExpression(StyleClassName.LIFETIME_MENU)));
+        Assert.assertNotNull(lifetimeMenu, "Lifetime MENU not found");
+        getLogger().info("\tFound lifetime-Menu" + lifetimeMenu.getText());
 
-    /**
-     * Test of hashCode method, of class WelcomeMenu.
-     */
-    @Test
-    public void testHashCode() {
-        getLogger().debug("testHashCode");
-        Assert.assertNotNull(webDriver);
-    }
-
-    /**
-     * Test of equals method, of class WelcomeMenu.
-     */
-    @Test
-    public void testEquals() {
-        getLogger().debug("testEquals");
-        Assert.assertNotNull(webDriver);
-    }
-
-    private WebElement getMenu(WebElement view) {
-        return view.findElement(By.className(StyleClassName.LIFETIME_MENU));
-    }
-
-    private WebElement getHomeButton(WebElement menu) {
-        return menu.findElements(By.className(StyleClassName.V_BUTTON_LINK)).get(0);
+        WebElement homeButton = lifetimeMenu.findElement(By.xpath(XPathHelper.getXPathExpression(StyleClassName.HOME_BUTTON)));
+        Assert.assertNotNull(homeButton, "Home button not found");
+        getLogger().info("\tFound home button" + homeButton.getText());
+        homeButton.click();
+        getLogger().info("\tClicked home button");
     }
 
 }
