@@ -16,7 +16,6 @@
 package lifetime.view;
 
 import java.io.File;
-import java.util.List;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
@@ -103,21 +102,21 @@ public class WelcomeViewNGTestIT extends LifetimeArquillian {
          * Has a top level element...
          */
         getLogger().info("Looking for a lifetime page...");
-        List<WebElement> lifetimeWebPage = webDriver.findElements(By.xpath("*"));
+        WebElement lifetimeWebPage = webDriver.findElement(By.xpath("*"));
         getLogger().info("Found: " + lifetimeWebPage);
-        Assert.assertFalse(lifetimeWebPage.isEmpty());
+        Assert.assertNotNull(lifetimeWebPage);
         /**
          * Has a welcome ui...
          */
         getLogger().info("Looking for a lifetime ui...");
-        WebElement lifetimeUi = lifetimeWebPage.get(0).findElement(By.xpath(".//div[@id='lifetime-ui']"));
+        WebElement lifetimeUi = lifetimeWebPage.findElement(By.xpath("*"));
         getLogger().info("Found: " + lifetimeUi);
         Assert.assertNotNull(lifetimeUi);
         /**
          * with a welcome view...
          */
         getLogger().info("Looking for a lifetime view...");
-        WebElement lifetimeView = lifetimeUi.findElement(By.xpath(".//div[@id='lifetime-view']"));
+        WebElement lifetimeView = lifetimeUi.findElement(By.xpath("//div[@id='lifetime-view']"));
         getLogger().info("Found: " + lifetimeView);
         Assert.assertNotNull(lifetimeView);
 
@@ -125,7 +124,7 @@ public class WelcomeViewNGTestIT extends LifetimeArquillian {
          * and with a welcome menu...
          */
         getLogger().info("Looking for a lifetime menu...");
-        WebElement lifetimeMenu = lifetimeView.findElement(By.xpath(".//div[@id='lifetime-menu']"));
+        WebElement lifetimeMenu = lifetimeView.findElement(By.xpath("//div[@id='lifetime-menu']"));
         getLogger().info("Found: " + lifetimeMenu);
         Assert.assertNotNull(lifetimeMenu);
         /**
