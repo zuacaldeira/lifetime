@@ -80,16 +80,6 @@
                 </dependencies>
             </dependencyManagement>
             <!-- clip -->            
-            <build>
-                <testResources>
-                    <testResource>
-                        <directory>src/test/resources</directory>
-                    </testResource>
-                    <testResource>
-                        <directory>src/test/resources-glassfish-managed</directory>
-                    </testResource>
-                </testResources>
-            </build>
         </profile>
     </profiles>
  

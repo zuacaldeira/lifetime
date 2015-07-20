@@ -78,14 +78,6 @@
                     </dependency>            
                 </dependencies>
             </dependencyManagement>
-            <!-- clip -->            
-            <build>
-                <testResources>
-                    <testResource>
-                        <directory>src/test/resources</directory>
-                    </testResource>
-                </testResources>
-            </build>
         </profile>
     </profiles>
 
