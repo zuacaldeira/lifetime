@@ -1,20 +1,19 @@
 package lifetime.ui;
 
 import com.vaadin.annotations.Theme;
-import lifetime.view.WelcomeView;
-import javax.servlet.annotation.WebServlet;
-
 import com.vaadin.annotations.VaadinServletConfiguration;
+import lifetime.view.WelcomeView;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import javax.servlet.annotation.WebServlet;
 import lifetime.view.ContactView;
 import lifetime.view.RegisterView;
 import lifetime.view.StyleClassName;
 
 @Theme("mytheme")
-public class WelcomeUI extends LifetimeUI implements ViewChangeListener  {
+public class WelcomeUI extends LifetimeUI implements ViewChangeListener {
 
     @Override
     protected void init(VaadinRequest request) {
@@ -42,7 +41,7 @@ public class WelcomeUI extends LifetimeUI implements ViewChangeListener  {
 
     /**
      * Defines the set of actions that must be performed before the navigator
- changes the view for this LIFETIME_UI.
+     * changes the view for this LIFETIME_UI.
      *
      * @param event The event being fired
      * @return <b>true</b> iff the view must change.
@@ -68,6 +67,5 @@ public class WelcomeUI extends LifetimeUI implements ViewChangeListener  {
     @WebServlet(urlPatterns = "/*", name = "WelcomeUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = WelcomeUI.class, productionMode = false)
     public static class WelcomeUIServlet extends VaadinServlet {
-
     }
 }

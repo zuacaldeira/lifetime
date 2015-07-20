@@ -7,6 +7,7 @@ package lifetime.service;
 
 import java.util.Date;
 import javax.ejb.EJB;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -22,7 +23,9 @@ import org.slf4j.Logger;
  *
  * @author zua
  */
-@Stateless
+@Stateless(name = "LifetimeAccountService")
+@Remote(LifetimeAccountBusiness.class)
+
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class LifetimeAccountService implements LifetimeAccountBusiness {
@@ -58,13 +61,13 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      */
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public boolean register(String firstname, 
-                            String lastname, 
-                            String email, 
-                            String password, 
-                            String language,
-                            Date birthdate,
-                            String birthPlace) {
+    public boolean register(String firstname,
+            String lastname,
+            String email,
+            String password,
+            String language,
+            Date birthdate,
+            String birthPlace) {
         UserAccount account = new UserAccount(null, email, password);
         LifetimeUser user = new LifetimeUser(null, firstname, lastname, email, birthdate, birthPlace, language);
         account.setLifetimeUser(user);
@@ -80,6 +83,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      * @return true if terminates
      */
     @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public boolean deleteAccount(String email) {
         accountController.delete(email);
         logger.info("User account removed: " + email);

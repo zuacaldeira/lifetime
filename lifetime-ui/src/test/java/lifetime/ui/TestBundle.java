@@ -24,25 +24,25 @@ public class TestBundle {
     /**
      *
      */
-    public static final String HOME_URL = "http://localhost:8080/vitae/#!Welcome";
+    public static final String HOME_URL = "http://localhost:8080/lifetime#!Welcome";
 
     /**
      *
      */
-    public static final String CONTACT_URL = "http://localhost:8080/vitae/#!Contact";
+    public static final String CONTACT_URL = "http://localhost:8080/lifetime/#!Contact";
 
     /**
      *
      */
-    public static final String USER_URL = "http://localhost:8080/vitae/User";
+    public static final String USER_URL = "http://localhost:8080/lifetime/User";
 
     /**
      *
      */
-    public static final String REGISTER_URL = "http://localhost:8080/vitae/#!Register";
+    public static final String REGISTER_URL = "http://localhost:8080/lifetime/#!Register";
 
     /**
      *
      */
-    public static final String LOGIN_URL = "http://localhost:8080/vitae/user";
+    public static final String LOGIN_URL = "http://localhost:8080/lifetime/user";
 }

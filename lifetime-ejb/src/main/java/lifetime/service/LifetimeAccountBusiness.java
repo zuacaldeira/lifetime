@@ -6,7 +6,6 @@
 package lifetime.service;
 
 import java.util.Date;
-import javax.ejb.Remote;
 
 /**
  * This interface defines the contract between the clients and the account
@@ -14,7 +13,6 @@ import javax.ejb.Remote;
  *
  * @author Alexandre Caldeira
  */
-@Remote
 public interface LifetimeAccountBusiness {
 
     /**

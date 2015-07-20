@@ -23,12 +23,9 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.NamingException;
 import lifetime.service.LifetimeAccountBusiness;
 import lifetime.ui.Navigation;
-import util.ServiceLocator;
+import lifetime.util.ServiceLocator;
 import util.Translator;
 
 /**
@@ -137,26 +134,22 @@ public class RegistrationForm extends FormLayout {
      * Submits the registration form, issuing a register request to the backend.
      */
     void submit() {
-        try {
-            // Lookup a reference for the account business interface
-            LifetimeAccountBusiness service = ServiceLocator.findLifetimeAccountService();
+        // Lookup a reference for the account business interface
+        LifetimeAccountBusiness service = ServiceLocator.findLifetimeAccountService();
 
-            // Call backend to register with the collected and verified data
-            boolean successfullRegistration = service.register(firstname.getValue(), lastname.getValue(), email.getValue(), password.getValue(), defaultLanguage.getValue().toString(), birthDate.getValue(), birthPlace.getValue());
+        // Call backend to register with the collected and verified data
+        boolean successfullRegistration = service.register(firstname.getValue(), lastname.getValue(), email.getValue(), password.getValue(), defaultLanguage.getValue().toString(), birthDate.getValue(), birthPlace.getValue());
 
-            // Upon successfull registration, return to the welcome page
-            if (successfullRegistration) {
-                getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
-            } else {
-                /*
-                 * TODO. Behaves as clear or as home? Enter a new session type
-                 * driven behavior!
-                 */
-                Notification.show("Problem during registration", "Please, try again later.", Notification.Type.TRAY_NOTIFICATION);
-                clear();
-            }
-        } catch (NamingException ex) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Lifetime Account Service NOt Found", ex);
+        // Upon successfull registration, return to the welcome page
+        if (successfullRegistration) {
+            getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
+        } else {
+            /*
+             * TODO. Behaves as clear or as home? Enter a new session type
+             * driven behavior!
+             */
+            Notification.show("Problem during registration", "Please, try again later.", Notification.Type.TRAY_NOTIFICATION);
+            clear();
         }
     }
 
