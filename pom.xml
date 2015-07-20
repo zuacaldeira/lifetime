@@ -37,8 +37,8 @@
         <project.source.version>1.7</project.source.version>
         <project.target.version>1.7</project.target.version>
         <project.encoding>UTF-8</project.encoding>
-        
-        <!-- glassfish specific properties -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>        
         <local.glassfish.home>/Applications/NetBeans/glassfish-4.1/glassfish</local.glassfish.home>
         <local.glassfish.user>admin</local.glassfish.user>
         <local.glassfish.domain>domain1</local.glassfish.domain>
