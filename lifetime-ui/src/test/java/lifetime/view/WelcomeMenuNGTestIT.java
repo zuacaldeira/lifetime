@@ -16,7 +16,6 @@
 package lifetime.view;
 
 import java.util.List;
-import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

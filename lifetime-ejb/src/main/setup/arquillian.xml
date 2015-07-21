@@ -14,5 +14,5 @@
             <property name="adminPassword">admin</property>
         </configuration>
     </container>
-    
+        
 </arquillian>

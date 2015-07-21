@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lifetime.service;
+package lifetime.util;
 
 /**
  *
  * @author zua
  */
-public enum Roles {
-
-    USER
+public enum SecurityRole {
+    USER, ADMIN, DEVELOPER
 }

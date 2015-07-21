@@ -15,7 +15,6 @@
  */
 package data;
 
-import org.testng.annotations.DataProvider;
 
 /**
  *
@@ -27,7 +26,7 @@ public class LoginDataProvider {
      *
      * @return
      */
-    @DataProvider(name = "positive")
+    //@DataProvider(name = "positive")
     public static Object[][] getData() {
         Object[][] dataArray = {
             {"zuacaldeira1@gmail.com", "unicidade"}

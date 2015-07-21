@@ -5,12 +5,10 @@
  */
 package lifetime.service;
 
-import lifetime.persistence.exceptions.LifetimeSecurityException;
-import java.io.File;
 import java.util.Date;
 import javax.ejb.EJB;
-import lifetime.persistence.UserAccount;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ArchivePaths;
@@ -27,13 +25,14 @@ import org.testng.log4testng.Logger;
  * @author zua
  */
 @Test
+@RunAsClient
 public class LifetimeAccountServiceTestIT extends Arquillian {
 
     private static final String TEST_APP_NAME = "test.war";
 
-    @EJB(name = "java:global/lifetime-ui/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness", beanInterface = LifetimeAccountBusiness.class)
+    @EJB(name = "java:global/lifetime-ui/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness")
     private LifetimeAccountBusiness accountService;
-    
+
     private final Logger logger = Logger.getLogger(LifetimeAccountServiceTestIT.class);
 
     @Deployment(testable = true)
@@ -53,31 +52,33 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
      * @param birthDate
      * @param birthPlace Candidate's birth place
      */
-    @Test(dataProvider = "registerData", priority = 1)
+    @Test(dataProvider = "registerData")
     public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
-        logger.info("--- Enter testResgister --- " + firstName + ":" + lastName + ":" + email);
-        
+        logger.info("::Entering:: testResgister:" + firstName + ":" + lastName + ":" + email);
         Assert.assertNotNull(accountService, "Service not initialized");
-        
-        logger.info("--- Before register() --- ");
-        
-        Assert.assertTrue(accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace));
-        
-        logger.info("--- After register() --- Before deleteAccount() ---");
-        
-        Assert.assertTrue(accountService.deleteAccount(email));
-        
-        logger.info("--- After deleteAccount() --- ");
-        logger.info("--- Leave testResgister --- " + firstName + ":" + lastName + ":" + email);
+        if (!accountService.existsAccount(email)) {
+            Assert.assertTrue(accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace));
+        }
     }
 
-
-    
-    @Test(dataProvider = "registerNegativeData", expectedExceptions = {RuntimeException.class})
-    public void testBadRegistration(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
-        System.out.println("IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT NEGATIVE register");
+    @Test(dataProvider = "registerData", dependsOnMethods = "testRegister")
+    public void testDeleteAccount(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
+        logger.info("::Entering:: testResgister:" + email);
         Assert.assertNotNull(accountService, "Service not initialized");
-        accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace);
+        if (accountService.existsAccount(email)) {
+            Assert.assertTrue(accountService.deleteAccount(email));
+        }
+    }
+
+    @Test(dataProvider = "registerNegativeData")
+    public void testBadRegistration(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
+        logger.info("::Entering:: testBadRegistration:" + email);
+        Assert.assertNotNull(accountService, "Service not initialized");
+        if(!accountService.existsAccount(email)) {
+            Assert.assertFalse(accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace));
+        } else {
+            Assert.assertTrue(false);
+        }
     }
 
     @DataProvider(name = "registerData")
@@ -105,16 +106,18 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
     }
 
     private static class Deployments {
+
         public static Archive getDeploymentLifetimeAccountService() {
             WebArchive result = ShrinkWrap.create(WebArchive.class, TEST_APP_NAME)
                     //.addAsLibraries(files)
-                    .addClass(LifetimeAccountBusiness.class)
-                    .addClass(LifetimeSecurityException.class)
-                    .addClass(UserAccount.class)
+                    .addPackage(LifetimeAccountBusiness.class.getPackage())
+                    /*.addPackage(LifetimeSecurityException.class.getPackage())
+                    .addPackage(Users.class.getPackage())
+                    .addPackage(SecurityRole.class.getPackage())
+                    .addClass(org.slf4j.Logger.class)
                     .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
-                            "META-INF/persistence.xml")
-                    .addAsResource(EmptyAsset.INSTANCE,
-                            ArchivePaths.create("beans.xml"));
+                            "META-INF/persistence.xml")*/
+                    .addAsResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
             return result;
         }
     }
