@@ -9,7 +9,7 @@ package lifetime.service;
  *
  * @author zua
  */
-public enum Roles {
+public enum SecurityRoles {
 
     USER
 }

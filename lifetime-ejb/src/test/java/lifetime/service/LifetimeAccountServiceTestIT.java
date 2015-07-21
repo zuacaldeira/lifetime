@@ -5,11 +5,10 @@
  */
 package lifetime.service;
 
-import lifetime.persistence.exceptions.LifetimeSecurityException;
 import java.io.File;
 import java.util.Date;
 import javax.ejb.EJB;
-import lifetime.persistence.UserAccount;
+import lifetime.persistence.Accounts;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -55,27 +54,17 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
      */
     @Test(dataProvider = "registerData", priority = 1)
     public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
-        logger.info("--- Enter testResgister --- " + firstName + ":" + lastName + ":" + email);
-        
+        logger.info(":::testResgister:::" + firstName + ":" + lastName + ":" + email);
         Assert.assertNotNull(accountService, "Service not initialized");
-        
-        logger.info("--- Before register() --- ");
-        
         Assert.assertTrue(accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace));
-        
-        logger.info("--- After register() --- Before deleteAccount() ---");
-        
-        Assert.assertTrue(accountService.deleteAccount(email));
-        
-        logger.info("--- After deleteAccount() --- ");
-        logger.info("--- Leave testResgister --- " + firstName + ":" + lastName + ":" + email);
+        logger.info("::::::done");
     }
 
 
     
     @Test(dataProvider = "registerNegativeData", expectedExceptions = {RuntimeException.class})
     public void testBadRegistration(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
-        System.out.println("IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT_IT NEGATIVE register");
+        logger.info(":::testBadregistration:::" + firstName + ":" + lastName + ":" + email);
         Assert.assertNotNull(accountService, "Service not initialized");
         accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace);
     }
@@ -109,8 +98,7 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
             WebArchive result = ShrinkWrap.create(WebArchive.class, TEST_APP_NAME)
                     //.addAsLibraries(files)
                     .addClass(LifetimeAccountBusiness.class)
-                    .addClass(LifetimeSecurityException.class)
-                    .addClass(UserAccount.class)
+                    .addClass(Accounts.class)
                     .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
                             "META-INF/persistence.xml")
                     .addAsResource(EmptyAsset.INSTANCE,

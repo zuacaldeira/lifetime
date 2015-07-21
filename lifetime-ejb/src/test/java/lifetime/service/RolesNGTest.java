@@ -19,7 +19,7 @@ public class RolesNGTest {
 
     @Test
     public void testSomeMethod() {
-        assertNotNull(Roles.USER);
+        assertNotNull(SecurityRoles.USER);
     }
     
 }

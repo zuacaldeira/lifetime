@@ -17,22 +17,25 @@ package lifetime.view;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.validator.EmailValidator;
-import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.DateField;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
+import com.vaadin.ui.VerticalLayout;
 import java.util.Locale;
 import java.util.Objects;
 import lifetime.service.LifetimeAccountBusiness;
 import lifetime.ui.Navigation;
-import lifetime.util.ServiceLocator;
+import util.ServiceLocator;
 import util.Translator;
 
 /**
  *
  * @author lifetime
  */
-public class RegistrationForm extends FormLayout {
+public class RegistrationForm extends HorizontalLayout {
 
     private final LifetimeTextField firstname;
     private final LifetimeTextField lastname;
@@ -40,7 +43,7 @@ public class RegistrationForm extends FormLayout {
     private final PasswordField password;
     private final PasswordField passwordRepeat;
     private final LocalesComboBox defaultLanguage;
-    private final LifetimeDateField birthDate;
+    private final DateField birthDate;
     private final LifetimeTextField birthPlace;
 
     public RegistrationForm(String language) {
@@ -72,11 +75,15 @@ public class RegistrationForm extends FormLayout {
         password = new PasswordField("Password");
         password.addValidator(new PasswordValidator());
         passwordRepeat = new PasswordField("Repeat password");
-        birthDate = new LifetimeDateField("Birthdate", language);
+        birthDate = new DateField("Birthdate");
         birthDate.setLocale(new Locale(language));
         //
         birthPlace = new LifetimeTextField("Birth place");
-        addComponents(text, defaultLanguage, firstname, lastname, email, password, passwordRepeat, birthDate, birthPlace);
+        
+        VerticalLayout personalData = new VerticalLayout(defaultLanguage, firstname, lastname, email, password, passwordRepeat);
+        VerticalLayout birthData = new VerticalLayout(birthDate, birthPlace);
+        birthData.setDefaultComponentAlignment(Alignment.MIDDLE_RIGHT);
+        addComponents(personalData, birthData);
         setStyleName("forms");
     }
 
@@ -117,7 +124,7 @@ public class RegistrationForm extends FormLayout {
         return defaultLanguage;
     }
 
-    public LifetimeDateField getBirthDate() {
+    public DateField getBirthDate() {
         return birthDate;
     }
 
@@ -136,20 +143,20 @@ public class RegistrationForm extends FormLayout {
     void submit() {
         // Lookup a reference for the account business interface
         LifetimeAccountBusiness service = ServiceLocator.findLifetimeAccountService();
-
         // Call backend to register with the collected and verified data
-        boolean successfullRegistration = service.register(firstname.getValue(), lastname.getValue(), email.getValue(), password.getValue(), defaultLanguage.getValue().toString(), birthDate.getValue(), birthPlace.getValue());
-
-        // Upon successfull registration, return to the welcome page
-        if (successfullRegistration) {
+        try {
+            boolean successfullRegistration = service.register(firstname.getValue(), lastname.getValue(), email.getValue(), password.getValue(), defaultLanguage.getValue().toString(), birthDate.getValue(), birthPlace.getValue());
+            // Upon successfull registration, return to the welcome page
+            if (successfullRegistration) {
+                Notification.show("Registration concluded.", Notification.Type.TRAY_NOTIFICATION);
+                getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
+            } else {
+                Notification.show("Registration failed. Try again later.", Notification.Type.WARNING_MESSAGE);
+                getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
+            }
+        } catch (Exception ex) {
+            Notification.show("Registration failed. Try again later.", Notification.Type.WARNING_MESSAGE);
             getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
-        } else {
-            /*
-             * TODO. Behaves as clear or as home? Enter a new session type
-             * driven behavior!
-             */
-            Notification.show("Problem during registration", "Please, try again later.", Notification.Type.TRAY_NOTIFICATION);
-            clear();
         }
     }
 
