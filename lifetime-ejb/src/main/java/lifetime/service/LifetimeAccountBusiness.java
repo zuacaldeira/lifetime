@@ -38,6 +38,4 @@ public interface LifetimeAccountBusiness {
      */
     public boolean deleteAccount(String email);
 
-    public boolean existsAccount(String email);
-
 }

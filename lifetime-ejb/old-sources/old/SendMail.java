@@ -34,7 +34,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
-import lifetime.persistence.User;
+import lifetime.persistence.LifetimeUser;
 
 /**
  *
@@ -125,7 +125,7 @@ public class SendMail {
     }
 
     @Asynchronous
-    public void sendMail(User u, JobApplication jobApplication, JobOffer jOffer, byte[][] documents) {
+    public void sendMail(LifetimeUser u, JobApplication jobApplication, JobOffer jOffer, byte[][] documents) {
         String contact = jOffer.getContactName();
         String contactEmail = jOffer.getContactEmail();
         String subject = jOffer.getPosition() + "(" + jOffer.getReference() + ")";

@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import javax.ejb.Remote;
-import lifetime.persistence.User;
+import lifetime.persistence.LifetimeUser;
 
 /**
  *
@@ -32,7 +32,7 @@ public interface LifetimeBusiness {
 
     void addUserRole(String username, String rolename);
 
-    public User getUser(Integer userId);
+    public LifetimeUser getUser(Integer userId);
 
     public Integer getUserId(String username);
 
@@ -211,7 +211,7 @@ public interface LifetimeBusiness {
 
     public List<String> getFullnames();
 
-    public List<User> getAllUsers();
+    public List<LifetimeUser> getAllUsers();
 
     public Integer getUserId(String firstname, String lastname);
 

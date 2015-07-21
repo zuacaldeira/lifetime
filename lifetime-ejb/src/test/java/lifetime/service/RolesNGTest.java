@@ -5,7 +5,6 @@
  */
 package lifetime.service;
 
-import lifetime.util.SecurityRole;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 
@@ -20,7 +19,7 @@ public class RolesNGTest {
 
     @Test
     public void testSomeMethod() {
-        assertNotNull(SecurityRole.USER);
+        assertNotNull(Roles.USER);
     }
     
 }

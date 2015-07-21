@@ -22,7 +22,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import lifetime.persistence.User;
+import lifetime.persistence.LifetimeUser;
 
 /**
  *
@@ -68,7 +68,7 @@ public class LifetimeService implements LifetimeBusiness {
 
     @Override
     public void addUser(String firstname, String lastname, String email, String password, String motherlanguage) {
-        User user = new User(null, firstname, lastname, email, null, null, motherlanguage);
+        LifetimeUser user = new LifetimeUser(null, firstname, lastname, email, null, null, motherlanguage);
         user.setMotherLanguage(motherlanguage);
         em.persist(user);
         addUserRole(email, "USERS");
@@ -605,15 +605,15 @@ public class LifetimeService implements LifetimeBusiness {
     }
 
     @Override
-    public User getUser(Integer userId) {
-        return em.find(User.class, userId);
+    public LifetimeUser getUser(Integer userId) {
+        return em.find(LifetimeUser.class, userId);
     }
 
     @Override
     public Integer getUserId(String username) {
-        Query q = em.createNamedQuery("User.findByUsername", User.class);
+        Query q = em.createNamedQuery("User.findByUsername", LifetimeUser.class);
         q.setParameter("username", username);
-        User user = (User) q.getSingleResult();
+        LifetimeUser user = (LifetimeUser) q.getSingleResult();
         return user.getId();
     }
 
@@ -668,26 +668,26 @@ public class LifetimeService implements LifetimeBusiness {
 
     @Override
     public List<String> getFullnames() {
-        List<User> users = getAllUsers();
+        List<LifetimeUser> users = getAllUsers();
         List<String> fullnames = new LinkedList();
-        for (User u : users) {
+        for (LifetimeUser u : users) {
             fullnames.add(u.getFirstName() + " " + u.getLastName());
         }
         return fullnames;
     }
 
     @Override
-    public List<User> getAllUsers() {
-        Query q = em.createNamedQuery("User.findAll", User.class);
+    public List<LifetimeUser> getAllUsers() {
+        Query q = em.createNamedQuery("User.findAll", LifetimeUser.class);
         return q.getResultList();
     }
 
     @Override
     public Integer getUserId(String firstname, String lastname) {
-        Query q = em.createNamedQuery("User.findByLastname", User.class);
+        Query q = em.createNamedQuery("User.findByLastname", LifetimeUser.class);
         q.setParameter("lastname", lastname);
-        List<User> users = q.getResultList();
-        for (User u : users) {
+        List<LifetimeUser> users = q.getResultList();
+        for (LifetimeUser u : users) {
             if (u.getFirstName().equals(firstname)) {
                 return u.getId();
             }
@@ -760,9 +760,9 @@ public class LifetimeService implements LifetimeBusiness {
 
     @Override
     public List<String> getFirstnames() {
-        List<User> users = getAllUsers();
+        List<LifetimeUser> users = getAllUsers();
         List<String> names = new LinkedList<>();
-        for (User u : users) {
+        for (LifetimeUser u : users) {
             names.add(u.getFirstName());
         }
         return names;
@@ -770,9 +770,9 @@ public class LifetimeService implements LifetimeBusiness {
 
     @Override
     public List<String> getLastnames() {
-        List<User> users = getAllUsers();
+        List<LifetimeUser> users = getAllUsers();
         List<String> names = new LinkedList<>();
-        for (User u : users) {
+        for (LifetimeUser u : users) {
             names.add(u.getLastName());
         }
         return names;
@@ -879,15 +879,15 @@ public class LifetimeService implements LifetimeBusiness {
 
     @Override
     public boolean usernameExists(String username) {
-        Query q = em.createNamedQuery("User.findByUsername", User.class);
+        Query q = em.createNamedQuery("User.findByUsername", LifetimeUser.class);
         q.setParameter("username", username);
-        List<User> users = q.getResultList();
+        List<LifetimeUser> users = q.getResultList();
         return !users.isEmpty();
     }
 
     @Override
     public String getMotherLanguage(Integer userId) {
-        User u = em.find(User.class, userId);
+        LifetimeUser u = em.find(LifetimeUser.class, userId);
         return u.getMotherLanguage();
     }
 
@@ -1329,7 +1329,7 @@ public class LifetimeService implements LifetimeBusiness {
         System.out.println("#Documents: " + documents.length);
         System.out.println("Email Text: " + jobApplication.getEmailText());
         JobOffer jOffer = getJobOffer(jobApplication.getJobOfferId());
-        User u = getUser(userId);
+        LifetimeUser u = getUser(userId);
         sendMail.sendMail(u, jobApplication, jOffer, documents);
         System.out.println("********************************************");
         System.out.println("********************************************");

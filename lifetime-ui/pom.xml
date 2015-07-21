@@ -34,23 +34,90 @@
                     <scope>test</scope>
                 </dependency>
                 <dependency>
+                    <groupId>org.jboss.shrinkwrap</groupId>
+                    <artifactId>shrinkwrap-api</artifactId>
+                    <scope>test</scope>
+                    <type>jar</type>
+                </dependency>
+                <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-container-test-api</artifactId>
                     <scope>test</scope>
                     <type>jar</type>
                 </dependency>
                 <dependency>
-                    <groupId>org.jboss.arquillian.extension</groupId>
-                    <artifactId>arquillian-drone-webdriver-depchain</artifactId>
-                    <type>pom</type>
+                    <groupId>org.jboss.arquillian.testng</groupId>
+                    <artifactId>arquillian-testng-container</artifactId>
                     <scope>test</scope>
-                </dependency>            
+                    <type>jar</type>
+                </dependency>
+                <dependency>
+                    <groupId>org.testng</groupId>
+                    <artifactId>testng</artifactId>
+                    <version>6.9.4</version>
+                    <scope>test</scope>
+                </dependency>
             </dependencies>
+            <!-- clip -->
+            <dependencyManagement>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jboss.arquillian</groupId>
+                        <artifactId>arquillian-bom</artifactId>
+                        <version>1.1.8.Final</version>
+                        <scope>import</scope>
+                        <type>pom</type>
+                    </dependency>
+                    <!-- Arquillian Drone dependencies and WebDriver/Selenium dependencies -->
+                    <dependency>
+                        <groupId>org.jboss.arquillian.extension</groupId>
+                        <artifactId>arquillian-drone-bom</artifactId>
+                        <version>1.3.1.Final</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>            
+                </dependencies>
+            </dependencyManagement>
         </profile>
     </profiles>
 
     <dependencies>
         <!-- Versions for these are configured in the parent POM -->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-server</artifactId>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-push</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-themes</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client-compiled</artifactId>
+            <version>${vaadin.version}</version>
+        </dependency>
+        
+
+        <!-- Custom components -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>lifetime-ejb</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
+        <!-- Testing -->
+
+        <dependency>
+            <groupId>org.vaadin.addons</groupId>
+            <artifactId>wizards-for-vaadin</artifactId>
+            <version>1.1.0</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
@@ -68,62 +135,56 @@
             <version>2.3.0</version>
         </dependency>
         <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-container-test-api</artifactId>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8.1</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.extension</groupId>
+            <artifactId>arquillian-drone-webdriver-depchain</artifactId>
+            <type>pom</type>
+            <scope>test</scope>
+            <version>1.3.1.Final</version>
+        </dependency>            
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.6.1-RC1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+            <version>2.6.1-RC1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.testng</groupId>
+            <artifactId>arquillian-testng-container</artifactId>
             <version>1.1.8.Final</version>
             <scope>test</scope>
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>org.jboss.shrinkwrap</groupId>
-            <artifactId>shrinkwrap-api</artifactId>
-            <scope>test</scope>
-            <type>jar</type>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.arquillian.testng</groupId>
-            <artifactId>arquillian-testng-container</artifactId>
-            <scope>test</scope>
-            <type>jar</type>
-        </dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.12</version>
+        </dependency>        
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-chrome-driver</artifactId>
-            <version>2.46.0</version>
-            <scope>test</scope>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>2.46.0</version>
-            <scope>test</scope>
-            <type>jar</type>
-        </dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.12</version>
+        </dependency>        
     </dependencies>
-
         
-    <!-- clip -->
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.1.8.Final</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-            <!-- Arquillian Drone dependencies and WebDriver/Selenium dependencies -->
-            <dependency>
-                <groupId>org.jboss.arquillian.extension</groupId>
-                <artifactId>arquillian-drone-bom</artifactId>
-                <version>1.3.1.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>            
-        </dependencies>
-    </dependencyManagement>
-                        
     <build>
         <plugins>
             <plugin>
@@ -155,6 +216,4 @@
         
 
     </build>
-    
-    
 </project>

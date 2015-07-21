@@ -25,13 +25,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author zua
  */
 @Entity
-@Table(name = "Roles")
+@Table(name = "securityRole")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Roles.findAll", query = "SELECT r FROM Roles r"),
-    @NamedQuery(name = "Roles.findById", query = "SELECT r FROM Roles r WHERE r.id = :id"),
-    @NamedQuery(name = "Roles.findByName", query = "SELECT r FROM Roles r WHERE r.name = :name")})
-public class Roles implements Serializable {
+    @NamedQuery(name = "SecurityRole.findAll", query = "SELECT s FROM SecurityRole s"),
+    @NamedQuery(name = "SecurityRole.findById", query = "SELECT s FROM SecurityRole s WHERE s.id = :id"),
+    @NamedQuery(name = "SecurityRole.findByRoleName", query = "SELECT s FROM SecurityRole s WHERE s.roleName = :roleName")})
+public class SecurityRole implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,20 +41,16 @@ public class Roles implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "name")
-    private String name;
+    @Size(min = 1, max = 255)
+    @Column(name = "roleName")
+    private String roleName;
 
-    public Roles() {
+    public SecurityRole() {
     }
 
-    public Roles(Integer id) {
+    public SecurityRole(Integer id, String roleName) {
         this.id = id;
-    }
-
-    public Roles(Integer id, String name) {
-        this.id = id;
-        this.name = name;
+        this.roleName = roleName;
     }
 
     public Integer getId() {
@@ -64,46 +61,38 @@ public class Roles implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.id);
-        hash = 67 * hash + Objects.hashCode(this.name);
+        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + Objects.hashCode(this.roleName);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
+        if (validObejct(obj)) {
+            final SecurityRole other = (SecurityRole) obj;
+            return Objects.equals(this.id, other.id) && Objects.equals(this.roleName, other.roleName);
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Roles other = (Roles) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        return true;
+        return false;
     }
 
-
-    
-    
     @Override
     public String toString() {
-        return "lifetime.persistence.Roles[ id=" + id + " ]";
+        return "lifetime.persistence.SecurityRole[ id=" + id + " ]";
     }
-    
+
+    private boolean validObejct(Object obj) {
+        return (obj != null) && (getClass() == obj.getClass());
+    }
+
 }

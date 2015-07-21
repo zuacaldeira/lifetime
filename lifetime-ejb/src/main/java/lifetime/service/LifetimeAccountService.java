@@ -6,20 +6,16 @@
 package lifetime.service;
 
 import java.util.Date;
+import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
-import javax.interceptor.Interceptors;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import lifetime.persistence.Account;
-import lifetime.persistence.Roles;
-import lifetime.persistence.Users;
-import lifetime.util.SecurityRole;
+import lifetime.persistence.LifetimeUser;
+import lifetime.persistence.UserAccount;
+import org.slf4j.Logger;
 
 /**
  * The Lifetime Account Management Service. It provides services for users to
@@ -27,22 +23,29 @@ import lifetime.util.SecurityRole;
  *
  * @author zua
  */
-@Stateless
+@Stateless(name = "LifetimeAccountService")
 @Remote(LifetimeAccountBusiness.class)
 
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
-@Interceptors({LoggerInterceptor.class, ExceptionHandlerInterceptor.class})
 public class LifetimeAccountService implements LifetimeAccountBusiness {
 
-    @PersistenceContext(name = "jdbc/lifetime", unitName = "lifetimePU")
-    private EntityManager em;
+    /**
+     * JPA Controller.
+     */
+    @EJB
+    private UserAccountJpaController accountController;
+
+    /**
+     * sl4j Logger
+     */
+    private Logger logger = org.slf4j.LoggerFactory.getLogger(LifetimeAccountService.class);
 
     /**
      * Registers a new user into the system. Given a set of assumed input data,
      * creates a new account related entities and persist them un the underlying
-     * database. At least instances of {@link UserAccount} and {@link User} will
-     * be created.
+     * database. At least instances of {@link UserAccount} and
+     * {@link LifetimeUser} will be created.
      *
      * <p>
      * @todo After the end returns without error the new transaction should be
@@ -53,27 +56,23 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      * @param lastname The user's last name
      * @param email The user's email
      * @param password The user's password
-     * @param motherLanguage The user's default language
+     * @param language The user's default language
      * @param birthdate The user's birth date
      */
     @Override
-    @Interceptors({RegisterInterceptor.class})
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public boolean register(String firstname,
             String lastname,
             String email,
             String password,
-            String motherLanguage,
+            String language,
             Date birthdate,
             String birthPlace) {
-        // Create a new Account entity, and set it's security role
-
-        // Create a new user and associate it with the new accpount
-        Users user = new Users(null, firstname, lastname, birthdate, birthPlace, motherLanguage);
-        Account account = new Account(null, email, password);
-        account.setOwner(user);
-        account.setPlayingRole(findRoleByName(SecurityRole.USER.name()));
-        // Request saving teh account in the db
-        em.persist(user);
+        UserAccount account = new UserAccount(null, email, password);
+        LifetimeUser user = new LifetimeUser(null, firstname, lastname, email, birthdate, birthPlace, language);
+        account.setLifetimeUser(user);
+        accountController.create(account);
+        logger.info("New user resgistered: " + email);
         return true;
     }
 
@@ -84,31 +83,11 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      * @return true if terminates
      */
     @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public boolean deleteAccount(String email) {
-        Account account = findAccountByEmail(email);
-        em.remove(account);
+        accountController.delete(email);
+        logger.info("User account removed: " + email);
         return true;
-    }
-
-    private Account findAccountByEmail(String email) {
-        try {
-            Query q = em.createNamedQuery("Account.findByEmail", Account.class);
-            q.setParameter("email", email);
-            return (Account) q.getSingleResult();
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    private Roles findRoleByName(String roles) {
-        Query q = em.createNamedQuery("Roles.findByName", Roles.class);
-        q.setParameter("name", roles);
-        return (Roles) q.getSingleResult();
-    }
-
-    @Override
-    public boolean existsAccount(String email) {
-        return findAccountByEmail(email) != null;
     }
 
 }

@@ -10,7 +10,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
-import lifetime.persistence.User;
+import lifetime.persistence.LifetimeUser;
 
 /**
  *
@@ -27,8 +27,8 @@ public class TodoManager {
     // "Insert Code > Add Business Method")
     @Schedule(minute = "*")
     public void updateUserTodos() {
-        List<User> users = service.getAllUsers();
-        for (User u : users) {
+        List<LifetimeUser> users = service.getAllUsers();
+        for (LifetimeUser u : users) {
             System.out.println("********** " + u);
             List<Todo> todos = service.getAllTodos();
             for (Todo t : todos) {

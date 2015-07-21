@@ -13,15 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.exceptions;
-
-import javax.ejb.ApplicationException;
+package lifetime.persistence.exceptions;
 
 /**
  *
  * @author Alexandre Zua Caldeira
  */
-@ApplicationException(rollback = true)
 public class LifetimeSecurityException extends RuntimeException {
 
     static final long serialVersionUID = -3387516995463229948L;

@@ -5,7 +5,7 @@
  */
 package lifetime.service;
 
-import lifetime.exceptions.LifetimeSecurityException;
+import lifetime.persistence.exceptions.LifetimeSecurityException;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 
