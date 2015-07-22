@@ -45,6 +45,12 @@
         <local.glassfish.passwordFile>
             ${local.glassfish.home}/domains/${local.glassfish.domain}/config/domain-passwords
         </local.glassfish.passwordFile>
+        
+        <!-- Sonar -->
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <!--sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis-->
+        <sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.language>java</sonar.language>
     </properties>
     
     
@@ -101,7 +107,19 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.4.201502262128</version>
-            </plugin>
+                <configuration>
+                    <destFile>${sonar.jacoco.reportPath}</destFile>
+                    <append>true</append>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>            
         </plugins>
         
         <pluginManagement>
@@ -152,14 +170,7 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.18.1</version>
-                </plugin>    
-                            
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>sonar-maven-plugin</artifactId>
-                    <version>2.6</version>
-                </plugin>
-                  
+                </plugin>                                
             </plugins>
         </pluginManagement>
     </build>
@@ -197,7 +208,7 @@
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
                 <version>2.0.28-beta</version>
-            </dependency>      
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
