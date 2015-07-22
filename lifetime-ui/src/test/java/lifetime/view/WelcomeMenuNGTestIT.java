@@ -16,6 +16,7 @@
 package lifetime.view;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.openqa.selenium.By;
@@ -23,7 +24,15 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import lifetime.ui.TestBundle;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ArchivePaths;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author zua
@@ -31,6 +40,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 @Test
 @RunAsClient
 public class WelcomeMenuNGTestIT extends LifetimeArquillian {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * Arquillian ready selenium web driver
@@ -44,37 +55,73 @@ public class WelcomeMenuNGTestIT extends LifetimeArquillian {
     private WebElement lifetimeMenu;
 
     /**
+     * Factory of deployments or scenarios for this test case.
+     *
+     * @return A web archive with the test application
+     */
+    @Deployment(testable = false)
+    public static Archive createDeployment() {
+        // pick up a deployment
+        WebArchive result = ShrinkWrap.create(WebArchive.class, "test.war")
+                //.addAsLibraries(files)
+                .addAsResource(EmptyAsset.INSTANCE,
+                        ArchivePaths.create("beans.xml"));
+        return result;
+    }
+
+    private Logger getLogger() {
+        return logger;
+    }
+
+    /**
      * Test of getHomeButton method, of class WelcomeMenu.
      */
     @Test
     public void testGetHomeButton() {
-        getLogger().info("IT-TEST: testGetHomeButton()".toUpperCase());
+        getLogger().info("testWelcomeViewStructure()".toUpperCase());
         Assert.assertNotNull(webDriver, "Drone web driver not injected.");
+
         webDriver.get(TestBundle.HOME_URL);
-        getLogger().info("\tWeb page loaded");
+        getLogger().info("Page title: " + webDriver.getTitle());
 
-        topElements = webDriver.findElements(By.xpath("*"));
-        Assert.assertNotNull(topElements, "WebPage not found");
-        Assert.assertFalse(topElements.isEmpty(), "WebPage not found");
-        getLogger().info("\tFound content");
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-        lifetimeUI = topElements.get(0).findElement(By.xpath("*"));
-        Assert.assertNotNull(lifetimeUI, "Lifetime UI not found");
-        getLogger().info("\tFound lifetime-ui" + lifetimeUI.getText());
-        // Find the menu
-        lifetimeView = lifetimeUI.findElement(By.xpath(XPathHelper.getXPathExpression(StyleClassName.LIFETIME_VIEW)));
-        Assert.assertNotNull(lifetimeView, "Lifetime VIEW not found");
-        getLogger().info("\tFound lifetime-view" + lifetimeView.getText());
-
-        lifetimeMenu = lifetimeView.findElement(By.xpath(XPathHelper.getXPathExpression(StyleClassName.LIFETIME_MENU)));
-        Assert.assertNotNull(lifetimeMenu, "Lifetime MENU not found");
-        getLogger().info("\tFound lifetime-Menu" + lifetimeMenu.getText());
-
-        WebElement homeButton = lifetimeMenu.findElement(By.xpath(XPathHelper.getXPathExpression(StyleClassName.HOME_BUTTON)));
+        /**
+         * Has a welcome menu...
+         */
+        getLogger().info("Looking for a lifetime menu...");
+        WebElement lifetimeMenu = webDriver.findElement(By.xpath("//div[contains(@id,'lifetime-menu')]"));
+        Assert.assertNotNull(lifetimeMenu, "Lifetime menu not found");
+        /**
+         * with a home button
+         */
+        getLogger().info("Looking for the home button...");
+        WebElement homeButton = webDriver.findElement(By.xpath("//div[contains(@id,'home-button')]"));
         Assert.assertNotNull(homeButton, "Home button not found");
-        getLogger().info("\tFound home button" + homeButton.getText());
-        homeButton.click();
-        getLogger().info("\tClicked home button");
+
+        /**
+         * with a login button...
+         */
+        getLogger().info("Looking for the login button...");
+        WebElement loginButton = webDriver.findElement(By.xpath("//div[contains(@id,'login-button')]"));
+        Assert.assertNotNull(loginButton, "Login button not found");
+
+        /**
+         * with a login button...
+         */
+        getLogger().info("Looking for the register button...");
+        WebElement registerButton = webDriver.findElement(By.xpath("//div[contains(@id,'register-button')]"));
+        Assert.assertNotNull(registerButton, "Register button not found");
+
+        /**
+         * with a contact button...
+         */
+        getLogger().info("Looking for the contact button...");
+        WebElement contactButton = webDriver.findElement(By.xpath("//div[contains(@id,'contact-button')]"));
+        Assert.assertNotNull(contactButton, "Contact button not found");
+
+        // That's it!
+        webDriver.close();
     }
 
 }

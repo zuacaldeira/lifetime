@@ -16,8 +16,6 @@
 package lifetime.view;
 
 import org.jboss.arquillian.testng.Arquillian;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -25,11 +23,7 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class LifetimeArquillian extends Arquillian {
     
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public Logger getLogger() {
-        return logger;
-    }
     
     
     

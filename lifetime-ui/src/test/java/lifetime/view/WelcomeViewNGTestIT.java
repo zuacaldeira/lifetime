@@ -15,7 +15,7 @@
  */
 package lifetime.view;
 
-import java.io.File;
+import java.util.concurrent.TimeUnit;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
@@ -28,8 +28,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import lifetime.ui.TestBundle;
+import org.jboss.arquillian.testng.Arquillian;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Test suite for <b>structural, navigational and functional</b> requirements of
@@ -41,7 +44,9 @@ import org.openqa.selenium.WebElement;
  */
 @Test
 @RunAsClient
-public class WelcomeViewNGTestIT extends LifetimeArquillian {
+public class WelcomeViewNGTestIT extends Arquillian {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Drone
     private ChromeDriver webDriver;
@@ -57,20 +62,15 @@ public class WelcomeViewNGTestIT extends LifetimeArquillian {
     @Deployment(testable = false)
     public static Archive createDeployment() {
         // pick up a deployment
-        return Deployments.getDeploymentWelcomeView();
+        WebArchive result = ShrinkWrap.create(WebArchive.class, "test.war")
+                //.addAsLibraries(files)
+                .addAsResource(EmptyAsset.INSTANCE,
+                        ArchivePaths.create("beans.xml"));
+        return result;
     }
 
-    private static class Deployments {
-
-        public static Archive getDeploymentWelcomeView() {
-            WebArchive result = ShrinkWrap.create(WebArchive.class, "test.war")
-                    //.addAsLibraries(files)
-                    .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
-                            "META-INF/persistence.xml")
-                    .addAsResource(EmptyAsset.INSTANCE,
-                            ArchivePaths.create("beans.xml"));
-            return result;
-        }
+    private Logger getLogger() {
+        return logger;
     }
 
     /**
@@ -92,48 +92,44 @@ public class WelcomeViewNGTestIT extends LifetimeArquillian {
      */
     @Test
     public void testWelcomeViewStructure() {
-        getLogger().info("IT-TEST: testWelcomeViewStructure()".toUpperCase());
+        getLogger().info("testWelcomeViewStructure()".toUpperCase());
         Assert.assertNotNull(webDriver, "Drone web driver not injected.");
 
         webDriver.get(TestBundle.HOME_URL);
         getLogger().info("Page title: " + webDriver.getTitle());
-        
+
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         /**
          * Has a top level element...
          */
         getLogger().info("Looking for a lifetime page...");
-        WebElement lifetimeWebPage = webDriver.findElement(By.xpath("*"));
-        getLogger().info("Found: " + lifetimeWebPage);
-        Assert.assertNotNull(lifetimeWebPage);
+        WebElement lifetimeWebPage = webDriver.findElement(By.xpath("//div[contains(@id,'lifetime-ui')]"));
+        Assert.assertNotNull(lifetimeWebPage, "Lifetime page not found");
         /**
          * Has a welcome ui...
          */
         getLogger().info("Looking for a lifetime ui...");
-        WebElement lifetimeUi = lifetimeWebPage.findElement(By.xpath("*"));
-        getLogger().info("Found: " + lifetimeUi);
-        Assert.assertNotNull(lifetimeUi);
+        WebElement lifetimeUi = webDriver.findElement(By.xpath("//div[contains(@id,'lifetime-ui')]"));
+        Assert.assertNotNull(lifetimeUi, "LifetimeUI not found");
         /**
          * with a welcome view...
          */
         getLogger().info("Looking for a lifetime view...");
-        WebElement lifetimeView = lifetimeUi.findElement(By.xpath("//div[@id='lifetime-view']"));
-        getLogger().info("Found: " + lifetimeView);
-        Assert.assertNotNull(lifetimeView);
+        WebElement lifetimeView = webDriver.findElement(By.xpath("//div[contains(@id,'lifetime-view')]"));
+        Assert.assertNotNull(lifetimeView, "LifetimeView not found");
 
         /**
          * and with a welcome menu...
          */
         getLogger().info("Looking for a lifetime menu...");
-        WebElement lifetimeMenu = lifetimeView.findElement(By.xpath("//div[@id='lifetime-menu']"));
-        getLogger().info("Found: " + lifetimeMenu);
-        Assert.assertNotNull(lifetimeMenu);
+        WebElement lifetimeMenu = webDriver.findElement(By.xpath("//div[contains(@id,'lifetime-menu')]"));
+        Assert.assertNotNull(lifetimeMenu, "LifetimeMenu not found");
         /**
          * and a welcome content.
          */
         getLogger().info("Looking for a lifetime content...");
-        WebElement lifetimeContent = lifetimeView.findElement(By.xpath(".//div[@id='lifetime-content']"));
-        getLogger().info("Found: " + lifetimeContent);
-        Assert.assertNotNull(lifetimeContent);
+        WebElement lifetimeContent = webDriver.findElement(By.xpath("//div[contains(@id,'lifetime-content')]"));
+        Assert.assertNotNull(lifetimeContent, "LifetimeContent not found");
         webDriver.close();
     }
 }
