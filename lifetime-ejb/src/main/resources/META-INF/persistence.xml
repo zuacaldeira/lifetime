@@ -5,7 +5,9 @@
     <jta-data-source>jdbc/lifetime</jta-data-source>
     <class>lifetime.persistence.Users</class>
     <class>lifetime.persistence.Roles</class>
-    <class>lifetime.persistence.Accounts</class>
+    <class>lifetime.persistence.Account</class>
+    <class>lifetime.persistence.Role</class>
+    <class>lifetime.persistence.User</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create-tables"/>

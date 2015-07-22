@@ -8,7 +8,7 @@ package lifetime.service;
 import java.io.File;
 import java.util.Date;
 import javax.ejb.EJB;
-import lifetime.persistence.Accounts;
+import lifetime.persistence.Account;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -98,7 +98,7 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
             WebArchive result = ShrinkWrap.create(WebArchive.class, TEST_APP_NAME)
                     //.addAsLibraries(files)
                     .addClass(LifetimeAccountBusiness.class)
-                    .addClass(Accounts.class)
+                    .addClass(Account.class)
                     .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
                             "META-INF/persistence.xml")
                     .addAsResource(EmptyAsset.INSTANCE,

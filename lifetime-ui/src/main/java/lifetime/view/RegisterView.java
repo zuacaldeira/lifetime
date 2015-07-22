@@ -15,10 +15,10 @@
  */
 package lifetime.view;
 
-import com.vaadin.server.Page;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;
+import lifetime.ui.Navigation;
 
 /**
  *
@@ -62,14 +62,14 @@ public class RegisterView extends WelcomeView implements ClickListener {
         String context = VaadinServlet.getCurrent().getServletContext().getContextPath();
 
         if (event.getButton() == getMenu().getHomeButton()) {
-            Page.getCurrent().setLocation(context);
+            getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
         }
-        if (event.getButton() == getMenu().getCancelButton()) {
+        else if (event.getButton() == getMenu().getCancelButton()) {
             getContent().getRegisterForm().clear();
         }
-        if (event.getButton() == getMenu().getOkButton()) {
+        else if (event.getButton() == getMenu().getOkButton()) {
             getContent().getRegisterForm().submit();
-            getUI().getPage().setLocation(context+"/user");
+            getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
         }
     }
 

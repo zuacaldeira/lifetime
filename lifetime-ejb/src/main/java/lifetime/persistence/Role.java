@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -24,33 +25,35 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author zua
  */
 @Entity
-@Table(name = "Roles")
+@Table(name = "Role", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"name"}),
+    @UniqueConstraint(columnNames = {"id"})})
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Roles.findAll", query = "SELECT r FROM Roles r"),
-    @NamedQuery(name = "Roles.findById", query = "SELECT r FROM Roles r WHERE r.id = :id"),
-    @NamedQuery(name = "Roles.findByName", query = "SELECT r FROM Roles r WHERE r.name = :name")})
-public class Roles implements Serializable {
+    @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
+    @NamedQuery(name = "Role.findById", query = "SELECT r FROM Role r WHERE r.id = :id"),
+    @NamedQuery(name = "Role.findByName", query = "SELECT r FROM Role r WHERE r.name = :name")})
+public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 45)
     private String name;
 
-    public Roles() {
+    public Role() {
     }
 
-    public Roles(Integer id) {
+    public Role(Integer id) {
         this.id = id;
     }
 
-    public Roles(Integer id, String name) {
+    public Role(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -81,10 +84,10 @@ public class Roles implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Roles)) {
+        if (!(object instanceof Role)) {
             return false;
         }
-        Roles other = (Roles) object;
+        Role other = (Role) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -93,7 +96,7 @@ public class Roles implements Serializable {
 
     @Override
     public String toString() {
-        return "lifetime.persistence.Roles[ id=" + id + " ]";
+        return "lifetime.persistence.Role[ id=" + id + " ]";
     }
     
 }

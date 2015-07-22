@@ -27,7 +27,6 @@ import com.vaadin.ui.VerticalLayout;
 import java.util.Locale;
 import java.util.Objects;
 import lifetime.service.LifetimeAccountBusiness;
-import lifetime.ui.Navigation;
 import util.ServiceLocator;
 import util.Translator;
 
@@ -149,14 +148,9 @@ public class RegistrationForm extends HorizontalLayout {
             // Upon successfull registration, return to the welcome page
             if (successfullRegistration) {
                 Notification.show("Registration concluded.", Notification.Type.TRAY_NOTIFICATION);
-                getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
-            } else {
-                Notification.show("Registration failed. Try again later.", Notification.Type.WARNING_MESSAGE);
-                getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
             }
         } catch (Exception ex) {
             Notification.show("Registration failed. Try again later.", Notification.Type.WARNING_MESSAGE);
-            getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
         }
     }
 

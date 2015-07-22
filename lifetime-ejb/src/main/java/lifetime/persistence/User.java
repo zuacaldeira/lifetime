@@ -18,6 +18,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -27,57 +28,58 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author zua
  */
 @Entity
-@Table(name = "Users")
+@Table(name = "User", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"id"})})
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
-    @NamedQuery(name = "Users.findById", query = "SELECT u FROM Users u WHERE u.id = :id"),
-    @NamedQuery(name = "Users.findByFirstname", query = "SELECT u FROM Users u WHERE u.firstname = :firstname"),
-    @NamedQuery(name = "Users.findByLastname", query = "SELECT u FROM Users u WHERE u.lastname = :lastname"),
-    @NamedQuery(name = "Users.findByBirthDate", query = "SELECT u FROM Users u WHERE u.birthDate = :birthDate"),
-    @NamedQuery(name = "Users.findByBirthPlace", query = "SELECT u FROM Users u WHERE u.birthPlace = :birthPlace"),
-    @NamedQuery(name = "Users.findByLanguage", query = "SELECT u FROM Users u WHERE u.language = :language")})
-public class Users implements Serializable {
+    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+    @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
+    @NamedQuery(name = "User.findByFirstname", query = "SELECT u FROM User u WHERE u.firstname = :firstname"),
+    @NamedQuery(name = "User.findByLastname", query = "SELECT u FROM User u WHERE u.lastname = :lastname"),
+    @NamedQuery(name = "User.findByBirthDate", query = "SELECT u FROM User u WHERE u.birthDate = :birthDate"),
+    @NamedQuery(name = "User.findByBirthPlace", query = "SELECT u FROM User u WHERE u.birthPlace = :birthPlace"),
+    @NamedQuery(name = "User.findByLanguage", query = "SELECT u FROM User u WHERE u.language = :language")})
+public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "firstname")
+    @Column(name = "firstname", nullable = false, length = 255)
     private String firstname;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "lastname")
+    @Column(name = "lastname", nullable = false, length = 255)
     private String lastname;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "birthDate")
+    @Column(name = "birthDate", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthDate;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "birthPlace")
+    @Column(name = "birthPlace", nullable = false, length = 255)
     private String birthPlace;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "language")
+    @Column(name = "language", nullable = false, length = 255)
     private String language;
 
-    public Users() {
+    public User() {
     }
 
-    public Users(Integer id) {
+    public User(Integer id) {
         this.id = id;
     }
 
-    public Users(Integer id, String firstname, String lastname, Date birthDate, String birthPlace, String language) {
+    public User(Integer id, String firstname, String lastname, Date birthDate, String birthPlace, String language) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -144,10 +146,10 @@ public class Users implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Users)) {
+        if (!(object instanceof User)) {
             return false;
         }
-        Users other = (Users) object;
+        User other = (User) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -156,7 +158,7 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "lifetime.persistence.Users[ id=" + id + " ]";
+        return "lifetime.persistence.User[ id=" + id + " ]";
     }
     
 }

@@ -6,7 +6,9 @@
 package lifetime.service;
 
 import java.util.Date;
+import javax.annotation.Resource;
 import javax.ejb.Remote;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -14,8 +16,8 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import lifetime.persistence.Users;
-import lifetime.persistence.Accounts;
+import lifetime.persistence.Account;
+import lifetime.persistence.User;
 import org.slf4j.Logger;
 
 /**
@@ -36,6 +38,8 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      */
     private Logger logger = org.slf4j.LoggerFactory.getLogger(LifetimeAccountService.class);
 
+    @Resource
+    private SessionContext ctx;
     /**
      * Persistence Context.
      */
@@ -45,8 +49,8 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
     /**
      * Registers a new user into the system. Given a set of assumed input data,
      * creates a new account related entities and persist them un the underlying
-     * database. At least instances of {@link Accounts} and {@link Users} will
-     * be created.
+     * database. At least instances of {@link Account} and {@link Users} will be
+     * created.
      *
      * <p>
      * @todo After the end returns without error the new transaction should be
@@ -61,7 +65,6 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      * @param birthdate The user's birth date
      */
     @Override
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public boolean register(String firstname,
             String lastname,
             String email,
@@ -70,8 +73,9 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
             Date birthdate,
             String birthPlace) {
         logger.info("Creating new account for " + email);
-        Users users = createUser(firstname, lastname, birthdate, birthPlace, language);
-        em.persist(new Accounts(null, email, password, SecurityRoles.USER.name(), users.getId()));
+        User users = new User(null, firstname, lastname, birthdate, birthPlace, language);
+        Account account = new Account(null, email, password);
+        em.persist(account);
         logger.info("Registration successfull for: " + email);
         return true;
     }
@@ -83,16 +87,10 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      */
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public boolean deleteAccount(Accounts account) {
+    public boolean deleteAccount(Account account) {
         em.remove(account);
         logger.info("User account removed: " + account);
         return true;
-    }
-
-    private Users createUser(String firstname, String lastname, Date birthdate, String birthPlace, String language) {
-        Users user = new Users(null, firstname, lastname, birthdate, birthPlace, language);
-        em.persist(user);
-        return em.merge(user);
     }
 
 }

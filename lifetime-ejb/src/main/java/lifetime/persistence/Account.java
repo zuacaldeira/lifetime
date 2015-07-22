@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -24,56 +25,45 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author zua
  */
 @Entity
-@Table(name = "Accounts")
+@Table(name = "Account", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"email"}),
+    @UniqueConstraint(columnNames = {"id"})})
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Accounts.findAll", query = "SELECT a FROM Accounts a"),
-    @NamedQuery(name = "Accounts.findById", query = "SELECT a FROM Accounts a WHERE a.id = :id"),
-    @NamedQuery(name = "Accounts.findByEmail", query = "SELECT a FROM Accounts a WHERE a.email = :email"),
-    @NamedQuery(name = "Accounts.findByPassword", query = "SELECT a FROM Accounts a WHERE a.password = :password"),
-    @NamedQuery(name = "Accounts.findByRole", query = "SELECT a FROM Accounts a WHERE a.role = :role"),
-    @NamedQuery(name = "Accounts.findByUser", query = "SELECT a FROM Accounts a WHERE a.user = :user")})
-public class Accounts implements Serializable {
+    @NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a"),
+    @NamedQuery(name = "Account.findById", query = "SELECT a FROM Account a WHERE a.id = :id"),
+    @NamedQuery(name = "Account.findByEmail", query = "SELECT a FROM Account a WHERE a.email = :email"),
+    @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM Account a WHERE a.password = :password")})
+public class Account implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, length = 45)
     private String email;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "password")
+    @Column(name = "password", nullable = false, length = 255)
     private String password;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "role")
-    private String role;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "user")
-    private int user;
 
-    public Accounts() {
+    public Account() {
     }
 
-    public Accounts(Integer id) {
+    public Account(Integer id) {
         this.id = id;
     }
 
-    public Accounts(Integer id, String email, String password, String role, int user) {
+    public Account(Integer id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.role = role;
-        this.user = user;
     }
 
     public Integer getId() {
@@ -100,22 +90,6 @@ public class Accounts implements Serializable {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public int getUser() {
-        return user;
-    }
-
-    public void setUser(int user) {
-        this.user = user;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -126,10 +100,10 @@ public class Accounts implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Accounts)) {
+        if (!(object instanceof Account)) {
             return false;
         }
-        Accounts other = (Accounts) object;
+        Account other = (Account) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -138,7 +112,7 @@ public class Accounts implements Serializable {
 
     @Override
     public String toString() {
-        return "lifetime.persistence.Accounts[ id=" + id + " ]";
+        return "lifetime.persistence.Account[ id=" + id + " ]";
     }
     
 }

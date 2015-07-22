@@ -6,7 +6,7 @@
 package lifetime.service;
 
 import java.util.Date;
-import lifetime.persistence.Accounts;
+import lifetime.persistence.Account;
 
 /**
  * This interface defines the contract between the clients and the account
@@ -35,6 +35,6 @@ public interface LifetimeAccountBusiness {
      * @param account
      * @return {@code true} if the account data is successfully removed
      */
-    public boolean deleteAccount(Accounts account);
+    public boolean deleteAccount(Account account);
 
 }
