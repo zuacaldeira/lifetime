@@ -32,7 +32,7 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
 
     @EJB(name = "java:global/lifetime-ui/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness", beanInterface = LifetimeAccountBusiness.class)
     private LifetimeAccountBusiness accountService;
-    
+
     private final Logger logger = Logger.getLogger(LifetimeAccountServiceTestIT.class);
 
     @Deployment(testable = true)
@@ -56,17 +56,27 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
     public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
         logger.info(":::testResgister:::" + firstName + ":" + lastName + ":" + email);
         Assert.assertNotNull(accountService, "Service not initialized");
-        Assert.assertTrue(accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace));
+        if (!accountService.hasAccount(email)) {
+            Assert.assertTrue(accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace));
+        }
         logger.info("::::::done");
     }
 
+    @Test(dataProvider = "registerData", priority = 1)
+    public void testDelete(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
+        logger.info(":::testResgister:::" + firstName + ":" + lastName + ":" + email);
+        Assert.assertNotNull(accountService, "Service not initialized");
+        if (accountService.hasAccount(email)) {
+            Assert.assertTrue(accountService.deleteAccount(email));
+        }
+        logger.info("::::::done");
+    }
 
-    
-    @Test(dataProvider = "registerNegativeData", expectedExceptions = {RuntimeException.class})
+    @Test(dataProvider = "registerNegativeData")
     public void testBadRegistration(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
         logger.info(":::testBadregistration:::" + firstName + ":" + lastName + ":" + email);
         Assert.assertNotNull(accountService, "Service not initialized");
-        accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace);
+        Assert.assertFalse(accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace));
     }
 
     @DataProvider(name = "registerData")
@@ -94,6 +104,7 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
     }
 
     private static class Deployments {
+
         public static Archive getDeploymentLifetimeAccountService() {
             WebArchive result = ShrinkWrap.create(WebArchive.class, TEST_APP_NAME)
                     //.addAsLibraries(files)

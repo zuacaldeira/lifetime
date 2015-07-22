@@ -16,6 +16,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import lifetime.persistence.Account;
 import lifetime.persistence.User;
 import org.slf4j.Logger;
@@ -53,8 +54,8 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      * created.
      *
      * <p>
-     * @todo After the end returns without error the new transaction should be
-     * persisted: Check if the client transaction must be refreshed.
+     * @return @todo After the end returns without error the new transaction
+     * should be persisted: Check if the client transaction must be refreshed.
      * </p>
      *
      * @param firstname The user's first name.
@@ -72,25 +73,61 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
             String language,
             Date birthdate,
             String birthPlace) {
-        logger.info("Creating new account for " + email);
-        User users = new User(null, firstname, lastname, birthdate, birthPlace, language);
-        Account account = new Account(null, email, password);
-        em.persist(account);
-        logger.info("Registration successfull for: " + email);
-        return true;
+        if (!hasAccount(email)) {
+            logger.info("Creating new account for " + email);
+            User user = new User(null, firstname, lastname, birthdate, birthPlace, language);
+            Account account = new Account(null, email, password);
+            account.setUser(user);
+            try {
+                em.persist(account);
+                logger.info("Registration successfull for: " + email);
+                return true;
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     /**
      * Deletes the account associated with the given email.
      *
+     * @param email
      * @return true if terminates
      */
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public boolean deleteAccount(Account account) {
-        em.remove(account);
-        logger.info("User account removed: " + account);
-        return true;
+    public boolean deleteAccount(String email) {
+        if (hasAccount(email)) {
+            try {
+                em.remove(getAccount(email));
+                logger.info("User account removed: " + email);
+                return true;
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean hasAccount(String email) {
+        return getAccount(email) != null;
+    }
+
+    private Account getAccount(String email) {
+        try {
+            Query q = em.createNamedQuery("Account.findByEmail", Account.class);
+            q.setParameter("email", email);
+            return (Account) q.getSingleResult();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
 }

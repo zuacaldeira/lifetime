@@ -7,13 +7,16 @@ package lifetime.persistence;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -47,11 +50,16 @@ public class Account implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "email", nullable = false, length = 45)
     private String email;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "password", nullable = false, length = 255)
     private String password;
+    
+    @OneToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user")
+    private User user;
 
     public Account() {
     }
@@ -90,6 +98,17 @@ public class Account implements Serializable {
         this.password = password;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;

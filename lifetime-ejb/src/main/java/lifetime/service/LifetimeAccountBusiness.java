@@ -6,7 +6,6 @@
 package lifetime.service;
 
 import java.util.Date;
-import lifetime.persistence.Account;
 
 /**
  * This interface defines the contract between the clients and the account
@@ -26,15 +25,24 @@ public interface LifetimeAccountBusiness {
      * @param language Candidate's language
      * @param birthdate Candidate's birth date
      * @param birthPlace Candidate's birth place
+     * @return 
      */
     public boolean register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace);
 
     /**
      * Delete all user data from the system.
      *
-     * @param account
+     * @param email
      * @return {@code true} if the account data is successfully removed
      */
-    public boolean deleteAccount(Account account);
+    public boolean deleteAccount(String email);
+
+    /**
+     * Checks if the database has an account for the given email.
+     * 
+     * @param email
+     * @return 
+     */
+    public boolean hasAccount(String email);
 
 }
