@@ -10,7 +10,7 @@
     <name>lifetime</name>
     <ciManagement>
         <system>hudson</system>
-        <url>http://localhost:8080/jenkins/job/lifetime/</url>
+        <url>http://localhost:8080/jenkins/job/lifetime%20unit/</url>
     </ciManagement>
     <developers>
         <developer>

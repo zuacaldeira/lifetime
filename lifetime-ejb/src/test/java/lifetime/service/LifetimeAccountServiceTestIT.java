@@ -59,7 +59,7 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
         if (!accountService.hasAccount(email)) {
             Assert.assertTrue(accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace));
         }
-        logger.info("::::::done");
+        logger.info("::::::done"); 
     }
 
     @Test(dataProvider = "registerData", priority = 1)
