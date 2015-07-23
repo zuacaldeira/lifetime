@@ -124,11 +124,12 @@ public class RoleNGTest {
      * @param r2
      */
     @Test(dataProvider = "not-equals")
-    public void testNotEquals(Role r1, Role r2) {
-        System.out.println("equals");
-        Assert.assertFalse(r1.equals(r1));
+    public void testNotEquals(Role r1, Object r2) {
+        System.out.println("not-equals");
         Assert.assertFalse(r1.equals(r2));
-        Assert.assertFalse(r2.equals(r1));
+        if(r2 != null) {
+            Assert.assertFalse(r2.equals(r1));
+        }
     }
 
     /**
