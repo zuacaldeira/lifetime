@@ -169,13 +169,15 @@ public class RoleNGTest {
         String n1 = "name1";
         String n2 = "name2";
         Role r1 = new Role(x1, n1);
-        Role r2 = new Role(x2, n2);
-        Role r3 = null;
+        Role r2 = new Role(x1, n2);
+        Role r3 = new Role(x2, n2);
+        Role r4 = null;
         return new Object[][]{
             {r1, r2},
             {r1, r3},
             {r2, r3},
-            {r1, ""}
+            {r3, r4},
+            {r3, ""},
         };
     }
 }
