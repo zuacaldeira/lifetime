@@ -47,7 +47,7 @@ public class Translator {
             return word;
         }
         else {
-            return "unknown";
+            return word;
         }
     }
 }

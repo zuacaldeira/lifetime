@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 lifetime.
+ * Copyright 2015 zua.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,22 +15,28 @@
  */
 package lifetime.view.custom;
 
-import lifetime.view.validator.AllLanguagesDataContainer;
+import org.junit.Assert;
+import org.testng.annotations.Test;
 
 /**
  *
- * @author lifetime
+ * @author zua
  */
-public class LocalesComboBox extends LifetimeComboBox {
+public class LifetimeHomeButtonNGTest {
 
-    public LocalesComboBox(String language) {
-        super("Languages", language, new AllLanguagesDataContainer(language));
-        setInternalValue(language);
-        select(language);
-        setImmediate(true);
-        setRequired(true);
-        setNullSelectionAllowed(false);
+    public LifetimeHomeButtonNGTest() {
     }
 
+    /**
+     * Test of getUserId method, of class LifetimeButton.
+     */
+    @Test
+    public void testHomeButton() {
+        System.out.println("testGetUserId()");
+        String language = "pt";
+        LifetimeButton instance = new LifetimeHomeButton(language);
+        Assert.assertEquals("Home", instance.getCaption());
+        Assert.assertEquals(instance.getLanguage(), language);
+    }
 
 }

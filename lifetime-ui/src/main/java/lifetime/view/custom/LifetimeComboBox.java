@@ -15,9 +15,11 @@ import util.Translator;
  * @author azc
  */
 public abstract class LifetimeComboBox extends ComboBox {
+    private final String language;
 
     protected LifetimeComboBox(String caption, String language, Collection options) {
         super(Translator.getTranslation(caption, language), options);
+        this.language = language;
         setWidth("400px");
         setImmediate(true);
         setInvalidAllowed(false);
@@ -26,6 +28,7 @@ public abstract class LifetimeComboBox extends ComboBox {
 
     protected LifetimeComboBox(String caption, String language, Container source) {
         super(Translator.getTranslation(caption, language), source);
+        this.language = language;
         setWidth("400px");
         setImmediate(true);
         setInvalidAllowed(false);
@@ -34,10 +37,17 @@ public abstract class LifetimeComboBox extends ComboBox {
 
     protected LifetimeComboBox(String caption, String language, String value) {
         super(Translator.getTranslation(caption, language));
+        this.language = language;
         setValue(value);
         setImmediate(true);
         setInvalidAllowed(false);
         setComponentError(null);
     }
+
+    public String getLanguage() {
+        return language;
+    }
+    
+    
 
 }

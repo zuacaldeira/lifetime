@@ -27,15 +27,15 @@ public class LifetimeDateField extends InlineDateField {
 
     private final String language;
 
-    public LifetimeDateField(String birthdate, String language) {
-        super(Translator.getTranslation(birthdate, language));
+    public LifetimeDateField(String caption, String language) {
+        super(Translator.getTranslation(caption, language));
         this.language = language;
         setImmediate(true);
     }
 
     @Override
     public int hashCode() {
-        int hash = 7 + super.hashCode();
+        int hash = 7;
         hash = 53 * hash + Objects.hashCode(this.language);
         return hash;
     }
@@ -52,8 +52,9 @@ public class LifetimeDateField extends InlineDateField {
         return Objects.equals(this.language, other.language);
     }
 
-    /**
-     * Returns the component language. We should check the location login on
-     * vaadin components.
-     */
+    public String getLanguage() {
+        return language;
+    }
+
+    
 }
