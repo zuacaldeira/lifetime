@@ -27,29 +27,31 @@ import java.util.Objects;
  */
 public class NumericStatsView extends VerticalLayout {
 
-    private final Label tag;
-    private final Label value;
+    private final String key;
+    private final Integer value;
 
     public NumericStatsView(String label, int i) {
+        this.key = label;
+        this.value = i;
         setSizeUndefined();
         DecimalFormat format = new DecimalFormat("###,###");
         // Tags ans values
-        tag = new Label(label);
+        Label tag = new Label(label);
         tag.setSizeUndefined();
-        value = new Label(format.format(i));
-        addComponents(tag, value);
+        Label lvalue = new Label(format.format(i));
+        addComponents(tag, lvalue);
         // Component alignment
         setComponentAlignment(tag, Alignment.MIDDLE_CENTER);
-        setComponentAlignment(value, Alignment.MIDDLE_CENTER);
+        setComponentAlignment(lvalue, Alignment.MIDDLE_CENTER);
         // css styles
         tag.setStyleName("tag");
-        value.setStyleName("value");
+        lvalue.setStyleName("value");
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.tag);
+        hash = 79 * hash + Objects.hashCode(this.key);
         hash = 79 * hash + Objects.hashCode(this.value);
         return hash;
     }
@@ -63,7 +65,7 @@ public class NumericStatsView extends VerticalLayout {
             return false;
         }
         final NumericStatsView other = (NumericStatsView) obj;
-        return Objects.equals(this.tag, other.tag) && Objects.equals(this.value, other.value);
+        return Objects.equals(this.key, other.key) && Objects.equals(this.value, other.value);
     }
 
 }

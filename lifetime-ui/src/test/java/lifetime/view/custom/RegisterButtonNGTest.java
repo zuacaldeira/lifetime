@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 lifetime.
+ * Copyright 2015 zua.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,21 +17,24 @@ package lifetime.view.custom;
 
 import com.vaadin.server.FontAwesome;
 import lifetime.view.StyleClassName;
-import util.Translator;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
  *
- * @author lifetime
+ * @author zua
  */
-public class RegisterButton extends LifetimeButtonLink {
-
-    public RegisterButton(String language) {
-        super(Translator.getTranslation("Register", language), language, FontAwesome.PLUS);
-        setId(StyleClassName.REGISTER_BUTTON);
+public class RegisterButtonNGTest {
+    
+    public RegisterButtonNGTest() {
     }
 
+    @Test
+    public void testRegisterButton() {
+        String language = "en";
+        RegisterButton button = new RegisterButton(language);
+        Assert.assertEquals(button.getId(), StyleClassName.REGISTER_BUTTON);
+        Assert.assertEquals(button.getIcon(), FontAwesome.PLUS);
+    }
     
-    
-    
-
 }

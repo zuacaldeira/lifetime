@@ -15,7 +15,6 @@
  */
 package lifetime.view.custom;
 
-import com.vaadin.data.Property;
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.DateField;
@@ -80,7 +79,7 @@ public class RegistrationForm extends HorizontalLayout {
         birthDate.setLocale(new Locale(language));
         //
         birthPlace = new LifetimeTextField("Birth place");
-        
+
         VerticalLayout personalData = new VerticalLayout(defaultLanguage, firstname, lastname, email, password, passwordRepeat);
         VerticalLayout birthData = new VerticalLayout(birthDate, birthPlace);
         birthData.setDefaultComponentAlignment(Alignment.MIDDLE_RIGHT);
@@ -88,15 +87,15 @@ public class RegistrationForm extends HorizontalLayout {
         setStyleName("forms");
     }
 
-    public void split(Property.ValueChangeEvent event) {
-        String[] split = ((String) event.getProperty().getValue()).split(" - ");
-        String language = split[1].trim();
-        defaultLanguage.setValue(language);
-        for (int i = 0; i < getComponentCount(); i++) {
-            getComponent(i).setCaption(translate(getComponent(i).getCaption(), language));
-        }
-    }
-
+    /*    public void split(Property.ValueChangeEvent event) {
+     String[] split = ((String) event.getProperty().getValue()).split(" - ");
+     String language = split[1].trim();
+     defaultLanguage.setValue(language);
+     for (int i = 0; i < getComponentCount(); i++) {
+     getComponent(i).setCaption(translate(getComponent(i).getCaption(), language));
+     }
+     }
+     */
     private String translate(String caption, String language) {
         return Translator.getTranslation(caption, language);
     }
@@ -136,6 +135,7 @@ public class RegistrationForm extends HorizontalLayout {
         password.setValue("");
         passwordRepeat.setValue("");
         defaultLanguage.setValue("English - en");
+        birthDate.clear();
     }
 
     /**
@@ -159,41 +159,46 @@ public class RegistrationForm extends HorizontalLayout {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.firstname);
-        hash = 17 * hash + Objects.hashCode(this.lastname);
-        hash = 17 * hash + Objects.hashCode(this.email);
-        hash = 17 * hash + Objects.hashCode(this.password);
-        hash = 17 * hash + Objects.hashCode(this.passwordRepeat);
-        hash = 17 * hash + Objects.hashCode(this.defaultLanguage);
-        hash = 17 * hash + Objects.hashCode(this.birthDate);
-        hash = 17 * hash + Objects.hashCode(this.birthPlace);
+        hash = 17 * hash + Objects.hashCode(this.firstname.getValue());
+        hash = 17 * hash + Objects.hashCode(this.lastname.getValue());
+        hash = 17 * hash + Objects.hashCode(this.email.getValue());
+        hash = 17 * hash + Objects.hashCode(this.password.getValue());
+        hash = 17 * hash + Objects.hashCode(this.passwordRepeat.getValue());
+        hash = 17 * hash + Objects.hashCode(this.defaultLanguage.getValue());
+        hash = 17 * hash + Objects.hashCode(this.birthDate.getValue());
+        hash = 17 * hash + Objects.hashCode(this.birthPlace.getValue());
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (!super.equals(obj)) {
+        if (obj == null) {
             return false;
         }
+        
+        if(getClass() != obj.getClass()) {
+            return false;
+        }
+        
         final RegistrationForm other = (RegistrationForm) obj;
         return validUserData(other) && validAccountData(other) && validBirthData(other);
     }
 
     private boolean validUserData(RegistrationForm other) {
-        return Objects.equals(this.firstname, other.firstname)
-                && Objects.equals(this.lastname, other.lastname)
-                && Objects.equals(this.defaultLanguage, other.defaultLanguage);
+        return Objects.equals(this.firstname.getValue(), other.firstname.getValue())
+                && Objects.equals(this.lastname.getValue(), other.lastname.getValue())
+                && Objects.equals(this.defaultLanguage.getValue(), other.defaultLanguage.getValue());
     }
 
     private boolean validAccountData(RegistrationForm other) {
-        return Objects.equals(this.email, other.email)
-                && Objects.equals(this.password, other.password)
-                && Objects.equals(this.passwordRepeat, other.passwordRepeat);
+        return Objects.equals(this.email.getValue(), other.email.getValue())
+                && Objects.equals(this.password.getValue(), other.password.getValue())
+                && Objects.equals(this.passwordRepeat.getValue(), other.passwordRepeat.getValue());
     }
 
     private boolean validBirthData(RegistrationForm other) {
-        return Objects.equals(this.birthDate, other.birthDate)
-                && Objects.equals(this.birthPlace, other.birthPlace);
+        return Objects.equals(this.birthDate.getValue(), other.birthDate.getValue())
+                && Objects.equals(this.birthPlace.getValue(), other.birthPlace.getValue());
     }
 
 }

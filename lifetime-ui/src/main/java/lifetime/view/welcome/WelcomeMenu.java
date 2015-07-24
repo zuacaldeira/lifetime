@@ -24,7 +24,7 @@ import lifetime.view.welcome.contact.ContactButton;
 import lifetime.view.custom.LifetimeHomeButton;
 import lifetime.view.LifetimeMenu;
 import lifetime.view.custom.RegisterButton;
-import lifetime.view.custom.VitaeButton;
+import lifetime.view.custom.LoginButton;
 
 /**
  *
@@ -34,7 +34,7 @@ public class WelcomeMenu extends LifetimeMenu implements ClickListener {
 
     private final LifetimeHomeButton homeButton;
     private final RegisterButton registerButton;
-    private final VitaeButton loginButton;
+    private final LoginButton loginButton;
     private final ContactButton contactButton;
 
     public WelcomeMenu(String language) {
@@ -42,7 +42,7 @@ public class WelcomeMenu extends LifetimeMenu implements ClickListener {
         setSizeFull();
         homeButton = new LifetimeHomeButton(language);
         registerButton = new RegisterButton(language);
-        loginButton = new VitaeButton(language);
+        loginButton = new LoginButton(language);
         contactButton = new ContactButton(language);
         homeButton.addClickListener(this);
         registerButton.addClickListener(this);
@@ -85,7 +85,7 @@ public class WelcomeMenu extends LifetimeMenu implements ClickListener {
         return registerButton;
     }
 
-    public VitaeButton getLoginButton() {
+    public LoginButton getLoginButton() {
         return loginButton;
     }
 
