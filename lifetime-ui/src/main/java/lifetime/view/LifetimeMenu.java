@@ -15,6 +15,7 @@
  */
 package lifetime.view;
 
+import lifetime.view.custom.LifetimeButtonLink;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickListener;

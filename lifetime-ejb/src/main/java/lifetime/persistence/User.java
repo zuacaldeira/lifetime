@@ -42,31 +42,56 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "User.findByLanguage", query = "SELECT u FROM User u WHERE u.language = :language")})
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
+    
+    /**
+     * Entity id.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Integer id;
+    
+    /**
+     * First name(s).
+     */
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "firstname", nullable = false, length = 255)
     private String firstname;
+    
+    /**
+     * Last names(s).
+     */
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "lastname", nullable = false, length = 255)
     private String lastname;
+
+    /**
+     * Birth date.
+     */
     @Basic(optional = false)
     @NotNull
     @Column(name = "birthDate", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthDate;
+
+    
+    /**
+     * Birth place.
+     */
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "birthPlace", nullable = false, length = 255)
     private String birthPlace;
+    
+    /**
+     * Language.
+     */
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)

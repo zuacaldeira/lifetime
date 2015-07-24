@@ -5,12 +5,10 @@
  */
 package lifetime.service;
 
-import java.io.File;
 import java.util.Date;
 import javax.ejb.EJB;
 import lifetime.persistence.Account;
 import lifetime.persistence.User;
-import lifetime.util.LifetimeLocator;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -110,7 +108,6 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
         public static Archive getDeploymentLifetimeAccountService() {
             WebArchive result = ShrinkWrap.create(WebArchive.class, TEST_APP_NAME)
                     //.addAsLibraries(files)
-                    .addClass(LifetimeLocator.class)
                     .addClass(LifetimeAccountService.class)
                     .addClass(LifetimeAccountBusiness.class)
                     .addClass(Account.class)

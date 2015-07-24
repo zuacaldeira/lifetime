@@ -15,11 +15,11 @@
  */
 package lifetime.ui;
 
-import lifetime.ui.WelcomeUI;
 import com.vaadin.server.VaadinRequest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import lifetime.view.WelcomeView;
+import lifetime.view.welcome.WelcomeView;
+import org.testng.log4testng.Logger;
 
 /**
  * Unit test suite for the {@link WelcomeUI} class. This test is responsible to
@@ -45,12 +45,17 @@ public class WelcomeUINGTest {
      * @exception NullPointerException
      * @todo {@link WelcomeUISeleniumTest}
      */
-    @Test(expectedExceptions = {NullPointerException.class})
+    @Test
     public void testInit() {
-        System.out.println("init");
+        System.out.println("testInit()");
         VaadinRequest request = null;
         WelcomeUI instance = new WelcomeUI();
-        instance.init(request);
+        //instance.setNavigator(new Navigator(instance, (ViewDisplay)null));
+        try {
+            instance.init(request);
+        } catch (Exception ex) {
+        }
+        Assert.assertNotNull(instance.getNavigator());
     }
 
     /**
@@ -64,9 +69,23 @@ public class WelcomeUINGTest {
      */
     @Test
     public void testGetLifetimeView() {
-        System.out.println("getLifetimeView");
+        System.out.println("testGetLifetimeView()");
         WelcomeUI instance = new WelcomeUI();
         Assert.assertNull((WelcomeView) instance.getLifetimeView());
     }
+    
+    
+    @Test
+    public void testServlet() {
+        System.out.println("testServlet()");
+        WelcomeUI ui = new WelcomeUI();
+        WelcomeUI.WelcomeUIServlet servlet = new WelcomeUI.WelcomeUIServlet();
+        try {
+            servlet.init();
+        } catch(Throwable ex) {
+            Logger.getLogger(getClass()).info(ex);
+        }
+    }
+
 
 }

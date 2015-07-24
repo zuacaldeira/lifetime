@@ -13,33 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view;
+package lifetime.view.validator;
 
-import lifetime.view.welcome.register.RegisterContent;
-import static org.testng.Assert.*;
-import org.testng.annotations.Test;
+import com.vaadin.data.Validator;
 
 /**
  *
  * @author zua
  */
-public class RegisterContentNGTest {
+class AllCharTypesValidator implements Validator {
 
-    /**
-     *
-     */
-    public RegisterContentNGTest() {
+    public AllCharTypesValidator() {
     }
 
     /**
-     * Test correct initialization. Tests that after creation the register
-     * content contains a non-null {@link RegistrationForm} object.
+     * Default validation method. It performs no validation, allowing weak
+     * passwords.
+     *
+     * @param value The value to validate.
+     * @throws com.vaadin.data.Validator.InvalidValueException Never thrown in
+     * this default implementation.
      */
-    @Test
-    public void testSomeMethod() {
-        // Create a new content view
-        RegisterContent content = new RegisterContent("en");
-        assertNotNull(content.getRegisterForm());
+    @Override
+    public void validate(Object value) {
+        if (!(value instanceof String)) {
+            throw new InvalidValueException("Invalid Value. Expecting a String");
+        }
     }
 
 }

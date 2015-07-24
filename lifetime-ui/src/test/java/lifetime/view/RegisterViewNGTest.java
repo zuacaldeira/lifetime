@@ -15,6 +15,10 @@
  */
 package lifetime.view;
 
+import lifetime.view.welcome.register.RegisterView;
+import lifetime.view.welcome.register.RegisterMenu;
+import lifetime.view.welcome.register.RegisterContent;
+import lifetime.view.welcome.WelcomeBackground;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 

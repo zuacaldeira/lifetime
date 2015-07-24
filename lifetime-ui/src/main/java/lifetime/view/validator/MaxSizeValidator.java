@@ -13,33 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view;
+package lifetime.view.validator;
 
-import lifetime.view.welcome.register.RegisterContent;
-import static org.testng.Assert.*;
-import org.testng.annotations.Test;
+import com.vaadin.data.Validator;
 
 /**
  *
  * @author zua
  */
-public class RegisterContentNGTest {
+class MaxSizeValidator implements Validator {
 
-    /**
-     *
-     */
-    public RegisterContentNGTest() {
+    public MaxSizeValidator() {
     }
 
-    /**
-     * Test correct initialization. Tests that after creation the register
-     * content contains a non-null {@link RegistrationForm} object.
-     */
-    @Test
-    public void testSomeMethod() {
-        // Create a new content view
-        RegisterContent content = new RegisterContent("en");
-        assertNotNull(content.getRegisterForm());
+    @Override
+    public void validate(Object value) {
+        if (((String) value).length() > 16) {
+            throw new InvalidValueException("Too big");
+        }
     }
 
 }

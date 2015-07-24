@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view;
+package util;
 
-import lifetime.view.welcome.register.RegisterContent;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 
@@ -23,23 +22,21 @@ import org.testng.annotations.Test;
  *
  * @author zua
  */
-public class RegisterContentNGTest {
+public class UtilNGTest {
 
-    /**
-     *
-     */
-    public RegisterContentNGTest() {
+    public UtilNGTest() {
     }
 
     /**
-     * Test correct initialization. Tests that after creation the register
-     * content contains a non-null {@link RegistrationForm} object.
+     * Test of getEncodedPassword method, of class Util.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testSomeMethod() {
-        // Create a new content view
-        RegisterContent content = new RegisterContent("en");
-        assertNotNull(content.getRegisterForm());
+    public void testGetEncodedPassword() throws Exception {
+        System.out.println("getEncodedPassword");
+        String clearTextPassword = "OKOKOKOKOKOKOKOKK";
+        String result = Util.getEncodedPassword(clearTextPassword);
+        assertEquals(result, new Util().getEncodedPassword(clearTextPassword));
     }
 
 }

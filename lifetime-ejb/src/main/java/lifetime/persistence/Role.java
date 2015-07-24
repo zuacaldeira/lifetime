@@ -36,11 +36,19 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Role.findByName", query = "SELECT r FROM Role r WHERE r.name = :name")})
 public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
+    
+    /**
+     * Id.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Integer id;
+
+    /**
+     * Role name.
+     */
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)

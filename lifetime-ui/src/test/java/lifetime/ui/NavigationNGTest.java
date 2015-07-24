@@ -13,33 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view;
+package lifetime.ui;
 
-import lifetime.view.welcome.register.RegisterContent;
-import static org.testng.Assert.*;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-public class RegisterContentNGTest {
-
-    /**
-     *
-     */
-    public RegisterContentNGTest() {
-    }
-
-    /**
-     * Test correct initialization. Tests that after creation the register
-     * content contains a non-null {@link RegistrationForm} object.
-     */
+public class NavigationNGTest {
+    
     @Test
-    public void testSomeMethod() {
-        // Create a new content view
-        RegisterContent content = new RegisterContent("en");
-        assertNotNull(content.getRegisterForm());
+    public void test() {
+        Assert.assertEquals(Navigation.WELCOME_VIEW, "Welcome");
+        Assert.assertEquals(Navigation.REGISTER_VIEW, "Register");
+        Assert.assertEquals(Navigation.CONTACT_VIEW, "Contact");
     }
-
+    
 }

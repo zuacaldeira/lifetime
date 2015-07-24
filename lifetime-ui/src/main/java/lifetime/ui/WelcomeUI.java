@@ -2,29 +2,41 @@ package lifetime.ui;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
-import lifetime.view.WelcomeView;
+import lifetime.view.welcome.WelcomeView;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import javax.servlet.annotation.WebServlet;
-import lifetime.view.ContactView;
-import lifetime.view.RegisterView;
+import lifetime.view.welcome.contact.ContactView;
+import lifetime.view.welcome.register.RegisterView;
 import lifetime.view.StyleClassName;
 
 @Theme("mytheme")
-public class WelcomeUI extends LifetimeUI implements ViewChangeListener {
+public class WelcomeUI extends LifetimeUI {
 
     @Override
     protected void init(VaadinRequest request) {
+        setStyleName(StyleClassName.LIFETIME_UI);
+        setId(StyleClassName.LIFETIME_UI);
         setNavigator(new Navigator(this, this));
+        getNavigator().addViewChangeListener(new ViewChangeListener() {
+
+            @Override
+            public boolean beforeViewChange(ViewChangeEvent event) {
+                return true;
+            }
+
+            @Override
+            public void afterViewChange(ViewChangeEvent event) {
+                setLifetimeView((WelcomeView) event.getNewView());
+            }
+        });
         getNavigator().addView(Navigation.WELCOME_VIEW, new WelcomeView(getLanguage()));
         getNavigator().addView(Navigation.REGISTER_VIEW, new RegisterView(getLanguage()));
         getNavigator().addView(Navigation.CONTACT_VIEW, new ContactView(getLanguage()));
         getNavigator().navigateTo(Navigation.WELCOME_VIEW);
-        getNavigator().addViewChangeListener(this);
-        setStyleName(StyleClassName.LIFETIME_UI);
-        setId(StyleClassName.LIFETIME_UI);
     }
 
     /**
@@ -37,28 +49,6 @@ public class WelcomeUI extends LifetimeUI implements ViewChangeListener {
     @Override
     public WelcomeView getLifetimeView() {
         return (WelcomeView) super.getLifetimeView();
-    }
-
-    /**
-     * Defines the set of actions that must be performed before the navigator
-     * changes the view for this LIFETIME_UI.
-     *
-     * @param event The event being fired
-     * @return <b>true</b> iff the view must change.
-     */
-    @Override
-    public boolean beforeViewChange(ViewChangeEvent event) {
-        return true;
-    }
-
-    /**
-     * Defines actions that must be performed immediately after a view change.
-     *
-     * @param event The event being fired
-     */
-    @Override
-    public void afterViewChange(ViewChangeEvent event) {
-        setLifetimeView((WelcomeView) event.getNewView());
     }
 
     /**

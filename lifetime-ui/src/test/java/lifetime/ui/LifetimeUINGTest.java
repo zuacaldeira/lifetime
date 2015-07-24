@@ -19,6 +19,7 @@ import com.vaadin.server.VaadinRequest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import lifetime.view.LifetimeView;
+import lifetime.view.welcome.WelcomeView;
 
 /**
  *
@@ -57,11 +58,34 @@ public class LifetimeUINGTest {
         LifetimeUI instance = new LifetimeUIImpl();
         Assert.assertNull(instance.getLifetimeView());
     }
+    
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        LifetimeUI instance1 = new LifetimeUIImpl();
+        LifetimeUI instance2 = new LifetimeUIImpl();
+        Assert.assertTrue(instance1.equals(instance2));
+        Assert.assertFalse(instance1.equals(null));
+        Assert.assertFalse(instance1.equals(""));
+    }
+    
+    @Test
+    public void testSetLifetimeView() {
+        System.out.println("equals");
+        LifetimeUI instance = new LifetimeUIImpl();
+        Assert.assertNull(instance.getLifetimeView());
+        
+        LifetimeView lv = new WelcomeView("pt");
+        instance.setLifetimeView(lv);
+        Assert.assertEquals(instance.getLifetimeView(), lv);
+        
+    }
 
-    class LifetimeUIImpl extends LifetimeUI {
+    public class LifetimeUIImpl extends LifetimeUI {
 
         @Override
         public void init(VaadinRequest request) {
+            // do nothing
         }
     }
 

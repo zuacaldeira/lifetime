@@ -13,33 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view;
+package lifetime.view.welcome.contact;
 
-import lifetime.view.welcome.register.RegisterContent;
-import static org.testng.Assert.*;
-import org.testng.annotations.Test;
+import lifetime.view.LifetimeMenu;
 
 /**
  *
  * @author zua
  */
-public class RegisterContentNGTest {
+class ContactMenu extends LifetimeMenu {
 
-    /**
-     *
-     */
-    public RegisterContentNGTest() {
+    public ContactMenu(String language) {
+        super(language);
     }
-
-    /**
-     * Test correct initialization. Tests that after creation the register
-     * content contains a non-null {@link RegistrationForm} object.
-     */
-    @Test
-    public void testSomeMethod() {
-        // Create a new content view
-        RegisterContent content = new RegisterContent("en");
-        assertNotNull(content.getRegisterForm());
-    }
-
+    
 }

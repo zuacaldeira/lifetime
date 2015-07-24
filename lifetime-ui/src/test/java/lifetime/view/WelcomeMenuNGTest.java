@@ -15,6 +15,7 @@
  */
 package lifetime.view;
 
+import lifetime.view.welcome.WelcomeMenu;
 import com.vaadin.ui.Button;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;

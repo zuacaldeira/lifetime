@@ -6,9 +6,8 @@
 package lifetime.service;
 
 import java.util.Date;
-import javax.annotation.Resource;
+import java.util.logging.Logger;
 import javax.ejb.Remote;
-import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -32,8 +31,6 @@ import lifetime.persistence.User;
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class LifetimeAccountService implements LifetimeAccountBusiness {
 
-    @Resource
-    private SessionContext ctx;
     /**
      * Persistence Context.
      */
@@ -74,7 +71,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
                 em.persist(account);
                 return true;
             } catch (Exception ex) {
-                ex.printStackTrace();
+                Logger.getLogger(this.getClass().getName()).warning(ex.getMessage());
                 return false;
             }
         } else {
@@ -96,7 +93,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
                 em.remove(getAccount(email));
                 return true;
             } catch (Exception ex) {
-                ex.printStackTrace();
+                Logger.getLogger(this.getClass().getName()).warning(ex.getMessage());
                 return false;
             }
         } else {
@@ -115,7 +112,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
             q.setParameter("email", email);
             return (Account) q.getSingleResult();
         } catch (Exception ex) {
-            //Logger.getLogger("Test").
+            Logger.getLogger(this.getClass().getName()).warning(ex.getMessage());
             return null;
         }
     }

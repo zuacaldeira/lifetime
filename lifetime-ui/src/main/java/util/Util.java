@@ -18,8 +18,6 @@ package util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -30,7 +28,7 @@ public class Util {
     /**
      * Private constructor disables client instantiation of this class.
      */
-    private Util() {
+    public Util() {
     }
 
     /**
@@ -46,14 +44,6 @@ public class Util {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(clearTextPassword.getBytes());
         return Base64.getEncoder().encodeToString(md.digest());
-    }
-
-    public static void main(String[] args) {
-        try {
-            Logger.getLogger(Util.class.getName()).log(Level.INFO, getEncodedPassword("unicidade"));
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
 }
