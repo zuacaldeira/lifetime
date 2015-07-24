@@ -19,7 +19,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import lifetime.persistence.Account;
 import lifetime.persistence.User;
-import org.slf4j.Logger;
 
 /**
  * The Lifetime Account Management Service. It provides services for users to
@@ -27,24 +26,18 @@ import org.slf4j.Logger;
  *
  * @author zua
  */
-@Stateless(name = "LifetimeAccountService")
+@Stateless
 @Remote(LifetimeAccountBusiness.class)
-
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class LifetimeAccountService implements LifetimeAccountBusiness {
-
-    /**
-     * sl4j Logger
-     */
-    private Logger logger = org.slf4j.LoggerFactory.getLogger(LifetimeAccountService.class);
 
     @Resource
     private SessionContext ctx;
     /**
      * Persistence Context.
      */
-    @PersistenceContext(name = "jdbc/lifetime")
+    @PersistenceContext(unitName = "lifetimePU")
     private EntityManager em;
 
     /**
@@ -74,13 +67,11 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
             Date birthdate,
             String birthPlace) {
         if (!hasAccount(email)) {
-            logger.info("Creating new account for " + email);
             User user = new User(null, firstname, lastname, birthdate, birthPlace, language);
             Account account = new Account(null, email, password);
             account.setUser(user);
             try {
                 em.persist(account);
-                logger.info("Registration successfull for: " + email);
                 return true;
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -103,7 +94,6 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
         if (hasAccount(email)) {
             try {
                 em.remove(getAccount(email));
-                logger.info("User account removed: " + email);
                 return true;
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -125,7 +115,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
             q.setParameter("email", email);
             return (Account) q.getSingleResult();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            //Logger.getLogger("Test").
             return null;
         }
     }

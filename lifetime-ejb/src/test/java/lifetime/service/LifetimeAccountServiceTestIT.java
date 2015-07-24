@@ -9,6 +9,8 @@ import java.io.File;
 import java.util.Date;
 import javax.ejb.EJB;
 import lifetime.persistence.Account;
+import lifetime.persistence.User;
+import lifetime.util.LifetimeLocator;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -30,7 +32,7 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
 
     private static final String TEST_APP_NAME = "test.war";
 
-    @EJB(name = "java:global/lifetime-ui/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness", beanInterface = LifetimeAccountBusiness.class)
+    @EJB
     private LifetimeAccountBusiness accountService;
 
     private final Logger logger = Logger.getLogger(LifetimeAccountServiceTestIT.class);
@@ -55,11 +57,11 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
     @Test(dataProvider = "registerData", priority = 1)
     public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
         logger.info(":::testResgister:::" + firstName + ":" + lastName + ":" + email);
-        Assert.assertNotNull(accountService, "Service not initialized");
+        Assert.assertNotNull(accountService, "Lifetime Account Service lookup failed");
         if (!accountService.hasAccount(email)) {
             Assert.assertTrue(accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace));
         }
-        logger.info("::::::done"); 
+        logger.info("::::::done");
     }
 
     @Test(dataProvider = "registerData", priority = 1)
@@ -108,10 +110,13 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
         public static Archive getDeploymentLifetimeAccountService() {
             WebArchive result = ShrinkWrap.create(WebArchive.class, TEST_APP_NAME)
                     //.addAsLibraries(files)
+                    .addClass(LifetimeLocator.class)
+                    .addClass(LifetimeAccountService.class)
                     .addClass(LifetimeAccountBusiness.class)
                     .addClass(Account.class)
-                    .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
-                            "META-INF/persistence.xml")
+                    .addClass(User.class)
+                    //.addAsResource(new File("test/resources/META-INF/persistence.xml"),
+                    //        "META-INF/persistence.xml")
                     .addAsResource(EmptyAsset.INSTANCE,
                             ArchivePaths.create("beans.xml"));
             return result;
