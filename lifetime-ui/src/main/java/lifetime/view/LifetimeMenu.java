@@ -67,21 +67,21 @@ public abstract class LifetimeMenu extends CustomComponent {
     public int hashCode() {
         int hash = 7;
         hash = 41 * hash + Objects.hashCode(this.language);
-        hash = 41 * hash + Objects.hashCode(this.controls);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (!super.equals(obj)) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final LifetimeMenu other = (LifetimeMenu) obj;
-        if (!Objects.equals(this.language, other.language)) {
-            return false;
-        }
-        return Objects.equals(this.controls, other.controls);
+        return Objects.equals(this.language, other.language);
     }
+
 
     
     

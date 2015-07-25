@@ -15,10 +15,6 @@
  */
 package lifetime.view.welcome;
 
-import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Notification;
 import java.util.Objects;
 import lifetime.view.welcome.contact.ContactButton;
 import lifetime.view.custom.LifetimeHomeButton;
@@ -30,7 +26,7 @@ import lifetime.view.custom.LoginButton;
  *
  * @author zua
  */
-public class WelcomeMenu extends LifetimeMenu implements ClickListener {
+public class WelcomeMenu extends LifetimeMenu {
 
     private final LifetimeHomeButton homeButton;
     private final RegisterButton registerButton;
@@ -44,17 +40,13 @@ public class WelcomeMenu extends LifetimeMenu implements ClickListener {
         registerButton = new RegisterButton(language);
         loginButton = new LoginButton(language);
         contactButton = new ContactButton(language);
-        homeButton.addClickListener(this);
-        registerButton.addClickListener(this);
-        loginButton.addClickListener(this);
-        contactButton.addClickListener(this);
         addControl(homeButton);
         addControl(registerButton);
         addControl(loginButton);
         addControl(contactButton);
     }
 
-    @Override
+/*    @Override
     public void buttonClick(Button.ClickEvent event) {
         Notification.show("Welcome Menu View -> " + event.getButton());
         String context = VaadinServlet.getCurrent().getServletContext().getContextPath();
@@ -76,7 +68,7 @@ public class WelcomeMenu extends LifetimeMenu implements ClickListener {
             getUI().getNavigator().navigateTo("Contact");
         }
     }
-
+*/
     public LifetimeHomeButton getHomeButton() {
         return homeButton;
     }
