@@ -22,13 +22,14 @@ import com.vaadin.data.Validator;
  * @author zua
  */
 class MaxSizeValidator implements Validator {
+    public static final int MAX_SIZE = 16;
 
     public MaxSizeValidator() {
     }
 
     @Override
     public void validate(Object value) {
-        if (((String) value).length() > 16) {
+        if (((String) value).length() > MAX_SIZE) {
             throw new InvalidValueException("Too big");
         }
     }

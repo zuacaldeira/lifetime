@@ -30,9 +30,19 @@ public class NameValidator implements Validator {
     public void validate(Object value) {
         if (value instanceof String) {
             String stringValue = (String) value;
-            if(stringValue.length() == 0) {
-                throw new InvalidValueException("Null lenght name");
+            if (stringValue.length() == 0) {
+                throw new InvalidValueException("Zero lenght name");
             }
+            
+            for(int i = 0; i < stringValue.length(); i++) {
+                boolean validNameCharacter = Character.isLetter(stringValue.charAt(i)) || Character.isSpaceChar(stringValue.charAt(i)) || stringValue.charAt(i) == '-';
+                if(! validNameCharacter) {
+                    throw new InvalidValueException("Invalid name character: " + stringValue.charAt(i));
+                }
+            }
+            
+        } else {
+            throw new InvalidValueException("Null name");
         }
     }
 

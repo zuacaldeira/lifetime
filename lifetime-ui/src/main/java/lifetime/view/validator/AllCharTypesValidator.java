@@ -39,6 +39,45 @@ class AllCharTypesValidator implements Validator {
         if (!(value instanceof String)) {
             throw new InvalidValueException("Invalid Value. Expecting a String");
         }
+        String v = (String) value;
+        int size = v.length();
+
+        if (size < 6) {
+            throw new InvalidValueException("Too small: " + v);
+        }
+
+        int nlowers = 0;
+        int nUppers = 0;
+        int nDigits = 0;
+        int nSpecial = 0;
+
+        for (int i = 0; i < size; i++) {
+            char c = v.charAt(i);
+            if (Character.isDigit(c)) {
+                nDigits++;
+            } else if (Character.isUpperCase(c)) {
+                nUppers++;
+            } else if (Character.isLowerCase(c)) {
+                nlowers++;
+            } else if (Character.isWhitespace(c)) {
+                throw new InvalidValueException("White spaces not allowed at index : " + i);
+            } else {
+                nSpecial++;
+            }
+        }
+        
+        if(nlowers == 0) {
+                throw new InvalidValueException("At least one character must be a lower case");
+        }
+        if(nUppers == 0) {
+                throw new InvalidValueException("At least one character must be an uppercase");
+        }
+        if(nDigits == 0) {
+                throw new InvalidValueException("At least one character must be a digit");
+        }
+        if(nSpecial == 0) {
+                throw new InvalidValueException("At least one character must be a special character");
+        }
     }
 
 }

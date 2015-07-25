@@ -15,7 +15,7 @@
  */
 package lifetime.view.custom;
 
-import lifetime.view.validator.AllLanguagesDataContainer;
+import util.AllLanguagesDataContainer;
 
 /**
  *

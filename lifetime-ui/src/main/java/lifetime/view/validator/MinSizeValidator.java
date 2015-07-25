@@ -22,13 +22,15 @@ import com.vaadin.data.Validator;
  * @author zua
  */
 class MinSizeValidator implements Validator {
+    
+    public static final int MIN_SIZE = 6;
 
     public MinSizeValidator() {
     }
 
     @Override
     public void validate(Object value) {
-        if (((String) value).length() < 6) {
+        if (((String) value).length() < MIN_SIZE) {
             throw new InvalidValueException("Too small");
         }
     }

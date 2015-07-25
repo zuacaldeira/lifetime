@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.validator;
+package util;
 
 import com.vaadin.data.util.IndexedContainer;
 import java.util.LinkedList;
