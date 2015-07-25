@@ -15,27 +15,25 @@
  */
 package lifetime.view.welcome.contact;
 
-import lifetime.view.LifetimeMenu;
-import lifetime.view.custom.LifetimeHomeButton;
+import com.vaadin.ui.Button;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-public class ContactMenu extends LifetimeMenu {
-    private final LifetimeHomeButton homeButton;
+public class ContactButtonNGTest {
 
-    public ContactMenu(String language) {
-        super(language);
-        homeButton = new LifetimeHomeButton("en");
-        addControl(homeButton);
+    public ContactButtonNGTest() {
     }
 
-    public LifetimeHomeButton getHomeButton() {
-        return homeButton;
+    @Test
+    public void testSomeMethod() {
+        ContactButton button = new ContactButton("en");
+        Assert.assertNotNull(button);
+        Assert.assertNotNull(button.getListeners(Button.ClickEvent.class));
+        Assert.assertFalse(button.getListeners(Button.ClickEvent.class).isEmpty());
     }
-    
-    
-    
-    
+
 }

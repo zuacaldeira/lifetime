@@ -17,6 +17,8 @@ package lifetime.view.welcome.contact;
 
 import lifetime.view.custom.LifetimeButtonLink;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.ui.Button;
+import lifetime.ui.Navigation;
 import lifetime.view.StyleClassName;
 import lifetime.util.Translator;
 
@@ -24,11 +26,17 @@ import lifetime.util.Translator;
  *
  * @author lifetime
  */
-public class ContactButton extends LifetimeButtonLink {
-
+public class ContactButton extends LifetimeButtonLink implements Button.ClickListener {
+    
     public ContactButton(String language) {
         super(Translator.getTranslation("Contact", language), language, FontAwesome.USER);
         setId(StyleClassName.CONTACT_BUTTON);
+        addClickListener(this);
     }
-
+    
+    @Override
+    public void buttonClick(ClickEvent event) {
+        getUI().getNavigator().navigateTo(Navigation.CONTACT_VIEW);
+    }
+    
 }

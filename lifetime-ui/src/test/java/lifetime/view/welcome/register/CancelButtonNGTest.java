@@ -13,29 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.welcome.contact;
+package lifetime.view.welcome.register;
 
-import lifetime.view.LifetimeMenu;
-import lifetime.view.custom.LifetimeHomeButton;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-public class ContactMenu extends LifetimeMenu {
-    private final LifetimeHomeButton homeButton;
+public class CancelButtonNGTest {
 
-    public ContactMenu(String language) {
-        super(language);
-        homeButton = new LifetimeHomeButton("en");
-        addControl(homeButton);
+    public CancelButtonNGTest() {
     }
 
-    public LifetimeHomeButton getHomeButton() {
-        return homeButton;
+    @Test
+    public void testSomeMethod() {
+        CancelButton button = new CancelButton("en");
+        Assert.assertEquals(button.getLanguage(), "en");
+        Assert.assertTrue(button.isEnabled());
+        //Assert.assertFalse(button.getListeners(Button.ClickEvent.class).isEmpty());
     }
-    
-    
-    
-    
+
 }

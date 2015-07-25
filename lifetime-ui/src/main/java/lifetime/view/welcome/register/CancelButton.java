@@ -25,8 +25,12 @@ import com.vaadin.server.FontAwesome;
 public class CancelButton extends LifetimeButtonLink {
 
     public CancelButton(Integer userId, String language) {
-        super(userId, language, "Cancel", FontAwesome.TIMES);
+        super(null, language, "Cancel", FontAwesome.TIMES);
         setCaption(getDescription());
     }
-    
+
+    public CancelButton(String language) {
+        this(null, language);
+    }
+
 }

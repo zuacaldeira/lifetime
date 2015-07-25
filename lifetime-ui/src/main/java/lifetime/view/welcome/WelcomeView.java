@@ -19,9 +19,6 @@ import lifetime.view.LifetimeBackground;
 import lifetime.view.LifetimeContent;
 import lifetime.view.LifetimeMenu;
 import lifetime.view.LifetimeView;
-import lifetime.view.welcome.WelcomeBackground;
-import lifetime.view.welcome.WelcomeContent;
-import lifetime.view.welcome.WelcomeMenu;
 
 /**
  *

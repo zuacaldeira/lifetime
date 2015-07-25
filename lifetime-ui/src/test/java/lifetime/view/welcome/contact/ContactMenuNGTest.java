@@ -15,27 +15,22 @@
  */
 package lifetime.view.welcome.contact;
 
-import lifetime.view.LifetimeMenu;
-import lifetime.view.custom.LifetimeHomeButton;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-public class ContactMenu extends LifetimeMenu {
-    private final LifetimeHomeButton homeButton;
+public class ContactMenuNGTest {
 
-    public ContactMenu(String language) {
-        super(language);
-        homeButton = new LifetimeHomeButton("en");
-        addControl(homeButton);
+    public ContactMenuNGTest() {
     }
 
-    public LifetimeHomeButton getHomeButton() {
-        return homeButton;
+    @Test
+    public void testSomeMethod() {
+        ContactMenu menu = new ContactMenu("en");
+        Assert.assertNotNull(menu.getHomeButton());
     }
-    
-    
-    
-    
+
 }
