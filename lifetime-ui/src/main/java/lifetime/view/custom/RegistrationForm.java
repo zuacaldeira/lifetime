@@ -25,11 +25,11 @@ import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.VerticalLayout;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.logging.Logger;
 import lifetime.service.LifetimeAccountBusiness;
 import lifetime.view.validator.NameValidator;
 import lifetime.view.validator.PasswordValidator;
 import lifetime.util.ServiceLocator;
-import lifetime.util.Translator;
 
 /**
  *
@@ -87,19 +87,6 @@ public class RegistrationForm extends HorizontalLayout {
         setStyleName("forms");
     }
 
-    /*    public void split(Property.ValueChangeEvent event) {
-     String[] split = ((String) event.getProperty().getValue()).split(" - ");
-     String language = split[1].trim();
-     defaultLanguage.setValue(language);
-     for (int i = 0; i < getComponentCount(); i++) {
-     getComponent(i).setCaption(translate(getComponent(i).getCaption(), language));
-     }
-     }
-     */
-    private String translate(String caption, String language) {
-        return Translator.getTranslation(caption, language);
-    }
-
     public LifetimeTextField getFirstname() {
         return firstname;
     }
@@ -152,6 +139,7 @@ public class RegistrationForm extends HorizontalLayout {
                 Notification.show("Registration concluded.", Notification.Type.TRAY_NOTIFICATION);
             }
         } catch (Exception ex) {
+            Logger.getLogger(RegistrationForm.class.getName()).warning("Registration Failed. Try again later.");
             Notification.show("Registration failed. Try again later.", Notification.Type.WARNING_MESSAGE);
         }
     }
@@ -175,11 +163,11 @@ public class RegistrationForm extends HorizontalLayout {
         if (obj == null) {
             return false;
         }
-        
-        if(getClass() != obj.getClass()) {
+
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        
+
         final RegistrationForm other = (RegistrationForm) obj;
         return validUserData(other) && validAccountData(other) && validBirthData(other);
     }

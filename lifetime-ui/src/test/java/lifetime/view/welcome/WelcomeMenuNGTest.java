@@ -37,6 +37,7 @@ public class WelcomeMenuNGTest {
         System.out.println("getHomeButton");
         Assert.assertNotNull(menu.getHomeButton());
         Assert.assertTrue(menu.getHomeButton().isEnabled());
+        Assert.assertTrue(menu.getHomeButton().isVisible());
     }
 
     /**
@@ -48,6 +49,7 @@ public class WelcomeMenuNGTest {
         System.out.println("getRegisterButton");
         Assert.assertNotNull(menu.getRegisterButton());
         Assert.assertTrue(menu.getRegisterButton().isEnabled());
+        Assert.assertTrue(menu.getRegisterButton().isVisible());
     }
 
     /**
@@ -59,6 +61,7 @@ public class WelcomeMenuNGTest {
         System.out.println("getLoginButton");
         Assert.assertNotNull(menu.getLoginButton());
         Assert.assertTrue(menu.getLoginButton().isEnabled());
+        Assert.assertTrue(menu.getLoginButton().isVisible());
     }
 
     /**
@@ -70,6 +73,7 @@ public class WelcomeMenuNGTest {
         System.out.println("getContactButton");
         Assert.assertNotNull(menu.getContactButton());
         Assert.assertTrue(menu.getContactButton().isEnabled());
+        Assert.assertTrue(menu.getContactButton().isVisible());
     }
 
     /**

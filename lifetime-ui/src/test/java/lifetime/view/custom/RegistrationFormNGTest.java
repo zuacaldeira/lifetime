@@ -15,9 +15,9 @@
  */
 package lifetime.view.custom;
 
-import java.util.Date;
 import org.testng.Assert;
 import static org.testng.Assert.*;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
@@ -31,161 +31,158 @@ public class RegistrationFormNGTest {
 
     /**
      * Test of getFirstname method, of class RegistrationForm.
+     *
+     * @param form
      */
-    @Test
-    public void testGetFirstname() {
+    @Test(dataProvider = "valid")
+    public void testGetFirstname(RegistrationForm form) {
         System.out.println("getFirstname");
-        String firstname = "firstname";
-        String language = "en";
-        RegistrationForm instance = new RegistrationForm(language);
-        assertNotNull(instance.getFirstname());
-        instance.getFirstname().setValue(firstname);
-        Assert.assertEquals(instance.getFirstname().getValue(), firstname);
+        assertNotNull(form.getFirstname());
     }
 
     /**
      * Test of getLastname method, of class RegistrationForm.
+     *
+     * @param form
      */
-    @Test
-    public void testGetLastname() {
+    @Test(dataProvider = "valid")
+    public void testGetLastname(RegistrationForm form) {
         System.out.println("getLastname");
-        String lastname = "lastname";
-        String language = "en";
-        RegistrationForm instance = new RegistrationForm(language);
-        assertNotNull(instance.getLastname());
-        instance.getLastname().setValue(lastname);
-        Assert.assertEquals(instance.getLastname().getValue(), lastname);
+        assertNotNull(form.getLastname());
     }
 
     /**
      * Test of getEmail method, of class RegistrationForm.
+     *
+     * @param form
      */
-    @Test
-    public void testGetEmail() {
+    @Test(dataProvider = "valid")
+    public void testGetEmail(RegistrationForm form) {
         System.out.println("getEmail");
-        String email = "email@g.com";
-        String language = "en";
-        RegistrationForm instance = new RegistrationForm(language);
-        assertNotNull(instance.getEmail());
-        instance.getEmail().setValue(email);
-        Assert.assertEquals(instance.getEmail().getValue(), email);
+        assertNotNull(form.getEmail());
     }
 
     /**
      * Test of getPassword method, of class RegistrationForm.
+     *
+     * @param form
      */
-    @Test
-    public void testGetPassword() {
+    @Test(dataProvider = "valid")
+    public void testGetPassword(RegistrationForm form) {
         System.out.println("getPassword");
-        String password = "pass";
-        String language = "en";
-        RegistrationForm instance = new RegistrationForm(language);
-        assertNotNull(instance.getPassword());
-        instance.getPassword().setValue(password);
-        Assert.assertEquals(instance.getPassword().getValue(), password);
+        assertNotNull(form.getPassword());
     }
 
     /**
      * Test of getPasswordRepeat method, of class RegistrationForm.
+     *
+     * @param form
      */
-    @Test
-    public void testGetPasswordRepeat() {
+    @Test(dataProvider = "valid")
+    public void testGetPasswordRepeat(RegistrationForm form) {
         System.out.println("getPasswordRepeat");
-        String passwordRepeat = "lastname";
-        String language = "en";
-        RegistrationForm instance = new RegistrationForm(language);
-        assertNotNull(instance.getPasswordRepeat());
-        instance.getPasswordRepeat().setValue(passwordRepeat);
-        Assert.assertEquals(instance.getPasswordRepeat().getValue(), passwordRepeat);
+        assertNotNull(form.getPasswordRepeat());
     }
 
     /**
      * Test of getDefaultLanguage method, of class RegistrationForm.
+     *
+     * @param form
      */
-    @Test
-    public void testGetDefaultLanguage() {
+    @Test(dataProvider = "valid")
+    public void testGetDefaultLanguage(RegistrationForm form) {
         System.out.println("getDefaultLanguage");
-        String language = "en";
-        RegistrationForm instance = new RegistrationForm(language);
-        assertNotNull(instance.getDefaultLanguage());
-        instance.getDefaultLanguage().setValue(language);
-        Assert.assertEquals(instance.getDefaultLanguage().getValue(), language);
+        assertNotNull(form.getDefaultLanguage());
     }
 
     /**
      * Test of getBirthDate method, of class RegistrationForm.
+     *
+     * @param form
      */
-    @Test
-    public void testGetBirthDate() {
+    @Test(dataProvider = "valid")
+    public void testGetBirthDate(RegistrationForm form) {
         System.out.println("getBirthDate");
-        Date birthdate = new Date();
-        String language = "en";
-        RegistrationForm instance = new RegistrationForm(language);
-        assertNotNull(instance.getBirthDate());
-        instance.getBirthDate().setValue(birthdate);
-        Assert.assertEquals(instance.getBirthDate().getValue(), birthdate);
+        assertNotNull(form.getBirthDate());
     }
 
     /**
      * Test of clear method, of class RegistrationForm.
+     *
+     * @param form
      */
-    @Test
-    public void testClear() {
+    @Test(dataProvider = "valid")
+    public void testClear(RegistrationForm form) {
         System.out.println("clear");
-        Date birthdate = new Date();
-        String language = "en";
-        RegistrationForm instance = new RegistrationForm(language);
-        assertNotNull(instance.getBirthDate());
-        instance.getBirthDate().setValue(birthdate);
-        Assert.assertEquals(instance.getBirthDate().getValue(), birthdate);
-        instance.clear();
-        Assert.assertNull(instance.getBirthDate().getValue());
+        form.clear();
     }
 
     /**
      * Test of submit method, of class RegistrationForm.
+     *
+     * @param form
      */
-    @Test(expectedExceptions = NullPointerException.class)
-    public void testSubmit() {
+    @Test(dataProvider = "valid", expectedExceptions = NullPointerException.class)
+    public void testSubmit(RegistrationForm form) {
         System.out.println("submit");
-        Date birthdate = new Date();
-        String language = "en";
-        RegistrationForm instance = new RegistrationForm(language);
-        assertNotNull(instance.getBirthDate());
-        instance.getBirthDate().setValue(birthdate);
-        Assert.assertEquals(instance.getBirthDate().getValue(), birthdate);
-        instance.submit();
-        Assert.assertNull(instance.getBirthDate());
+        form.submit();
     }
 
     /**
      * Test of hashCode method, of class RegistrationForm.
+     *
+     * @param instance
+     * @param instance2
      */
-    @Test
-    public void testHashCode() {
+    @Test(dataProvider = "validEquals")
+    public void testHashCode(RegistrationForm instance, RegistrationForm instance2) {
         System.out.println("hashCode");
-        Date birthdate = new Date();
-        String language = "en";
-        RegistrationForm instance = new RegistrationForm(language);
-        RegistrationForm instance2 = new RegistrationForm(language);
-        instance.getBirthDate().setValue(birthdate);
-        instance2.getBirthDate().setValue(birthdate);
-        Assert.assertEquals(instance.hashCode(), instance2.hashCode());
+        Assert.assertTrue(instance.equals(instance2));
     }
 
     /**
      * Test of equals method, of class RegistrationForm.
+     *
+     * @param instance
+     * @param instance2
      */
-    @Test
-    public void testEquals() {
+    @Test(dataProvider = "validEquals")
+    public void testEquals(RegistrationForm instance, RegistrationForm instance2) {
         System.out.println("equals");
-        Date birthdate = new Date();
-        String language = "en";
-        RegistrationForm instance = new RegistrationForm(language);
-        RegistrationForm instance2 = new RegistrationForm(language);
-        instance.getBirthDate().setValue(birthdate);
-        instance2.getBirthDate().setValue(birthdate);
         Assert.assertTrue(instance.equals(instance2));
+    }
+
+    /**
+     * Test of equals method, of class RegistrationForm.
+     *
+     * @param instance
+     * @param instance2
+     */
+    @Test(dataProvider = "invalidEquals")
+    public void testNotEquals(RegistrationForm instance, Object instance2) {
+        System.out.println("equals");
+        Assert.assertFalse(instance.equals(instance2));
+    }
+
+    @DataProvider(name = "valid")
+    private Object[][] getValidData() {
+        RegistrationForm rv1 = new RegistrationForm("en");
+        RegistrationForm rv2 = new RegistrationForm("pt");
+        return new Object[][]{{rv1}, {rv2}};
+    }
+
+    @DataProvider(name = "validEquals")
+    private Object[][] getEqualsData() {
+        RegistrationForm rv1 = new RegistrationForm("en");
+        RegistrationForm rv2 = new RegistrationForm("pt");
+        return new Object[][]{{rv1, rv1}, {rv2, rv2}};
+    }
+
+    @DataProvider(name = "invalidEquals")
+    private Object[][] getNotEqualsData() {
+        RegistrationForm rv1 = new RegistrationForm("en");
+        RegistrationForm rv2 = new RegistrationForm("pt");
+        return new Object[][]{{rv1, rv2}, {rv2, rv1}, {rv1, null}, {rv1, ""}};
     }
 
 }
