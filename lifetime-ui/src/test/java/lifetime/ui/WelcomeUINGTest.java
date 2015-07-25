@@ -18,7 +18,6 @@ package lifetime.ui;
 import com.vaadin.server.VaadinRequest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import lifetime.view.welcome.WelcomeView;
 import org.testng.log4testng.Logger;
 
 /**
@@ -58,23 +57,6 @@ public class WelcomeUINGTest {
         Assert.assertNotNull(instance.getNavigator());
     }
 
-    /**
-     * Test of getLifetimeView method, of class WelcomeUI. The test should
-     * verify that method {@link WelcomeUI#getLifetimeView()} correctly returns
-     * a reference of type {@link WelcomeView}, as expected by the <b>bridge
-     * design pattern</b>.
-     *
-     * @exception NullPointerException
-     * @todo {@link WelcomeUISeleniumTest}
-     */
-    @Test
-    public void testGetLifetimeView() {
-        System.out.println("testGetLifetimeView()");
-        WelcomeUI instance = new WelcomeUI();
-        Assert.assertNull((WelcomeView) instance.getLifetimeView());
-    }
-    
-    
     @Test
     public void testServlet() {
         System.out.println("testServlet()");
@@ -82,10 +64,9 @@ public class WelcomeUINGTest {
         WelcomeUI.WelcomeUIServlet servlet = new WelcomeUI.WelcomeUIServlet();
         try {
             servlet.init();
-        } catch(Throwable ex) {
+        } catch (Throwable ex) {
             Logger.getLogger(getClass()).info(ex);
         }
     }
-
 
 }

@@ -19,7 +19,6 @@ import com.vaadin.server.VaadinRequest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import lifetime.view.LifetimeView;
-import lifetime.view.welcome.WelcomeView;
 
 /**
  *
@@ -52,13 +51,12 @@ public class LifetimeUINGTest {
      * class has a not initialized, i.e, null assigned {@link LifetimeView},
      * which will be implemented using the <b>bridge design pattern</b>.
      */
-    @Test
+/*    @Test
     public void testGetView() {
         System.out.println("getView");
         LifetimeUI instance = new LifetimeUIImpl();
         Assert.assertNull(instance.getLifetimeView());
     }
-    
     @Test
     public void testEquals() {
         System.out.println("equals");
@@ -80,7 +78,7 @@ public class LifetimeUINGTest {
         Assert.assertEquals(instance.getLifetimeView(), lv);
         
     }
-
+*/
     public class LifetimeUIImpl extends LifetimeUI {
 
         @Override

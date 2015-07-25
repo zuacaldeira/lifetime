@@ -17,10 +17,6 @@ package lifetime.view.welcome.register;
 
 import lifetime.view.welcome.WelcomeView;
 import lifetime.view.welcome.WelcomeBackground;
-import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickListener;
-import lifetime.ui.Navigation;
 import lifetime.view.LifetimeBackground;
 import lifetime.view.LifetimeContent;
 import lifetime.view.LifetimeMenu;
@@ -38,7 +34,7 @@ import lifetime.view.LifetimeMenu;
  * @author lifetime
  *
  */
-public class RegisterView extends WelcomeView implements ClickListener {
+public class RegisterView extends WelcomeView {
 
     public RegisterView(String language) {
         super(language);
@@ -48,7 +44,6 @@ public class RegisterView extends WelcomeView implements ClickListener {
     @Override
     protected LifetimeMenu createMenu() {
         RegisterMenu menu = new RegisterMenu(getLanguage());
-        menu.addClickListener(this);
         return menu;
     }
 
@@ -60,22 +55,6 @@ public class RegisterView extends WelcomeView implements ClickListener {
     @Override
     protected LifetimeBackground createBackground() {
         return new WelcomeBackground(getLanguage());
-    }
-
-    @Override
-    public void buttonClick(Button.ClickEvent event) {
-        String context = VaadinServlet.getCurrent().getServletContext().getContextPath();
-
-        if (event.getButton() == getMenu().getHomeButton()) {
-            getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
-        }
-        else if (event.getButton() == getMenu().getCancelButton()) {
-            getContent().getRegisterForm().clear();
-        }
-        else if (event.getButton() == getMenu().getOkButton()) {
-            getContent().getRegisterForm().submit();
-            getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
-        }
     }
 
     @Override

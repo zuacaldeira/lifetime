@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 lifetime.
+ * Copyright 2015 zua.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,25 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.custom;
-
-import com.vaadin.server.FontAwesome;
-import lifetime.view.StyleClassName;
-import lifetime.util.Translator;
+package lifetime.ui;
 
 /**
  *
- * @author lifetime
+ * @author zua
  */
-public class RegisterButton extends LifetimeButtonLink {
+public class LifetimeViewProvider {
 
-    public RegisterButton(String language) {
-        super(Translator.getTranslation("Register", language), language, FontAwesome.PLUS);
-        setId(StyleClassName.REGISTER_BUTTON);
+    private LifetimeViewProvider() {
+
     }
 
-    
-    
-    
-
+    /**
+     *
+     * @param language
+     * @return
+     */
+    public static WelcomeViewProvider getWelcomeViewProvider(String language) {
+        return new WelcomeViewProvider(language);
+    }
 }

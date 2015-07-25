@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 lifetime.
+ * Copyright 2015 zua.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,25 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.custom;
+package lifetime.view.welcome;
 
-import com.vaadin.server.FontAwesome;
-import lifetime.view.StyleClassName;
-import lifetime.util.Translator;
+import com.vaadin.server.ThemeResource;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
  *
- * @author lifetime
+ * @author zua
  */
-public class RegisterButton extends LifetimeButtonLink {
+public class WelcomeBackgroundNGTest {
 
-    public RegisterButton(String language) {
-        super(Translator.getTranslation("Register", language), language, FontAwesome.PLUS);
-        setId(StyleClassName.REGISTER_BUTTON);
+    public WelcomeBackgroundNGTest() {
     }
 
-    
-    
-    
+    @Test
+    public void testWelcomeBackground() {
+        WelcomeBackground background = new WelcomeBackground("en");
+        Assert.assertNotNull(background);
+        Assert.assertNotNull(background.getImage());
+        Assert.assertEquals(background.getImage().getSource(), new ThemeResource("../img/background.jpg"));
+    }
 
 }

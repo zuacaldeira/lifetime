@@ -18,7 +18,7 @@ package lifetime.view.welcome.contact;
 import lifetime.view.custom.LifetimeButtonLink;
 import com.vaadin.server.FontAwesome;
 import lifetime.view.StyleClassName;
-import util.Translator;
+import lifetime.util.Translator;
 
 /**
  *

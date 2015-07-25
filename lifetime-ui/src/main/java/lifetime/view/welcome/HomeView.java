@@ -27,13 +27,16 @@ import java.util.Objects;
 public class HomeView extends HorizontalLayout {
 
     private final String language;
+    private final NumericStatsView nUsers;
+    private final NumericStatsView nJobs;
+    private final NumericStatsView nCourses;
 
     public HomeView(String language) {
         this.language = language;
         setSizeFull();
-        NumericStatsView nUsers = new NumericStatsView("# Users", 10000000);
-        NumericStatsView nJobs = new NumericStatsView("# Job Offers", 10000);
-        NumericStatsView nCourses = new NumericStatsView("# Course Offers", 10000);
+        nUsers = new NumericStatsView("# Users", 10000000);
+        nJobs = new NumericStatsView("# Job Offers", 10000);
+        nCourses = new NumericStatsView("# Course Offers", 10000);
         addComponents(nUsers, nJobs, nCourses);
         setComponentAlignment(nUsers, Alignment.MIDDLE_CENTER);
         setComponentAlignment(nJobs, Alignment.MIDDLE_CENTER);
@@ -48,6 +51,20 @@ public class HomeView extends HorizontalLayout {
     public String getLanguage() {
         return language;
     }
+
+    public NumericStatsView getnUsers() {
+        return nUsers;
+    }
+
+    public NumericStatsView getnJobs() {
+        return nJobs;
+    }
+
+    public NumericStatsView getnCourses() {
+        return nCourses;
+    }
+    
+    
 
     @Override
     public int hashCode() {

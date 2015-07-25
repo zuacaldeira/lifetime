@@ -8,7 +8,7 @@ package lifetime.view.custom;
 import com.vaadin.server.Resource;
 import com.vaadin.ui.Button;
 import java.util.Objects;
-import util.Translator;
+import lifetime.util.Translator;
 
 /**
  *

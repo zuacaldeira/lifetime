@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view;
+package lifetime.view.welcome;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -24,6 +24,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import lifetime.ui.TestBundle;
+import lifetime.view.LifetimeArquillian;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ArchivePaths;

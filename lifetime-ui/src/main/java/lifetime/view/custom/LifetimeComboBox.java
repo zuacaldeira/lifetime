@@ -8,7 +8,7 @@ package lifetime.view.custom;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.data.Container;
 import java.util.Collection;
-import util.Translator;
+import lifetime.util.Translator;
 
 /**
  *

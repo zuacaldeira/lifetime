@@ -28,8 +28,8 @@ import java.util.Objects;
 import lifetime.service.LifetimeAccountBusiness;
 import lifetime.view.validator.NameValidator;
 import lifetime.view.validator.PasswordValidator;
-import util.ServiceLocator;
-import util.Translator;
+import lifetime.util.ServiceLocator;
+import lifetime.util.Translator;
 
 /**
  *

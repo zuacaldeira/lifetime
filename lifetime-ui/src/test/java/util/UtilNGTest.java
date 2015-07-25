@@ -15,6 +15,7 @@
  */
 package util;
 
+import lifetime.util.Util;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 

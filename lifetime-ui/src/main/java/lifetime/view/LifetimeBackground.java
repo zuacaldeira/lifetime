@@ -45,6 +45,12 @@ public abstract class LifetimeBackground extends AbsoluteLayout {
         return language;
     }
 
+    public Image getImage() {
+        return image;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 3;

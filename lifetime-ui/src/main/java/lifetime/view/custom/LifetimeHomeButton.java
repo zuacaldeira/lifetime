@@ -17,7 +17,7 @@ package lifetime.view.custom;
 
 import com.vaadin.server.FontAwesome;
 import lifetime.view.StyleClassName;
-import util.Translator;
+import lifetime.util.Translator;
 
 /**
  *

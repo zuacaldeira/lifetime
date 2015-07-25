@@ -30,6 +30,7 @@ public class WelcomeMenuNGTest {
 
     /**
      * Test of getHomeButton method, of class WelcomeMenu.
+     * @param menu
      */
     @Test(dataProvider = "validMenuProvider")
     public void testGetHomeButton(WelcomeMenu menu) {

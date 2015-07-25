@@ -17,8 +17,6 @@ package lifetime.view;
 
 import lifetime.view.custom.LifetimeButtonLink;
 import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
 import java.util.Objects;
@@ -53,13 +51,7 @@ public abstract class LifetimeMenu extends CustomComponent {
     public void addControl(LifetimeButtonLink lifetimeButton) {
         controls.addComponent(lifetimeButton);
     }
-    
-    public void addClickListener(ClickListener listener) {
-        for(int i = 0; i < controls.getComponentCount(); i++) {
-            ((Button)controls.getComponent(i)).addClickListener(listener);
-        }
-    }
-    
+        
     
     
 

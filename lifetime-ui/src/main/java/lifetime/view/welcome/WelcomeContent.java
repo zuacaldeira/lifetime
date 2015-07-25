@@ -25,21 +25,21 @@ import lifetime.view.StyleClassName;
  * @author zua
  */
 public class WelcomeContent extends LifetimeContent {
-    private final HomeView homeView;
+    private final HomeView contentView;
 
     public WelcomeContent(String language) {
         super(language);
         setSizeFull();
-        homeView = new HomeView(getLanguage());
-        addComponent(homeView);
-        setComponentAlignment(homeView, Alignment.MIDDLE_CENTER);
+        contentView = new HomeView(getLanguage());
+        addComponent(contentView);
+        setComponentAlignment(contentView, Alignment.MIDDLE_CENTER);
         setStyleName(StyleClassName.LIFETIME_CONTENT);
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.homeView);
+        hash = 23 * hash + Objects.hashCode(this.contentView);
         return hash;
     }
 
@@ -52,8 +52,13 @@ public class WelcomeContent extends LifetimeContent {
             return false;
         }
         final WelcomeContent other = (WelcomeContent) obj;
-        return Objects.equals(this.homeView, other.homeView);
+        return Objects.equals(this.contentView, other.contentView);
     }
+
+    public HomeView getContentView() {
+        return contentView;
+    }
+
     
     
 
