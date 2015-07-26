@@ -16,9 +16,9 @@
 package lifetime.ui;
 
 import com.vaadin.server.VaadinRequest;
+import javax.servlet.ServletException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.log4testng.Logger;
 
 /**
  * Unit test suite for the {@link WelcomeUI} class. This test is responsible to
@@ -44,29 +44,20 @@ public class WelcomeUINGTest {
      * @exception NullPointerException
      * @todo {@link WelcomeUISeleniumTest}
      */
-    @Test
+    @Test(expectedExceptions = NullPointerException.class)
     public void testInit() {
         System.out.println("testInit()");
         VaadinRequest request = null;
         WelcomeUI instance = new WelcomeUI();
-        //instance.setNavigator(new Navigator(instance, (ViewDisplay)null));
-        try {
-            instance.init(request);
-        } catch (Exception ex) {
-        }
+        instance.init(request);
         Assert.assertNotNull(instance.getNavigator());
     }
 
     @Test
-    public void testServlet() {
+    public void testServlet() throws ServletException {
         System.out.println("testServlet()");
-        WelcomeUI ui = new WelcomeUI();
         WelcomeUI.WelcomeUIServlet servlet = new WelcomeUI.WelcomeUIServlet();
-        try {
-            servlet.init();
-        } catch (Throwable ex) {
-            Logger.getLogger(getClass()).info(ex);
-        }
+        servlet.init();
     }
 
 }

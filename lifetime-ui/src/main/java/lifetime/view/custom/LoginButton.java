@@ -25,6 +25,7 @@ import lifetime.util.Translator;
  * @author lifetime
  */
 public class LoginButton extends LifetimeButtonLink {
+
     private final String text;
 
     public LoginButton(String language) {
@@ -43,16 +44,11 @@ public class LoginButton extends LifetimeButtonLink {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (!super.equals(obj)) {
             return false;
         }
         final LoginButton other = (LoginButton) obj;
         return Objects.equals(this.text, other.text);
     }
-    
-    
-    
+
 }

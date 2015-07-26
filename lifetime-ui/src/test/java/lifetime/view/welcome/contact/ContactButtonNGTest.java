@@ -15,7 +15,9 @@
  */
 package lifetime.view.welcome.contact;
 
+import com.vaadin.event.ListenerMethod;
 import com.vaadin.ui.Button;
+import lifetime.ui.WelcomeUI;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -34,6 +36,12 @@ public class ContactButtonNGTest {
         Assert.assertNotNull(button);
         Assert.assertNotNull(button.getListeners(Button.ClickEvent.class));
         Assert.assertFalse(button.getListeners(Button.ClickEvent.class).isEmpty());
+    }
+
+    @Test(expectedExceptions = NullPointerException.class)
+    public void testButtonClick() {
+        ContactButton button = new ContactButton("en");
+        button.buttonClick(new Button.ClickEvent(new WelcomeUI()));
     }
 
 }

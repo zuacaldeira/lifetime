@@ -15,7 +15,6 @@
  */
 package lifetime.view;
 
-import com.vaadin.server.StreamResource;
 import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.Image;
 import java.util.Objects;
@@ -37,10 +36,6 @@ public abstract class LifetimeBackground extends AbsoluteLayout {
         addComponents(image);
     }
 
-    public void setSource(StreamResource streamResource) {
-        image.setSource(streamResource);
-    }
-
     public String getLanguage() {
         return language;
     }
@@ -48,8 +43,6 @@ public abstract class LifetimeBackground extends AbsoluteLayout {
     public Image getImage() {
         return image;
     }
-    
-    
 
     @Override
     public int hashCode() {
@@ -65,7 +58,7 @@ public abstract class LifetimeBackground extends AbsoluteLayout {
             return false;
         }
         final LifetimeBackground other = (LifetimeBackground) obj;
-        return Objects.equals(this.image, other.image) 
+        return Objects.equals(this.image, other.image)
                 && Objects.equals(this.language, other.language);
     }
 

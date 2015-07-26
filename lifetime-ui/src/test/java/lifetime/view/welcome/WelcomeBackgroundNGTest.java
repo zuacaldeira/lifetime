@@ -15,8 +15,10 @@
  */
 package lifetime.view.welcome;
 
+import com.vaadin.server.FontAwesome;
 import com.vaadin.server.ThemeResource;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
@@ -28,12 +30,45 @@ public class WelcomeBackgroundNGTest {
     public WelcomeBackgroundNGTest() {
     }
 
-    @Test
-    public void testWelcomeBackground() {
-        WelcomeBackground background = new WelcomeBackground("en");
+    @Test(dataProvider = "valid")
+    public void testWelcomeBackground(WelcomeBackground background) {
         Assert.assertNotNull(background);
         Assert.assertNotNull(background.getImage());
         Assert.assertEquals(background.getImage().getSource(), new ThemeResource("../img/background.jpg"));
+    }
+
+    @Test(dataProvider = "validEquals")
+    public void testEquals(WelcomeBackground background, WelcomeBackground other) {
+        Assert.assertTrue(background.equals(other));
+    }
+
+    @Test(dataProvider = "invalidEquals")
+    public void testNotEquals(WelcomeBackground background, Object other) {
+        Assert.assertFalse(background.equals(other));
+    }
+
+    @DataProvider(name = "valid")
+    private Object[][] getValidData() {
+        WelcomeBackground back = new WelcomeBackground("en");
+        WelcomeBackground back2 = new WelcomeBackground("pt");
+        return new Object[][]{{back}, {back2}};
+    }
+
+    @DataProvider(name = "validEquals")
+    private Object[][] getEqualsData() {
+        WelcomeBackground back = new WelcomeBackground("en");
+        WelcomeBackground back2 = new WelcomeBackground("pt");
+        return new Object[][]{{back, back}, {back2, back2}};
+    }
+
+    @DataProvider(name = "invalidEquals")
+    private Object[][] getNotEqualsData() {
+        WelcomeBackground back = new WelcomeBackground("en");
+        WelcomeBackground back2 = new WelcomeBackground("pt");
+        WelcomeBackground back3 = new WelcomeBackground("pt");
+        back3.getImage().setSource(FontAwesome.ANDROID);
+
+        return new Object[][]{{back, back2}, {back2, back}, {back, null}, {back, ""}, {back, back3}};
     }
 
 }

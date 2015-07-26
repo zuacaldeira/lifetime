@@ -30,6 +30,7 @@ public class RegisterMenuNGTest {
 
     /**
      * Test of getHomeButton method, of class RegisterMenu.
+     *
      * @param menu
      */
     @Test(dataProvider = "valid")
@@ -40,6 +41,7 @@ public class RegisterMenuNGTest {
 
     /**
      * Test of getCancelButton method, of class RegisterMenu.
+     *
      * @param menu
      */
     @Test(dataProvider = "valid")
@@ -50,6 +52,7 @@ public class RegisterMenuNGTest {
 
     /**
      * Test of getOkButton method, of class RegisterMenu.
+     *
      * @param menu
      */
     @Test(dataProvider = "valid")
@@ -60,6 +63,7 @@ public class RegisterMenuNGTest {
 
     /**
      * Test of hashCode method, of class RegisterMenu.
+     *
      * @param menu1
      * @param menu2
      */
@@ -71,6 +75,7 @@ public class RegisterMenuNGTest {
 
     /**
      * Test of equals method, of class RegisterMenu.
+     *
      * @param menu1
      * @param menu2
      */
@@ -82,6 +87,7 @@ public class RegisterMenuNGTest {
 
     /**
      * Test of equals method, of class RegisterMenu.
+     *
      * @param menu1
      * @param menu2
      */

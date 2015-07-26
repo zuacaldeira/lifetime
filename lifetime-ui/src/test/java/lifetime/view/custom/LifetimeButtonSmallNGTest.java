@@ -16,11 +16,12 @@
 package lifetime.view.custom;
 
 import com.vaadin.server.FontAwesome;
-import com.vaadin.server.Resource;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
@@ -31,89 +32,101 @@ public class LifetimeButtonSmallNGTest {
 
     /**
      * Test of getUserId method, of class LifetimeButton.
+     *
+     * @param instance
      */
-    @Test
-    public void testGetUserId() {
+    @Test(dataProvider = "valid")
+    public void testGetUserId(LifetimeButtonSmall instance) {
         System.out.println("testGetUserId()");
-        Integer userId = 1;
-        String caption = "caption";
-        String language = "pt";
-        Resource icon = FontAwesome.ADJUST;
-        LifetimeButton instance = new LifetimeButtonSmall(userId, language, caption, icon);
-        assertEquals(instance.getUserId(), userId);
+        assertNotNull(instance.getUserId());
     }
 
     /**
      * Test of getLanguage method, of class LifetimeButton.
+     *
+     * @param instance
      */
-    @Test
-    public void testGetLanguage() {
+    @Test(dataProvider = "valid")
+    public void testGetLanguage(LifetimeButtonSmall instance) {
         System.out.println("testGetLanguage()");
-        Integer userId = 1;
-        String caption = "caption";
-        String language = "pt";
-        Resource icon = FontAwesome.ADJUST;
-        LifetimeButton instance = new LifetimeButtonSmall(userId, language, caption, icon);
-        assertEquals(instance.getLanguage(), language);
+        assertNotNull(instance.getLanguage());
     }
 
     /**
      * Test of showCaption method, of class LifetimeButton.
+     *
+     * @param instance
      */
-    @Test
-    public void testShowCaption() {
+    @Test(dataProvider = "valid")
+    public void testShowCaption(LifetimeButtonSmall instance) {
         System.out.println("testShowCaption()");
-        Integer userId = 1;
-        String caption = "caption";
-        String language = "pt";
-        Resource icon = FontAwesome.ADJUST;
-        LifetimeButton instance = new LifetimeButtonSmall(userId, language, caption, icon);
         instance.showCaption();
         assertNotNull(instance.getCaption());
     }
 
     /**
      * Test of hideCaption method, of class LifetimeButton.
+     *
+     * @param instance
      */
-    @Test
-    public void testHideCaption() {
+    @Test(dataProvider = "valid")
+    public void testHideCaption(LifetimeButtonSmall instance) {
         System.out.println("testHideCaption()");
-        Integer userId = 1;
-        String caption = "caption";
-        String language = "pt";
-        Resource icon = FontAwesome.ADJUST;
-        LifetimeButton instance = new LifetimeButtonSmall(userId, language, caption, icon);
         instance.hideCaption();
         assertNull(instance.getCaption());
     }
 
     /**
      * Test of hashCode method, of class LifetimeButton.
+     *
+     * @param instance1
+     * @param instance2
      */
-    @Test
-    public void testHashCode() {
+    @Test(dataProvider = "validEquals")
+    public void testHashCode(LifetimeButtonSmall instance1, LifetimeButtonSmall instance2) {
         System.out.println("testHashCode()");
-        Integer userId = 1;
-        String caption = "caption";
-        String language = "pt";
-        Resource icon = FontAwesome.ADJUST;
-        LifetimeButton instance1 = new LifetimeButtonSmall(userId, language, caption, icon);
-        LifetimeButton instance2 = new LifetimeButtonSmall(userId, language, caption, icon);
         assertEquals(instance1.hashCode(), instance2.hashCode());
     }
 
     /**
      * Test of equals method, of class LifetimeButton.
+     *
+     * @param instance1
+     * @param instance2
      */
-    @Test
-    public void testEquals() {
+    @Test(dataProvider = "validEquals")
+    public void testEquals(LifetimeButtonSmall instance1, LifetimeButtonSmall instance2) {
         System.out.println("testEquals()");
-        Integer userId = 1;
-        String caption = "caption";
-        String language = "pt";
-        Resource icon = FontAwesome.ADJUST;
-        LifetimeButton instance1 = new LifetimeButtonSmall(userId, language, caption, icon);
-        LifetimeButton instance2 = new LifetimeButtonSmall(userId, language, caption, icon);
         assertTrue(instance1.equals(instance2));
     }
+
+    @Test(dataProvider = "invalidEquals")
+    public void testNotEquals(LifetimeButtonSmall instance1, Object instance2) {
+        System.out.println("testEquals()");
+        assertFalse(instance1.equals(instance2));
+    }
+
+    @DataProvider(name = "valid")
+    private Object[][] getValidData() {
+        LifetimeButtonSmall button = new LifetimeButtonSmall(1, "en", "a button", FontAwesome.ADJUST);
+        LifetimeButtonSmall button2 = new LifetimeButtonSmall(1, "pt", "a button", FontAwesome.ADJUST);
+        return new Object[][]{{button}, {button2}};
+    }
+
+    @DataProvider(name = "validEquals")
+    private Object[][] getEqualsData() {
+        LifetimeButtonSmall button = new LifetimeButtonSmall(1, "en", "a button", FontAwesome.ADJUST);
+        LifetimeButtonSmall button2 = new LifetimeButtonSmall(1, "en", "a button", FontAwesome.ADJUST);
+        return new Object[][]{{button, button}, {button2, button2}};
+    }
+
+    @DataProvider(name = "invalidEquals")
+    private Object[][] getNotEqualsData() {
+        LifetimeButtonSmall button = new LifetimeButtonSmall(1, "en", "a button", FontAwesome.ADJUST);
+        LifetimeButtonSmall button2 = new LifetimeButtonSmall(2, "en", "a button", FontAwesome.ADJUST);
+        LifetimeButtonSmall button3 = new LifetimeButtonSmall(1, "pt", "a button", FontAwesome.ADJUST);
+
+        return new Object[][]{{button, button2}, {button2, button}, {button, null}, {button, ""}, {button, button3}};
+    }
+
 }

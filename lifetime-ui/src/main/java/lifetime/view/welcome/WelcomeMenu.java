@@ -46,29 +46,6 @@ public class WelcomeMenu extends LifetimeMenu {
         addControl(contactButton);
     }
 
-/*    @Override
-    public void buttonClick(Button.ClickEvent event) {
-        Notification.show("Welcome Menu View -> " + event.getButton());
-        String context = VaadinServlet.getCurrent().getServletContext().getContextPath();
-
-        if (event.getButton() == homeButton) {
-            Notification.show("--> WelcomeView -> " + context);
-            getUI().getNavigator().navigateTo("Welcome");
-        }
-        if (event.getButton() == registerButton) {
-            Notification.show("--> RegisterView -> " + context);
-            getUI().getNavigator().navigateTo("Register");
-        }
-        if (event.getButton() == loginButton) {
-            Notification.show("--> Login View -> " + context);
-            getUI().getPage().setLocation(context + "/user");
-        }
-        if (event.getButton() == contactButton) {
-            Notification.show("Contact View -> " + context);
-            getUI().getNavigator().navigateTo("Contact");
-        }
-    }
-*/
     public LifetimeHomeButton getHomeButton() {
         return homeButton;
     }

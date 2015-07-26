@@ -15,7 +15,9 @@
  */
 package lifetime.view.welcome;
 
+import lifetime.view.welcome.register.RegisterMenu;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
@@ -29,32 +31,72 @@ public class WelcomeViewNGTest {
 
     /**
      * Test of createMenu method, of class WelcomeView.
+     * @param instance
      */
-    @Test
-    public void testCreateMenu() {
+    @Test(dataProvider = "valid")
+    public void testCreateMenu(WelcomeView instance) {
         System.out.println("testCreateMenu()");
-        WelcomeView instance = new WelcomeView("en");
         Assert.assertNotNull(instance.createMenu());
     }
 
     /**
      * Test of createContent method, of class WelcomeView.
+     * @param instance
      */
-    @Test
-    public void testCreateContent() {
+    @Test(dataProvider = "valid")
+    public void testCreateContent(WelcomeView instance) {
         System.out.println("testCreateContent()");
-        WelcomeView instance = new WelcomeView("en");
         Assert.assertNotNull(instance.createContent());
     }
 
     /**
      * Test of createBackground method, of class WelcomeView.
+     * @param instance
      */
-    @Test
-    public void testCreateBackground() {
+    @Test(dataProvider = "valid")
+    public void testCreateBackground(WelcomeView instance) {
         System.out.println("testCreateBackground()");
-        WelcomeView instance = new WelcomeView("en");
         Assert.assertNotNull(instance.createBackground());
+    }
+    
+    @Test(dataProvider = "validEquals")
+    public void testHashCode(WelcomeView instance, WelcomeView other) {
+        System.out.println("testEquals()");
+        Assert.assertEquals(instance.hashCode(), other.hashCode());
+    }
+
+    @Test(dataProvider = "validEquals")
+    public void testEquals(WelcomeView instance, WelcomeView other) {
+        System.out.println("testHashCode()");
+        Assert.assertTrue(instance.equals(other));
+    }
+
+    @Test(dataProvider = "invalidEquals")
+    public void testNotEquals(WelcomeView instance, Object other) {
+        System.out.println("testNotEquals()");
+        Assert.assertFalse(instance.equals(other));
+    }
+
+    
+    @DataProvider(name = "valid")
+    private Object[][] getValidData() {
+        WelcomeView wv1 = new WelcomeView("en");
+        WelcomeView wv2 = new WelcomeView("pt");
+        return new Object[][]{{wv1}, {wv2}};
+    }
+
+    @DataProvider(name = "validEquals")
+    private Object[][] getEqualsData() {
+        WelcomeView wv1 = new WelcomeView("en");
+        WelcomeView wv2 = new WelcomeView("pt");
+        return new Object[][]{{wv1, wv1}, {wv2, wv2}};
+    }
+
+    @DataProvider(name = "invalidEquals")
+    private Object[][] getNotEqualsData() {
+        WelcomeView wv1 = new WelcomeView("en");
+        WelcomeView wv2 = new WelcomeView("pt");
+        return new Object[][]{{wv1, wv2}, {wv2, wv1}, {wv1, null}, {wv1, ""}};
     }
 
 }

@@ -15,6 +15,7 @@
  */
 package lifetime.view.custom;
 
+import java.util.Date;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.DataProvider;
@@ -182,7 +183,28 @@ public class RegistrationFormNGTest {
     private Object[][] getNotEqualsData() {
         RegistrationForm rv1 = new RegistrationForm("en");
         RegistrationForm rv2 = new RegistrationForm("pt");
-        return new Object[][]{{rv1, rv2}, {rv2, rv1}, {rv1, null}, {rv1, ""}};
+
+        RegistrationForm rv3 = new RegistrationForm("en");
+        rv3.getFirstname().setValue("a new first name");
+
+        RegistrationForm rv4 = new RegistrationForm("en");
+        rv4.getLastname().setValue("a new last name");
+
+        RegistrationForm rv5 = new RegistrationForm("en");
+        rv5.getBirthDate().setValue(new Date());
+
+        RegistrationForm rv6 = new RegistrationForm("en");
+        rv6.getPassword().setValue("a new password");
+
+        RegistrationForm rv7 = new RegistrationForm("en");
+        rv7.getPasswordRepeat().setValue("a new password repeat");
+
+        //RegistrationForm rv8 = new RegistrationForm("en");
+        //rv8.getBirthPlace().setValue("a new password");
+        return new Object[][]{
+            {rv1, rv2}, {rv2, rv1}, {rv1, null}, {rv1, ""},
+            {rv1, rv3}, {rv1, rv4}, {rv1, rv5}, {rv1, rv6}, {rv1, rv7}
+        };
     }
 
 }
