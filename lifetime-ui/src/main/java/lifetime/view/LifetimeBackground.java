@@ -58,8 +58,7 @@ public abstract class LifetimeBackground extends AbsoluteLayout {
             return false;
         }
         final LifetimeBackground other = (LifetimeBackground) obj;
-        return Objects.equals(this.image, other.image)
-                && Objects.equals(this.language, other.language);
+        return Objects.equals(this.language, other.language) && Objects.equals(this.image, other.image);
     }
 
 }

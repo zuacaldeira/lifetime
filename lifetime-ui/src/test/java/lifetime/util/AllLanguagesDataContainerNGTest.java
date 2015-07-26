@@ -13,18 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.ui;
+package lifetime.util;
+
+import static org.testng.Assert.*;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-public class Navigation {
+public class AllLanguagesDataContainerNGTest {
 
-    public static final String WELCOME_VIEW = "Welcome";
-    public static final String REGISTER_VIEW = "Register";
-    public static final String CONTACT_VIEW = "Contact";
-
-    private Navigation() {
+    public AllLanguagesDataContainerNGTest() {
     }
+
+    /**
+     * Test of getLanguage method, of class AllLanguagesDataContainer.
+     */
+    @Test
+    public void testGetLanguage() {
+        System.out.println("getLanguage");
+        String language = "pt";
+        AllLanguagesDataContainer instance = new AllLanguagesDataContainer(language);
+        assertEquals(instance.getLanguage(), language);
+    }
+
 }

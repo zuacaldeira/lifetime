@@ -72,6 +72,8 @@ public class LifetimeDateFieldNGTest {
         LifetimeDateField instance = new LifetimeDateField(caption, language);
         LifetimeDateField instance2 = new LifetimeDateField(caption, language);
         Assert.assertTrue(instance.equals(instance2));
+        Assert.assertFalse(instance.equals(null));
+        Assert.assertFalse(instance.equals(""));
     }
     
 }

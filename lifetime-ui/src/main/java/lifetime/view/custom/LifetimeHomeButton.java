@@ -16,6 +16,8 @@
 package lifetime.view.custom;
 
 import com.vaadin.server.FontAwesome;
+import com.vaadin.ui.Button;
+import lifetime.ui.Navigation;
 import lifetime.view.StyleClassName;
 import lifetime.util.Translator;
 
@@ -23,12 +25,18 @@ import lifetime.util.Translator;
  *
  * @author lifetime
  */
-public class LifetimeHomeButton extends LifetimeButtonLink {
+public class LifetimeHomeButton extends LifetimeButtonLink implements Button.ClickListener{
 
     public LifetimeHomeButton(String language) {
         super(Translator.getTranslation("Home", language), language, FontAwesome.HOME);
         setDescription(Translator.getTranslation("Home", language));
         setId(StyleClassName.HOME_BUTTON);
+        addClickListener(this);
+    }
+
+    @Override
+    public void buttonClick(ClickEvent event) {
+        getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
     }
 
 }

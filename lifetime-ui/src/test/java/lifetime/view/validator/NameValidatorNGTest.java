@@ -65,8 +65,10 @@ public class NameValidatorNGTest {
         return new Object[][]{
             {""},
             {"asd1a"},
-            {"asd/a"}
+            {"asd/a"},
+            {1},
+            {null}
         };
     }
-    
+
 }

@@ -70,7 +70,7 @@ public abstract class LifetimeButton extends Button {
         if (!Objects.equals(this.userId, other.userId)) {
             return false;
         }
-        return Objects.equals(this.language, other.language);
+        return Objects.equals(this.language, other.language) && Objects.equals(this.getCaption(), other.getCaption());
     }
 
 }

@@ -17,7 +17,6 @@ package lifetime.view.welcome;
 
 import java.util.Objects;
 import lifetime.view.welcome.contact.ContactButton;
-import lifetime.view.custom.LifetimeHomeButton;
 import lifetime.view.LifetimeMenu;
 import lifetime.view.custom.RegisterButton;
 import lifetime.view.custom.LoginButton;
@@ -28,7 +27,6 @@ import lifetime.view.custom.LoginButton;
  */
 public class WelcomeMenu extends LifetimeMenu {
 
-    private final LifetimeHomeButton homeButton;
     private final RegisterButton registerButton;
     private final LoginButton loginButton;
     private final ContactButton contactButton;
@@ -36,18 +34,12 @@ public class WelcomeMenu extends LifetimeMenu {
     public WelcomeMenu(String language) {
         super(language);
         setSizeFull();
-        homeButton = new LifetimeHomeButton(language);
         registerButton = new RegisterButton(language);
         loginButton = new LoginButton(language);
         contactButton = new ContactButton(language);
-        addControl(homeButton);
         addControl(registerButton);
         addControl(loginButton);
         addControl(contactButton);
-    }
-
-    public LifetimeHomeButton getHomeButton() {
-        return homeButton;
     }
 
     public RegisterButton getRegisterButton() {
@@ -65,7 +57,6 @@ public class WelcomeMenu extends LifetimeMenu {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.homeButton);
         hash = 79 * hash + Objects.hashCode(this.registerButton);
         hash = 79 * hash + Objects.hashCode(this.loginButton);
         hash = 79 * hash + Objects.hashCode(this.contactButton);
@@ -78,8 +69,7 @@ public class WelcomeMenu extends LifetimeMenu {
             return false;
         }
         final WelcomeMenu other = (WelcomeMenu) obj;
-        return Objects.equals(this.homeButton, other.homeButton)
-                && Objects.equals(this.registerButton, other.registerButton)
+        return Objects.equals(this.registerButton, other.registerButton)
                 && Objects.equals(this.loginButton, other.loginButton)
                 && Objects.equals(this.contactButton, other.contactButton);
     }

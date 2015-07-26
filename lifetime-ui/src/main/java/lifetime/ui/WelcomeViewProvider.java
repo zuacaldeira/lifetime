@@ -17,6 +17,8 @@ package lifetime.ui;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewProvider;
+import java.util.HashMap;
+import java.util.Map;
 import lifetime.view.welcome.WelcomeView;
 import lifetime.view.welcome.contact.ContactView;
 import lifetime.view.welcome.register.RegisterView;
@@ -28,28 +30,36 @@ import lifetime.view.welcome.register.RegisterView;
 public class WelcomeViewProvider implements ViewProvider {
 
     private final String language;
+    private final Map<String, View> viewMap;
 
     public WelcomeViewProvider(String language) {
         this.language = language;
+        viewMap = new HashMap();
+        viewMap.put(Navigation.WELCOME_VIEW, new WelcomeView(language));
+        viewMap.put(Navigation.REGISTER_VIEW, new RegisterView(language));
+        viewMap.put(Navigation.CONTACT_VIEW, new ContactView(language));
     }
 
     @Override
     public String getViewName(String viewAndParameters) {
-        return viewAndParameters;
+        if (viewAndParameters.startsWith("!#")) {
+            return viewAndParameters.substring(2);
+        } else {
+            return viewAndParameters;
+        }
     }
 
     @Override
     public View getView(String viewName) {
-        switch (viewName) {
-            case Navigation.WELCOME_VIEW:
-                return new WelcomeView(language);
-            case Navigation.REGISTER_VIEW:
-                return new RegisterView(language);
-            case Navigation.CONTACT_VIEW:
-                return new ContactView(language);
-            default:
-                return new WelcomeView(language);
+        if (viewMap.get(viewName) != null) {
+            return viewMap.get(viewName);
+        } else {
+            return null;
         }
+    }
+
+    public String getLanguage() {
+        return language;
     }
 
 }

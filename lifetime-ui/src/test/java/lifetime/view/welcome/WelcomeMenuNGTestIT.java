@@ -15,7 +15,6 @@
  */
 package lifetime.view.welcome;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
@@ -50,11 +49,6 @@ public class WelcomeMenuNGTestIT extends LifetimeArquillian {
     @Drone
     private ChromeDriver webDriver;
 
-    private List<WebElement> topElements;
-    private WebElement lifetimeUI;
-    private WebElement lifetimeView;
-    private WebElement lifetimeMenu;
-
     /**
      * Factory of deployments or scenarios for this test case.
      *
@@ -85,7 +79,7 @@ public class WelcomeMenuNGTestIT extends LifetimeArquillian {
         webDriver.get(TestBundle.HOME_URL);
         getLogger().info("Page title: " + webDriver.getTitle());
 
-        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
         /**
          * Has a welcome menu...
@@ -93,12 +87,6 @@ public class WelcomeMenuNGTestIT extends LifetimeArquillian {
         getLogger().info("Looking for a lifetime menu...");
         WebElement lifetimeMenu = webDriver.findElement(By.xpath("//div[contains(@id,'lifetime-menu')]"));
         Assert.assertNotNull(lifetimeMenu, "Lifetime menu not found");
-        /**
-         * with a home button
-         */
-        getLogger().info("Looking for the home button...");
-        WebElement homeButton = webDriver.findElement(By.xpath("//div[contains(@id,'home-button')]"));
-        Assert.assertNotNull(homeButton, "Home button not found");
 
         /**
          * with a login button...

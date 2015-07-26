@@ -18,7 +18,6 @@ package lifetime.view;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.AbsoluteLayout;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import java.util.Objects;
 
@@ -84,7 +83,7 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
      * A composition base to group the menu and the content views the default UI
      * layer of this absolute layout
      */
-    private final VerticalLayout base;
+    private VerticalLayout base;
 
     /**
      * Initializes the structure of user interface. Delegates the choice of
@@ -94,12 +93,14 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
      */
     public LifetimeView(String language) {
         this.language = language;
+
         // Let subclasses initiate the adapters for the background, menu and content
+        setSizeFull();
         initBackground();
         initMenu();
         initContent();
+        //
         // Compose the view structure
-        setSizeFull();
         base = new VerticalLayout(menu, content);
         base.setSizeFull();
         base.setExpandRatio(menu, .1f);
@@ -198,7 +199,6 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        Notification.show("new view is " + event.getViewName());
     }
 
     @Override
@@ -220,21 +220,17 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
      */
     @Override
     public boolean equals(Object obj) {
-        if (!super.equals(obj)) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final LifetimeView other = (LifetimeView) obj;
-        return equalBase(other) && equalStructure(other) && Objects.equals(this.language, other.language);
-    }
-
-    private boolean equalBase(LifetimeView other) {
-        return Objects.equals(this.background, other.background)
-                && Objects.equals(this.base, other.base);
-    }
-
-    private boolean equalStructure(LifetimeView other) {
         return Objects.equals(this.menu, other.menu)
-                && Objects.equals(this.content, other.content);
+                && Objects.equals(this.content, other.content)
+                && Objects.equals(this.background, other.background)
+                && Objects.equals(this.language, other.language);
     }
 
 }

@@ -24,24 +24,13 @@ import org.testng.annotations.Test;
  * @author zua
  */
 public class WelcomeMenuNGTest {
-    
+
     public WelcomeMenuNGTest() {
     }
 
     /**
-     * Test of getHomeButton method, of class WelcomeMenu.
-     * @param menu
-     */
-    @Test(dataProvider = "validMenuProvider")
-    public void testGetHomeButton(WelcomeMenu menu) {
-        System.out.println("getHomeButton");
-        Assert.assertNotNull(menu.getHomeButton());
-        Assert.assertTrue(menu.getHomeButton().isEnabled());
-        Assert.assertTrue(menu.getHomeButton().isVisible());
-    }
-
-    /**
      * Test of getRegisterButton method, of class WelcomeMenu.
+     *
      * @param menu
      */
     @Test(dataProvider = "validMenuProvider")
@@ -54,6 +43,7 @@ public class WelcomeMenuNGTest {
 
     /**
      * Test of getLoginButton method, of class WelcomeMenu.
+     *
      * @param menu
      */
     @Test(dataProvider = "validMenuProvider")
@@ -66,6 +56,7 @@ public class WelcomeMenuNGTest {
 
     /**
      * Test of getContactButton method, of class WelcomeMenu.
+     *
      * @param menu
      */
     @Test(dataProvider = "validMenuProvider")
@@ -78,6 +69,7 @@ public class WelcomeMenuNGTest {
 
     /**
      * Test of hashCode method, of class WelcomeMenu.
+     *
      * @param menu
      * @param anotherMenu
      */
@@ -89,6 +81,7 @@ public class WelcomeMenuNGTest {
 
     /**
      * Test of equals method, of class WelcomeMenu.
+     *
      * @param menu
      * @param anotherMenu
      */
@@ -97,9 +90,10 @@ public class WelcomeMenuNGTest {
         System.out.println("equals");
         Assert.assertTrue(menu.equals(anotherMenu));
     }
-    
+
     /**
      * Test of equals method, of class WelcomeMenu.
+     *
      * @param menu
      * @param anotherMenu
      */
@@ -109,7 +103,6 @@ public class WelcomeMenuNGTest {
         Assert.assertFalse(menu.equals(anotherMenu));
     }
 
-    
     @DataProvider(name = "validMenuProvider")
     private Object[][] provideValidMenu() {
         return new Object[][]{
@@ -117,7 +110,7 @@ public class WelcomeMenuNGTest {
             {new WelcomeMenu("pt")}
         };
     }
-    
+
     @DataProvider(name = "validEqualsProvider")
     private Object[][] provideValidEqualsData() {
         return new Object[][]{
@@ -132,9 +125,7 @@ public class WelcomeMenuNGTest {
             {new WelcomeMenu("en"), new WelcomeMenu("pt")},
             {new WelcomeMenu("pt"), new WelcomeMenu("en")},
             {new WelcomeMenu("en"), null},
-            {new WelcomeMenu("pt"), "pt"},
-            
-        };
+            {new WelcomeMenu("pt"), "pt"},};
     }
 
 }

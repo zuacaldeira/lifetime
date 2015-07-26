@@ -17,6 +17,10 @@ package lifetime.view;
 
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Image;
+import lifetime.view.welcome.WelcomeBackground;
+import lifetime.view.welcome.WelcomeContent;
+import lifetime.view.welcome.WelcomeMenu;
+import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 
@@ -136,6 +140,63 @@ public class LifetimeViewNGTest {
         };
         String result = instance.getLanguage();
         assertEquals(result, "en");
+    }
+    
+    
+    
+    @Test
+    public void testEquals() {
+        final String language = "pt";
+        final String language2 = "en";
+        LifetimeView lView1 = new LifetimeView(language) {
+            @Override
+            protected LifetimeMenu createMenu() {
+                return new WelcomeMenu(language);
+            }
+            @Override
+            protected LifetimeContent createContent() {
+                return new WelcomeContent(language);
+            }
+            @Override
+            protected LifetimeBackground createBackground() {
+                return new WelcomeBackground(language);
+            }
+        };
+        
+        LifetimeView lView2 = new LifetimeView(language) {
+            @Override
+            protected LifetimeMenu createMenu() {
+                return new WelcomeMenu(language);
+            }
+            @Override
+            protected LifetimeContent createContent() {
+                return new WelcomeContent(language);
+            }
+            @Override
+            protected LifetimeBackground createBackground() {
+                return new LifetimeBackground(language, new Image()) {};
+            }
+        };
+        
+        LifetimeView lView4 = new LifetimeView(language2) {
+            @Override
+            protected LifetimeMenu createMenu() {
+                return new WelcomeMenu(language2);
+            }
+            @Override
+            protected LifetimeContent createContent() {
+                return new WelcomeContent(language2);
+            }
+            @Override
+            protected LifetimeBackground createBackground() {
+                return new LifetimeBackground(language2, new Image()) {};
+            }
+        };
+
+        Assert.assertTrue(lView1.equals(lView1));
+        Assert.assertTrue(lView2.equals(lView2));
+        Assert.assertFalse(lView1.equals(lView2));
+
     }
 
 
