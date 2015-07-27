@@ -29,8 +29,6 @@ public abstract class LifetimeContent extends VerticalLayout {
     public LifetimeContent(String language) {
         this.language = language;
         setSizeFull();
-        setId(StyleClassName.LIFETIME_CONTENT);
-        setStyleName(StyleClassName.LIFETIME_CONTENT);
     }
 
     public String getLanguage() {

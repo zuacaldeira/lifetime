@@ -33,15 +33,15 @@
     @include valo;
 
     // Insert your own theme rules here
-    .lifetime-ui {
+    .welcome-ui {
         background-color: transparent;
-        .lifetime-view {
-            .lifetime-menu {
+        .welcome-view {
+            .welcome-menu {
                 background: white;
                 opacity: 0.75;
             }
 
-            .lifetime-content {
+            .welcome-content {
                 background: black;
                 opacity: 0.75;
                 color: white;

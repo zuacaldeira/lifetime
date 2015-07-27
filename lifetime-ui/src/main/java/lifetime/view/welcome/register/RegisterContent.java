@@ -15,10 +15,10 @@
  */
 package lifetime.view.welcome.register;
 
-import lifetime.view.custom.RegistrationForm;
 import com.vaadin.ui.Alignment;
 import java.util.Objects;
 import lifetime.view.LifetimeContent;
+import lifetime.view.StyleClassName;
 
 /**
  * The Register Content Wrapper. This class implements the <b>Wrapper Design
@@ -47,7 +47,8 @@ public class RegisterContent extends LifetimeContent {
         setSizeFull();
         addComponent(registerForm);
         setComponentAlignment(registerForm, Alignment.MIDDLE_CENTER);
-        setStyleName("content");
+        setStyleName(StyleClassName.REGISTER_CONTENT);
+        setId(StyleClassName.REGISTER_CONTENT);
     }
 
     /**

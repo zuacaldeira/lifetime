@@ -15,6 +15,7 @@
  */
 package lifetime.view.custom;
 
+import lifetime.view.welcome.register.OKButton;
 import com.vaadin.server.FontAwesome;
 import org.testng.Assert;
 import org.testng.annotations.Test;

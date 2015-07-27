@@ -18,8 +18,7 @@ package lifetime.view.welcome;
 import java.util.Objects;
 import lifetime.view.welcome.contact.ContactButton;
 import lifetime.view.LifetimeMenu;
-import lifetime.view.custom.RegisterButton;
-import lifetime.view.custom.LoginButton;
+import lifetime.view.StyleClassName;
 
 /**
  *
@@ -40,6 +39,8 @@ public class WelcomeMenu extends LifetimeMenu {
         addControl(registerButton);
         addControl(loginButton);
         addControl(contactButton);
+        setStyleName(StyleClassName.WELCOME_MENU);
+        setId(StyleClassName.WELCOME_MENU);
     }
 
     public RegisterButton getRegisterButton() {

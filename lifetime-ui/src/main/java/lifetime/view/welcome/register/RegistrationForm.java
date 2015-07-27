@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.custom;
+package lifetime.view.welcome.register;
 
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.ui.Alignment;
@@ -27,16 +27,20 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.logging.Logger;
 import lifetime.service.LifetimeAccountBusiness;
+import lifetime.ui.Navigation;
 import lifetime.view.validator.NameValidator;
 import lifetime.view.validator.PasswordValidator;
 import lifetime.util.ServiceLocator;
+import lifetime.view.StyleClassName;
+import lifetime.view.custom.LifetimeTextField;
+import lifetime.view.custom.LocalesComboBox;
 
 /**
  *
  * @author lifetime
  */
 public class RegistrationForm extends HorizontalLayout {
-
+    
     private final LifetimeTextField firstname;
     private final LifetimeTextField lastname;
     private final LifetimeTextField email;
@@ -45,7 +49,7 @@ public class RegistrationForm extends HorizontalLayout {
     private final LocalesComboBox defaultLanguage;
     private final DateField birthDate;
     private final LifetimeTextField birthPlace;
-
+    
     public RegistrationForm(String language) {
         super();
         setSizeUndefined();
@@ -54,67 +58,79 @@ public class RegistrationForm extends HorizontalLayout {
         Label text = new Label("Register");
         setSpacing(true);
         text.setStyleName("login");
-
+        
         defaultLanguage = new LocalesComboBox(language);
         /* Creates the firstname text field and registers a validator */
         firstname = new LifetimeTextField("Firstname"); // Creates text field
         firstname.addValidator(new NameValidator()); // Register Validator
         firstname.setValidationVisible(true); // Automatic validation
+        firstname.setId(StyleClassName.REGISTRATION_FORM_FIRSTNAME);
 
         /* Creates lastnames text field and registers a validator */
         lastname = new LifetimeTextField("Lastname");
         lastname.addValidator(new NameValidator());
         lastname.setValidationVisible(true);
         lastname.setRequired(true);
+        lastname.setId(StyleClassName.REGISTRATION_FORM_LASTNAME);
 
         /* Creates email text field and registers a validator */
         email = new LifetimeTextField("Email / Username");
         email.addValidator(new EmailValidator("Invalid email address"));
         email.setValidationVisible(true);
+        email.setId(StyleClassName.REGISTRATION_FORM_EMAIL);
+
         /* Creates password text field and registers a validator */
         password = new PasswordField("Password");
         password.addValidator(new PasswordValidator());
+        password.setId(StyleClassName.REGISTRATION_FORM_PASSWORD);
+        
         passwordRepeat = new PasswordField("Repeat password");
+        passwordRepeat.setId(StyleClassName.REGISTRATION_FORM_PASSWORD_REPEAT);
+        
         birthDate = new DateField("Birthdate");
         birthDate.setLocale(new Locale(language));
-        //
-        birthPlace = new LifetimeTextField("Birth place");
+        birthDate.setId(StyleClassName.REGISTRATION_FORM_BIRTHDATE);
 
+//
+        birthPlace = new LifetimeTextField("Birth place");
+        birthPlace.setId(StyleClassName.REGISTRATION_FORM_BIRTHPLACE);
+        
         VerticalLayout personalData = new VerticalLayout(defaultLanguage, firstname, lastname, email, password, passwordRepeat);
         VerticalLayout birthData = new VerticalLayout(birthDate, birthPlace);
         birthData.setDefaultComponentAlignment(Alignment.MIDDLE_RIGHT);
         addComponents(personalData, birthData);
-        setStyleName("forms");
+        setStyleName(StyleClassName.REGISTRATION_FORM);
+        setId(StyleClassName.REGISTRATION_FORM);
     }
-
+    
     public LifetimeTextField getFirstname() {
         return firstname;
     }
-
+    
     public LifetimeTextField getLastname() {
         return lastname;
     }
-
+    
     public LifetimeTextField getEmail() {
         return email;
     }
-
+    
     public PasswordField getPassword() {
         return password;
     }
-
+    
     public PasswordField getPasswordRepeat() {
         return passwordRepeat;
     }
-
+    
     public LocalesComboBox getDefaultLanguage() {
         return defaultLanguage;
     }
-
+    
     public DateField getBirthDate() {
         return birthDate;
     }
-
+    
     public void clear() {
         firstname.setValue("");
         lastname.setValue("");
@@ -137,13 +153,16 @@ public class RegistrationForm extends HorizontalLayout {
             // Upon successfull registration, return to the welcome page
             if (successfullRegistration) {
                 Notification.show("Registration concluded.", Notification.Type.TRAY_NOTIFICATION);
+                getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
+            } else {
+                Notification.show("Registration failed. Try again later.", Notification.Type.WARNING_MESSAGE);
             }
         } catch (Exception ex) {
             Logger.getLogger(RegistrationForm.class.getName()).warning("Registration Failed. Try again later.");
             Notification.show("Registration failed. Try again later.", Notification.Type.WARNING_MESSAGE);
         }
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -157,36 +176,36 @@ public class RegistrationForm extends HorizontalLayout {
         hash = 17 * hash + Objects.hashCode(this.birthPlace.getValue());
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
         }
-
+        
         if (getClass() != obj.getClass()) {
             return false;
         }
-
+        
         final RegistrationForm other = (RegistrationForm) obj;
         return validUserData(other) && validAccountData(other) && validBirthData(other);
     }
-
+    
     private boolean validUserData(RegistrationForm other) {
         return Objects.equals(this.firstname.getValue(), other.firstname.getValue())
                 && Objects.equals(this.lastname.getValue(), other.lastname.getValue())
                 && Objects.equals(this.defaultLanguage.getValue(), other.defaultLanguage.getValue());
     }
-
+    
     private boolean validAccountData(RegistrationForm other) {
         return Objects.equals(this.email.getValue(), other.email.getValue())
                 && Objects.equals(this.password.getValue(), other.password.getValue())
                 && Objects.equals(this.passwordRepeat.getValue(), other.passwordRepeat.getValue());
     }
-
+    
     private boolean validBirthData(RegistrationForm other) {
         return Objects.equals(this.birthDate.getValue(), other.birthDate.getValue())
                 && Objects.equals(this.birthPlace.getValue(), other.birthPlace.getValue());
     }
-
+    
 }

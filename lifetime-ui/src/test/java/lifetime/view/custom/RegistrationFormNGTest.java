@@ -15,6 +15,7 @@
  */
 package lifetime.view.custom;
 
+import lifetime.view.welcome.register.RegistrationForm;
 import java.util.Date;
 import org.testng.Assert;
 import static org.testng.Assert.*;

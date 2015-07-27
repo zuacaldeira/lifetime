@@ -15,6 +15,7 @@
  */
 package lifetime.view.custom;
 
+import lifetime.view.welcome.LoginButton;
 import static org.testng.Assert.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

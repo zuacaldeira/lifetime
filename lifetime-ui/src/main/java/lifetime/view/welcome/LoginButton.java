@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.custom;
+package lifetime.view.welcome;
 
 import com.vaadin.server.FontAwesome;
 import java.util.Objects;
 import lifetime.view.StyleClassName;
 import lifetime.util.Translator;
+import lifetime.view.custom.LifetimeButtonLink;
 
 /**
  *

@@ -19,6 +19,7 @@ import lifetime.view.LifetimeBackground;
 import lifetime.view.LifetimeContent;
 import lifetime.view.LifetimeMenu;
 import lifetime.view.LifetimeView;
+import lifetime.view.StyleClassName;
 
 /**
  *
@@ -53,6 +54,8 @@ public class WelcomeView extends LifetimeView {
 
     public WelcomeView(String language) {
         super(language);
+        setStyleName(StyleClassName.WELCOME_VIEW);
+        setId(StyleClassName.WELCOME_VIEW);
     }
 
     /**

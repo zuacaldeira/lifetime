@@ -36,8 +36,6 @@ public abstract class LifetimeMenu extends HorizontalLayout {
         setSizeFull();
         addComponent(controls);
         setComponentAlignment(controls, Alignment.MIDDLE_RIGHT);
-        setStyleName(StyleClassName.LIFETIME_MENU);
-        setId(StyleClassName.LIFETIME_MENU);
 
     }
 

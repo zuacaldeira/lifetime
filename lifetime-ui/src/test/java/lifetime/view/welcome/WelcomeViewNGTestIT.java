@@ -16,6 +16,7 @@
 package lifetime.view.welcome;
 
 import java.util.concurrent.TimeUnit;
+import lifetime.ui.LifetimeViewProvider;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
@@ -28,11 +29,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import lifetime.ui.TestBundle;
+import lifetime.view.StyleClassName;
 import org.jboss.arquillian.testng.Arquillian;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import usecase.XPathIds;
 
 /**
  * Test suite for <b>structural, navigational and functional</b> requirements of
@@ -92,7 +94,7 @@ public class WelcomeViewNGTestIT extends Arquillian {
      */
     @Test
     public void testWelcomeViewStructure() {
-        getLogger().info("testWelcomeViewStructure()".toUpperCase());
+        getLogger().info("test_Welcome_View_Structure()".toUpperCase());
         Assert.assertNotNull(webDriver, "Drone web driver not injected.");
 
         webDriver.get(TestBundle.HOME_URL);
@@ -100,36 +102,30 @@ public class WelcomeViewNGTestIT extends Arquillian {
 
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         /**
-         * Has a top level element...
+         * Has a top level ui element...
          */
         getLogger().info("Looking for a lifetime page...");
-        WebElement lifetimeWebPage = webDriver.findElement(By.xpath("//div[contains(@id,'lifetime-ui')]"));
+        WebElement lifetimeWebPage = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_UI));
         Assert.assertNotNull(lifetimeWebPage, "Lifetime page not found");
-        /**
-         * Has a welcome ui...
-         */
-        getLogger().info("Looking for a lifetime ui...");
-        WebElement lifetimeUi = webDriver.findElement(By.xpath("//div[contains(@id,'lifetime-ui')]"));
-        Assert.assertNotNull(lifetimeUi, "LifetimeUI not found");
         /**
          * with a welcome view...
          */
-        getLogger().info("Looking for a lifetime view...");
-        WebElement lifetimeView = webDriver.findElement(By.xpath("//div[contains(@id,'lifetime-view')]"));
-        Assert.assertNotNull(lifetimeView, "LifetimeView not found");
+        getLogger().info("Looking for a welcome view...");
+        WebElement lifetimeView = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_VIEW));
+        Assert.assertNotNull(lifetimeView, "Welcome View not found");
 
         /**
          * and with a welcome menu...
          */
-        getLogger().info("Looking for a lifetime menu...");
-        WebElement lifetimeMenu = webDriver.findElement(By.xpath("//div[contains(@id,'lifetime-menu')]"));
-        Assert.assertNotNull(lifetimeMenu, "LifetimeMenu not found");
+        getLogger().info("Looking for a welcome menu...");
+        WebElement lifetimeMenu = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_MENU));
+        Assert.assertNotNull(lifetimeMenu, "Welcome Menu not found");
         /**
          * and a welcome content.
          */
-        getLogger().info("Looking for a lifetime content...");
-        WebElement lifetimeContent = webDriver.findElement(By.xpath("//div[contains(@id,'lifetime-content')]"));
-        Assert.assertNotNull(lifetimeContent, "LifetimeContent not found");
+        getLogger().info("Looking for a welcome content...");
+        WebElement lifetimeContent = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_CONTENT));
+        Assert.assertNotNull(lifetimeContent, "Welcome Content not found");
         webDriver.close();
     }
 }

@@ -20,6 +20,7 @@ import lifetime.view.welcome.WelcomeBackground;
 import lifetime.view.LifetimeBackground;
 import lifetime.view.LifetimeContent;
 import lifetime.view.LifetimeMenu;
+import lifetime.view.StyleClassName;
 
 /**
  *
@@ -38,7 +39,8 @@ public class RegisterView extends WelcomeView {
 
     public RegisterView(String language) {
         super(language);
-        setStyleName("welcome-view");
+        setStyleName(StyleClassName.REGISTER_VIEW);
+        setId(StyleClassName.REGISTER_VIEW);
     }
 
     @Override

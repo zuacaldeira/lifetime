@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 lifetime.
+ * Copyright 2015 zua.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.custom;
-
-import com.vaadin.server.FontAwesome;
+package usecase;
 
 /**
  *
- * @author lifetime
+ * @author zua
  */
-public class OKButton extends LifetimeButtonLink {
+public class XPathIds {
 
-    public OKButton(Integer userId, String language) {
-        super(userId, language, "OK", FontAwesome.CHECK);
-        setCaption(getDescription());
+    public static String getXPathIdExpressionDIV(String componentId) {
+        return "//div[contains(@id, '" + componentId + "')]";
     }
-    
+
+    public static String getXPathIdExpressionINPUT(String componentId) {
+        return "//input[contains(@id, '" + componentId + "')]";
+    }
+
 }

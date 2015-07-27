@@ -18,18 +18,18 @@ package lifetime.view.welcome.register;
 import java.util.Objects;
 import lifetime.view.custom.LifetimeHomeButton;
 import lifetime.view.LifetimeMenu;
-import lifetime.view.custom.OKButton;
-
+import lifetime.view.StyleClassName;
 
 /**
  *
  * @author zua
  */
 public class RegisterMenu extends LifetimeMenu {
+
     private final LifetimeHomeButton homeButton;
     private final CancelButton cancelButton;
     private final OKButton okButton;
-    
+
     public RegisterMenu(String language) {
         super(language);
         setSizeFull();
@@ -38,7 +38,9 @@ public class RegisterMenu extends LifetimeMenu {
         okButton = new OKButton(null, language);
         addControl(homeButton);
         addControl(cancelButton);
-        addControl(okButton);        
+        addControl(okButton);
+        setId(StyleClassName.REGISTER_MENU);
+        setStyleName(StyleClassName.REGISTER_MENU);
     }
 
     public LifetimeHomeButton getHomeButton() {
@@ -77,9 +79,5 @@ public class RegisterMenu extends LifetimeMenu {
         }
         return Objects.equals(this.okButton, other.okButton);
     }
-    
-    
-    
-
 
 }

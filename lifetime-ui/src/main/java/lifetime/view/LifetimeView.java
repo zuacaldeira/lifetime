@@ -106,8 +106,6 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
         base.setExpandRatio(menu, .1f);
         base.setExpandRatio(content, .9f);
         addComponents(background, base);
-        setStyleName(StyleClassName.LIFETIME_VIEW);
-        setId(StyleClassName.LIFETIME_VIEW);
     }
 
     /**
