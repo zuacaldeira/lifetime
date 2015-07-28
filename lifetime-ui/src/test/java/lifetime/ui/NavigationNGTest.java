@@ -23,12 +23,12 @@ import org.testng.annotations.Test;
  * @author zua
  */
 public class NavigationNGTest {
-    
+
     @Test
     public void test() {
-        Assert.assertEquals(Navigation.WELCOME_VIEW, "Welcome");
-        Assert.assertEquals(Navigation.REGISTER_VIEW, "Register");
-        Assert.assertEquals(Navigation.CONTACT_VIEW, "Contact");
+        Assert.assertEquals(Navigation.WELCOME_VIEW, "welcome");
+        Assert.assertEquals(Navigation.REGISTER_VIEW, "register");
+        Assert.assertEquals(Navigation.CONTACT_VIEW, "contact");
     }
-    
+
 }

@@ -31,6 +31,7 @@ import lifetime.ui.Navigation;
 import lifetime.view.validator.NameValidator;
 import lifetime.view.validator.PasswordValidator;
 import lifetime.util.ServiceLocator;
+import lifetime.util.Util;
 import lifetime.view.StyleClassName;
 import lifetime.view.custom.LifetimeTextField;
 import lifetime.view.custom.LocalesComboBox;
@@ -40,7 +41,7 @@ import lifetime.view.custom.LocalesComboBox;
  * @author lifetime
  */
 public class RegistrationForm extends HorizontalLayout {
-    
+
     private final LifetimeTextField firstname;
     private final LifetimeTextField lastname;
     private final LifetimeTextField email;
@@ -49,7 +50,7 @@ public class RegistrationForm extends HorizontalLayout {
     private final LocalesComboBox defaultLanguage;
     private final DateField birthDate;
     private final LifetimeTextField birthPlace;
-    
+
     public RegistrationForm(String language) {
         super();
         setSizeUndefined();
@@ -58,7 +59,7 @@ public class RegistrationForm extends HorizontalLayout {
         Label text = new Label("Register");
         setSpacing(true);
         text.setStyleName("login");
-        
+
         defaultLanguage = new LocalesComboBox(language);
         /* Creates the firstname text field and registers a validator */
         firstname = new LifetimeTextField("Firstname"); // Creates text field
@@ -83,10 +84,10 @@ public class RegistrationForm extends HorizontalLayout {
         password = new PasswordField("Password");
         password.addValidator(new PasswordValidator());
         password.setId(StyleClassName.REGISTRATION_FORM_PASSWORD);
-        
+
         passwordRepeat = new PasswordField("Repeat password");
         passwordRepeat.setId(StyleClassName.REGISTRATION_FORM_PASSWORD_REPEAT);
-        
+
         birthDate = new DateField("Birthdate");
         birthDate.setLocale(new Locale(language));
         birthDate.setId(StyleClassName.REGISTRATION_FORM_BIRTHDATE);
@@ -94,7 +95,7 @@ public class RegistrationForm extends HorizontalLayout {
 //
         birthPlace = new LifetimeTextField("Birth place");
         birthPlace.setId(StyleClassName.REGISTRATION_FORM_BIRTHPLACE);
-        
+
         VerticalLayout personalData = new VerticalLayout(defaultLanguage, firstname, lastname, email, password, passwordRepeat);
         VerticalLayout birthData = new VerticalLayout(birthDate, birthPlace);
         birthData.setDefaultComponentAlignment(Alignment.MIDDLE_RIGHT);
@@ -102,35 +103,35 @@ public class RegistrationForm extends HorizontalLayout {
         setStyleName(StyleClassName.REGISTRATION_FORM);
         setId(StyleClassName.REGISTRATION_FORM);
     }
-    
+
     public LifetimeTextField getFirstname() {
         return firstname;
     }
-    
+
     public LifetimeTextField getLastname() {
         return lastname;
     }
-    
+
     public LifetimeTextField getEmail() {
         return email;
     }
-    
+
     public PasswordField getPassword() {
         return password;
     }
-    
+
     public PasswordField getPasswordRepeat() {
         return passwordRepeat;
     }
-    
+
     public LocalesComboBox getDefaultLanguage() {
         return defaultLanguage;
     }
-    
+
     public DateField getBirthDate() {
         return birthDate;
     }
-    
+
     public void clear() {
         firstname.setValue("");
         lastname.setValue("");
@@ -149,7 +150,7 @@ public class RegistrationForm extends HorizontalLayout {
         LifetimeAccountBusiness service = ServiceLocator.findLifetimeAccountService();
         // Call backend to register with the collected and verified data
         try {
-            boolean successfullRegistration = service.register(firstname.getValue(), lastname.getValue(), email.getValue(), password.getValue(), defaultLanguage.getValue().toString(), birthDate.getValue(), birthPlace.getValue());
+            boolean successfullRegistration = service.register(firstname.getValue(), lastname.getValue(), email.getValue(), Util.getEncodedPassword(password.getValue()), defaultLanguage.getValue().toString(), birthDate.getValue(), birthPlace.getValue());
             // Upon successfull registration, return to the welcome page
             if (successfullRegistration) {
                 Notification.show("Registration concluded.", Notification.Type.TRAY_NOTIFICATION);
@@ -162,7 +163,7 @@ public class RegistrationForm extends HorizontalLayout {
             Notification.show("Registration failed. Try again later.", Notification.Type.WARNING_MESSAGE);
         }
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -176,36 +177,36 @@ public class RegistrationForm extends HorizontalLayout {
         hash = 17 * hash + Objects.hashCode(this.birthPlace.getValue());
         return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
         }
-        
+
         if (getClass() != obj.getClass()) {
             return false;
         }
-        
+
         final RegistrationForm other = (RegistrationForm) obj;
         return validUserData(other) && validAccountData(other) && validBirthData(other);
     }
-    
+
     private boolean validUserData(RegistrationForm other) {
         return Objects.equals(this.firstname.getValue(), other.firstname.getValue())
                 && Objects.equals(this.lastname.getValue(), other.lastname.getValue())
                 && Objects.equals(this.defaultLanguage.getValue(), other.defaultLanguage.getValue());
     }
-    
+
     private boolean validAccountData(RegistrationForm other) {
         return Objects.equals(this.email.getValue(), other.email.getValue())
                 && Objects.equals(this.password.getValue(), other.password.getValue())
                 && Objects.equals(this.passwordRepeat.getValue(), other.passwordRepeat.getValue());
     }
-    
+
     private boolean validBirthData(RegistrationForm other) {
         return Objects.equals(this.birthDate.getValue(), other.birthDate.getValue())
                 && Objects.equals(this.birthPlace.getValue(), other.birthPlace.getValue());
     }
-    
+
 }

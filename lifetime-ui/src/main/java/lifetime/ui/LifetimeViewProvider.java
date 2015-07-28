@@ -15,6 +15,9 @@
  */
 package lifetime.ui;
 
+import lifetime.view.welcome.WelcomeViewProvider;
+import com.vaadin.navigator.ViewProvider;
+
 /**
  *
  * @author zua
@@ -33,4 +36,10 @@ public class LifetimeViewProvider {
     public static WelcomeViewProvider getWelcomeViewProvider(String language) {
         return new WelcomeViewProvider(language);
     }
+    
+    public static ViewProvider getUserViewProvider(String language) {
+        return new UserViewProvider(language);
+    }
+
+    
 }

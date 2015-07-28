@@ -9,22 +9,22 @@ import javax.servlet.annotation.WebServlet;
 import lifetime.view.StyleClassName;
 
 @Theme("mytheme")
-public class WelcomeUI extends LifetimeUI {
+public class UserUI extends LifetimeUI {
 
     @Override
     protected void init(VaadinRequest request) {
-        setStyleName(StyleClassName.WELCOME_UI);
-        setId(StyleClassName.WELCOME_UI);
+        setStyleName(StyleClassName.USER_UI);
+        setId(StyleClassName.USER_UI);
         setNavigator(new Navigator(this, this));
-        getNavigator().addProvider(LifetimeViewProvider.getWelcomeViewProvider(getLanguage()));
-        getNavigator().navigateTo(Navigation.WELCOME_VIEW);
+        getNavigator().addProvider(LifetimeViewProvider.getUserViewProvider(getLanguage()));
+        getNavigator().navigateTo(Navigation.USER_VIEW);
     }
 
     /**
      * Servlet listening to requests at non secure part of the application.
      */
-    @WebServlet(urlPatterns = {"/*", "/VAADIN/*"}, name = "WelcomeUIServlet", asyncSupported = true)
-    @VaadinServletConfiguration(ui = WelcomeUI.class, productionMode = false)
-    public static class WelcomeUIServlet extends VaadinServlet {
+    @WebServlet(urlPatterns = {"/user/*"}, name = "UserUIServlet", asyncSupported = true)
+    @VaadinServletConfiguration(ui = UserUI.class, productionMode = false)
+    public static class UserUIServlet extends VaadinServlet {
     }
 }

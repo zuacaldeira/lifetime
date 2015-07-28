@@ -13,22 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.ui;
+package lifetime.view.user;
+
+import com.vaadin.ui.Image;
+import lifetime.view.LifetimeBackground;
 
 /**
  *
  * @author zua
  */
-public class Navigation {
+class UserBackground extends LifetimeBackground {
 
-    public static final String WELCOME_VIEW = "welcome";
-    public static final String REGISTER_VIEW = "register";
-    public static final String CONTACT_VIEW = "contact";
-    public static final String USER_VIEW = "user";
-    public static final String VITAE_VIEW = "vitae";
-    public static final String TIMELINE_VIEW = "timeline";
-    public static final String YELLOW_PAGES_VIEW = "yellowpages";
-
-    private Navigation() {
+    public UserBackground(String language) {
+        super(language, new Image());
     }
+    
 }

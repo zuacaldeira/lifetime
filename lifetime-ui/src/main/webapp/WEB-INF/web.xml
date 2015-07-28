@@ -12,7 +12,7 @@
     </session-config>
     
     <!-- USERS Constraint -->
-    <security-constraint>
+    <!--security-constraint>
         <display-name>UserConstraint</display-name>
         <web-resource-collection>
             <web-resource-name>UserUI</web-resource-name>
@@ -22,55 +22,18 @@
         </web-resource-collection>
         <auth-constraint>
             <description>Only valid USERS are allowed</description>
-            <role-name>USERS</role-name>
+            <role-name>USER</role-name>
         </auth-constraint>
-    </security-constraint>
+    </security-constraint-->
     
     
-    <!-- VISITORS Constraint -->
-    
-    <!-- ADMINS Constraint -->
-    <security-constraint>
-        <display-name>AdminConstraint</display-name>
-        <web-resource-collection>
-            <web-resource-name>AdminUI</web-resource-name>
-            <description>Protected Admin Area</description>
-            <url-pattern>/admin/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description>Only valid users are allowed</description>
-            <role-name>ADMINS</role-name>
-        </auth-constraint>
-    </security-constraint>
-
-    <!-- MANAGEMENT Constraint -->
-    <security-constraint>
-        <display-name>ManagementConstraint</display-name>
-        <web-resource-collection>
-            <web-resource-name>ManagementUI</web-resource-name>
-            <description>Protected Management Area</description>
-            <url-pattern>/management/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description>Only valid users are allowed</description>
-            <role-name>MANAGERS</role-name>
-        </auth-constraint>
-    </security-constraint>
-
-
     <login-config>
         <auth-method>BASIC</auth-method>
         <realm-name>lifetime-jdbc-realm</realm-name>
     </login-config>
     
     <security-role>
-        <role-name>USERS</role-name>
-    </security-role>
-    <security-role>
-        <role-name>ADMINS</role-name>
-    </security-role>
-    <security-role>
-        <role-name>MANAGERS</role-name>
+        <role-name>USER</role-name>
     </security-role>
     
 </web-app>

@@ -15,6 +15,7 @@
  */
 package lifetime.view.welcome.contact;
 
+import lifetime.view.welcome.ContactButton;
 import com.vaadin.event.ListenerMethod;
 import com.vaadin.ui.Button;
 import lifetime.ui.WelcomeUI;

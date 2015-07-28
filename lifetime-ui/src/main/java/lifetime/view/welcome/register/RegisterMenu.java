@@ -15,7 +15,10 @@
  */
 package lifetime.view.welcome.register;
 
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Component;
 import java.util.Objects;
+import lifetime.ui.Navigation;
 import lifetime.view.custom.LifetimeHomeButton;
 import lifetime.view.LifetimeMenu;
 import lifetime.view.StyleClassName;
@@ -34,8 +37,11 @@ public class RegisterMenu extends LifetimeMenu {
         super(language);
         setSizeFull();
         homeButton = new LifetimeHomeButton(language);
+        homeButton.addClickListener(this);
         cancelButton = new CancelButton(null, language);
+        cancelButton.addClickListener(this);
         okButton = new OKButton(null, language);
+        okButton.addClickListener(this);
         addControl(homeButton);
         addControl(cancelButton);
         addControl(okButton);
@@ -78,6 +84,28 @@ public class RegisterMenu extends LifetimeMenu {
             return false;
         }
         return Objects.equals(this.okButton, other.okButton);
+    }
+
+    @Override
+    public void buttonClick(Button.ClickEvent event) {
+        Button b = event.getButton();
+        if (b == homeButton) {
+            getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
+        } else if (b == cancelButton) {
+            getRegistrationForm().clear();
+        } else if (b == okButton) {
+            getRegistrationForm().submit();
+        }
+    }
+
+    private RegistrationForm getRegistrationForm() {
+        Component parent = getParent();
+        while (!(parent instanceof RegisterView)) {
+            parent = parent.getParent();
+        }
+
+        RegisterView registerView = (RegisterView) parent;
+        return registerView.getContent().getRegisterForm();
     }
 
 }

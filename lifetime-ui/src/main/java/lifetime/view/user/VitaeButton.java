@@ -13,22 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.ui;
+package lifetime.view.user;
+
+import com.vaadin.server.FontAwesome;
+import lifetime.util.Translator;
+import lifetime.view.StyleClassName;
+import lifetime.view.custom.LifetimeButtonLink;
 
 /**
  *
  * @author zua
  */
-public class Navigation {
+public class VitaeButton extends LifetimeButtonLink {
 
-    public static final String WELCOME_VIEW = "welcome";
-    public static final String REGISTER_VIEW = "register";
-    public static final String CONTACT_VIEW = "contact";
-    public static final String USER_VIEW = "user";
-    public static final String VITAE_VIEW = "vitae";
-    public static final String TIMELINE_VIEW = "timeline";
-    public static final String YELLOW_PAGES_VIEW = "yellowpages";
-
-    private Navigation() {
+    public VitaeButton(String language) {
+        super(Translator.getTranslation("Vitae", language), language, FontAwesome.TREE);
+        setDescription(Translator.getTranslation("Vitae", language));
+        setId(StyleClassName.VITAE_BUTTON);
     }
+
 }

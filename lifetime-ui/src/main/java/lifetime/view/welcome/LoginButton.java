@@ -30,7 +30,7 @@ public class LoginButton extends LifetimeButtonLink {
     private final String text;
 
     public LoginButton(String language) {
-        super(Translator.getTranslation("Login", language), language, FontAwesome.USER);
+        super(Translator.getTranslation("Login", language), language, FontAwesome.KEY);
         this.text = Translator.getTranslation("Login", language);
         setDescription(text);
         setId(StyleClassName.LOGIN_BUTTON);

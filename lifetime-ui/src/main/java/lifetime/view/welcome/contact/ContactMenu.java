@@ -15,6 +15,8 @@
  */
 package lifetime.view.welcome.contact;
 
+import com.vaadin.ui.Button;
+import lifetime.ui.Navigation;
 import lifetime.view.LifetimeMenu;
 import lifetime.view.custom.LifetimeHomeButton;
 
@@ -28,11 +30,20 @@ public class ContactMenu extends LifetimeMenu {
     public ContactMenu(String language) {
         super(language);
         homeButton = new LifetimeHomeButton("en");
+        homeButton.addClickListener(this);
         addControl(homeButton);
     }
 
     public LifetimeHomeButton getHomeButton() {
         return homeButton;
+    }
+
+    @Override
+    public void buttonClick(Button.ClickEvent event) {
+        Button b = event.getButton();
+        if(b == homeButton) {
+            getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
+        }
     }
     
     

@@ -35,39 +35,88 @@
     // Insert your own theme rules here
     .welcome-ui {
         background-color: transparent;
-        .welcome-view {
-            .welcome-menu {
-                background: white;
-                opacity: 0.75;
-            }
+    }
 
-            .welcome-content {
-                background: black;
-                opacity: 0.75;
-                color: white;
+    .welcome-view {
+        background: black;
+        .welcome-menu {
+            background: white;
+            opacity: 0.75;
+        }
+        .welcome-content {
+            background: black;
+            opacity: 0.75;
+            color: white;
+            font-weight: bold;
+        }
+        .v-button-link {
+            background-color: deeppink;
+            margin-top: 1mm;
+            margin-right: 1mm;
+            margin-bottom: 1mm;
+            color: white;
+        }
+
+    }
+
+    .register-view {
+        background: black;
+        .register-menu {
+            background: white;
+            opacity: 0.75;
+        }
+        .register-content {
+            background: black;
+            opacity: 0.75;
+            color: white;
+            font-weight: bold;
+        }
+        .v-button-link {
+            background-color: deeppink;
+            margin-top: 1mm;
+            margin-right: 1mm;
+            margin-bottom: 1mm;
+            color: white;
+        }
+
+    }
+
+    .user-view {
+        background: black;
+        .user-menu {
+            background: black;
+            opacity: 0.75;
+        }
+        .user-content {
+            background: white;
+            opacity: 0.75;
+            color: black;
+            font-weight: bold;
+            
+            .account-details {
+                color: tomato;
                 font-weight: bold;
-
-                .tag{
-                    font-size: 150%;
-                }
-                .value{
-                    font-size: 350%;
-                    font-weight: bold;
-                    color: deeppink;
-                }
             }
+        }
+        .v-button-link {
+            background-color: tomato;
+            margin-top: 1mm;
+            margin-right: 1mm;
+            margin-bottom: 1mm;
+            color: white;
         }
     }
 
 
-
-    .v-button-link {
-        background-color: deeppink;
-        margin-top: 1mm;
-        margin-right: 1mm;
-        margin-bottom: 1mm;
-        color: white;
+    .tag{
+        font-size: 150%;
     }
+    .value{
+        font-size: 350%;
+        font-weight: bold;
+        color: deeppink;
+    }
+
 
     .v-button-small{
         background-color: black;

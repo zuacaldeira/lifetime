@@ -15,14 +15,14 @@
  */
 package lifetime.view;
 
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.HorizontalLayout;
 import java.util.Objects;
 
 /**
  *
  * @author zua
  */
-public abstract class LifetimeContent extends VerticalLayout {
+public abstract class LifetimeContent extends HorizontalLayout {
 
     private final String language;
 

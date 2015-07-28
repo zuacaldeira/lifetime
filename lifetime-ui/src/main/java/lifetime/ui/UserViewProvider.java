@@ -15,20 +15,31 @@
  */
 package lifetime.ui;
 
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewProvider;
+import lifetime.view.user.UserView;
+
 /**
  *
  * @author zua
  */
-public class Navigation {
+public class UserViewProvider implements ViewProvider {
+    private final String language;
 
-    public static final String WELCOME_VIEW = "welcome";
-    public static final String REGISTER_VIEW = "register";
-    public static final String CONTACT_VIEW = "contact";
-    public static final String USER_VIEW = "user";
-    public static final String VITAE_VIEW = "vitae";
-    public static final String TIMELINE_VIEW = "timeline";
-    public static final String YELLOW_PAGES_VIEW = "yellowpages";
-
-    private Navigation() {
+    public UserViewProvider(String language) {
+        this.language = language;
     }
+
+    @Override
+    public String getViewName(String viewAndParameters) {
+        return viewAndParameters;
+    }
+
+    @Override
+    public View getView(String viewName) {
+        switch(viewName) {
+            default: return new UserView(language);
+        }
+    }
+
 }

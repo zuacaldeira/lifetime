@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.ui;
+package lifetime.view.welcome;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewProvider;
 import java.util.HashMap;
 import java.util.Map;
+import lifetime.ui.Navigation;
 import lifetime.view.welcome.WelcomeView;
 import lifetime.view.welcome.contact.ContactView;
 import lifetime.view.welcome.register.RegisterView;

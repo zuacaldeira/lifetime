@@ -79,6 +79,14 @@ public class Account implements Serializable {
     private User user;
 
     /**
+     * User owning this account. If this account gets deleted, the user also
+     * will.
+     */
+    @OneToOne(targetEntity = Role.class)
+    @JoinColumn(name = "role")
+    private Role role;
+
+    /**
      * Default constructor.
      */
     public Account() {
@@ -177,6 +185,16 @@ public class Account implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+    
+    
 
     /**
      * Hash code.

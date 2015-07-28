@@ -6,6 +6,7 @@
 package lifetime.service;
 
 import java.util.Date;
+import lifetime.persistence.Photo;
 
 /**
  * This interface defines the contract between the clients and the account
@@ -25,7 +26,7 @@ public interface LifetimeAccountBusiness {
      * @param language Candidate's language
      * @param birthdate Candidate's birth date
      * @param birthPlace Candidate's birth place
-     * @return 
+     * @return
      */
     public boolean register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace);
 
@@ -39,10 +40,16 @@ public interface LifetimeAccountBusiness {
 
     /**
      * Checks if the database has an account for the given email.
-     * 
+     *
      * @param email
-     * @return 
+     * @return
      */
     public boolean hasAccount(String email);
+
+    public Photo getPhoto(String username);
+
+    public String getFullName(String username);
+
+    public void addPhoto(String username, Photo p);
 
 }

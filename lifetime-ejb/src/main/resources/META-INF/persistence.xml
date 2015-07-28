@@ -6,6 +6,7 @@
     <class>lifetime.persistence.Account</class>
     <class>lifetime.persistence.Role</class>
     <class>lifetime.persistence.User</class>
+    <class>lifetime.persistence.Photo</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="eclipselink.deploy-on-startup" value="true"/>

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.welcome.contact;
+package lifetime.view.welcome;
 
 import lifetime.view.custom.LifetimeButtonLink;
 import com.vaadin.server.FontAwesome;
@@ -29,7 +29,7 @@ import lifetime.util.Translator;
 public class ContactButton extends LifetimeButtonLink implements Button.ClickListener {
     
     public ContactButton(String language) {
-        super(Translator.getTranslation("Contact", language), language, FontAwesome.USER);
+        super(Translator.getTranslation("Contact", language), language, FontAwesome.COFFEE);
         setId(StyleClassName.CONTACT_BUTTON);
         addClickListener(this);
     }

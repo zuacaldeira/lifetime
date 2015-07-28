@@ -15,6 +15,7 @@
  */
 package lifetime.ui;
 
+import lifetime.view.welcome.WelcomeViewProvider;
 import lifetime.view.welcome.WelcomeView;
 import lifetime.view.welcome.contact.ContactView;
 import lifetime.view.welcome.register.RegisterView;
@@ -48,9 +49,9 @@ public class WelcomeViewProviderNGTest {
     @DataProvider(name = "viewNames")
     private Object[][] provideViewNames() {
         return new Object[][]{
-            {"!#Welcome", Navigation.WELCOME_VIEW},
-            {"!#Register", Navigation.REGISTER_VIEW},
-            {"!#Contact", Navigation.CONTACT_VIEW}
+            {"!#welcome", Navigation.WELCOME_VIEW},
+            {"!#register", Navigation.REGISTER_VIEW},
+            {"!#contact", Navigation.CONTACT_VIEW}
         };
     }
 

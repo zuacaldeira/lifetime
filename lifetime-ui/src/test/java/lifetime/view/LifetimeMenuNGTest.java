@@ -15,6 +15,7 @@
  */
 package lifetime.view;
 
+import com.vaadin.ui.Button;
 import lifetime.view.custom.LifetimeButtonLink;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
@@ -36,6 +37,10 @@ public class LifetimeMenuNGTest {
         System.out.println("getLanguage");
         String pt = "pt";
         LifetimeMenu menu = new LifetimeMenu(pt) {
+
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+            }
         };
         assertEquals(menu.getLanguage(), pt);
     }
@@ -51,6 +56,10 @@ public class LifetimeMenuNGTest {
         String language = "language";
 
         LifetimeMenu menu = new LifetimeMenu(pt) {
+
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+            }
         };
         LifetimeButtonLink b1 = new LifetimeButtonLink(caption, language, null);
         LifetimeButtonLink b2 = new LifetimeButtonLink(caption, language, null);

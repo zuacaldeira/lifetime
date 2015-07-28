@@ -16,6 +16,7 @@
 package lifetime.view;
 
 import com.vaadin.server.ThemeResource;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Image;
 import lifetime.view.welcome.WelcomeBackground;
 import lifetime.view.welcome.WelcomeContent;
@@ -27,7 +28,7 @@ import org.testng.annotations.Test;
 /**
  * Test of the abstract class {@link LifetimeView}, the top-level abstract
  * class, the central component for user interaction.
- * 
+ *
  * Given that the class is abstract, we will test on anonymous instances.
  *
  * @author zua
@@ -41,20 +42,27 @@ public class LifetimeViewNGTest {
     public void testGetBackground() {
         System.out.println("getBackground");
         LifetimeView instance = new LifetimeView("en") {
-            
+
             @Override
             protected LifetimeMenu createMenu() {
-                return new LifetimeMenu(getLanguage()){};
+                return new LifetimeMenu(getLanguage()) {
+
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+                    }
+                };
             }
-            
+
             @Override
             protected LifetimeContent createContent() {
-                return new LifetimeContent(getLanguage()){};
+                return new LifetimeContent(getLanguage()) {
+                };
             }
-            
+
             @Override
             protected LifetimeBackground createBackground() {
-                return new LifetimeBackground(getLanguage(), new Image("", new ThemeResource("../img/background.jpg"))){};
+                return new LifetimeBackground(getLanguage(), new Image("", new ThemeResource("../img/background.jpg"))) {
+                };
             }
         };
         LifetimeBackground result = instance.getBackground();
@@ -68,20 +76,27 @@ public class LifetimeViewNGTest {
     public void testGetMenu() {
         System.out.println("getMenu");
         LifetimeView instance = new LifetimeView("en") {
-            
+
             @Override
             protected LifetimeMenu createMenu() {
-                return new LifetimeMenu(getLanguage()){};
+                return new LifetimeMenu(getLanguage()) {
+
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+                    }
+                };
             }
-            
+
             @Override
             protected LifetimeContent createContent() {
-                return new LifetimeContent(getLanguage()){};
+                return new LifetimeContent(getLanguage()) {
+                };
             }
-            
+
             @Override
             protected LifetimeBackground createBackground() {
-                return new LifetimeBackground(getLanguage(), new Image("", new ThemeResource("../img/background.jpg"))){};
+                return new LifetimeBackground(getLanguage(), new Image("", new ThemeResource("../img/background.jpg"))) {
+                };
             }
         };
         LifetimeMenu result = instance.getMenu();
@@ -95,20 +110,27 @@ public class LifetimeViewNGTest {
     public void testGetContent() {
         System.out.println("getContent");
         LifetimeView instance = new LifetimeView("en") {
-            
+
             @Override
             protected LifetimeMenu createMenu() {
-                return new LifetimeMenu(getLanguage()){};
+                return new LifetimeMenu(getLanguage()) {
+
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+                    }
+                };
             }
-            
+
             @Override
             protected LifetimeContent createContent() {
-                return new LifetimeContent(getLanguage()){};
+                return new LifetimeContent(getLanguage()) {
+                };
             }
-            
+
             @Override
             protected LifetimeBackground createBackground() {
-                return new LifetimeBackground(getLanguage(), new Image("", new ThemeResource("../img/background.jpg"))){};
+                return new LifetimeBackground(getLanguage(), new Image("", new ThemeResource("../img/background.jpg"))) {
+                };
             }
         };
         LifetimeContent result = instance.getContent();
@@ -122,28 +144,33 @@ public class LifetimeViewNGTest {
     public void testGetLanguage() {
         System.out.println("getLanguage");
         LifetimeView instance = new LifetimeView("en") {
-            
+
             @Override
             protected LifetimeMenu createMenu() {
-                return new LifetimeMenu(getLanguage()){};
+                return new LifetimeMenu(getLanguage()) {
+
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+                    }
+                };
             }
-            
+
             @Override
             protected LifetimeContent createContent() {
-                return new LifetimeContent(getLanguage()){};
+                return new LifetimeContent(getLanguage()) {
+                };
             }
-            
+
             @Override
             protected LifetimeBackground createBackground() {
-                return new LifetimeBackground(getLanguage(), new Image("", new ThemeResource("../img/background.jpg"))){};
+                return new LifetimeBackground(getLanguage(), new Image("", new ThemeResource("../img/background.jpg"))) {
+                };
             }
         };
         String result = instance.getLanguage();
         assertEquals(result, "en");
     }
-    
-    
-    
+
     @Test
     public void testEquals() {
         final String language = "pt";
@@ -153,43 +180,51 @@ public class LifetimeViewNGTest {
             protected LifetimeMenu createMenu() {
                 return new WelcomeMenu(language);
             }
+
             @Override
             protected LifetimeContent createContent() {
                 return new WelcomeContent(language);
             }
+
             @Override
             protected LifetimeBackground createBackground() {
                 return new WelcomeBackground(language);
             }
         };
-        
+
         LifetimeView lView2 = new LifetimeView(language) {
             @Override
             protected LifetimeMenu createMenu() {
                 return new WelcomeMenu(language);
             }
+
             @Override
             protected LifetimeContent createContent() {
                 return new WelcomeContent(language);
             }
+
             @Override
             protected LifetimeBackground createBackground() {
-                return new LifetimeBackground(language, new Image()) {};
+                return new LifetimeBackground(language, new Image()) {
+                };
             }
         };
-        
+
         LifetimeView lView4 = new LifetimeView(language2) {
             @Override
             protected LifetimeMenu createMenu() {
                 return new WelcomeMenu(language2);
             }
+
             @Override
             protected LifetimeContent createContent() {
                 return new WelcomeContent(language2);
             }
+
             @Override
             protected LifetimeBackground createBackground() {
-                return new LifetimeBackground(language2, new Image()) {};
+                return new LifetimeBackground(language2, new Image()) {
+                };
             }
         };
 
@@ -198,6 +233,5 @@ public class LifetimeViewNGTest {
         Assert.assertFalse(lView1.equals(lView2));
 
     }
-
 
 }

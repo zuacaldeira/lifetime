@@ -6,6 +6,7 @@
 package lifetime.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -17,6 +18,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import lifetime.persistence.Account;
+import lifetime.persistence.Photo;
+import lifetime.persistence.Role;
 import lifetime.persistence.User;
 
 /**
@@ -67,6 +70,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
             User user = new User(null, firstname, lastname, birthdate, birthPlace, language);
             Account account = new Account(null, email, password);
             account.setUser(user);
+            account.setRole(getRole(SecurityRoles.USER));
             try {
                 em.persist(account);
                 return true;
@@ -114,6 +118,50 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
         } catch (Exception ex) {
             Logger.getLogger(this.getClass().getName()).warning(ex.getMessage());
             return null;
+        }
+    }
+
+    private Role getRole(SecurityRoles role) {
+        try {
+            Query q = em.createNamedQuery("Role.findByName", Role.class);
+            q.setParameter("name", role.name());
+            return (Role) q.getSingleResult();
+        } catch (Exception ex) {
+            Logger.getLogger(this.getClass().getName()).warning(ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Photo getPhoto(String username) {
+        Account a = getAccount(username);
+        Query q = em.createNamedQuery("Photo.findByUser", Photo.class);
+        q.setParameter("user", a.getUser());
+        List<Photo> photos = q.getResultList();
+        if (!photos.isEmpty()) {
+            return photos.get(0);
+        }
+        return null;
+
+    }
+
+    @Override
+    public String getFullName(String username) {
+        if (hasAccount(username)) {
+            Account a = getAccount(username);
+            User u = a.getUser();
+            return u.getFirstname() + " " + u.getLastname();
+        }
+        return null;
+    }
+
+    @Override
+    public void addPhoto(String username, Photo p) {
+        Account a = getAccount(username);
+        if(a != null) {
+            User u = a.getUser();
+            p.setUser(u);
+            em.persist(p);
         }
     }
 

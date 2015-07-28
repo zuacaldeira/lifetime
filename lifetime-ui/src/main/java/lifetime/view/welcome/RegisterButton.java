@@ -16,8 +16,6 @@
 package lifetime.view.welcome;
 
 import com.vaadin.server.FontAwesome;
-import com.vaadin.ui.Button.ClickListener;
-import lifetime.ui.Navigation;
 import lifetime.view.StyleClassName;
 import lifetime.util.Translator;
 import lifetime.view.custom.LifetimeButtonLink;
@@ -26,21 +24,11 @@ import lifetime.view.custom.LifetimeButtonLink;
  *
  * @author lifetime
  */
-public class RegisterButton extends LifetimeButtonLink implements ClickListener {
+public class RegisterButton extends LifetimeButtonLink {
 
     public RegisterButton(String language) {
         super(Translator.getTranslation("Register", language), language, FontAwesome.PLUS);
         setId(StyleClassName.REGISTER_BUTTON);
-        addClickListener(this);
     }
-
-    @Override
-    public void buttonClick(ClickEvent event) {
-        getUI().getNavigator().navigateTo(Navigation.REGISTER_VIEW);
-    }
-
-    
-    
-    
 
 }

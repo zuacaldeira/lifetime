@@ -945,7 +945,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "7.5.1";
+	content: "7.5.2";
 }
 
 .v-widget {
@@ -4269,6 +4269,7 @@ div.v-layout.v-horizontal.v-widget {
 	outline: none;
 	padding: 0 4px;
 	text-align: right;
+	line-height: 1;
 }
 
 .mytheme .v-grid-sidebar.v-contextmenu .v-grid-sidebar-button::-moz-focus-inner {
@@ -4291,8 +4292,8 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-grid-sidebar.v-contextmenu.open .v-grid-sidebar-button:after {
-	content: "\00d7";
-	font-size: 16px;
+	content: "\f0c9";
+	font-size: 14px;
 	line-height: 1;
 }
 
@@ -4301,11 +4302,12 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .v-ie8 .mytheme .v-grid-sidebar.v-contextmenu.open .v-grid-sidebar-button:after {
+	vertical-align: middle;
+	text-align: center;
 	display: inline;
 }
 
 .mytheme .v-grid-sidebar.v-contextmenu .v-grid-sidebar-content {
-	border-top: 1px solid #d4d4d4;
 	padding: 4px 0;
 }
 
@@ -4345,6 +4347,13 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-grid-row > td:first-child, .mytheme .v-grid-editor-cells > div:first-child {
+	border-left: none;
+}
+
+.mytheme .v-grid-editor-cells.frozen > div {
+	-webkit-box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
+	box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
+	border-right: 1px solid #d4d4d4;
 	border-left: none;
 }
 
@@ -4468,6 +4477,10 @@ div.v-layout.v-horizontal.v-widget {
 .mytheme .v-grid-editor-cells {
 	position: relative;
 	white-space: nowrap;
+}
+
+.mytheme .v-grid-editor-cells.frozen {
+	z-index: 2;
 }
 
 .mytheme .v-grid-editor-cells  > div {
@@ -4780,10 +4793,6 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-grid-spacer {
 	margin-top: -1px;
-}
-
-.mytheme .v-grid-sidebar.v-contextmenu.open .v-grid-sidebar-button:after {
-	font-size: 20px;
 }
 
 .mytheme .v-grid-sidebar.v-contextmenu.open .v-grid-sidebar-content {
@@ -12740,38 +12749,95 @@ div.v-layout.v-horizontal.v-widget {
 	overflow: hidden;
 }
 
-.mytheme .lifetime-ui {
+.mytheme .welcome-ui {
 	background-color: transparent;
 }
 
-.mytheme .lifetime-ui .lifetime-view .lifetime-menu {
+.mytheme .welcome-view {
+	background: black;
+}
+
+.mytheme .welcome-view .welcome-menu {
 	background: white;
 	opacity: 0.75;
 }
 
-.mytheme .lifetime-ui .lifetime-view .lifetime-content {
+.mytheme .welcome-view .welcome-content {
 	background: black;
 	opacity: 0.75;
 	color: white;
 	font-weight: bold;
 }
 
-.mytheme .lifetime-ui .lifetime-view .lifetime-content .tag {
-	font-size: 150%;
-}
-
-.mytheme .lifetime-ui .lifetime-view .lifetime-content .value {
-	font-size: 350%;
-	font-weight: bold;
-	color: deeppink;
-}
-
-.mytheme .v-button-link {
+.mytheme .welcome-view .v-button-link {
 	background-color: deeppink;
 	margin-top: 1mm;
 	margin-right: 1mm;
 	margin-bottom: 1mm;
 	color: white;
+}
+
+.mytheme .register-view {
+	background: black;
+}
+
+.mytheme .register-view .register-menu {
+	background: white;
+	opacity: 0.75;
+}
+
+.mytheme .register-view .register-content {
+	background: black;
+	opacity: 0.75;
+	color: white;
+	font-weight: bold;
+}
+
+.mytheme .register-view .v-button-link {
+	background-color: deeppink;
+	margin-top: 1mm;
+	margin-right: 1mm;
+	margin-bottom: 1mm;
+	color: white;
+}
+
+.mytheme .user-view {
+	background: black;
+}
+
+.mytheme .user-view .user-menu {
+	background: black;
+	opacity: 0.75;
+}
+
+.mytheme .user-view .user-content {
+	background: white;
+	opacity: 0.75;
+	color: black;
+	font-weight: bold;
+}
+
+.mytheme .user-view .user-content .account-details {
+	color: tomato;
+	font-weight: bold;
+}
+
+.mytheme .user-view .v-button-link {
+	background-color: tomato;
+	margin-top: 1mm;
+	margin-right: 1mm;
+	margin-bottom: 1mm;
+	color: white;
+}
+
+.mytheme .tag {
+	font-size: 150%;
+}
+
+.mytheme .value {
+	font-size: 350%;
+	font-weight: bold;
+	color: deeppink;
 }
 
 .mytheme .v-button-small {
