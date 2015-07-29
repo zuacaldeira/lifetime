@@ -1,56 +1,62 @@
 /*
- * To change this license header, choose License Headers in Entrepeneurship Properties.
+ * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package old;
+package lifetime.persistence;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author lifetime
+ * @author zua
  */
 @Entity
-@Table(name = "address")
+@Table(name = "Adress")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a"),
-    @NamedQuery(name = "Address.findById", query = "SELECT a FROM Address a WHERE a.id = :id"),
-    @NamedQuery(name = "Address.findByStreet", query = "SELECT a FROM Address a WHERE a.street = :street"),
-    @NamedQuery(name = "Address.findByNumber", query = "SELECT a FROM Address a WHERE a.number = :number"),
-    @NamedQuery(name = "Address.findByPostalCode", query = "SELECT a FROM Address a WHERE a.postalCode = :postalCode"),
-    @NamedQuery(name = "Address.findByLocality", query = "SELECT a FROM Address a WHERE a.locality = :locality"),
-    @NamedQuery(name = "Address.findByRegion", query = "SELECT a FROM Address a WHERE a.region = :region"),
-    @NamedQuery(name = "Address.findByCountry", query = "SELECT a FROM Address a WHERE a.country = :country"),
-    @NamedQuery(name = "Address.findByLatitude", query = "SELECT a FROM Address a WHERE a.latitude = :latitude"),
-    @NamedQuery(name = "Address.findByLongitude", query = "SELECT a FROM Address a WHERE a.longitude = :longitude")})
-public class Address implements Serializable {
+    @NamedQuery(name = "Adress.findAll", query = "SELECT a FROM Adress a"),
+    @NamedQuery(name = "Adress.findById", query = "SELECT a FROM Adress a WHERE a.id = :id"),
+    @NamedQuery(name = "Adress.findByUsername", query = "SELECT a FROM Adress a WHERE a.username = :username"),
+    @NamedQuery(name = "Adress.findByStreet", query = "SELECT a FROM Adress a WHERE a.street = :street"),
+    @NamedQuery(name = "Adress.findByDoor", query = "SELECT a FROM Adress a WHERE a.door = :door"),
+    @NamedQuery(name = "Adress.findByFloor", query = "SELECT a FROM Adress a WHERE a.floor = :floor"),
+    @NamedQuery(name = "Adress.findByPostalCode", query = "SELECT a FROM Adress a WHERE a.postalCode = :postalCode"),
+    @NamedQuery(name = "Adress.findByLocality", query = "SELECT a FROM Adress a WHERE a.locality = :locality"),
+    @NamedQuery(name = "Adress.findByRegion", query = "SELECT a FROM Adress a WHERE a.region = :region"),
+    @NamedQuery(name = "Adress.findByCountry", query = "SELECT a FROM Adress a WHERE a.country = :country")})
+public class Adress implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
-    @Size(max = 100)
+    @Size(max = 45)
+    @Column(name = "username")
+    private String username;
+    @Size(max = 255)
     @Column(name = "street")
     private String street;
     @Size(max = 45)
-    @Column(name = "number")
-    private String number;
+    @Column(name = "door")
+    private String door;
     @Size(max = 45)
-    @Column(name = "postalCode")
+    @Column(name = "floor")
+    private String floor;
+    @Size(max = 45)
+    @Column(name = "postal-code")
     private String postalCode;
     @Size(max = 45)
     @Column(name = "locality")
@@ -61,15 +67,11 @@ public class Address implements Serializable {
     @Size(max = 45)
     @Column(name = "country")
     private String country;
-    @Column(name = "latitude")
-    private BigInteger latitude;
-    @Column(name = "longitude")
-    private BigInteger longitude;
 
-    public Address() {
+    public Adress() {
     }
 
-    public Address(Integer id) {
+    public Adress(Integer id) {
         this.id = id;
     }
 
@@ -81,6 +83,14 @@ public class Address implements Serializable {
         this.id = id;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getStreet() {
         return street;
     }
@@ -89,12 +99,20 @@ public class Address implements Serializable {
         this.street = street;
     }
 
-    public String getNumber() {
-        return number;
+    public String getDoor() {
+        return door;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setDoor(String door) {
+        this.door = door;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
     }
 
     public String getPostalCode() {
@@ -129,22 +147,6 @@ public class Address implements Serializable {
         this.country = country;
     }
 
-    public BigInteger getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(BigInteger latitude) {
-        this.latitude = latitude;
-    }
-
-    public BigInteger getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(BigInteger longitude) {
-        this.longitude = longitude;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -155,10 +157,10 @@ public class Address implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Address)) {
+        if (!(object instanceof Adress)) {
             return false;
         }
-        Address other = (Address) object;
+        Adress other = (Adress) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -167,7 +169,7 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
-        return "lifetime.business.persistence.Address[ id=" + id + " ]";
+        return "lifetime.persistence.Adress[ id=" + id + " ]";
     }
     
 }

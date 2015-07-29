@@ -135,8 +135,8 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
     @Override
     public Photo getPhoto(String username) {
         Account a = getAccount(username);
-        Query q = em.createNamedQuery("Photo.findByUser", Photo.class);
-        q.setParameter("user", a.getUser());
+        Query q = em.createNamedQuery("Photo.findByUsername", Photo.class);
+        q.setParameter("username", username);
         List<Photo> photos = q.getResultList();
         if (!photos.isEmpty()) {
             return photos.get(0);
@@ -156,12 +156,22 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
     }
 
     @Override
-    public void addPhoto(String username, Photo p) {
+    public void addPhoto(String username, byte[] b) {
         Account a = getAccount(username);
-        if(a != null) {
+        System.out.println("FOUND ACCOUNT");
+        if (a != null) {
             User u = a.getUser();
-            p.setUser(u);
-            em.persist(p);
+            System.out.println("FOUND USER");
+            Photo p = new Photo();
+            p.setImage(b);
+            p.setUsername(username);
+            System.out.println("STORED bytes IN PHOTO? -> " + p.getImage().length);
+            try {
+                em.persist(p);
+            } catch (Exception ex) {
+                System.err.println(ex.getLocalizedMessage());
+            }
+
         }
     }
 

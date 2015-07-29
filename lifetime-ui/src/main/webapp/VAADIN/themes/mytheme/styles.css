@@ -12806,19 +12806,22 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .user-view .user-menu {
-	background: black;
+	background: white;
 	opacity: 0.75;
 }
 
 .mytheme .user-view .user-content {
-	background: white;
-	opacity: 0.75;
-	color: black;
-	font-weight: bold;
+	background: black;
+	opacity: 0.95;
+}
+
+.mytheme .user-view .user-content .photo-layout {
+	background: black;
 }
 
 .mytheme .user-view .user-content .account-details {
-	color: tomato;
+	opacity: 0.95;
+	color: silver;
 	font-weight: bold;
 }
 
@@ -12828,6 +12831,14 @@ div.v-layout.v-horizontal.v-widget {
 	margin-right: 1mm;
 	margin-bottom: 1mm;
 	color: white;
+}
+
+.mytheme .user-view .v-label-h1 {
+	background: white;
+	color: red;
+	font-weight: bold;
+	font-size: 200%;
+	text-align: center;
 }
 
 .mytheme .tag {
@@ -12870,11 +12881,4 @@ div.v-layout.v-horizontal.v-widget {
 	background: white;
 	opacity: 0.9;
 	color: black;
-}
-
-.mytheme .label {
-	color: silver;
-	font-weight: bold;
-	font-size: small;
-	text-align: center;
 }

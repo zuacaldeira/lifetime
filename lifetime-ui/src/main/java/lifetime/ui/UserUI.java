@@ -1,6 +1,7 @@
 package lifetime.ui;
 
 import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import lifetime.view.StyleClassName;
 
 @Theme("mytheme")
+@Title("Me@Lifetime")
 public class UserUI extends LifetimeUI {
 
     @Override

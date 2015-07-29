@@ -84,26 +84,36 @@
     .user-view {
         background: black;
         .user-menu {
-            background: black;
+            background: white;
             opacity: 0.75;
         }
         .user-content {
-            background: white;
-            opacity: 0.75;
-            color: black;
-            font-weight: bold;
-            
+            background: black;
+            opacity: 0.9;
+            //color: tomato;
+            .photo-layout {
+                background: black;
+            }
             .account-details {
-                color: tomato;
+                opacity: 0.90;
+                color: white;
                 font-weight: bold;
             }
         }
+
         .v-button-link {
             background-color: tomato;
             margin-top: 1mm;
             margin-right: 1mm;
             margin-bottom: 1mm;
             color: white;
+        }
+        .v-label-h1 {
+            background: white;
+            color: red;
+            font-weight: bold;
+            font-size: 200%;
+            text-align: center;
         }
     }
 
@@ -150,11 +160,5 @@
         color: black;
     }
 
-    .label {
-        color: silver;
-        font-weight: bold;
-        font-size: small;
-        text-align: center;
-    }
 
 }

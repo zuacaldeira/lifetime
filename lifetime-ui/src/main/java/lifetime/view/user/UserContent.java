@@ -19,7 +19,6 @@ import com.vaadin.server.Resource;
 import com.vaadin.server.StreamResource;
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Embedded;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
@@ -28,9 +27,13 @@ import com.vaadin.ui.Upload.SucceededListener;
 import com.vaadin.ui.VerticalLayout;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.Principal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lifetime.persistence.Contact;
 import lifetime.persistence.Photo;
 import lifetime.service.LifetimeAccountBusiness;
 import lifetime.util.ServiceLocator;
@@ -41,19 +44,23 @@ import lifetime.view.StyleClassName;
  *
  * @author zua
  */
-class UserContent extends LifetimeContent {
+class UserContent extends LifetimeContent implements Upload.Receiver, SucceededListener {
 
-    private VerticalLayout photo;
+    private VerticalLayout photoLayout;
     private VerticalLayout accountDetails;
+    private String username;
+    private ByteArrayOutputStream baos;
 
     public UserContent(String language) {
         super(language);
+        baos = new ByteArrayOutputStream();
         setId(StyleClassName.USER_CONTENT);
         setStyleName(StyleClassName.USER_CONTENT);
+        initUsername();
         showUserData();
-        setExpandRatio(photo, .3f);
+        setExpandRatio(photoLayout, .3f);
         setExpandRatio(accountDetails, .7f);
-        setComponentAlignment(photo, Alignment.MIDDLE_CENTER);
+        setComponentAlignment(photoLayout, Alignment.MIDDLE_CENTER);
         setComponentAlignment(accountDetails, Alignment.MIDDLE_CENTER);
     }
 
@@ -63,92 +70,86 @@ class UserContent extends LifetimeContent {
     }
 
     private void showPhoto() {
-        Photo userPhoto = ServiceLocator.findLifetimeAccountService().getPhoto(getUsername());
+        Photo userPhoto = ServiceLocator.findLifetimeAccountService().getPhoto(username);
         if (userPhoto != null) {
-            photo = new VerticalLayout(new Image("", getPhotoResource()));
+            Image image = new Image("", getPhotoResource(userPhoto));
+            //VerticalLayout photoBase = new VerticalLayout(image);
+            //photoBase.setStyleName("photo-layout");
+            image.setWidth("75%");
+            //image.setHeight("50%");
+            photoLayout = new VerticalLayout(image);
+            photoLayout.setComponentAlignment(image, Alignment.MIDDLE_RIGHT);
         } else {
-            PhotoUploader upload = this.new PhotoUploader();
+            Upload upload = new Upload("Add your favourite photo", this);
+            upload.addSucceededListener(this);
             upload.setImmediate(true);
-            photo = new VerticalLayout(upload);
+            photoLayout = new VerticalLayout(upload);
         }
-        photo.setSizeFull();
-        addComponent(photo);
+        //photoLayout.setWidth("50%");
+        //photoLayout.setHeight("50%");
+        photoLayout.setSizeFull();
+        addComponent(photoLayout);
     }
 
     private void showAccountDetails() {
         accountDetails = new VerticalLayout();
         accountDetails.setStyleName("account-details");
-        accountDetails.setSizeFull();
+        accountDetails.setSizeUndefined();
 
         LifetimeAccountBusiness service = ServiceLocator.findLifetimeAccountService();
-        Label name = new Label(service.getFullName(getUsername()));
-        name.setStyleName("h1");
+        Label name = new Label(service.getFullName(username));
+        Label email = new Label(username);
+        Contact contact = service.getContact(username);
+        Label address = new Label(contact.getStreet() + " * " + contact.getDoor() + " * " + contact.getPostalCode() + " * " + contact.getLocality() + " * " + contact.getCountry());
 
-        Label education = new Label("Education");
-        education.setStyleName("h3");
-
-        Label profession = new Label("Profession");
-        profession.setStyleName("h3");
-
-        Label logos = new Label("Logos");
-        logos.setStyleName("h3");
-
-        accountDetails.addComponents(name, education, profession, logos);
+        accountDetails.addComponents(email);
+        accountDetails.setComponentAlignment(email, Alignment.MIDDLE_CENTER);
         addComponent(accountDetails);
     }
 
-    private Resource getPhotoResource() {
+    private Resource getPhotoResource(final Photo p) {
         return new StreamResource(new StreamResource.StreamSource() {
             @Override
             public InputStream getStream() {
-                return new ByteArrayInputStream(getPhotoBytes());
+                return new ByteArrayInputStream(p.getImage());
             }
-
-            private byte[] getPhotoBytes() {
-                Photo p = ServiceLocator.findLifetimeAccountService().getPhoto(getUsername());
-                return (p == null) ? new byte[]{} : p.getImage();
-            }
-        }, "photo-" + getUsername() + "-" + Math.random());
+        }, "photo-" + username + "-" + Math.random());
     }
 
-    private String getUsername() {
+    private void initUsername() {
         Principal p = VaadinService.getCurrentRequest().getUserPrincipal();
-        return (p == null) ? "zuacaldeira@gmail.com" : p.getName();
+        if (p != null) {
+            username = p.getName();
+        } else {
+            username = "zuacaldeira@gmail.com";
+        }
     }
 
-    private class PhotoUploader extends Upload implements Upload.Receiver, SucceededListener {
+    @Override
+    public OutputStream receiveUpload(String filename, String mimeType) {
+        Notification.show("Received Upload: " + filename);
+        return baos;
+    }
 
-        private ByteArrayOutputStream baos;
+    @Override
+    public void uploadSucceeded(Upload.SucceededEvent event) {
+        try {
+            baos.close();
+            Notification.show("Upload Succeeded: " + baos.toByteArray());
+            photoLayout.removeAllComponents();
+            photoLayout.addComponent(new Image("", new StreamResource(new StreamResource.StreamSource() {
 
-        public PhotoUploader() {
-            baos = new ByteArrayOutputStream();
-        }
-
-        @Override
-        public OutputStream receiveUpload(String filename, String mimeType) {
-            return baos;
-        }
-
-        @Override
-        public void uploadSucceeded(SucceededEvent event) {
-
-            Embedded image = new Embedded();
-            Resource resource = new StreamResource(new StreamResource.StreamSource() {
                 @Override
                 public InputStream getStream() {
                     return new ByteArrayInputStream(baos.toByteArray());
                 }
-            }, "tmp");
+            }, username + Math.random())));
+            photoLayout.setSizeFull();
 
-            image.setSource(resource);
-            photo.addComponent(image);
-            Notification.show("Added photo to ui", Notification.Type.HUMANIZED_MESSAGE);
-            Photo p = new Photo();
-            p.setImage(baos.toByteArray());
-            ServiceLocator.findLifetimeAccountService().addPhoto(getUsername(), p);
-            Notification.show("Sent photo to backend", Notification.Type.HUMANIZED_MESSAGE);
+            ServiceLocator.findLifetimeAccountService().addPhoto(username, baos.toByteArray());
+            Notification.show("Image saved in db");
+        } catch (IOException ex) {
+            Logger.getLogger(UserContent.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-
 }
