@@ -18,6 +18,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import lifetime.persistence.Account;
+import lifetime.persistence.Address;
+import lifetime.persistence.Contact;
 import lifetime.persistence.Photo;
 import lifetime.persistence.Role;
 import lifetime.persistence.User;
@@ -173,6 +175,16 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
             }
 
         }
+    }
+
+    @Override
+    public Contact getContact(String username) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Address getAddress(String username) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

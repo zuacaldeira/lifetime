@@ -9,6 +9,7 @@
     <class>lifetime.persistence.Photo</class>
     <class>lifetime.persistence.Contact</class>
     <class>lifetime.persistence.Adress</class>
+    <class>lifetime.persistence.Address</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="eclipselink.deploy-on-startup" value="true"/>

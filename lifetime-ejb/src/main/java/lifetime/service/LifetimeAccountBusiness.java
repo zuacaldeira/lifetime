@@ -6,6 +6,7 @@
 package lifetime.service;
 
 import java.util.Date;
+import lifetime.persistence.Address;
 import lifetime.persistence.Contact;
 import lifetime.persistence.Photo;
 
@@ -54,5 +55,7 @@ public interface LifetimeAccountBusiness {
     public void addPhoto(String username, byte[] b);
 
     public Contact getContact(String username);
+
+    public Address getAddress(String username);
 
 }

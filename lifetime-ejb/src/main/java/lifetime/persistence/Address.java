@@ -23,20 +23,21 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author zua
  */
 @Entity
-@Table(name = "Adress")
+@Table(name = "Address")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Adress.findAll", query = "SELECT a FROM Adress a"),
-    @NamedQuery(name = "Adress.findById", query = "SELECT a FROM Adress a WHERE a.id = :id"),
-    @NamedQuery(name = "Adress.findByUsername", query = "SELECT a FROM Adress a WHERE a.username = :username"),
-    @NamedQuery(name = "Adress.findByStreet", query = "SELECT a FROM Adress a WHERE a.street = :street"),
-    @NamedQuery(name = "Adress.findByDoor", query = "SELECT a FROM Adress a WHERE a.door = :door"),
-    @NamedQuery(name = "Adress.findByFloor", query = "SELECT a FROM Adress a WHERE a.floor = :floor"),
-    @NamedQuery(name = "Adress.findByPostalCode", query = "SELECT a FROM Adress a WHERE a.postalCode = :postalCode"),
-    @NamedQuery(name = "Adress.findByLocality", query = "SELECT a FROM Adress a WHERE a.locality = :locality"),
-    @NamedQuery(name = "Adress.findByRegion", query = "SELECT a FROM Adress a WHERE a.region = :region"),
-    @NamedQuery(name = "Adress.findByCountry", query = "SELECT a FROM Adress a WHERE a.country = :country")})
-public class Adress implements Serializable {
+    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a"),
+    @NamedQuery(name = "Address.findById", query = "SELECT a FROM Address a WHERE a.id = :id"),
+    @NamedQuery(name = "Address.findByUsername", query = "SELECT a FROM Address a WHERE a.username = :username"),
+    @NamedQuery(name = "Address.findByStreet", query = "SELECT a FROM Address a WHERE a.street = :street"),
+    @NamedQuery(name = "Address.findByDoor", query = "SELECT a FROM Address a WHERE a.door = :door"),
+    @NamedQuery(name = "Address.findByFloor", query = "SELECT a FROM Address a WHERE a.floor = :floor"),
+    @NamedQuery(name = "Address.findByPostalCode", query = "SELECT a FROM Address a WHERE a.postalCode = :postalCode"),
+    @NamedQuery(name = "Address.findByLocality", query = "SELECT a FROM Address a WHERE a.locality = :locality"),
+    @NamedQuery(name = "Address.findByRegion", query = "SELECT a FROM Address a WHERE a.region = :region"),
+    @NamedQuery(name = "Address.findByCountry", query = "SELECT a FROM Address a WHERE a.country = :country")})
+public class Address implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,10 +69,10 @@ public class Adress implements Serializable {
     @Column(name = "country")
     private String country;
 
-    public Adress() {
+    public Address() {
     }
 
-    public Adress(Integer id) {
+    public Address(Integer id) {
         this.id = id;
     }
 
@@ -157,10 +158,10 @@ public class Adress implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Adress)) {
+        if (!(object instanceof Address)) {
             return false;
         }
-        Adress other = (Adress) object;
+        Address other = (Address) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -169,7 +170,28 @@ public class Adress implements Serializable {
 
     @Override
     public String toString() {
-        return "lifetime.persistence.Adress[ id=" + id + " ]";
+        String SEPARATOR = " * ";
+        StringBuilder builder = new StringBuilder();
+        if (street != null) {
+            builder.append(street);
+            builder.append(SEPARATOR);
+        }
+        if (door != null) {
+            builder.append(door);
+            builder.append(SEPARATOR);
+        }
+        if (postalCode != null) {
+            builder.append(postalCode);
+            builder.append(SEPARATOR);
+        }
+        if (locality != null) {
+            builder.append(locality);
+            builder.append(SEPARATOR);
+        }
+        if(country != null) {
+            builder.append(country);
+        }
+        return builder.toString();
     }
-    
+
 }

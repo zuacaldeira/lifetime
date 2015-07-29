@@ -12812,7 +12812,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .user-view .user-content {
 	background: black;
-	opacity: 0.95;
+	opacity: 0.9;
 }
 
 .mytheme .user-view .user-content .photo-layout {
@@ -12820,8 +12820,8 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .user-view .user-content .account-details {
-	opacity: 0.95;
-	color: silver;
+	opacity: 0.9;
+	color: white;
 	font-weight: bold;
 }
 
@@ -12834,11 +12834,10 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .user-view .v-label-h1 {
-	background: white;
-	color: red;
+	background: transparent;
+	color: gold;
 	font-weight: bold;
-	font-size: 200%;
-	text-align: center;
+	font-size: 300%;
 }
 
 .mytheme .tag {

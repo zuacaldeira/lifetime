@@ -15,16 +15,19 @@
  */
 package lifetime.view.user;
 
+import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Resource;
 import com.vaadin.server.StreamResource;
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Upload;
 import com.vaadin.ui.Upload.SucceededListener;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.Reindeer;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -33,7 +36,6 @@ import java.io.OutputStream;
 import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import lifetime.persistence.Contact;
 import lifetime.persistence.Photo;
 import lifetime.service.LifetimeAccountBusiness;
 import lifetime.util.ServiceLocator;
@@ -97,13 +99,15 @@ class UserContent extends LifetimeContent implements Upload.Receiver, SucceededL
         accountDetails.setSizeUndefined();
 
         LifetimeAccountBusiness service = ServiceLocator.findLifetimeAccountService();
+        // Name
         Label name = new Label(service.getFullName(username));
-        Label email = new Label(username);
-        Contact contact = service.getContact(username);
-        Label address = new Label(contact.getStreet() + " * " + contact.getDoor() + " * " + contact.getPostalCode() + " * " + contact.getLocality() + " * " + contact.getCountry());
-
-        accountDetails.addComponents(email);
-        accountDetails.setComponentAlignment(email, Alignment.MIDDLE_CENTER);
+        name.setStyleName(Reindeer.LABEL_H1);
+        // Email
+        Link email = new Link(username, FontAwesome.ENVELOPE);
+        
+        // Add to layout
+        accountDetails.addComponents(name, email);
+        accountDetails.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
         addComponent(accountDetails);
     }
 
