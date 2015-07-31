@@ -20,7 +20,6 @@ import com.vaadin.navigator.ViewProvider;
 import java.util.HashMap;
 import java.util.Map;
 import lifetime.ui.Navigation;
-import lifetime.view.welcome.WelcomeView;
 import lifetime.view.welcome.contact.ContactView;
 import lifetime.view.welcome.register.RegisterView;
 
@@ -31,7 +30,7 @@ import lifetime.view.welcome.register.RegisterView;
 public class WelcomeViewProvider implements ViewProvider {
 
     private final String language;
-    private final Map<String, View> viewMap;
+    private final transient Map<String, View> viewMap;
 
     public WelcomeViewProvider(String language) {
         this.language = language;

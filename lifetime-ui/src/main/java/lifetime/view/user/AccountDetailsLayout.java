@@ -31,18 +31,12 @@ import lifetime.view.custom.InfoView;
  */
 public class AccountDetailsLayout extends TabSheet {
 
-    private final String username;
-    private final LifetimeAccountBusiness service;
+    private final transient LifetimeAccountBusiness service;
 
     public AccountDetailsLayout(String username) {
-        this.username = username;
         service = ServiceLocator.findLifetimeAccountService();
-
         Tab t1 = addTab(new ProfileSummaryLayout(username), "Personal");
         t1.setIcon(FontAwesome.INFO);
-
-        //Tab t3 = addTab(new AddressLayout(username), "Address");
-        //t3.setIcon(FontAwesome.MAP_MARKER);
         setStyleName("account-details");
         setSizeFull();
     }
@@ -50,12 +44,10 @@ public class AccountDetailsLayout extends TabSheet {
 
 class ProfileSummaryLayout extends VerticalLayout {
 
-    private final String username;
-    private final LifetimeAccountBusiness service;
+    private final transient LifetimeAccountBusiness service;
     private final DateFormat df = DateFormat.getDateInstance();
 
     public ProfileSummaryLayout(String username) {
-        this.username = username;
         this.service = ServiceLocator.findLifetimeAccountService();
         setSpacing(true);
         // Name
@@ -72,7 +64,6 @@ class ProfileSummaryLayout extends VerticalLayout {
         contacts.setSpacing(true);
         // Add all to the base layout
         addComponents(name, birth, address, contacts);
-        //setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
         setSizeFull();
     }
 }

@@ -22,7 +22,7 @@ import java.util.Objects;
 import lifetime.ui.Location;
 import lifetime.ui.Navigation;
 import lifetime.view.LifetimeMenu;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 
 /**
  *
@@ -65,23 +65,23 @@ public class WelcomeMenu extends LifetimeMenu {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.registerButton);
-        hash = 79 * hash + Objects.hashCode(this.loginButton);
-        hash = 79 * hash + Objects.hashCode(this.contactButton);
-        return hash;
+        return hash + getLanguage().hashCode();
     }
+
 
     @Override
     public boolean equals(Object obj) {
-        if (!super.equals(obj)) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final WelcomeMenu other = (WelcomeMenu) obj;
-        return Objects.equals(this.registerButton, other.registerButton)
-                && Objects.equals(this.loginButton, other.loginButton)
-                && Objects.equals(this.contactButton, other.contactButton);
+        return Objects.equals(getLanguage(), other.getLanguage());
     }
 
+    
     @Override
     public void buttonClick(Button.ClickEvent event) {
         Button b = event.getButton();

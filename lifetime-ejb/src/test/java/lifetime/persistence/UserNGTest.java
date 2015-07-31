@@ -5,8 +5,10 @@
  */
 package lifetime.persistence;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -187,7 +189,34 @@ public class UserNGTest {
     public void testSetLanguage(String language) {
         testGetLanguage(language);
     }
+    
+    /**
+     * Test for getAccountCollection.
+     * @return 
+     */
+    
+    /**
+     * Test for setAccountCollection.
+     * @return 
+     */
+    @Test
+    public void testGetAccountCollection() {
+        User u = new User(TestHelper.getRandomId(), "Alexandre", "Zua Caldeira", new Date(), "Piri, Angola", "pt");
+        List<Account> accounts = Arrays.asList(new Account[]{new Account(), new Account()});
+        u.setAccountCollection(accounts);
+        Assert.assertNotNull(u.getAccountCollection());
+        Assert.assertEquals(u.getAccountCollection(), accounts);
+    }
+    
+    /**
+     * Test setAccountCollection. Same test as getAccountCollection
+     * @return 
+     */
+    public void testSetAccountCollection() {
+        testGetAccountCollection();
+    }
 
+    
     @DataProvider(name = "provideLanguage")
     private Object[][] provideLanguage() {
         return new Object[][]{

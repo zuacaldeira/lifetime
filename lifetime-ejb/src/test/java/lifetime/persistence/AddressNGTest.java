@@ -296,8 +296,8 @@ public class AddressNGTest {
      */
     @DataProvider(name = "addressData")
     private Object[][] getAddressData() {
-        Address a1 = new Address(getRandomId(), null, "Lehrter Str", "8", "3 links", "10557", "Berlin", "Berlin", "Deutschland");
-        Address a2 = new Address(getRandomId(), null, "Lar de Betânia", null, "Quinta das Sequeiras", "7101", "Estremoz", "Alentejo", "Portugal");
+        Address a1 = new Address("Lehrter Str", "8", "3 links", "10557", "Berlin", "Berlin", "Deutschland");
+        Address a2 = new Address("Lar de Betânia", null, "Quinta das Sequeiras", "7101", "Estremoz", "Alentejo", "Portugal");
         Address a3 = new Address();
         Object[][] result = new Object[][]{
             {a1}, {a2}, {a3}
@@ -311,8 +311,8 @@ public class AddressNGTest {
      */
     @DataProvider(name = "equals")
     private Object[][] getEquasData() {
-        Address a1 = new Address(getRandomId(), null, "Lehrter Str", "8", "3 links", "10557", "Berlin", "Berlin", "Deutschland");
-        Address a2 = new Address(getRandomId(), null, "Lar de Betânia", null, "Quinta das Sequeiras", "7101", "Estremoz", "Alentejo", "Portugal");
+        Address a1 = new Address("Lehrter Str", "8", "3 links", "10557", "Berlin", "Berlin", "Deutschland");
+        Address a2 = new Address("Lar de Betânia", null, "Quinta das Sequeiras", "7101", "Estremoz", "Alentejo", "Portugal");
         Address a3 = new Address();
         Object[][] result = new Object[][]{
             {a1, a1}, {a2, a2}, {a3, a3}
@@ -327,11 +327,13 @@ public class AddressNGTest {
      */
     @DataProvider(name = "inequals")
     private Object[][] getInequasData() {
-        Address a1 = new Address(getRandomId(), null, "Lehrter Str", "8", "3 links", "10557", "Berlin", "Berlin", "Deutschland");
-        Address a2 = new Address(getRandomId(), null, "Lar de Betânia", null, "Quinta das Sequeiras", "7101", "Estremoz", "Alentejo", "Portugal");
+        Address a1 = new Address("Lehrter Str", "8", "3 links", "10557", "Berlin", "Berlin", "Deutschland");
+        Address a2 = new Address("Lar de Betânia", null, "Quinta das Sequeiras", "7101", "Estremoz", "Alentejo", "Portugal");
         Address a3 = new Address();
+        Address a6 = null;
+        Object a7 = "";
         Object[][] result = new Object[][]{
-            {a1, a2}, {a2, a3}, {a1, a3}, {a1, null}
+            {a1, a2}, {a2, a3}, {a3, a6}, {a1, a7}
         };
         return result;
     }

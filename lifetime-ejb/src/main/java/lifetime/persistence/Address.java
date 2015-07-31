@@ -6,6 +6,7 @@
 package lifetime.persistence;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -98,9 +99,7 @@ public class Address implements Serializable {
         this.id = id;
     }
 
-    public Address(Integer id, String username, String street, String door, String floor, String postalCode, String locality, String region, String country) {
-        this.id = id;
-        this.username = username;
+    public Address(String street, String door, String floor, String postalCode, String locality, String region, String country) {
         this.street = street;
         this.door = door;
         this.floor = floor;
@@ -109,13 +108,6 @@ public class Address implements Serializable {
         this.region = region;
         this.country = country;
     }
-
-    
-    public Address(String street, String door, String floor, String postalCode, String locality, String region, String country) {
-        this(null, null, street, door, floor, postalCode, locality, region, country);
-    }
-    
-    
 
     public Integer getId() {
         return id;
@@ -191,27 +183,31 @@ public class Address implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.street);
+        hash = 83 * hash + Objects.hashCode(this.door);
+        hash = 83 * hash + Objects.hashCode(this.floor);
+        hash = 83 * hash + Objects.hashCode(this.postalCode);
+        hash = 83 * hash + Objects.hashCode(this.locality);
+        hash = 83 * hash + Objects.hashCode(this.country);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Address)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Address other = (Address) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Address other = (Address) obj;
+        return equalHouse(other) && equalLocation(other);
     }
 
     @Override
     public String toString() {
-        String SEPARATOR = " * ";
+        String separator = " * ";
         StringBuilder builder = new StringBuilder();
         if (street != null) {
             builder.append(street);
@@ -219,7 +215,7 @@ public class Address implements Serializable {
         }
         if (door != null) {
             builder.append(door);
-            builder.append(SEPARATOR);
+            builder.append(separator);
         }
         if (postalCode != null) {
             builder.append(postalCode);
@@ -227,12 +223,24 @@ public class Address implements Serializable {
         }
         if (locality != null) {
             builder.append(locality);
-            builder.append(SEPARATOR);
+            builder.append(separator);
         }
         if (country != null) {
             builder.append(country);
         }
         return builder.toString();
+    }
+
+    private boolean equalHouse(Address other) {
+        return Objects.equals(this.street, other.street)
+                && Objects.equals(this.door, other.door)
+                && Objects.equals(this.floor, other.floor);
+    }
+
+    private boolean equalLocation(Address other) {
+        return Objects.equals(this.postalCode, other.postalCode)
+                && Objects.equals(this.locality, other.locality)
+                && Objects.equals(this.country, other.country);
     }
 
 }

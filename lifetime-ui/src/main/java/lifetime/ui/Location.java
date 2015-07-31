@@ -22,4 +22,8 @@ package lifetime.ui;
 public class Location {
     public static final String HOME = "/lifetime";
     public static final String USER = "/lifetime/user";
+
+    private Location() {
+    }
+    
 }

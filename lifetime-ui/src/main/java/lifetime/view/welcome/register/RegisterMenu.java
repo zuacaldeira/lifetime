@@ -21,7 +21,7 @@ import java.util.Objects;
 import lifetime.ui.Navigation;
 import lifetime.view.custom.LifetimeHomeButton;
 import lifetime.view.LifetimeMenu;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 
 /**
  *

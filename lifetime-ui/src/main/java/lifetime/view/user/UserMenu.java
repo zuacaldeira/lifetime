@@ -21,7 +21,7 @@ import com.vaadin.ui.Notification;
 import lifetime.ui.Location;
 import lifetime.ui.Navigation;
 import lifetime.view.LifetimeMenu;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 import lifetime.view.custom.LifetimeHomeButton;
 
 /**

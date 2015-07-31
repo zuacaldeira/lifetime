@@ -17,7 +17,7 @@ package lifetime.view.custom;
 
 import lifetime.view.welcome.RegisterButton;
 import com.vaadin.server.FontAwesome;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

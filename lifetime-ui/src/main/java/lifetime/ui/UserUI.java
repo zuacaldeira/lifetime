@@ -7,7 +7,7 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import javax.servlet.annotation.WebServlet;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 
 @Theme("mytheme")
 @Title("Me@Lifetime")

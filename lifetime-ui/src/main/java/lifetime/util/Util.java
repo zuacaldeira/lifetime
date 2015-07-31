@@ -23,27 +23,28 @@ import java.util.Base64;
  *
  * @author lifetime
  */
-public class Util {
+public final class Util {
 
-    /**
-     * Private constructor disables client instantiation of this class.
-     */
-    public Util() {
+    private Util() {
     }
 
+    
+    
     /**
      * Encrypt password by using SHA-256 algorithm, encryptedPassword length is
      * 32 bits
      *
      * @param clearTextPassword A clear unsafe password string
      * @return An encode string representing the input value.
-     * @throws java.security.NoSuchAlgorithmException If there is a problem
-     * choosing the encoding algorithm
      */
-    public static String getEncodedPassword(String clearTextPassword) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        md.update(clearTextPassword.getBytes());
-        return Base64.getEncoder().encodeToString(md.digest());
+    public static String getEncodedPassword(String clearTextPassword) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(clearTextPassword.getBytes());
+            return Base64.getEncoder().encodeToString(md.digest());
+        } catch (NoSuchAlgorithmException ex) {
+            throw new PasswordEncodingException(ex);
+        }
     }
 
 }

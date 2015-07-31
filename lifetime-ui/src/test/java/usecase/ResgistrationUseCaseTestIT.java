@@ -30,7 +30,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import lifetime.ui.TestBundle;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 import org.jboss.arquillian.testng.Arquillian;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -130,11 +130,11 @@ public class ResgistrationUseCaseTestIT extends Arquillian {
 
         // Password        
         getLogger().info("Looking for the password...");
-        WebElement wePassword = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_PASSWORD));
+        WebElement wePassword = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_ENCRYPTED));
         wePassword.sendKeys(password);
         // Password repeat
         getLogger().info("Looking for the repeat password...");
-        WebElement wePasswordRepeat = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_PASSWORD_REPEAT));
+        WebElement wePasswordRepeat = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_ENCRYPTED_REPEAT));
         wePasswordRepeat.sendKeys(passwordRepeat);
 
         // Birth date

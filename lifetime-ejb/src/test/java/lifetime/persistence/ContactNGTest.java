@@ -16,12 +16,13 @@ import org.testng.annotations.Test;
  * @author zua
  */
 public class ContactNGTest {
-    
+
     public ContactNGTest() {
     }
 
     /**
      * Test of getId method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -34,6 +35,7 @@ public class ContactNGTest {
 
     /**
      * Test of setId method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -44,6 +46,7 @@ public class ContactNGTest {
 
     /**
      * Test of getUsername method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -56,6 +59,7 @@ public class ContactNGTest {
 
     /**
      * Test of setUsername method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -66,6 +70,7 @@ public class ContactNGTest {
 
     /**
      * Test of getTelephone1 method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -78,6 +83,7 @@ public class ContactNGTest {
 
     /**
      * Test of setTelephone1 method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -88,6 +94,7 @@ public class ContactNGTest {
 
     /**
      * Test of getTelephone2 method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -100,6 +107,7 @@ public class ContactNGTest {
 
     /**
      * Test of setTelephone2 method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -110,6 +118,7 @@ public class ContactNGTest {
 
     /**
      * Test of getMobile1 method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -122,6 +131,7 @@ public class ContactNGTest {
 
     /**
      * Test of setMobile1 method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -132,6 +142,7 @@ public class ContactNGTest {
 
     /**
      * Test of getMobile2 method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -144,6 +155,7 @@ public class ContactNGTest {
 
     /**
      * Test of setMobile2 method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -154,6 +166,7 @@ public class ContactNGTest {
 
     /**
      * Test of getFax1 method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -166,6 +179,7 @@ public class ContactNGTest {
 
     /**
      * Test of setFax1 method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -176,6 +190,7 @@ public class ContactNGTest {
 
     /**
      * Test of getFax2 method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -188,6 +203,7 @@ public class ContactNGTest {
 
     /**
      * Test of setFax2 method, of class Contact.
+     *
      * @param contact
      */
     @Test(dataProvider = "contactData")
@@ -198,6 +214,7 @@ public class ContactNGTest {
 
     /**
      * Test of hashCode method, of class Contact.
+     *
      * @param contact1
      * @param contact2
      */
@@ -209,6 +226,7 @@ public class ContactNGTest {
 
     /**
      * Test of equals method, of class Contact.
+     *
      * @param contact1
      * @param contact2
      */
@@ -220,18 +238,19 @@ public class ContactNGTest {
 
     /**
      * Test of equals method, of class Contact.
+     *
      * @param contact1
      * @param contact2
      */
     @Test(dataProvider = "inequals")
-    public void testInequals(Contact contact1, Contact contact2) {
+    public void testInequals(Contact contact1, Object contact2) {
         System.out.println("equals");
         Assert.assertFalse(contact1.equals(contact2));
     }
 
-
     /**
      * Test of toString method, of class Contact.
+     *
      * @param contact1
      * @param contact2
      */
@@ -240,15 +259,9 @@ public class ContactNGTest {
         assertEquals(contact1.toString(), contact2.toString());
     }
 
-    
-    
-    
-    
-    
     /**
      * DATA PROVIDERS
      */
-    
     /**
      * DATA PROVIDER: <b>addressData</b>
      */
@@ -263,7 +276,6 @@ public class ContactNGTest {
         return result;
     }
 
-    
     /**
      * DATA PROVIDER: <b>addressData</b>
      */
@@ -272,26 +284,28 @@ public class ContactNGTest {
         Contact c1 = new Contact(getRandomId(), "username", "+4930123456", "+35196123456", "+4930123456");
         Contact c2 = new Contact(getRandomId(), "username", null, null, null);
         Contact c3 = new Contact(getRandomId());
+        Contact c4 = new Contact();
         Object[][] result = new Object[][]{
-            {c1, c1}, {c2,c2}, {c3,c3}
+            {c1, c1}, {c2, c2}, {c3, c3}, {c4, c4}
         };
         return result;
     }
 
-    
-    
     /**
      * DATA PROVIDER: <b>addressData</b>
      */
     @DataProvider(name = "inequals")
-    private Object[][] getInequasData() {
+    private Object[][] getInequalsData() {
         Contact c1 = new Contact(getRandomId(), "username", "+4930123456", "+35196123456", "+4930123456");
         Contact c2 = new Contact(getRandomId(), "username", null, null, null);
         Contact c3 = new Contact(getRandomId());
+        Contact c5 = new Contact(getRandomId(), TestHelper.getRandomString());
+        Contact c6 = null;
+        String c7 = "";
         Object[][] result = new Object[][]{
-            {c1, c2}, {c2,c3}, {c1,c3}
+            {c1, c2}, {c2, c3}, {c3, c5}, {c5, c6}, {c5, c7}
         };
         return result;
     }
-    
+
 }

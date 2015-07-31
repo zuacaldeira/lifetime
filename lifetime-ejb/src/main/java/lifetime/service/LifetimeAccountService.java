@@ -7,16 +7,17 @@ package lifetime.service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import lifetime.interceptors.RegisterInterceptor;
 import lifetime.persistence.Account;
 import lifetime.persistence.Address;
 import lifetime.persistence.Contact;
@@ -49,7 +50,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      * created.
      *
      * <p>
-     * @return @todo After the end returns without error the new transaction
+     * @return After the end returns without error the new transaction
      * should be persisted: Check if the client transaction must be refreshed.
      * </p>
      *
@@ -61,6 +62,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      * @param birthdate The user's birth date
      */
     @Override
+    @Interceptors({RegisterInterceptor.class})
     public boolean register(String firstname,
             String lastname,
             String email,
@@ -68,21 +70,21 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
             String language,
             Date birthdate,
             String birthPlace) {
-        if (!hasAccount(email)) {
-            User user = new User(null, firstname, lastname, birthdate, birthPlace, language);
-            Account account = new Account(null, email, password);
-            account.setUser(user);
-            account.setRole(getRole(SecurityRoles.USER));
-            try {
+        try {
+            if (!hasAccount(email)) {
+                User user = new User(null, firstname, lastname, birthdate, birthPlace, language);
+                Account account = new Account(null, email, password);
+                account.setUser(user);
+                account.setRole(getRole(SecurityRoles.USER));
                 em.persist(account);
                 return true;
-            } catch (Exception ex) {
-                Logger.getLogger(this.getClass().getName()).warning(ex.getMessage());
+            } else {
                 return false;
             }
-        } else {
-            return false;
+        } catch (Exception ex) {
+            throw new CreateEntityException(ex);
         }
+
     }
 
     /**
@@ -94,16 +96,15 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public boolean deleteAccount(String email) {
-        if (hasAccount(email)) {
-            try {
+        try {
+            if (hasAccount(email)) {
                 em.remove(getAccount(email));
                 return true;
-            } catch (Exception ex) {
-                Logger.getLogger(this.getClass().getName()).warning(ex.getMessage());
+            } else {
                 return false;
             }
-        } else {
-            return false;
+        } catch (Exception ex) {
+            throw new DeleteEntityException(ex);
         }
     }
 
@@ -118,8 +119,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
             q.setParameter("email", email);
             return (Account) q.getSingleResult();
         } catch (Exception ex) {
-            Logger.getLogger(this.getClass().getName()).warning(ex.getMessage());
-            return null;
+            throw new ReadEntityException(ex);
         }
     }
 
@@ -129,102 +129,115 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
             q.setParameter("name", role.name());
             return (Role) q.getSingleResult();
         } catch (Exception ex) {
-            Logger.getLogger(this.getClass().getName()).warning(ex.getMessage());
-            return null;
+            throw new ReadEntityException(ex);
         }
     }
 
     @Override
     public Photo getPhoto(String username) {
-        Account a = getAccount(username);
-        Query q = em.createNamedQuery("Photo.findByUsername", Photo.class);
-        q.setParameter("username", username);
-        List<Photo> photos = q.getResultList();
-        if (!photos.isEmpty()) {
-            return photos.get(0);
+        try {
+            Query q = em.createNamedQuery("Photo.findByUsername", Photo.class);
+            q.setParameter("username", username);
+            List<Photo> photos = q.getResultList();
+            if (!photos.isEmpty()) {
+                return photos.get(0);
+            }
+            return null;
+        } catch (Exception ex) {
+            throw new ReadEntityException(ex);
         }
-        return null;
 
     }
 
     @Override
     public String getFullName(String username) {
-        if (hasAccount(username)) {
-            Account a = getAccount(username);
-            User u = a.getUser();
-            return u.getFirstname() + " " + u.getLastname();
+        try {
+            if (hasAccount(username)) {
+                Account a = getAccount(username);
+                User u = a.getUser();
+                return u.getFirstname() + " " + u.getLastname();
+            }
+            return null;
+        } catch (Exception ex) {
+            throw new ReadEntityException(ex);
         }
-        return null;
     }
 
     @Override
     public void addPhoto(String username, byte[] b) {
-        Account a = getAccount(username);
-        System.out.println("FOUND ACCOUNT");
-        if (a != null) {
-            User u = a.getUser();
-            System.out.println("FOUND USER");
-            Photo p = new Photo();
-            p.setImage(b);
-            p.setUsername(username);
-            System.out.println("STORED bytes IN PHOTO? -> " + p.getImage().length);
-            try {
+        try {
+            Account a = getAccount(username);
+            if (a != null) {
+                Photo p = new Photo();
+                p.setImage(b);
+                p.setUsername(username);
                 deleteAllPhotos(username);
                 em.persist(p);
-            } catch (Exception ex) {
-                System.err.println(ex.getLocalizedMessage());
             }
-
+        } catch (Exception ex) {
+            throw new CreateEntityException(ex);
         }
     }
 
     @Override
     public Contact getContact(String username) {
-        Query q = em.createNamedQuery("Contact.findByUsername", Contact.class);
-        q.setParameter("username", username);
         try {
+            Query q = em.createNamedQuery("Contact.findByUsername", Contact.class);
+            q.setParameter("username", username);
             return (Contact) q.getSingleResult();
         } catch (Exception ex) {
-            return null;
+            throw new CreateEntityException(ex);
         }
     }
 
     @Override
     public Address getAddress(String username) {
-        Query q = em.createNamedQuery("Address.findByUsername", Address.class);
-        q.setParameter("username", username);
         try {
+            Query q = em.createNamedQuery("Address.findByUsername", Address.class);
+            q.setParameter("username", username);
             return (Address) q.getSingleResult();
         } catch (Exception ex) {
-            return null;
+            throw new CreateEntityException(ex);
         }
     }
 
     private void deleteAllPhotos(String username) {
-        Query q = em.createNamedQuery("Photo.findByUsername", Photo.class);
-        q.setParameter("username", username);
-        List<Photo> photos = q.getResultList();
-        for (Photo p : photos) {
-            em.remove(p);
+        try {
+            Query q = em.createNamedQuery("Photo.findByUsername", Photo.class);
+            q.setParameter("username", username);
+            List<Photo> photos = q.getResultList();
+            for (Photo p : photos) {
+                em.remove(p);
+            }
+        } catch (Exception ex) {
+            throw new DeleteEntityException(ex);
         }
     }
 
     @Override
     public Date getBirthdate(String username) {
-        if(hasAccount(username)) {
-            User u = getAccount(username).getUser();
-            return u.getBirthDate();
+        try {
+            if (hasAccount(username)) {
+                User u = getAccount(username).getUser();
+                return u.getBirthDate();
+            }
+            return null;
+        } catch (Exception ex) {
+            throw new CreateEntityException(ex);
         }
-        return null;
     }
 
     @Override
     public String getBirthPlace(String username) {
-        if(hasAccount(username)) {
-            User u = getAccount(username).getUser();
-            return u.getBirthPlace();
+        try {
+            if (hasAccount(username)) {
+                User u = getAccount(username).getUser();
+                return u.getBirthPlace();
+            }
+            return null;
+        } catch (Exception ex) {
+            throw new CreateEntityException(ex);
         }
-        return null;
     }
 
 }

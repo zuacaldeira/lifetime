@@ -13,31 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package util;
+package lifetime.util;
 
-import lifetime.util.Util;
-import static org.testng.Assert.*;
-import org.testng.annotations.Test;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *
  * @author zua
  */
-public class UtilNGTest {
+public class PasswordEncodingException extends RuntimeException {
 
-    public UtilNGTest() {
+    public PasswordEncodingException(NoSuchAlgorithmException ex) {
+        super(ex);
     }
-
-    /**
-     * Test of getEncodedPassword method, of class Util.
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testGetEncodedPassword() throws Exception {
-        System.out.println("getEncodedPassword");
-        String clearTextPassword = "OKOKOKOKOKOKOKOKK";
-        String result = Util.getEncodedPassword(clearTextPassword);
-        assertEquals(result, Util.getEncodedPassword(clearTextPassword));
-    }
-
+    
 }

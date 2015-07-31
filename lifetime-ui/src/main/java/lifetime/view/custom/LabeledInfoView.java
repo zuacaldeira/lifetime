@@ -18,6 +18,7 @@ package lifetime.view.custom;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
+import java.util.Objects;
 
 /**
  *
@@ -44,6 +45,29 @@ public class LabeledInfoView extends VerticalLayout {
     public Component getInfo() {
         return info;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final LabeledInfoView other = (LabeledInfoView) obj;
+        if (!Objects.equals(this.key, other.key)) {
+            return false;
+        }
+        return Objects.equals(this.info, other.info);
+    }
+
+    
     
     
 

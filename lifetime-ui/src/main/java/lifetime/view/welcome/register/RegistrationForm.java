@@ -25,14 +25,13 @@ import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.VerticalLayout;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.logging.Logger;
 import lifetime.service.LifetimeAccountBusiness;
 import lifetime.ui.Navigation;
 import lifetime.view.validator.NameValidator;
 import lifetime.view.validator.PasswordValidator;
 import lifetime.util.ServiceLocator;
 import lifetime.util.Util;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 import lifetime.view.custom.LifetimeTextField;
 import lifetime.view.custom.LocalesComboBox;
 
@@ -83,10 +82,10 @@ public class RegistrationForm extends HorizontalLayout {
         /* Creates password text field and registers a validator */
         password = new PasswordField("Password");
         password.addValidator(new PasswordValidator());
-        password.setId(StyleClassName.REGISTRATION_FORM_PASSWORD);
+        password.setId(StyleClassName.REGISTRATION_FORM_ENCRYPTED);
 
         passwordRepeat = new PasswordField("Repeat password");
-        passwordRepeat.setId(StyleClassName.REGISTRATION_FORM_PASSWORD_REPEAT);
+        passwordRepeat.setId(StyleClassName.REGISTRATION_FORM_ENCRYPTED_REPEAT);
 
         birthDate = new DateField("Birthdate");
         birthDate.setLocale(new Locale(language));
@@ -149,17 +148,12 @@ public class RegistrationForm extends HorizontalLayout {
         // Lookup a reference for the account business interface
         LifetimeAccountBusiness service = ServiceLocator.findLifetimeAccountService();
         // Call backend to register with the collected and verified data
-        try {
-            boolean successfullRegistration = service.register(firstname.getValue(), lastname.getValue(), email.getValue(), Util.getEncodedPassword(password.getValue()), defaultLanguage.getValue().toString(), birthDate.getValue(), birthPlace.getValue());
-            // Upon successfull registration, return to the welcome page
-            if (successfullRegistration) {
-                Notification.show("Registration concluded.", Notification.Type.TRAY_NOTIFICATION);
-                getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
-            } else {
-                Notification.show("Registration failed. Try again later.", Notification.Type.WARNING_MESSAGE);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(RegistrationForm.class.getName()).warning("Registration Failed. Try again later.");
+        boolean successfullRegistration = service.register(firstname.getValue(), lastname.getValue(), email.getValue(), Util.getEncodedPassword(password.getValue()), defaultLanguage.getValue().toString(), birthDate.getValue(), birthPlace.getValue());
+        // Upon successfull registration, return to the welcome page
+        if (successfullRegistration) {
+            Notification.show("Registration concluded.", Notification.Type.TRAY_NOTIFICATION);
+            getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
+        } else {
             Notification.show("Registration failed. Try again later.", Notification.Type.WARNING_MESSAGE);
         }
     }

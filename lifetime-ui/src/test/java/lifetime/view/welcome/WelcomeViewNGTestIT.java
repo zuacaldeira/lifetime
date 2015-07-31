@@ -29,7 +29,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import lifetime.ui.TestBundle;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 import org.jboss.arquillian.testng.Arquillian;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;

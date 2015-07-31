@@ -6,6 +6,7 @@
 package lifetime.persistence;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Basic;
@@ -16,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,6 +25,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -41,26 +44,19 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "User.findByBirthPlace", query = "SELECT u FROM User u WHERE u.birthPlace = :birthPlace"),
     @NamedQuery(name = "User.findByLanguage", query = "SELECT u FROM User u WHERE u.language = :language")})
 public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
-    
-    /**
-     * Entity id.
-     */
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
-    
-    /**
-     * First name(s).
-     */
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "firstname", nullable = false, length = 255)
+    @Column(name = "firstname")
     private String firstname;
-    
+    @OneToMany(mappedBy = "user")
+    private transient Collection<Account> accountCollection;
     /**
      * Last names(s).
      */
@@ -79,7 +75,6 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthDate;
 
-    
     /**
      * Birth place.
      */
@@ -88,7 +83,7 @@ public class User implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "birthPlace", nullable = false, length = 255)
     private String birthPlace;
-    
+
     /**
      * Language.
      */
@@ -185,25 +180,30 @@ public class User implements Serializable {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.firstname, other.firstname)) {
-            return false;
-        }
-        if (!Objects.equals(this.lastname, other.lastname)) {
-            return false;
-        }
-        if (!Objects.equals(this.birthDate, other.birthDate)) {
-            return false;
-        }
-        if (!Objects.equals(this.birthPlace, other.birthPlace)) {
-            return false;
-        }
-        return true;
+        return sameName(other) && sameBirth(other);
     }
-
 
     @Override
     public String toString() {
         return "lifetime.persistence.User[ id=" + id + " ]";
     }
-    
+
+    @XmlTransient
+    public Collection<Account> getAccountCollection() {
+        return accountCollection;
+    }
+
+    public void setAccountCollection(Collection<Account> accountCollection) {
+        this.accountCollection = accountCollection;
+    }
+
+    private boolean sameName(User other) {
+        return Objects.equals(this.firstname, other.firstname)
+                && Objects.equals(this.lastname, other.lastname);
+    }
+
+    private boolean sameBirth(User other) {
+        return Objects.equals(this.birthDate, other.birthDate)
+                && Objects.equals(this.birthPlace, other.birthPlace);
+    }
 }

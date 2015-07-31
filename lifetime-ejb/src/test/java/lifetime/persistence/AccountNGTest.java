@@ -195,22 +195,11 @@ public class AccountNGTest {
         /*
          * a1-a3 fail to compare for distinct id, email and password
          */
-        Account a1 = new Account(null, username, password);
-        a1.setUser(u1);
+        Account a11 = new Account(null, username, password);
 
-        Account a2 = new Account(id, null, password);
-        a2.setUser(u1);
+        Account a12 = new Account(id, null, password);
 
-        Account a3 = new Account(id, username, null);
-        a3.setUser(u1);
-
-        Account a31 = new Account(id, username, password);
-        a31.setUser(u1);
-        /*
-         * a4 distiguishes from a3 by having a distinct user (heteronym)
-         */
-        Account a4 = new Account(id, username, null);
-        a4.setUser(u2);
+        Account a13 = new Account(id, username, null);
 
         /*
          * A second null argument for clients of this method
@@ -223,7 +212,7 @@ public class AccountNGTest {
         Integer a6 = 1;
 
         return new Object[][]{
-            {a1, a2}, {a2, a3}, {a3, a31}, {a3, a4}, {a4, a5}, {a4, a6}
+            {a11, a12}, {a12, a13}, {a11, a5}, {a11, a6}
         };
     }
 

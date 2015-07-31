@@ -18,7 +18,7 @@ package lifetime.view.welcome.register;
 import com.vaadin.ui.Alignment;
 import java.util.Objects;
 import lifetime.view.LifetimeContent;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 
 /**
  * The Register Content Wrapper. This class implements the <b>Wrapper Design

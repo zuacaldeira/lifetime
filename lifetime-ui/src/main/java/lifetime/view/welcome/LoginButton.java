@@ -17,7 +17,7 @@ package lifetime.view.welcome;
 
 import com.vaadin.server.FontAwesome;
 import java.util.Objects;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 import lifetime.util.Translator;
 import lifetime.view.custom.LifetimeButtonLink;
 

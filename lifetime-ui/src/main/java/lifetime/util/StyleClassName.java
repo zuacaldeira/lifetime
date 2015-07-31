@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view;
+package lifetime.util;
 
 /**
  *
@@ -64,9 +64,9 @@ public interface StyleClassName {
     public static final String REGISTRATION_FORM = "registration-form";
     public static final String REGISTRATION_FORM_FIRSTNAME = "rf-firstname";
     public static final String REGISTRATION_FORM_LASTNAME = "rf-lastname";
-    public static final String REGISTRATION_FORM_EMAIL = "rf-emal";
-    public static final String REGISTRATION_FORM_PASSWORD = "rf-password";
-    public static final String REGISTRATION_FORM_PASSWORD_REPEAT = "rf-password-repeat";
+    public static final String REGISTRATION_FORM_EMAIL = "rf-email";
+    public static final String REGISTRATION_FORM_ENCRYPTED = "rf-encrypted";
+    public static final String REGISTRATION_FORM_ENCRYPTED_REPEAT = "rf-encrypted-repeat";
     public static final String REGISTRATION_FORM_BIRTHDATE = "rf-birthdate";
     public static final String REGISTRATION_FORM_BIRTHPLACE = "rf-birthplace";
 }

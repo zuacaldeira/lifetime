@@ -39,7 +39,7 @@ import lifetime.util.ServiceLocator;
 public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upload.SucceededListener {
 
     private final String username;
-    private ByteArrayOutputStream baos;
+    private transient ByteArrayOutputStream baos;
     private VerticalLayout root;
 
     public PhotoLayout(String username) {

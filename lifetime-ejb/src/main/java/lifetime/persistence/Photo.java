@@ -6,6 +6,8 @@
 package lifetime.persistence;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -57,15 +59,16 @@ public class Photo implements Serializable {
         this.id = id;
     }
 
+    public Photo(byte[] image) {
+        this.image = image;
+    }
+
     public Photo(Integer id, String username, byte[] image) {
         this.image = image;
         this.username = username;
         this.id = id;
     }
 
-    public Photo(byte[] image) {
-        this.image = image;
-    }
     
     
 
@@ -77,30 +80,6 @@ public class Photo implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Photo)) {
-            return false;
-        }
-        Photo other = (Photo) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "lifetime.persistence.Photo[ id=" + id + " ]";
-    }
 
     public byte[] getImage() {
         return image;
@@ -117,5 +96,42 @@ public class Photo implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
+
+
+    
+    @Override
+    public String toString() {
+        return "lifetime.persistence.Photo[ id=" + id + " ]";
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + Arrays.hashCode(this.image);
+        hash = 41 * hash + Objects.hashCode(this.username);
+        hash = 41 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Photo other = (Photo) obj;
+        if (!Arrays.equals(this.image, other.image)) {
+            return false;
+        }
+        if (!Objects.equals(this.username, other.username)) {
+            return false;
+        }
+        return Objects.equals(this.id, other.id);
+    }
+
+    
+    
 
 }

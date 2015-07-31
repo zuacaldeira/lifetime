@@ -14,10 +14,14 @@ import lifetime.service.LifetimeAccountBusiness;
  *
  * @author azc
  */
-public class ServiceLocator {
+public final class ServiceLocator {
 
     public static final String JNDI_LIFETIME_ACCOUNT_BUSINESS = "java:global/lifetime-ui/LifetimeAccountService!lifetime.service.LifetimeAccountBusiness";
 
+    private ServiceLocator() {
+    }
+
+    
     public static LifetimeAccountBusiness findLifetimeAccountService() {
         return (LifetimeAccountBusiness) lookupService(JNDI_LIFETIME_ACCOUNT_BUSINESS);
     }
@@ -27,7 +31,7 @@ public class ServiceLocator {
             Context context = new InitialContext();
             return (LifetimeAccountBusiness) context.lookup(name);
         } catch(NamingException ex) {
-            return null;
+            throw new ServiceLookupException(ex);
         }
     }
 

@@ -20,7 +20,7 @@ import lifetime.view.welcome.WelcomeBackground;
 import lifetime.view.LifetimeBackground;
 import lifetime.view.LifetimeContent;
 import lifetime.view.LifetimeMenu;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 
 /**
  *

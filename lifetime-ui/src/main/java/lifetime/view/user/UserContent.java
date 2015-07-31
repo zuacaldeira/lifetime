@@ -19,7 +19,7 @@ import com.vaadin.server.VaadinService;
 import com.vaadin.ui.Alignment;
 import java.security.Principal;
 import lifetime.view.LifetimeContent;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 
 /**
  *

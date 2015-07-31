@@ -27,7 +27,7 @@ public class InfoView extends LabeledInfoView {
 
     private static final DecimalFormat format = new DecimalFormat("###,###");
     private final String tag;
-    private final Object value;
+    private final transient Object value;
 
     public InfoView(String key, Number value) {
         super(new Label(key), new Label(format.format(value)));

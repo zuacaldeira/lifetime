@@ -18,7 +18,7 @@ package lifetime.view.welcome;
 import com.vaadin.ui.Alignment;
 import java.util.Objects;
 import lifetime.view.LifetimeContent;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 
 /**
  *

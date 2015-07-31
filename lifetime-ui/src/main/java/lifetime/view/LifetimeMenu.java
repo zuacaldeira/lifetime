@@ -19,7 +19,6 @@ import lifetime.view.custom.LifetimeButtonLink;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
-import java.util.Objects;
 
 /**
  *
@@ -46,25 +45,6 @@ public abstract class LifetimeMenu extends HorizontalLayout implements Button.Cl
 
     public void addControl(LifetimeButtonLink lifetimeButton) {
         controls.addComponent(lifetimeButton);
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 11;
-        hash = 41 * hash + Objects.hashCode(this.language);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final LifetimeMenu other = (LifetimeMenu) obj;
-        return Objects.equals(this.language, other.language);
     }
 
 }

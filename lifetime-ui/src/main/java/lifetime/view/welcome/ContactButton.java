@@ -19,7 +19,7 @@ import lifetime.view.custom.LifetimeButtonLink;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
 import lifetime.ui.Navigation;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 import lifetime.util.Translator;
 
 /**

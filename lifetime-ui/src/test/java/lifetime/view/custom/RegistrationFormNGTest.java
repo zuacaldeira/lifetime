@@ -17,6 +17,7 @@ package lifetime.view.custom;
 
 import lifetime.view.welcome.register.RegistrationForm;
 import java.util.Date;
+import lifetime.util.ServiceLookupException;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.DataProvider;
@@ -124,7 +125,7 @@ public class RegistrationFormNGTest {
      *
      * @param form
      */
-    @Test(dataProvider = "valid", expectedExceptions = NullPointerException.class)
+    @Test(dataProvider = "valid", expectedExceptions = ServiceLookupException.class)
     public void testSubmit(RegistrationForm form) {
         System.out.println("submit");
         form.submit();

@@ -24,7 +24,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import lifetime.ui.TestBundle;
 import lifetime.view.LifetimeArquillian;
-import lifetime.view.StyleClassName;
+import lifetime.util.StyleClassName;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ArchivePaths;

@@ -6,6 +6,7 @@
 package lifetime.persistence;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,6 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Contact.findByFax1", query = "SELECT c FROM Contact c WHERE c.fax1 = :fax1"),
     @NamedQuery(name = "Contact.findByFax2", query = "SELECT c FROM Contact c WHERE c.fax2 = :fax2")})
 public class Contact implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,8 +88,6 @@ public class Contact implements Serializable {
         this.mobile1 = mobile1;
         this.fax1 = fax1;
     }
-    
-    
 
     public Integer getId() {
         return id;
@@ -155,27 +155,40 @@ public class Contact implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 31 * hash + Objects.hashCode(this.username);
+        hash = 31 * hash + Objects.hashCode(this.telephone1);
+        hash = 31 * hash + Objects.hashCode(this.mobile1);
+        hash = 31 * hash + Objects.hashCode(this.fax1);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Contact)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Contact other = (Contact) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Contact other = (Contact) obj;
+        return sameOwner(other) && sameCommunications(other);
     }
+
 
     @Override
     public String toString() {
         return "lifetime.persistence.Contact[ id=" + id + " ]";
     }
-    
+
+    private boolean sameOwner(Contact other) {
+        return Objects.equals(this.username, other.username);
+    }
+
+    private boolean sameCommunications(Contact other) {
+        return Objects.equals(this.mobile1, other.mobile1) 
+                && Objects.equals(this.telephone1, other.telephone1) 
+                && Objects.equals(this.fax1, other.fax1);
+    }
+
 }
