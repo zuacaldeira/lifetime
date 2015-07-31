@@ -6,7 +6,9 @@
 package lifetime.persistence;
 
 import java.util.Date;
+import lifetime.service.SecurityRoles;
 import org.testng.Assert;
+import static org.testng.Assert.assertEquals;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -251,6 +253,31 @@ public class AccountNGTest {
         return new Object[][]{
             {a1}, {a2}
         };
+    }
+
+    /**
+     * Test of getRole method, of class Account.
+     */
+    @Test
+    public void testGetRole() {
+        System.out.println("getRole");
+        // Create account
+        Account account = new Account();
+        // Create and set account's role
+        Role role = new Role(null, SecurityRoles.USER.name());
+        account.setRole(role);
+        // Assert the role is properly retrieved from the account
+        Role result = account.getRole();
+        assertEquals(result, role);
+    }
+
+    /**
+     * Test of setRole method, of class Account.
+     */
+    @Test
+    public void testSetRole() {
+        System.out.println("setRole");
+        testGetRole();
     }
 
 }

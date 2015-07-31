@@ -15,9 +15,7 @@
  */
 package lifetime.view.custom;
 
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.VerticalLayout;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
@@ -25,33 +23,36 @@ import java.util.Objects;
  *
  * @author zua
  */
-public class NumericStatsView extends VerticalLayout {
+public class InfoView extends LabeledInfoView {
 
-    private final String key;
-    private final Integer value;
+    private static final DecimalFormat format = new DecimalFormat("###,###");
+    private final String tag;
+    private final Object value;
 
-    public NumericStatsView(String label, int i) {
-        this.key = label;
-        this.value = i;
-        setSizeUndefined();
-        DecimalFormat format = new DecimalFormat("###,###");
-        // Tags ans values
-        Label tag = new Label(label);
-        tag.setSizeUndefined();
-        Label lvalue = new Label(format.format(i));
-        addComponents(tag, lvalue);
-        // Component alignment
-        setComponentAlignment(tag, Alignment.MIDDLE_CENTER);
-        setComponentAlignment(lvalue, Alignment.MIDDLE_CENTER);
-        // css styles
-        tag.setStyleName("tag");
-        lvalue.setStyleName("value");
+    public InfoView(String key, Number value) {
+        super(new Label(key), new Label(format.format(value)));
+        this.tag = key;
+        this.value = value;
+    }
+
+    public InfoView(String key, Object value) {
+        super(new Label(key), new Label(value.toString()));
+        this.tag = key;
+        this.value = value;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public Object getValue() {
+        return value;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.key);
+        hash = 79 * hash + Objects.hashCode(this.tag);
         hash = 79 * hash + Objects.hashCode(this.value);
         return hash;
     }
@@ -64,8 +65,8 @@ public class NumericStatsView extends VerticalLayout {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final NumericStatsView other = (NumericStatsView) obj;
-        return Objects.equals(this.key, other.key) && Objects.equals(this.value, other.value);
+        final InfoView other = (InfoView) obj;
+        return Objects.equals(this.tag, other.tag) && Objects.equals(this.value, other.value);
     }
 
 }

@@ -48,6 +48,14 @@
             opacity: 0.75;
             color: white;
             font-weight: bold;
+            .tag{
+                font-size: 150%;
+            }
+            .value{
+                font-size: 200%;
+                font-weight: bold;
+                color: deeppink;
+            }
         }
         .v-button-link {
             background-color: deeppink;
@@ -98,9 +106,17 @@
                 opacity: 0.90;
                 color: white;
                 font-weight: bold;
+
+                .tag{
+                    font-size: 100%;
+                }
+                .value{
+                    font-size: 150%;
+                    font-weight: bold;
+                    color: tomato;
+                }
             }
         }
-
         .v-button-link {
             background-color: tomato;
             margin-top: 1mm;
@@ -108,23 +124,16 @@
             margin-bottom: 1mm;
             color: white;
         }
-        .v-label-h1 {
-            background: transparent;
-            color: gold;
-            font-weight: bold;
-            font-size: 300%;
-        }
     }
-
 
     .tag{
-        font-size: 150%;
+        font-size: 100%;
     }
     .value{
-        font-size: 350%;
+        font-size: 150%;
         font-weight: bold;
-        color: deeppink;
     }
+
 
 
     .v-button-small{

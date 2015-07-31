@@ -169,6 +169,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
             p.setUsername(username);
             System.out.println("STORED bytes IN PHOTO? -> " + p.getImage().length);
             try {
+                deleteAllPhotos(username);
                 em.persist(p);
             } catch (Exception ex) {
                 System.err.println(ex.getLocalizedMessage());
@@ -179,12 +180,51 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
 
     @Override
     public Contact getContact(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Query q = em.createNamedQuery("Contact.findByUsername", Contact.class);
+        q.setParameter("username", username);
+        try {
+            return (Contact) q.getSingleResult();
+        } catch (Exception ex) {
+            return null;
+        }
     }
 
     @Override
     public Address getAddress(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Query q = em.createNamedQuery("Address.findByUsername", Address.class);
+        q.setParameter("username", username);
+        try {
+            return (Address) q.getSingleResult();
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    private void deleteAllPhotos(String username) {
+        Query q = em.createNamedQuery("Photo.findByUsername", Photo.class);
+        q.setParameter("username", username);
+        List<Photo> photos = q.getResultList();
+        for (Photo p : photos) {
+            em.remove(p);
+        }
+    }
+
+    @Override
+    public Date getBirthdate(String username) {
+        if(hasAccount(username)) {
+            User u = getAccount(username).getUser();
+            return u.getBirthDate();
+        }
+        return null;
+    }
+
+    @Override
+    public String getBirthPlace(String username) {
+        if(hasAccount(username)) {
+            User u = getAccount(username).getUser();
+            return u.getBirthPlace();
+        }
+        return null;
     }
 
 }

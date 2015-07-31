@@ -79,6 +79,16 @@ public class Contact implements Serializable {
         this.username = username;
     }
 
+    public Contact(Integer id, String username, String telephone1, String mobile1, String fax1) {
+        this.id = id;
+        this.username = username;
+        this.telephone1 = telephone1;
+        this.mobile1 = mobile1;
+        this.fax1 = fax1;
+    }
+    
+    
+
     public Integer getId() {
         return id;
     }

@@ -57,6 +57,18 @@ public class Photo implements Serializable {
         this.id = id;
     }
 
+    public Photo(Integer id, String username, byte[] image) {
+        this.image = image;
+        this.username = username;
+        this.id = id;
+    }
+
+    public Photo(byte[] image) {
+        this.image = image;
+    }
+    
+    
+
     public Integer getId() {
         return id;
     }

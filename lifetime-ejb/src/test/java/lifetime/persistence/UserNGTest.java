@@ -133,10 +133,10 @@ public class UserNGTest {
         Calendar cal = Calendar.getInstance();
         cal.set(2000, 01, 23);
         Date d1 = cal.getTime();
-        
+
         cal.set(1000, 01, 23);
         Date d2 = cal.getTime();
-        
+
         cal.set(3000, 01, 23);
         Date d3 = cal.getTime();
 
@@ -162,14 +162,13 @@ public class UserNGTest {
     public void testSetBirthPlace(String birthPlace) {
         testGetBirthPlace(birthPlace);
     }
-    
+
     @DataProvider(name = "provideBirthPlace")
     private Object[][] provideBirthPlace() {
         return new Object[][]{
             {"Luanda"}, {"Berlin"}, {"Lisboa"}
         };
     }
-    
 
     /**
      * Test of getLanguage method, of class User.
@@ -189,7 +188,6 @@ public class UserNGTest {
         testGetLanguage(language);
     }
 
-
     @DataProvider(name = "provideLanguage")
     private Object[][] provideLanguage() {
         return new Object[][]{
@@ -197,9 +195,9 @@ public class UserNGTest {
         };
     }
 
-    
     /**
      * Test of hashCode method, of class User.
+     *
      * @param u1
      * @param u2
      */
@@ -210,6 +208,7 @@ public class UserNGTest {
 
     /**
      * Test of equals method, of class User.
+     *
      * @param u1
      * @param u2
      */
@@ -217,7 +216,6 @@ public class UserNGTest {
     public void testEquals(User u1, User u2) {
         Assert.assertTrue(u1.equals(u2));
     }
-    
 
     @DataProvider(name = "provideEqualUsers")
     private Object[][] provideEqualUsers() {
@@ -228,9 +226,10 @@ public class UserNGTest {
             {u1, u2}
         };
     }
-    
+
     /**
      * Test of equals method, of class User.
+     *
      * @param u1
      * @param u2
      */
@@ -259,7 +258,6 @@ public class UserNGTest {
             {u7, ""}
         };
     }
-    
 
     /**
      * Test of toString method, of class User.

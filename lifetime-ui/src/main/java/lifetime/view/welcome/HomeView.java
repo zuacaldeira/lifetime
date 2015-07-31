@@ -15,7 +15,7 @@
  */
 package lifetime.view.welcome;
 
-import lifetime.view.custom.NumericStatsView;
+import lifetime.view.custom.InfoView;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.HorizontalLayout;
 import java.util.Objects;
@@ -27,16 +27,16 @@ import java.util.Objects;
 public class HomeView extends HorizontalLayout {
 
     private final String language;
-    private final NumericStatsView nUsers;
-    private final NumericStatsView nJobs;
-    private final NumericStatsView nCourses;
+    private final InfoView nUsers;
+    private final InfoView nJobs;
+    private final InfoView nCourses;
 
     public HomeView(String language) {
         this.language = language;
         setSizeFull();
-        nUsers = new NumericStatsView("# Users", 10000000);
-        nJobs = new NumericStatsView("# Job Offers", 10000);
-        nCourses = new NumericStatsView("# Course Offers", 10000);
+        nUsers = new InfoView("# Users", 10000000);
+        nJobs = new InfoView("# Job Offers", 10000);
+        nCourses = new InfoView("# Course Offers", 10000);
         addComponents(nUsers, nJobs, nCourses);
         setComponentAlignment(nUsers, Alignment.MIDDLE_CENTER);
         setComponentAlignment(nJobs, Alignment.MIDDLE_CENTER);
@@ -52,15 +52,15 @@ public class HomeView extends HorizontalLayout {
         return language;
     }
 
-    public NumericStatsView getnUsers() {
+    public InfoView getnUsers() {
         return nUsers;
     }
 
-    public NumericStatsView getnJobs() {
+    public InfoView getnJobs() {
         return nJobs;
     }
 
-    public NumericStatsView getnCourses() {
+    public InfoView getnCourses() {
         return nCourses;
     }
     

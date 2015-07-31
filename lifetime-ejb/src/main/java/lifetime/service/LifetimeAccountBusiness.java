@@ -50,12 +50,16 @@ public interface LifetimeAccountBusiness {
 
     public Photo getPhoto(String username);
 
-    public String getFullName(String username);
-
     public void addPhoto(String username, byte[] b);
+
+    public String getFullName(String username);
+    public Date getBirthdate(String username);
+    public String getBirthPlace(String username);
+
 
     public Contact getContact(String username);
 
     public Address getAddress(String username);
+
 
 }

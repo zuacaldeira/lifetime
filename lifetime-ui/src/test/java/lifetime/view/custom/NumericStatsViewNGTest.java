@@ -28,28 +28,28 @@ public class NumericStatsViewNGTest {
     }
 
     /**
-     * Test of hashCode method, of class NumericStatsView.
+     * Test of hashCode method, of class InfoView.
      */
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
         String key = "key";
         Integer value = 1000000;
-        NumericStatsView instance1 = new NumericStatsView(key, value);
-        NumericStatsView instance2 = new NumericStatsView(key, value);
+        InfoView instance1 = new InfoView(key, value);
+        InfoView instance2 = new InfoView(key, value);
         Assert.assertEquals(instance1.hashCode(), instance2.hashCode());
     }
 
     /**
-     * Test of equals method, of class NumericStatsView.
+     * Test of equals method, of class InfoView.
      */
     @Test
     public void testEquals() {
         System.out.println("equals");
         String key = "key";
         Integer value = 1000000;
-        NumericStatsView instance1 = new NumericStatsView(key, value);
-        NumericStatsView instance2 = new NumericStatsView(key, value);
+        InfoView instance1 = new InfoView(key, value);
+        InfoView instance2 = new InfoView(key, value);
         Assert.assertTrue(instance1.equals(instance2));
     }
     

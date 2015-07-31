@@ -11,5 +11,6 @@ package lifetime.service;
  */
 public enum SecurityRoles {
 
-    USER
+    USER, ADMIN
+
 }

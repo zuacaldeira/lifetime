@@ -39,26 +39,48 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Address implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * Internal persistence id.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    /**
+     * Username.
+     */
     @Size(max = 45)
     @Column(name = "username")
     private String username;
+    /**
+     * Street name.
+     */
     @Size(max = 255)
     @Column(name = "street")
     private String street;
+    /**
+     * Door.
+     */
     @Size(max = 45)
     @Column(name = "door")
     private String door;
+    /**
+     * Floor.
+     */
     @Size(max = 45)
     @Column(name = "floor")
     private String floor;
+    /**
+     * Postal code.
+     */
     @Size(max = 45)
-    @Column(name = "postal-code")
+    @Column(name = "postal_code")
     private String postalCode;
+    /**
+     * Locality.
+     */
     @Size(max = 45)
     @Column(name = "locality")
     private String locality;
@@ -75,6 +97,25 @@ public class Address implements Serializable {
     public Address(Integer id) {
         this.id = id;
     }
+
+    public Address(Integer id, String username, String street, String door, String floor, String postalCode, String locality, String region, String country) {
+        this.id = id;
+        this.username = username;
+        this.street = street;
+        this.door = door;
+        this.floor = floor;
+        this.postalCode = postalCode;
+        this.locality = locality;
+        this.region = region;
+        this.country = country;
+    }
+
+    
+    public Address(String street, String door, String floor, String postalCode, String locality, String region, String country) {
+        this(null, null, street, door, floor, postalCode, locality, region, country);
+    }
+    
+    
 
     public Integer getId() {
         return id;
@@ -174,7 +215,7 @@ public class Address implements Serializable {
         StringBuilder builder = new StringBuilder();
         if (street != null) {
             builder.append(street);
-            builder.append(SEPARATOR);
+            builder.append(", ");
         }
         if (door != null) {
             builder.append(door);
@@ -182,13 +223,13 @@ public class Address implements Serializable {
         }
         if (postalCode != null) {
             builder.append(postalCode);
-            builder.append(SEPARATOR);
+            builder.append(" ");
         }
         if (locality != null) {
             builder.append(locality);
             builder.append(SEPARATOR);
         }
-        if(country != null) {
+        if (country != null) {
             builder.append(country);
         }
         return builder.toString();

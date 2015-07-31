@@ -6,6 +6,8 @@
 package lifetime.persistence;
 
 import org.testng.Assert;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.fail;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -180,4 +182,5 @@ public class RoleNGTest {
             {r3, ""},
         };
     }
+
 }

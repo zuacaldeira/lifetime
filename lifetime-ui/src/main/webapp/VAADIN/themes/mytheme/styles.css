@@ -12769,6 +12769,16 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: bold;
 }
 
+.mytheme .welcome-view .welcome-content .tag {
+	font-size: 150%;
+}
+
+.mytheme .welcome-view .welcome-content .value {
+	font-size: 200%;
+	font-weight: bold;
+	color: deeppink;
+}
+
 .mytheme .welcome-view .v-button-link {
 	background-color: deeppink;
 	margin-top: 1mm;
@@ -12825,6 +12835,16 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: bold;
 }
 
+.mytheme .user-view .user-content .account-details .tag {
+	font-size: 100%;
+}
+
+.mytheme .user-view .user-content .account-details .value {
+	font-size: 150%;
+	font-weight: bold;
+	color: tomato;
+}
+
 .mytheme .user-view .v-button-link {
 	background-color: tomato;
 	margin-top: 1mm;
@@ -12833,21 +12853,13 @@ div.v-layout.v-horizontal.v-widget {
 	color: white;
 }
 
-.mytheme .user-view .v-label-h1 {
-	background: transparent;
-	color: gold;
-	font-weight: bold;
-	font-size: 300%;
-}
-
 .mytheme .tag {
-	font-size: 150%;
+	font-size: 100%;
 }
 
 .mytheme .value {
-	font-size: 350%;
+	font-size: 150%;
 	font-weight: bold;
-	color: deeppink;
 }
 
 .mytheme .v-button-small {
