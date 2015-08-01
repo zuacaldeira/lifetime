@@ -17,6 +17,7 @@ package lifetime.view.user;
 
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import java.util.Objects;
 
 /**
  *
@@ -33,4 +34,32 @@ public class KeyValueLayout extends HorizontalLayout {
         addComponents(keyLabel, valueLabel);
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 43 * hash + Objects.hashCode(this.keyLabel);
+        hash = 43 * hash + Objects.hashCode(this.valueLabel);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final KeyValueLayout other = (KeyValueLayout) obj;
+        if (!Objects.equals(this.keyLabel, other.keyLabel)) {
+            return false;
+        }
+        if (!Objects.equals(this.valueLabel, other.valueLabel)) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
 }

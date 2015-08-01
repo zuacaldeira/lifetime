@@ -38,7 +38,7 @@ public class RegisterMenu extends LifetimeMenu {
         setSizeFull();
         homeButton = new LifetimeHomeButton(language);
         homeButton.addClickListener(this);
-        cancelButton = new CancelButton(null, language);
+        cancelButton = new CancelButton(language);
         cancelButton.addClickListener(this);
         okButton = new OKButton(null, language);
         okButton.addClickListener(this);

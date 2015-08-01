@@ -48,7 +48,8 @@ public class LabeledInfoView extends VerticalLayout {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.key.getValue());
         return hash;
     }
 
@@ -61,14 +62,7 @@ public class LabeledInfoView extends VerticalLayout {
             return false;
         }
         final LabeledInfoView other = (LabeledInfoView) obj;
-        if (!Objects.equals(this.key, other.key)) {
-            return false;
-        }
-        return Objects.equals(this.info, other.info);
+        return Objects.equals(this.key.getValue(), other.key.getValue());
     }
-
-    
-    
-    
 
 }

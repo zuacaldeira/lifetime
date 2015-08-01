@@ -27,6 +27,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lifetime.persistence.Photo;
@@ -95,6 +96,22 @@ public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upl
         upload.setImmediate(true);
         root.addComponent(upload);
         // Add composite component to the composition root
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.username);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof PhotoLayout)) {
+            return false;
+        }
+        final PhotoLayout other = (PhotoLayout) obj;
+        return Objects.equals(this.username, other.username);
     }
 
 }

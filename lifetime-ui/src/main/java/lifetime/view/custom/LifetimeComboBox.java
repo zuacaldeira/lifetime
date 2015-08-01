@@ -7,6 +7,7 @@ package lifetime.view.custom;
 
 import com.vaadin.ui.ComboBox;
 import com.vaadin.data.Container;
+import java.util.Objects;
 import lifetime.util.Translator;
 
 /**
@@ -28,6 +29,22 @@ public abstract class LifetimeComboBox extends ComboBox {
 
     public String getLanguage() {
         return language;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof LifetimeComboBox)) {
+            return false;
+        }
+        final LifetimeComboBox other = (LifetimeComboBox) obj;
+        return Objects.equals(this.language, other.language);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + Objects.hashCode(this.language);
+        return hash;
     }
 
 }

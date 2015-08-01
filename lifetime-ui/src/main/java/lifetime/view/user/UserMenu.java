@@ -18,6 +18,7 @@ package lifetime.view.user;
 import com.vaadin.server.Page;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
+import java.util.Objects;
 import lifetime.ui.Location;
 import lifetime.ui.Navigation;
 import lifetime.view.LifetimeMenu;
@@ -71,7 +72,32 @@ class UserMenu extends LifetimeMenu {
         } else {
             Notification.show("Unknown button: " + b, Notification.Type.ERROR_MESSAGE);
         }
-        //Page.getCurrent().setLocation("/lifetime");
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.homeButton);
+        hash = 89 * hash + Objects.hashCode(this.vitaeButton);
+        hash = 89 * hash + Objects.hashCode(this.timelineButton);
+        hash = 89 * hash + Objects.hashCode(this.yellowPagesButton);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof UserMenu)) {
+            return false;
+        }
+        final UserMenu other = (UserMenu) obj;
+        return sameActions(other);
+    }
+
+    private boolean sameActions(UserMenu other) {
+        return Objects.equals(this.homeButton, other.homeButton)
+                && Objects.equals(this.vitaeButton, other.vitaeButton)
+                && Objects.equals(this.timelineButton, other.timelineButton)
+                && Objects.equals(this.yellowPagesButton, other.yellowPagesButton);
     }
 
 }

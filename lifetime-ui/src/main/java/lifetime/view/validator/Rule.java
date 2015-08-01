@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 lifetime.
+ * Copyright 2015 zua.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,20 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.welcome.register;
-
-import lifetime.view.custom.LifetimeButtonLink;
-import com.vaadin.server.FontAwesome;
+package lifetime.view.validator;
 
 /**
  *
- * @author lifetime
+ * @author zua
  */
-public class CancelButton extends LifetimeButtonLink {
+public interface Rule {
 
-    public CancelButton(String language) {
-        super(null, language, "Cancel", FontAwesome.TIMES);
-        setCaption(getDescription());
-    }
+    public void validate(String s);
 
 }

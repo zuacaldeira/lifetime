@@ -18,6 +18,7 @@ package lifetime.view.user;
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.Alignment;
 import java.security.Principal;
+import java.util.Objects;
 import lifetime.view.LifetimeContent;
 import lifetime.util.StyleClassName;
 
@@ -52,6 +53,22 @@ class UserContent extends LifetimeContent {
         } else {
             username = "zuacaldeira@gmail.com";
         }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.username);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof UserContent)) {
+            return false;
+        }
+        final UserContent other = (UserContent) obj;
+        return Objects.equals(this.username, other.username);
     }
 
 }

@@ -20,6 +20,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.VerticalLayout;
 import java.text.DateFormat;
+import java.util.Objects;
 import lifetime.persistence.Contact;
 import lifetime.service.LifetimeAccountBusiness;
 import lifetime.util.ServiceLocator;
@@ -31,23 +32,42 @@ import lifetime.view.custom.InfoView;
  */
 public class AccountDetailsLayout extends TabSheet {
 
-    private final transient LifetimeAccountBusiness service;
+    private final ProfileSummaryLayout profile;
 
     public AccountDetailsLayout(String username) {
-        service = ServiceLocator.findLifetimeAccountService();
-        Tab t1 = addTab(new ProfileSummaryLayout(username), "Personal");
+        profile = new ProfileSummaryLayout(username);
+        Tab t1 = addTab(profile, "Personal");
         t1.setIcon(FontAwesome.INFO);
         setStyleName("account-details");
         setSizeFull();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.profile);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof AccountDetailsLayout)) {
+            return false;
+        }
+        final AccountDetailsLayout other = (AccountDetailsLayout) obj;
+        return Objects.equals(this.profile, other.profile);
+    }
+
 }
 
 class ProfileSummaryLayout extends VerticalLayout {
 
     private final transient LifetimeAccountBusiness service;
     private final DateFormat df = DateFormat.getDateInstance();
+    private final String username;
 
     public ProfileSummaryLayout(String username) {
+        this.username = username;
         this.service = ServiceLocator.findLifetimeAccountService();
         setSpacing(true);
         // Name
@@ -66,4 +86,21 @@ class ProfileSummaryLayout extends VerticalLayout {
         addComponents(name, birth, address, contacts);
         setSizeFull();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.username);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof ProfileSummaryLayout)) {
+            return false;
+        }
+        final ProfileSummaryLayout other = (ProfileSummaryLayout) obj;
+        return Objects.equals(this.username, other.username);
+    }
+
 }

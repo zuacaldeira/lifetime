@@ -16,6 +16,8 @@
 package lifetime.view.validator;
 
 import com.vaadin.data.Validator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -23,7 +25,14 @@ import com.vaadin.data.Validator;
  */
 class AllCharTypesValidator implements Validator {
 
+    private final transient List<Rule> rules;
+
     public AllCharTypesValidator() {
+        rules = new LinkedList<>();
+        rules.add(new HasMinimumLength());
+        rules.add(new HasUpperCase());
+        rules.add(new HasLowerCase());
+        rules.add(new HasDigit());
     }
 
     /**
@@ -38,45 +47,14 @@ class AllCharTypesValidator implements Validator {
     public void validate(Object value) {
         if (!(value instanceof String)) {
             throw new InvalidValueException("Invalid Value. Expecting a String");
+        } else {
+            validateRules((String) value);
         }
-        String v = (String) value;
-        int size = v.length();
+    }
 
-        if (size < 6) {
-            throw new InvalidValueException("Too small: " + v);
-        }
-
-        int nlowers = 0;
-        int nUppers = 0;
-        int nDigits = 0;
-        int nSpecial = 0;
-
-        for (int i = 0; i < size; i++) {
-            char c = v.charAt(i);
-            if (Character.isDigit(c)) {
-                nDigits++;
-            } else if (Character.isUpperCase(c)) {
-                nUppers++;
-            } else if (Character.isLowerCase(c)) {
-                nlowers++;
-            } else if (Character.isWhitespace(c)) {
-                throw new InvalidValueException("White spaces not allowed at index : " + i);
-            } else {
-                nSpecial++;
-            }
-        }
-        
-        if(nlowers == 0) {
-                throw new InvalidValueException("At least one character must be a lower case");
-        }
-        if(nUppers == 0) {
-                throw new InvalidValueException("At least one character must be an uppercase");
-        }
-        if(nDigits == 0) {
-                throw new InvalidValueException("At least one character must be a digit");
-        }
-        if(nSpecial == 0) {
-                throw new InvalidValueException("At least one character must be a special character");
+    private void validateRules(String v) {
+        for (Rule rule : rules) {
+            rule.validate(v);
         }
     }
 
