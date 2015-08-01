@@ -35,6 +35,7 @@ class UserMenu extends LifetimeMenu {
     private final VitaeButton vitaeButton;
     private final TimelineButton timelineButton;
     private final YellowPagesButton yellowPagesButton;
+    private static final String NOT_IMPLEMENTED_YET = "Not Implememted Yet";
 
     public UserMenu(String language) {
         super(language);
@@ -55,6 +56,22 @@ class UserMenu extends LifetimeMenu {
         addControl(yellowPagesButton);
     }
 
+    public LifetimeHomeButton getHomeButton() {
+        return homeButton;
+    }
+
+    public VitaeButton getVitaeButton() {
+        return vitaeButton;
+    }
+
+    public TimelineButton getTimelineButton() {
+        return timelineButton;
+    }
+
+    public YellowPagesButton getYellowPagesButton() {
+        return yellowPagesButton;
+    }
+
     @Override
     public void buttonClick(Button.ClickEvent event) {
         Button b = event.getButton();
@@ -62,13 +79,13 @@ class UserMenu extends LifetimeMenu {
             Page.getCurrent().setLocation(Location.HOME);
         } else if (b == vitaeButton) {
             getUI().getNavigator().navigateTo(Navigation.VITAE_VIEW);
-            Notification.show("Not Implememted Yet", Notification.Type.ERROR_MESSAGE);
+            Notification.show(NOT_IMPLEMENTED_YET, Notification.Type.ERROR_MESSAGE);
         } else if (b == timelineButton) {
             getUI().getNavigator().navigateTo(Navigation.TIMELINE_VIEW);
-            Notification.show("Not Implememted Yet", Notification.Type.ERROR_MESSAGE);
+            Notification.show(NOT_IMPLEMENTED_YET, Notification.Type.ERROR_MESSAGE);
         } else if (b == yellowPagesButton) {
             getUI().getNavigator().navigateTo(Navigation.YELLOW_PAGES_VIEW);
-            Notification.show("Not Implememted Yet", Notification.Type.ERROR_MESSAGE);
+            Notification.show(NOT_IMPLEMENTED_YET, Notification.Type.ERROR_MESSAGE);
         } else {
             Notification.show("Unknown button: " + b, Notification.Type.ERROR_MESSAGE);
         }
@@ -77,10 +94,7 @@ class UserMenu extends LifetimeMenu {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.homeButton);
-        hash = 89 * hash + Objects.hashCode(this.vitaeButton);
-        hash = 89 * hash + Objects.hashCode(this.timelineButton);
-        hash = 89 * hash + Objects.hashCode(this.yellowPagesButton);
+        hash = 89 * hash + Objects.hashCode(getLanguage());
         return hash;
     }
 
@@ -90,14 +104,7 @@ class UserMenu extends LifetimeMenu {
             return false;
         }
         final UserMenu other = (UserMenu) obj;
-        return sameActions(other);
-    }
-
-    private boolean sameActions(UserMenu other) {
-        return Objects.equals(this.homeButton, other.homeButton)
-                && Objects.equals(this.vitaeButton, other.vitaeButton)
-                && Objects.equals(this.timelineButton, other.timelineButton)
-                && Objects.equals(this.yellowPagesButton, other.yellowPagesButton);
+        return Objects.equals(getLanguage(), other.getLanguage());
     }
 
 }

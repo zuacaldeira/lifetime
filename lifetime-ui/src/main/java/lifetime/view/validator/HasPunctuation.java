@@ -22,7 +22,7 @@ import com.vaadin.data.Validator.InvalidValueException;
  * @author zua
  */
 public class HasPunctuation implements Rule {
-    private final String MESSAGE = "HasPunctuation: Rule failed!";
+    private static final String MESSAGE = "HasPunctuation: Rule failed!";
     
     @Override
     public void validate(String s) {

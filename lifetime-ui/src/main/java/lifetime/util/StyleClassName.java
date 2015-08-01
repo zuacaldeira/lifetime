@@ -19,7 +19,7 @@ package lifetime.util;
  *
  * @author zua
  */
-public interface StyleClassName {
+public final class StyleClassName {
 
     /**
      * UIs.
@@ -69,4 +69,8 @@ public interface StyleClassName {
     public static final String REGISTRATION_FORM_ENCRYPTED_REPEAT = "rf-encrypted-repeat";
     public static final String REGISTRATION_FORM_BIRTHDATE = "rf-birthdate";
     public static final String REGISTRATION_FORM_BIRTHPLACE = "rf-birthplace";
+
+    private StyleClassName() {
+    }
+
 }

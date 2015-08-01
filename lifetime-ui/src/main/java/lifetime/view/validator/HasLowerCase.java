@@ -23,7 +23,7 @@ import com.vaadin.data.Validator.InvalidValueException;
  */
 public class HasLowerCase implements Rule {
 
-    private final String MESSAGE = "HasLowerCase: Rule failed!";
+    private static final String MESSAGE = "HasLowerCase: Rule failed!";
 
     @Override
     public void validate(String s) {
@@ -33,8 +33,8 @@ public class HasLowerCase implements Rule {
     }
 
     private boolean hasLowerCase(String s) {
-        for(int i = 0; i < s.length(); i++) {
-            if(Character.isLowerCase(s.charAt(i))) {
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isLowerCase(s.charAt(i))) {
                 return true;
             }
         }

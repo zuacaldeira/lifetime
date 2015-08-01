@@ -15,22 +15,32 @@
  */
 package lifetime.view.validator;
 
-import com.vaadin.data.Validator.InvalidValueException;
+import com.vaadin.data.Validator;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-public class HasMinimumLength implements Rule {
+public class HasPunctuationNGTest {
 
-    private static final int MINIMUM_LENGTH = 6;
-    private static final String MESSAGE = "HasMinimumLength: Rule failed!";
-
-    @Override
-    public void validate(String s) {
-        if (s.length() < MINIMUM_LENGTH) {
-            throw new InvalidValueException(MESSAGE);
-        }
+    /**
+     * Test of validate method, of class HasPunctuation.
+     */
+    @Test
+    public void testValidate() {
+        System.out.println("validate");
+        HasPunctuation rule = new HasPunctuation();
+        rule.validate("a!b");
     }
 
+    /**
+     * Test of validate method, of class HasPunctuation.
+     */
+    @Test(expectedExceptions = Validator.InvalidValueException.class)
+    public void testInvalidate() {
+        System.out.println("invalidate");
+        HasPunctuation rule = new HasPunctuation();
+        rule.validate("aab");
+    }
 }

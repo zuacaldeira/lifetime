@@ -13,24 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.validator;
+package lifetime.view.user;
 
-import com.vaadin.data.Validator.InvalidValueException;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-public class HasMinimumLength implements Rule {
+public class VitaeButtonNGTest {
 
-    private static final int MINIMUM_LENGTH = 6;
-    private static final String MESSAGE = "HasMinimumLength: Rule failed!";
+    public VitaeButtonNGTest() {
+    }
 
-    @Override
-    public void validate(String s) {
-        if (s.length() < MINIMUM_LENGTH) {
-            throw new InvalidValueException(MESSAGE);
-        }
+    @Test
+    public void testCreate() {
+        // TODO review the generated test code and remove the default call to fail.
+        VitaeButton buttonPt = new VitaeButton("pt");
+        VitaeButton buttonEn = new VitaeButton("en");
+        Assert.assertEquals(buttonPt.getLanguage(), "pt");
+        Assert.assertEquals(buttonEn.getLanguage(), "en");
     }
 
 }

@@ -19,7 +19,6 @@ import com.vaadin.server.Resource;
 import com.vaadin.server.StreamResource;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Image;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.Upload;
 import com.vaadin.ui.VerticalLayout;
 import java.io.ByteArrayInputStream;
@@ -48,7 +47,6 @@ public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upl
         baos = new ByteArrayOutputStream();
         root = new VerticalLayout();
         setCompositionRoot(root);
-        showPhoto();
     }
 
     private Resource getPhotoResource(final Photo p) {
@@ -62,7 +60,6 @@ public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upl
 
     @Override
     public OutputStream receiveUpload(String filename, String mimeType) {
-        Notification.show("Received Upload: " + filename, Notification.Type.ASSISTIVE_NOTIFICATION);
         return baos;
     }
 
@@ -70,9 +67,7 @@ public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upl
     public void uploadSucceeded(Upload.SucceededEvent event) {
         try {
             baos.close();
-            Notification.show("Upload Succeeded: " + baos.toByteArray());
             ServiceLocator.findLifetimeAccountService().addPhoto(username, baos.toByteArray());
-            Notification.show("Image saved in db");
             showPhoto();
         } catch (IOException ex) {
             Logger.getLogger(UserContent.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,22 +75,15 @@ public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upl
     }
 
     private void showPhoto() {
-        root.removeAllComponents();
-        // Image layout
-        Image image = null;
-        Photo userPhoto = ServiceLocator.findLifetimeAccountService().getPhoto(username);
-
-        if (userPhoto != null) {
-            image = new Image("", getPhotoResource(userPhoto));
-            image.setWidth("50%");
-            root.addComponent(image);
+        clean();
+        try {
+            Photo userPhoto = ServiceLocator.findLifetimeAccountService().getPhoto(username);
+            if (userPhoto != null) {
+                addPhoto(userPhoto);
+            }
+        } finally {
+            addUpload();
         }
-        // Upload layout
-        Upload upload = new Upload("Add your favourite photo", this);
-        upload.addSucceededListener(this);
-        upload.setImmediate(true);
-        root.addComponent(upload);
-        // Add composite component to the composition root
     }
 
     @Override
@@ -112,6 +100,30 @@ public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upl
         }
         final PhotoLayout other = (PhotoLayout) obj;
         return Objects.equals(this.username, other.username);
+    }
+
+    @Override
+    public void attach() {
+        super.attach();
+        showPhoto();
+    }
+
+    private void clean() {
+        root.removeAllComponents();
+    }
+
+    private void addPhoto(Photo userPhoto) {
+        Image image = new Image("", getPhotoResource(userPhoto));
+        image.setWidth("50%");
+        root.addComponent(image);
+    }
+
+    private void addUpload() {
+        // Upload layout
+        Upload upload = new Upload("Add your favourite photo", this);
+        upload.addSucceededListener(this);
+        upload.setImmediate(true);
+        root.addComponent(upload);
     }
 
 }

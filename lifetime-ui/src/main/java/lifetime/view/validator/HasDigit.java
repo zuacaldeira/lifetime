@@ -23,7 +23,7 @@ import com.vaadin.data.Validator.InvalidValueException;
  */
 public class HasDigit implements Rule {
 
-    private final String MESSAGE = "HasDigit: Rule failed!";
+    private static final String MESSAGE = "HasDigit: Rule failed!";
 
     @Override
     public void validate(String s) {

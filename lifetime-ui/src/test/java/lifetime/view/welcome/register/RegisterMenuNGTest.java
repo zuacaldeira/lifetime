@@ -62,6 +62,18 @@ public class RegisterMenuNGTest {
     }
 
     /**
+     * Test of getRegistrationForm, that the register menu uses to lookup the
+     * registration form.
+     *
+     * @param menu
+     */
+    @Test(dataProvider = "valid")
+    public void testGetRegistrationForm(RegisterMenu menu) {
+        System.out.println("getRegistrationForm()");
+        assertNotNull(menu.getRegistrationForm());
+    }
+
+    /**
      * Test of hashCode method, of class RegisterMenu.
      *
      * @param menu1

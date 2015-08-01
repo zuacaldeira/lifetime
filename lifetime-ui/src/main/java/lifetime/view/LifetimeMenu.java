@@ -40,6 +40,11 @@ public abstract class LifetimeMenu extends HorizontalLayout implements Button.Cl
 
     }
 
+    public HorizontalLayout getControls() {
+        return controls;
+    }
+    
+
     public String getLanguage() {
         return language;
     }

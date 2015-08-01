@@ -45,8 +45,7 @@ public class RegisterView extends WelcomeView {
 
     @Override
     protected LifetimeMenu createMenu() {
-        RegisterMenu menu = new RegisterMenu(getLanguage());
-        return menu;
+        return new RegisterMenu(getLanguage());
     }
 
     @Override

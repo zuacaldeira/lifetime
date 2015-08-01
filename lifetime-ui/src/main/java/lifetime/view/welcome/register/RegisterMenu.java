@@ -63,27 +63,19 @@ public class RegisterMenu extends LifetimeMenu {
 
     @Override
     public int hashCode() {
-        int hash = super.hashCode();
-        hash = 37 * hash + Objects.hashCode(this.homeButton);
-        hash = 37 * hash + Objects.hashCode(this.cancelButton);
-        hash = 37 * hash + Objects.hashCode(this.okButton);
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.getLanguage());
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (!super.equals(obj)) {
+        if (obj == null || !(obj instanceof RegisterMenu)) {
             return false;
         }
 
         final RegisterMenu other = (RegisterMenu) obj;
-        if (!Objects.equals(this.homeButton, other.homeButton)) {
-            return false;
-        }
-        if (!Objects.equals(this.cancelButton, other.cancelButton)) {
-            return false;
-        }
-        return Objects.equals(this.okButton, other.okButton);
+        return Objects.equals(this.getLanguage(), other.getLanguage());
     }
 
     @Override
@@ -98,7 +90,7 @@ public class RegisterMenu extends LifetimeMenu {
         }
     }
 
-    private RegistrationForm getRegistrationForm() {
+    public RegistrationForm getRegistrationForm() {
         Component parent = getParent();
         while (!(parent instanceof RegisterView)) {
             parent = parent.getParent();

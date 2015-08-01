@@ -24,6 +24,7 @@ import lifetime.view.user.UserView;
  * @author zua
  */
 public class UserViewProvider implements ViewProvider {
+
     private final String language;
 
     public UserViewProvider(String language) {
@@ -37,9 +38,6 @@ public class UserViewProvider implements ViewProvider {
 
     @Override
     public View getView(String viewName) {
-        switch(viewName) {
-            default: return new UserView(language);
-        }
+        return new UserView(language);
     }
-
 }

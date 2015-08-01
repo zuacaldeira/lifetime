@@ -51,7 +51,7 @@ public class ContactMenu extends LifetimeMenu {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.homeButton);
+        hash = 79 * hash + Objects.hashCode(this.getLanguage());
         return hash;
     }
 
@@ -61,7 +61,7 @@ public class ContactMenu extends LifetimeMenu {
             return false;
         }
         final ContactMenu other = (ContactMenu) obj;
-        return Objects.equals(this.homeButton, other.homeButton);
+        return Objects.equals(this.getLanguage(), other.getLanguage());
     }
 
 }

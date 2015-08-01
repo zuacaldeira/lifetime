@@ -33,4 +33,23 @@ public class ContactMenuNGTest {
         Assert.assertNotNull(menu.getHomeButton());
     }
 
+    @Test
+    public void testEquals() {
+        ContactMenu menu = new ContactMenu("en");
+        ContactMenu menu2 = new ContactMenu("en");
+        Assert.assertTrue(menu.equals(menu2));
+    }
+
+    @Test
+    public void testInequals() {
+        ContactMenu menu = new ContactMenu("en");
+        ContactMenu menu2 = new ContactMenu("pt");
+        ContactMenu menu3 = null;
+        Object menu4 = "Hi";
+
+        Assert.assertFalse(menu.equals(menu2));
+        Assert.assertFalse(menu.equals(menu3));
+        Assert.assertFalse(menu.equals(menu4));
+    }
+
 }

@@ -28,22 +28,20 @@ import lifetime.util.StyleClassName;
  */
 class UserContent extends LifetimeContent {
 
-    private final PhotoLayout photoLayout;
-    private final AccountDetailsLayout accountDetails;
+    private PhotoLayout photoLayout;
+    private AccountDetailsLayout accountDetails;
     private String username;
 
     public UserContent(String language) {
         super(language);
         setId(StyleClassName.USER_CONTENT);
         setStyleName(StyleClassName.USER_CONTENT);
-        initUsername();
-        photoLayout = new PhotoLayout(username);
-        accountDetails = new AccountDetailsLayout(username);
-        addComponents(photoLayout, accountDetails);
-        setExpandRatio(photoLayout, .4f);
-        setExpandRatio(accountDetails, .6f);
-        setComponentAlignment(photoLayout, Alignment.MIDDLE_RIGHT);
-        setComponentAlignment(accountDetails, Alignment.MIDDLE_LEFT);
+    }
+
+    @Override
+    public void attach() {
+        super.attach(); //To change body of generated methods, choose Tools | Templates.
+        init();
     }
 
     private void initUsername() {
@@ -58,7 +56,7 @@ class UserContent extends LifetimeContent {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.username);
+        hash = 17 * hash + Objects.hashCode(getLanguage());
         return hash;
     }
 
@@ -68,7 +66,18 @@ class UserContent extends LifetimeContent {
             return false;
         }
         final UserContent other = (UserContent) obj;
-        return Objects.equals(this.username, other.username);
+        return Objects.equals(this.getLanguage(), other.getLanguage());
+    }
+
+    private void init() {
+        initUsername();
+        photoLayout = new PhotoLayout(username);
+        accountDetails = new AccountDetailsLayout(username);
+        addComponents(photoLayout, accountDetails);
+        setExpandRatio(photoLayout, .4f);
+        setExpandRatio(accountDetails, .6f);
+        setComponentAlignment(photoLayout, Alignment.MIDDLE_RIGHT);
+        setComponentAlignment(accountDetails, Alignment.MIDDLE_LEFT);
     }
 
 }

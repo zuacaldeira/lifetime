@@ -16,14 +16,13 @@ import lifetime.service.RegisterException;
  */
 @Interceptor
 public class RegisterInterceptor {
-    
-    
+
     @AroundInvoke
-    public Object interceptRegisterRequest(InvocationContext ctx) throws RegisterException {
+    public Object interceptRegisterRequest(InvocationContext ctx) {
         try {
-        return ctx.proceed();
-        } catch(Exception ex) {
-            throw new  RegisterException(ex);
+            return ctx.proceed();
+        } catch (Exception ex) {
+            throw new RegisterException(ex);
         }
     }
 }

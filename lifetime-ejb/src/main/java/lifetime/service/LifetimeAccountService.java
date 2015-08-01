@@ -37,6 +37,9 @@ import lifetime.persistence.User;
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class LifetimeAccountService implements LifetimeAccountBusiness {
 
+    private static final String USERNAME = "username";
+    private static final String EMAIL = "email";
+    private static final String NAME = "name";
     /**
      * Persistence Context.
      */
@@ -50,8 +53,8 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
      * created.
      *
      * <p>
-     * @return After the end returns without error the new transaction
-     * should be persisted: Check if the client transaction must be refreshed.
+     * @return After the end returns without error the new transaction should be
+     * persisted: Check if the client transaction must be refreshed.
      * </p>
      *
      * @param firstname The user's first name.
@@ -116,7 +119,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
     private Account getAccount(String email) {
         try {
             Query q = em.createNamedQuery("Account.findByEmail", Account.class);
-            q.setParameter("email", email);
+            q.setParameter(EMAIL, email);
             return (Account) q.getSingleResult();
         } catch (Exception ex) {
             throw new ReadEntityException(ex);
@@ -126,7 +129,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
     private Role getRole(SecurityRoles role) {
         try {
             Query q = em.createNamedQuery("Role.findByName", Role.class);
-            q.setParameter("name", role.name());
+            q.setParameter(NAME, role.name());
             return (Role) q.getSingleResult();
         } catch (Exception ex) {
             throw new ReadEntityException(ex);
@@ -137,7 +140,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
     public Photo getPhoto(String username) {
         try {
             Query q = em.createNamedQuery("Photo.findByUsername", Photo.class);
-            q.setParameter("username", username);
+            q.setParameter(USERNAME, username);
             List<Photo> photos = q.getResultList();
             if (!photos.isEmpty()) {
                 return photos.get(0);
@@ -183,7 +186,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
     public Contact getContact(String username) {
         try {
             Query q = em.createNamedQuery("Contact.findByUsername", Contact.class);
-            q.setParameter("username", username);
+            q.setParameter(USERNAME, username);
             return (Contact) q.getSingleResult();
         } catch (Exception ex) {
             throw new CreateEntityException(ex);
@@ -194,7 +197,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
     public Address getAddress(String username) {
         try {
             Query q = em.createNamedQuery("Address.findByUsername", Address.class);
-            q.setParameter("username", username);
+            q.setParameter(USERNAME, username);
             return (Address) q.getSingleResult();
         } catch (Exception ex) {
             throw new CreateEntityException(ex);
@@ -204,7 +207,7 @@ public class LifetimeAccountService implements LifetimeAccountBusiness {
     private void deleteAllPhotos(String username) {
         try {
             Query q = em.createNamedQuery("Photo.findByUsername", Photo.class);
-            q.setParameter("username", username);
+            q.setParameter(USERNAME, username);
             List<Photo> photos = q.getResultList();
             for (Photo p : photos) {
                 em.remove(p);

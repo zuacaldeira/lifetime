@@ -33,9 +33,11 @@ import lifetime.view.custom.InfoView;
 public class AccountDetailsLayout extends TabSheet {
 
     private final ProfileSummaryLayout profile;
+    private final String username;
 
     public AccountDetailsLayout(String username) {
         profile = new ProfileSummaryLayout(username);
+        this.username = username;
         Tab t1 = addTab(profile, "Personal");
         t1.setIcon(FontAwesome.INFO);
         setStyleName("account-details");
@@ -55,36 +57,27 @@ public class AccountDetailsLayout extends TabSheet {
             return false;
         }
         final AccountDetailsLayout other = (AccountDetailsLayout) obj;
-        return Objects.equals(this.profile, other.profile);
+        return Objects.equals(this.username, other.username);
     }
 
 }
 
 class ProfileSummaryLayout extends VerticalLayout {
 
-    private final transient LifetimeAccountBusiness service;
+    private transient LifetimeAccountBusiness service;
     private final DateFormat df = DateFormat.getDateInstance();
-    private final String username;
+    private String username;
 
     public ProfileSummaryLayout(String username) {
         this.username = username;
-        this.service = ServiceLocator.findLifetimeAccountService();
         setSpacing(true);
-        // Name
-        InfoView name = new InfoView("Name", service.getFullName(username));
-        // Birthdate & Birthplace
-        InfoView birth = new InfoView("Birthdate & Birthplace", df.format(service.getBirthdate(username)) + " - " + service.getBirthPlace(username));
-        // Address
-        InfoView address = new InfoView("Address", service.getAddress(username).toString());
-        // Contact
-        Contact contact = service.getContact(username);
-        InfoView phone = new InfoView("Telephone", contact.getTelephone1());
-        InfoView mobile = new InfoView("Mobile", contact.getMobile1());
-        HorizontalLayout contacts = new HorizontalLayout(phone, mobile);
-        contacts.setSpacing(true);
-        // Add all to the base layout
-        addComponents(name, birth, address, contacts);
         setSizeFull();
+    }
+
+    @Override
+    public void attach() {
+        super.attach(); //To change body of generated methods, choose Tools | Templates.
+        init();
     }
 
     @Override
@@ -101,6 +94,26 @@ class ProfileSummaryLayout extends VerticalLayout {
         }
         final ProfileSummaryLayout other = (ProfileSummaryLayout) obj;
         return Objects.equals(this.username, other.username);
+    }
+
+    private void init() {
+        this.service = ServiceLocator.findLifetimeAccountService();
+        if (service != null && username != null) {
+            // Name
+            InfoView name = new InfoView("Name", service.getFullName(username));
+            // Birthdate & Birthplace
+            InfoView birth = new InfoView("Birthdate & Birthplace", df.format(service.getBirthdate(username)) + " - " + service.getBirthPlace(username));
+            // Address
+            InfoView address = new InfoView("Address", service.getAddress(username).toString());
+            // Contact
+            Contact contact = service.getContact(username);
+            InfoView phone = new InfoView("Telephone", contact.getTelephone1());
+            InfoView mobile = new InfoView("Mobile", contact.getMobile1());
+            HorizontalLayout contacts = new HorizontalLayout(phone, mobile);
+            contacts.setSpacing(true);
+            // Add all to the base layout
+            addComponents(name, birth, address, contacts);
+        }
     }
 
 }

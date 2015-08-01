@@ -30,6 +30,7 @@ public class MaxSizeValidatorNGTest {
 
     /**
      * Test of validate method, of class MaxSizeValidator.
+     *
      * @param value
      */
     @Test(dataProvider = "validDataProvider")

@@ -37,8 +37,8 @@ public class KeyValueLayout extends HorizontalLayout {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 43 * hash + Objects.hashCode(this.keyLabel);
-        hash = 43 * hash + Objects.hashCode(this.valueLabel);
+        hash = 43 * hash + Objects.hashCode(this.keyLabel.getValue());
+        hash = 43 * hash + Objects.hashCode(this.valueLabel.getValue());
         return hash;
     }
 
@@ -51,15 +51,10 @@ public class KeyValueLayout extends HorizontalLayout {
             return false;
         }
         final KeyValueLayout other = (KeyValueLayout) obj;
-        if (!Objects.equals(this.keyLabel, other.keyLabel)) {
+        if (!Objects.equals(this.keyLabel.getValue(), other.keyLabel.getValue())) {
             return false;
         }
-        if (!Objects.equals(this.valueLabel, other.valueLabel)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.valueLabel.getValue(), other.valueLabel.getValue());
     }
 
-    
-    
 }

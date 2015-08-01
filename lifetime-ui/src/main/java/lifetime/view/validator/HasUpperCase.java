@@ -23,7 +23,7 @@ import com.vaadin.data.Validator.InvalidValueException;
  */
 public class HasUpperCase implements Rule {
 
-    private final String MESSAGE = "HasUpperCase: Rule failed";
+    private static final String MESSAGE = "HasUpperCase: Rule failed";
 
     @Override
     public void validate(String s) {
