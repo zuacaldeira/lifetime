@@ -20,7 +20,6 @@ import lifetime.view.LifetimeContent;
 import lifetime.view.LifetimeMenu;
 import lifetime.view.LifetimeView;
 import lifetime.util.StyleClassName;
-import lifetime.view.welcome.WelcomeBackground;
 
 /**
  *
@@ -46,7 +45,7 @@ public class UserView extends LifetimeView {
 
     @Override
     protected LifetimeBackground createBackground() {
-        return new WelcomeBackground(getLanguage());
+        return new UserBackground(getLanguage());
     }
 
 }

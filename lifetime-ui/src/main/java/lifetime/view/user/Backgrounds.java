@@ -15,16 +15,30 @@
  */
 package lifetime.view.user;
 
-import lifetime.view.LifetimeBackground;
+import com.vaadin.server.Resource;
+import com.vaadin.server.ThemeResource;
+import com.vaadin.ui.Image;
 
 /**
  *
  * @author zua
  */
-class UserBackground extends LifetimeBackground {
+public enum Backgrounds {
 
-    public UserBackground(String language) {
-        super(language, Backgrounds.getBackground(Backgrounds.USER_BACKGROUND));
+    USER_BACKGROUND(new ThemeResource("../img/background.jpg")),
+    WELCOME_BACKGROUND(new ThemeResource("../img/background.jpg"));
+
+    private Resource resource;
+
+    private Backgrounds(Resource resource) {
+        this.resource = resource;
     }
 
+    public Resource getResource() {
+        return resource;
+    }
+
+    public static Image getBackground(Backgrounds background) {
+        return new Image("", background.getResource());
+    }
 }

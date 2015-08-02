@@ -15,16 +15,22 @@
  */
 package lifetime.view.user;
 
-import lifetime.view.LifetimeBackground;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-class UserBackground extends LifetimeBackground {
+public class UserBackgroundNGTest {
 
-    public UserBackground(String language) {
-        super(language, Backgrounds.getBackground(Backgrounds.USER_BACKGROUND));
+    public UserBackgroundNGTest() {
+    }
+
+    @Test
+    public void testCeateBackground() {
+        UserBackground userBackground = new UserBackground("pt");
+        Assert.assertNotNull(userBackground.getImage());
     }
 
 }

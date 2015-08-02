@@ -8,7 +8,7 @@ package lifetime.interceptors;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import lifetime.service.RegisterException;
+import lifetime.exceptions.RegisterException;
 
 /**
  *

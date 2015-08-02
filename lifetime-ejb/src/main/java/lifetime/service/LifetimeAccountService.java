@@ -5,6 +5,9 @@
  */
 package lifetime.service;
 
+import lifetime.exceptions.ReadEntityException;
+import lifetime.exceptions.DeleteEntityException;
+import lifetime.exceptions.CreateEntityException;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Remote;

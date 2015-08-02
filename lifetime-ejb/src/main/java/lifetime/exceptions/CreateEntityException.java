@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lifetime.service;
+package lifetime.exceptions;
 
 /**
  *
  * @author zua
  */
-public class DeleteEntityException extends RuntimeException {
+public class CreateEntityException extends RuntimeException {
 
-    public DeleteEntityException(Exception ex) {
+    public CreateEntityException(Exception ex) {
         super(ex);
     }
     

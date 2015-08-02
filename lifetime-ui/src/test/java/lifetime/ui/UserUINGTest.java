@@ -13,18 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.user;
+package lifetime.ui;
 
-import lifetime.view.LifetimeBackground;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-class UserBackground extends LifetimeBackground {
+public class UserUINGTest {
 
-    public UserBackground(String language) {
-        super(language, Backgrounds.getBackground(Backgrounds.USER_BACKGROUND));
+    /**
+     * Test of init method, of class UserUI.
+     */
+    @Test(expectedExceptions = NullPointerException.class)
+    public void testInit() {
+        System.out.println("testInit()");
+        UserUI instance = new UserUI();
+        instance.init(null);
+    }
+
+    /**
+     * Test of init method, of class UserUI.
+     */
+    @Test
+    public void testServlet() {
+        System.out.println("testServlet()");
+        UserUI.UserUIServlet servlet = new UserUI.UserUIServlet();
+        //Assert.assertNull(servlet.getServletContext());
     }
 
 }

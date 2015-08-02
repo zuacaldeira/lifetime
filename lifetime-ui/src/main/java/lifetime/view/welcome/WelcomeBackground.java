@@ -15,9 +15,8 @@
  */
 package lifetime.view.welcome;
 
-import com.vaadin.server.ThemeResource;
-import com.vaadin.ui.Image;
 import lifetime.view.LifetimeBackground;
+import lifetime.view.user.Backgrounds;
 
 /**
  *
@@ -26,6 +25,6 @@ import lifetime.view.LifetimeBackground;
 public class WelcomeBackground extends LifetimeBackground {
 
     public WelcomeBackground(String language) {
-        super(language, new Image("", new ThemeResource("../img/background.jpg")));
+        super(language, Backgrounds.getBackground(Backgrounds.WELCOME_BACKGROUND));
     }
 }

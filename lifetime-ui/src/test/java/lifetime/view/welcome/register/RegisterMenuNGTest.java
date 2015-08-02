@@ -70,7 +70,9 @@ public class RegisterMenuNGTest {
     @Test(dataProvider = "valid")
     public void testGetRegistrationForm(RegisterMenu menu) {
         System.out.println("getRegistrationForm()");
-        assertNotNull(menu.getRegistrationForm());
+        RegisterView rView = new RegisterView("en");
+        assertNotNull(rView.getMenu().getRegistrationForm());
+        assertNull(menu.getRegistrationForm());
     }
 
     /**

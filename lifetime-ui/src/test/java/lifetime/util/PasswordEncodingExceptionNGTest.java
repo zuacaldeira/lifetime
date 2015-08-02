@@ -13,18 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.user;
+package lifetime.util;
 
-import lifetime.view.LifetimeBackground;
+import java.security.NoSuchAlgorithmException;
+import junit.framework.Assert;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-class UserBackground extends LifetimeBackground {
+public class PasswordEncodingExceptionNGTest {
 
-    public UserBackground(String language) {
-        super(language, Backgrounds.getBackground(Backgrounds.USER_BACKGROUND));
+    public PasswordEncodingExceptionNGTest() {
+    }
+
+    @Test
+    public void testCreateException() {
+        PasswordEncodingException exception = new PasswordEncodingException(new NoSuchAlgorithmException("Ui..."));
+        Assert.assertNotNull(exception.getLocalizedMessage());
     }
 
 }

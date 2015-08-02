@@ -49,15 +49,6 @@ public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upl
         setCompositionRoot(root);
     }
 
-    private Resource getPhotoResource(final Photo p) {
-        return new StreamResource(new StreamResource.StreamSource() {
-            @Override
-            public InputStream getStream() {
-                return new ByteArrayInputStream(p.getImage());
-            }
-        }, "photo-" + username + "-" + Math.random());
-    }
-
     @Override
     public OutputStream receiveUpload(String filename, String mimeType) {
         return baos;
@@ -76,14 +67,11 @@ public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upl
 
     private void showPhoto() {
         clean();
-        try {
-            Photo userPhoto = ServiceLocator.findLifetimeAccountService().getPhoto(username);
-            if (userPhoto != null) {
-                addPhoto(userPhoto);
-            }
-        } finally {
-            addUpload();
+        Photo userPhoto = ServiceLocator.findLifetimeAccountService().getPhoto(username);
+        if (userPhoto != null) {
+            addPhoto(userPhoto);
         }
+        addUpload();
     }
 
     @Override
@@ -124,6 +112,15 @@ public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upl
         upload.addSucceededListener(this);
         upload.setImmediate(true);
         root.addComponent(upload);
+    }
+
+    private Resource getPhotoResource(final Photo p) {
+        return new StreamResource(new StreamResource.StreamSource() {
+            @Override
+            public InputStream getStream() {
+                return new ByteArrayInputStream(p.getImage());
+            }
+        }, "photo-" + username + "-" + Math.random());
     }
 
 }
