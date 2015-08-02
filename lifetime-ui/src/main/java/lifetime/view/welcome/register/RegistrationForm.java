@@ -25,7 +25,7 @@ import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.VerticalLayout;
 import java.util.Locale;
 import java.util.Objects;
-import lifetime.service.LifetimeAccountBusiness;
+import lifetime.service.LifetimeAccountService;
 import lifetime.ui.Navigation;
 import lifetime.view.validator.NameValidator;
 import lifetime.view.validator.PasswordValidator;
@@ -146,7 +146,7 @@ public class RegistrationForm extends HorizontalLayout {
      */
     public void submit() {
         // Lookup a reference for the account business interface
-        LifetimeAccountBusiness service = ServiceLocator.findLifetimeAccountService();
+        LifetimeAccountService service = ServiceLocator.findLifetimeAccountService();
         // Call backend to register with the collected and verified data
         boolean successfullRegistration = service.register(firstname.getValue(), lastname.getValue(), email.getValue(), Util.getEncodedPassword(password.getValue()), defaultLanguage.getValue().toString(), birthDate.getValue(), birthPlace.getValue());
         // Upon successfull registration, return to the welcome page

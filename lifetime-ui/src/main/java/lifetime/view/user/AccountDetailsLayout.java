@@ -22,7 +22,7 @@ import com.vaadin.ui.VerticalLayout;
 import java.text.DateFormat;
 import java.util.Objects;
 import lifetime.persistence.Contact;
-import lifetime.service.LifetimeAccountBusiness;
+import lifetime.service.LifetimeAccountService;
 import lifetime.util.ServiceLocator;
 import lifetime.view.custom.InfoView;
 
@@ -64,7 +64,7 @@ public class AccountDetailsLayout extends TabSheet {
 
 class ProfileSummaryLayout extends VerticalLayout {
 
-    private transient LifetimeAccountBusiness service;
+    private transient LifetimeAccountService service;
     private final DateFormat df = DateFormat.getDateInstance();
     private String username;
 

@@ -31,7 +31,7 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
     private static final String TEST_APP_NAME = "test.war";
 
     @EJB
-    private LifetimeAccountBusiness accountService;
+    private LifetimeAccountService accountService;
 
     private final Logger logger = Logger.getLogger(LifetimeAccountServiceTestIT.class);
 
@@ -109,7 +109,6 @@ public class LifetimeAccountServiceTestIT extends Arquillian {
             WebArchive result = ShrinkWrap.create(WebArchive.class, TEST_APP_NAME)
                     //.addAsLibraries(files)
                     .addClass(LifetimeAccountService.class)
-                    .addClass(LifetimeAccountBusiness.class)
                     .addClass(Account.class)
                     .addClass(User.class)
                     //.addAsResource(new File("test/resources/META-INF/persistence.xml"),
