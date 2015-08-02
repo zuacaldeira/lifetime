@@ -30,7 +30,7 @@ public class PhotoLayoutNGTest {
     /**
      * Test of receiveUpload method, of class PhotoLayout.
      */
-    @Test
+    @Test(expectedExceptions = {ServiceLookupException.class})
     public void testReceiveUpload() {
         System.out.println("receiveUpload");
         PhotoLayout photoLayout = new PhotoLayout("username");

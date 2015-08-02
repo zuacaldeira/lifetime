@@ -46,6 +46,7 @@ public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upl
         this.username = username;
         baos = new ByteArrayOutputStream();
         root = new VerticalLayout();
+        showPhoto();
         setCompositionRoot(root);
     }
 
@@ -88,12 +89,6 @@ public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upl
         }
         final PhotoLayout other = (PhotoLayout) obj;
         return Objects.equals(this.username, other.username);
-    }
-
-    @Override
-    public void attach() {
-        super.attach();
-        showPhoto();
     }
 
     private void clean() {
