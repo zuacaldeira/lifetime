@@ -23,7 +23,7 @@ import java.text.DateFormat;
 import java.util.Objects;
 import lifetime.persistence.Contact;
 import lifetime.service.LifetimeAccountService;
-import lifetime.util.ServiceLocator;
+import lifetime.service.ServiceLocator;
 import lifetime.view.custom.InfoView;
 
 /**

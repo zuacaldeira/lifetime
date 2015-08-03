@@ -6,10 +6,11 @@
 package lifetime.service;
 
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import lifetime.exceptions.ReadEntityException;
+import lifetime.interceptors.ObjectExceptionInterceptor;
 import lifetime.persistence.Role;
 
 /**
@@ -26,14 +27,11 @@ public class RoleController {
     @PersistenceContext(unitName = "lifetimePU")
     private EntityManager em;
 
+    @Interceptors(ObjectExceptionInterceptor.class)
     public Role getRole(SecurityRoles role) {
-        try {
-            Query q = em.createNamedQuery("Role.findByName", Role.class);
-            q.setParameter(NAME, role.name());
-            return (Role) q.getSingleResult();
-        } catch (Exception ex) {
-            throw new ReadEntityException(ex);
-        }
+        Query q = em.createNamedQuery("Role.findByName", Role.class);
+        q.setParameter(NAME, role.name());
+        return (Role) q.getSingleResult();
     }
 
 }

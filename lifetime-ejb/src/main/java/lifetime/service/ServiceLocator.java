@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lifetime.util;
+package lifetime.service;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import lifetime.service.LifetimeAccountService;
+import lifetime.exceptions.ServiceLookupException;
 
 /**
  *

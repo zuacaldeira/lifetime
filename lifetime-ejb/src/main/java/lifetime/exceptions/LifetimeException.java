@@ -9,9 +9,9 @@ package lifetime.exceptions;
  *
  * @author zua
  */
-public class RegisterException extends RuntimeException {
+public class LifetimeException extends RuntimeException {
 
-    public RegisterException(Exception ex) {
+    public LifetimeException(Exception ex) {
         super(ex);
     }
 

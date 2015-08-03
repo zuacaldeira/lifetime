@@ -19,7 +19,7 @@ public class RegisterExceptionNGTest {
 
     @Test
     public void testCreateException() {
-        RegisterException exception = new RegisterException(new RuntimeException("Ui...."));
+        LifetimeException exception = new LifetimeException(new RuntimeException("Ui...."));
         Assert.assertNotNull(exception.getLocalizedMessage());
     }
 

@@ -6,14 +6,17 @@
 package lifetime.service;
 
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import lifetime.exceptions.CreateEntityException;
+import lifetime.interceptors.BooleanExceptionInterceptor;
+import lifetime.interceptors.ObjectExceptionInterceptor;
 import lifetime.persistence.Account;
 import lifetime.persistence.User;
 
@@ -25,7 +28,6 @@ import lifetime.persistence.User;
 public class AccountController {
 
     private static final String EMAIL = "email";
-    private static final String USERNAME = "username";
 
     @EJB
     private RoleController roleController;
@@ -35,21 +37,14 @@ public class AccountController {
     @PersistenceContext(unitName = "lifetimePU")
     private EntityManager em;
 
+    @Interceptors({BooleanExceptionInterceptor.class})
     public boolean register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace) {
-        try {
-            if (!hasAccount(email)) {
-                User user = new User(null, firstname, lastname, birthdate, birthPlace, language);
-                Account account = new Account(null, email, password);
-                account.setUser(user);
-                account.setRole(roleController.getRole(SecurityRoles.USER));
-                em.persist(account);
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception ex) {
-            throw new CreateEntityException(ex);
-        }
+        User user = new User(null, firstname, lastname, birthdate, birthPlace, language);
+        Account account = new Account(null, email, password);
+        account.setUser(user);
+        account.setRole(roleController.getRole(SecurityRoles.USER));
+        em.persist(account);
+        return true;
     }
 
     /**
@@ -59,25 +54,29 @@ public class AccountController {
      * @return true if terminates
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    @Interceptors({BooleanExceptionInterceptor.class})
     public boolean deleteAccount(String email) {
-        if (hasAccount(email)) {
-            em.remove(getAccount(email));
-            return true;
-        } else {
-            return false;
-        }
+        em.remove(getAccount(email));
+        return true;
     }
 
+    @Interceptors({BooleanExceptionInterceptor.class})
     public boolean hasAccount(String email) {
         return getAccount(email) != null;
     }
 
+    @Interceptors({ObjectExceptionInterceptor.class})
     private Account getAccount(String email) {
         Query q = em.createNamedQuery("Account.findByEmail", Account.class);
         q.setParameter(EMAIL, email);
-        return (Account) q.getSingleResult();
+        List<Account> accounts = q.getResultList();
+        if (!accounts.isEmpty()) {
+            return accounts.get(0);
+        }
+        return null;
     }
 
+    @Interceptors({ObjectExceptionInterceptor.class})
     public String getFullName(String username) {
         if (hasAccount(username)) {
             Account a = getAccount(username);
@@ -87,6 +86,7 @@ public class AccountController {
         return null;
     }
 
+    @Interceptors({ObjectExceptionInterceptor.class})
     public Date getBirthdate(String username) {
         if (hasAccount(username)) {
             User u = getAccount(username).getUser();
@@ -95,6 +95,7 @@ public class AccountController {
         return null;
     }
 
+    @Interceptors({ObjectExceptionInterceptor.class})
     public String getBirthPlace(String username) {
         if (hasAccount(username)) {
             User u = getAccount(username).getUser();

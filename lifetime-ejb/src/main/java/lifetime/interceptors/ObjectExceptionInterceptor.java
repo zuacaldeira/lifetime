@@ -5,24 +5,26 @@
  */
 package lifetime.interceptors;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import lifetime.exceptions.RegisterException;
 
 /**
  *
  * @author zua
  */
 @Interceptor
-public class RegisterInterceptor {
+public class ObjectExceptionInterceptor {
 
     @AroundInvoke
-    public Object interceptRegisterRequest(InvocationContext ctx) {
+    public Object interceptServiceRequest(InvocationContext ctx) {
         try {
             return ctx.proceed();
         } catch (Exception ex) {
-            throw new RegisterException(ex);
+            Logger.getLogger(getClass().getName()).log(Level.INFO, "Exception during service call...{0}", ex.getLocalizedMessage());
+            return null;
         }
     }
 }

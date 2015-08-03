@@ -16,7 +16,7 @@
 package lifetime.view.user;
 
 import com.vaadin.ui.Upload;
-import lifetime.util.ServiceLookupException;
+import lifetime.exceptions.ServiceLookupException;
 import org.junit.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

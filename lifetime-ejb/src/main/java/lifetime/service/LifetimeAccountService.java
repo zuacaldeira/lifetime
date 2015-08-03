@@ -12,10 +12,6 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
-import javax.interceptor.Interceptors;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import lifetime.interceptors.RegisterInterceptor;
 import lifetime.persistence.Account;
 import lifetime.persistence.Address;
 import lifetime.persistence.Contact;
@@ -31,12 +27,6 @@ import lifetime.persistence.Photo;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class LifetimeAccountService {
-
-    /**
-     * Persistence Context.
-     */
-    @PersistenceContext(unitName = "lifetimePU")
-    private EntityManager em;
 
     /**
      * Account controller.
@@ -69,7 +59,6 @@ public class LifetimeAccountService {
      * @param language The user's default language
      * @param birthdate The user's birth date
      */
-    @Interceptors({RegisterInterceptor.class})
     public boolean register(String firstname,
             String lastname,
             String email,
@@ -101,18 +90,51 @@ public class LifetimeAccountService {
     }
 
     public Contact getContact(String username) {
-        return contactController.getContact(username);
+        return contactController.read(username);
     }
 
     public Address getAddress(String username) {
-        return addressController.getAddress(username);
+        return addressController.read(username);
     }
 
-    public void addPhoto(String username, byte[] image) {
-        photoController.addPhoto(username, image);
+    public boolean addPhoto(Photo p) {
+        return photoController.create(p);
     }
 
     public Photo getPhoto(String username) {
-        return photoController.getPhoto(username);
+        return photoController.read(username);
     }
+
+    public boolean hasPhoto(String email) {
+        return photoController.hasPhoto(email);
+    }
+
+    public boolean addContact(Contact contact) {
+        return contactController.create(contact);
+    }
+
+    public boolean hasAddress(String email) {
+        return addressController.hasAddress(email);
+    }
+
+    public boolean addAddress(Address address) {
+        return addressController.create(address);
+    }
+
+    public boolean deleteAddress(Address address) {
+        return addressController.delete(address.getUsername());
+    }
+
+    public boolean deleteContact(Contact contact) {
+        return contactController.delete(contact.getUsername());
+    }
+
+    public boolean hasContact(String username) {
+        return contactController.hasContact(username);
+    }
+
+    public boolean deletePhoto(String email) {
+        return photoController.delete(email);
+    }
+
 }

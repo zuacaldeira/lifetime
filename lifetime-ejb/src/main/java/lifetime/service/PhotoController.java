@@ -7,9 +7,12 @@ package lifetime.service;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import lifetime.interceptors.BooleanExceptionInterceptor;
+import lifetime.interceptors.ObjectExceptionInterceptor;
 import lifetime.persistence.Photo;
 
 /**
@@ -17,7 +20,7 @@ import lifetime.persistence.Photo;
  * @author zua
  */
 @Stateless
-public class PhotoController {
+public class PhotoController extends CrudController<Photo> {
 
     private static final String USERNAME = "username";
     /**
@@ -26,7 +29,17 @@ public class PhotoController {
     @PersistenceContext(unitName = "lifetimePU")
     private EntityManager em;
 
-    public Photo getPhoto(String username) {
+    @Override
+    @Interceptors({BooleanExceptionInterceptor.class})
+    public boolean create(Photo p) {
+        deleteAllPhotos(p.getUsername());
+        em.persist(p);
+        return true;
+    }
+
+    @Override
+    @Interceptors({ObjectExceptionInterceptor.class})
+    public Photo read(String username) {
         Query q = em.createNamedQuery("Photo.findByUsername", Photo.class);
         q.setParameter(USERNAME, username);
         List<Photo> photos = q.getResultList();
@@ -37,14 +50,6 @@ public class PhotoController {
 
     }
 
-    public void addPhoto(String username, byte[] b) {
-        Photo p = new Photo();
-        p.setImage(b);
-        p.setUsername(username);
-        deleteAllPhotos(username);
-        em.persist(p);
-    }
-
     private void deleteAllPhotos(String username) {
         Query q = em.createNamedQuery("Photo.findByUsername", Photo.class);
         q.setParameter(USERNAME, username);
@@ -52,6 +57,28 @@ public class PhotoController {
         for (Photo p : photos) {
             em.remove(p);
         }
+    }
+
+    @Override
+    @Interceptors({BooleanExceptionInterceptor.class})
+    public boolean delete(String email) {
+        if (hasPhoto(email)) {
+            em.remove(read(email));
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    @Interceptors({BooleanExceptionInterceptor.class})
+    public boolean update(Photo p) {
+        em.merge(p);
+        return true;
+    }
+
+    @Interceptors({BooleanExceptionInterceptor.class})
+    public boolean hasPhoto(String email) {
+        return read(email) != null;
     }
 
 }

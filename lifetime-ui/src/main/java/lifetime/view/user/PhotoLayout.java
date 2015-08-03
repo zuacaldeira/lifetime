@@ -30,7 +30,7 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lifetime.persistence.Photo;
-import lifetime.util.ServiceLocator;
+import lifetime.service.ServiceLocator;
 
 /**
  *
@@ -59,7 +59,7 @@ public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upl
     public void uploadSucceeded(Upload.SucceededEvent event) {
         try {
             baos.close();
-            ServiceLocator.findLifetimeAccountService().addPhoto(username, baos.toByteArray());
+            ServiceLocator.findLifetimeAccountService().addPhoto(new Photo(null, username, baos.toByteArray()));
             showPhoto();
         } catch (IOException ex) {
             Logger.getLogger(UserContent.class.getName()).log(Level.SEVERE, null, ex);

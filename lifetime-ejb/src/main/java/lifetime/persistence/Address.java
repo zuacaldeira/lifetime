@@ -109,6 +109,11 @@ public class Address implements Serializable {
         this.country = country;
     }
 
+    public Address(String username, String street, String door, String floor, String postalCode, String locality, String region, String country) {
+        this(street, door, floor, postalCode, locality, region, country);
+        this.username = username;
+    }
+
     public Integer getId() {
         return id;
     }
