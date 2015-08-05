@@ -23,14 +23,14 @@ public enum Location {
 
     HOME("/lifetime"), USER("/lifetime/user");
 
-    private final String location;
+    private final String url;
 
-    private Location(String location) {
-        this.location = location;
+    private Location(String url) {
+        this.url = url;
     }
 
-    public String getLocation() {
-        return location;
+    public String getUrl() {
+        return url;
     }
 
 }
