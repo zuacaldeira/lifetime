@@ -8,7 +8,6 @@ package lifetime.util;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import lifetime.backend.exceptions.ServiceLookupException;
 import lifetime.backend.service.LifetimeAccountService;
 
 /**

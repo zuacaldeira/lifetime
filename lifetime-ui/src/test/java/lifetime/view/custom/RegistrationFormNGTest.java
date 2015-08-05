@@ -17,7 +17,7 @@ package lifetime.view.custom;
 
 import lifetime.view.welcome.register.RegistrationForm;
 import java.util.Date;
-import lifetime.backend.exceptions.ServiceLookupException;
+import lifetime.util.ServiceLookupException;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.DataProvider;

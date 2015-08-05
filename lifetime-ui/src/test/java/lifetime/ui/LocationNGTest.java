@@ -16,7 +16,6 @@
 package lifetime.ui;
 
 import org.testng.Assert;
-import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 
 /**
@@ -34,11 +33,7 @@ public class LocationNGTest {
     @Test
     public void testValues() {
         System.out.println("values");
-        Location[] expResult = null;
-        Location[] result = Location.values();
-        assertEquals(result, expResult);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Assert.assertEquals(Location.values(), new Location[]{Location.HOME, Location.USER});
     }
 
     /**

@@ -15,7 +15,7 @@
  */
 package lifetime.view.user;
 
-import lifetime.backend.exceptions.ServiceLookupException;
+import lifetime.util.ServiceLookupException;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.DataProvider;
