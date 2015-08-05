@@ -17,7 +17,6 @@ package lifetime.view;
 
 import lifetime.view.custom.LifetimeButtonLink;
 import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import java.util.Objects;
 
@@ -25,7 +24,7 @@ import java.util.Objects;
  *
  * @author zua
  */
-public abstract class LifetimeMenu extends HorizontalLayout implements Button.ClickListener {
+public abstract class LifetimeMenu extends HorizontalLayout {
 
     private final String language;
     private final HorizontalLayout controls;
@@ -43,7 +42,6 @@ public abstract class LifetimeMenu extends HorizontalLayout implements Button.Cl
     public HorizontalLayout getControls() {
         return controls;
     }
-    
 
     public String getLanguage() {
         return language;

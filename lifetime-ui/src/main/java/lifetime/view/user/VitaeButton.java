@@ -16,6 +16,7 @@
 package lifetime.view.user;
 
 import com.vaadin.server.FontAwesome;
+import lifetime.ui.Navigation;
 import lifetime.util.Translator;
 import lifetime.util.StyleClassName;
 import lifetime.view.custom.LifetimeButtonLink;
@@ -30,6 +31,13 @@ public class VitaeButton extends LifetimeButtonLink {
         super(Translator.getTranslation("Vitae", language), language, FontAwesome.TREE);
         setDescription(Translator.getTranslation("Vitae", language));
         setId(StyleClassName.VITAE_BUTTON);
+        addClickListener(new ClickListener() {
+
+            @Override
+            public void buttonClick(ClickEvent event) {
+                getUI().getNavigator().navigateTo(Navigation.VITAE_VIEW);
+            }
+        });
     }
 
 }

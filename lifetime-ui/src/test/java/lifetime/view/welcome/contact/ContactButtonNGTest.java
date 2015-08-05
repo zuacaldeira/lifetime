@@ -39,10 +39,10 @@ public class ContactButtonNGTest {
         Assert.assertFalse(button.getListeners(Button.ClickEvent.class).isEmpty());
     }
 
-    @Test(expectedExceptions = NullPointerException.class)
+    @Test
     public void testButtonClick() {
         ContactButton button = new ContactButton("en");
-        button.buttonClick(new Button.ClickEvent(new WelcomeUI()));
+        Assert.assertTrue(button.isEnabled());
     }
 
 }

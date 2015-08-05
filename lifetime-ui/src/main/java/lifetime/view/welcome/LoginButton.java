@@ -16,7 +16,9 @@
 package lifetime.view.welcome;
 
 import com.vaadin.server.FontAwesome;
+import com.vaadin.server.Page;
 import java.util.Objects;
+import lifetime.ui.Location;
 import lifetime.util.StyleClassName;
 import lifetime.util.Translator;
 import lifetime.view.custom.LifetimeButtonLink;
@@ -34,6 +36,13 @@ public class LoginButton extends LifetimeButtonLink {
         this.text = Translator.getTranslation("Login", language);
         setDescription(text);
         setId(StyleClassName.LOGIN_BUTTON);
+        addClickListener(new ClickListener() {
+
+            @Override
+            public void buttonClick(ClickEvent event) {
+                Page.getCurrent().setLocation(Location.USER);
+            }
+        });
     }
 
     @Override
@@ -46,6 +55,9 @@ public class LoginButton extends LifetimeButtonLink {
     @Override
     public boolean equals(Object obj) {
         if (!super.equals(obj)) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final LoginButton other = (LoginButton) obj;

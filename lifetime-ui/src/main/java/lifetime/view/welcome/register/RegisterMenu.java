@@ -37,11 +37,21 @@ public class RegisterMenu extends LifetimeMenu {
         super(language);
         setSizeFull();
         homeButton = new LifetimeHomeButton(language);
-        homeButton.addClickListener(this);
         cancelButton = new CancelButton(language);
-        cancelButton.addClickListener(this);
+        cancelButton.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                getRegistrationForm().clear();
+            }
+        });
         okButton = new OKButton(null, language);
-        okButton.addClickListener(this);
+        okButton.addClickListener(new Button.ClickListener() {
+
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                getRegistrationForm().submit();
+            }
+        });
         addControl(homeButton);
         addControl(cancelButton);
         addControl(okButton);
@@ -76,18 +86,6 @@ public class RegisterMenu extends LifetimeMenu {
 
         final RegisterMenu other = (RegisterMenu) obj;
         return Objects.equals(this.getLanguage(), other.getLanguage());
-    }
-
-    @Override
-    public void buttonClick(Button.ClickEvent event) {
-        Button b = event.getButton();
-        if (b == homeButton) {
-            getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
-        } else if (b == cancelButton) {
-            getRegistrationForm().clear();
-        } else if (b == okButton) {
-            getRegistrationForm().submit();
-        }
     }
 
     public RegistrationForm getRegistrationForm() {

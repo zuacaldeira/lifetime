@@ -16,6 +16,7 @@
 package lifetime.view.user;
 
 import com.vaadin.server.FontAwesome;
+import lifetime.ui.Navigation;
 import lifetime.view.custom.LifetimeButtonLink;
 
 /**
@@ -26,6 +27,13 @@ class TimelineButton extends LifetimeButtonLink {
 
     public TimelineButton(String language) {
         super("Timeline", language, FontAwesome.CLOCK_O);
+        addClickListener(new ClickListener() {
+
+            @Override
+            public void buttonClick(ClickEvent event) {
+                getUI().getNavigator().navigateTo(Navigation.TIMELINE_VIEW);
+            }
+        });
     }
 
 }

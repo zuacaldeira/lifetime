@@ -15,12 +15,7 @@
  */
 package lifetime.view.welcome;
 
-import com.vaadin.server.Page;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Notification;
 import java.util.Objects;
-import lifetime.ui.Location;
-import lifetime.ui.Navigation;
 import lifetime.view.LifetimeMenu;
 import lifetime.util.StyleClassName;
 
@@ -38,11 +33,8 @@ public class WelcomeMenu extends LifetimeMenu {
         super(language);
         setSizeFull();
         registerButton = new RegisterButton(language);
-        registerButton.addClickListener(this);
         loginButton = new LoginButton(language);
-        loginButton.addClickListener(this);
         contactButton = new ContactButton(language);
-        contactButton.addClickListener(this);
         addControl(registerButton);
         addControl(loginButton);
         addControl(contactButton);
@@ -68,7 +60,6 @@ public class WelcomeMenu extends LifetimeMenu {
         return hash + getLanguage().hashCode();
     }
 
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -79,21 +70,6 @@ public class WelcomeMenu extends LifetimeMenu {
         }
         final WelcomeMenu other = (WelcomeMenu) obj;
         return Objects.equals(getLanguage(), other.getLanguage());
-    }
-
-    
-    @Override
-    public void buttonClick(Button.ClickEvent event) {
-        Button b = event.getButton();
-        if (b == registerButton) {
-            getUI().getNavigator().navigateTo(Navigation.REGISTER_VIEW);
-        } else if (b == loginButton) {
-            Page.getCurrent().setLocation(Location.USER);
-        } else if (b == contactButton) {
-            getUI().getNavigator().navigateTo(Navigation.CONTACT_VIEW);
-        } else {
-            Notification.show("Unknown Button: " + b, Notification.Type.ERROR_MESSAGE);
-        }
     }
 
 }

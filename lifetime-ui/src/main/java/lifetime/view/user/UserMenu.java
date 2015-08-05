@@ -42,13 +42,9 @@ class UserMenu extends LifetimeMenu {
         setId(StyleClassName.USER_MENU);
         setStyleName(StyleClassName.USER_MENU);
         homeButton = new LifetimeHomeButton(language);
-        homeButton.addClickListener(this);
         vitaeButton = new VitaeButton(language);
-        vitaeButton.addClickListener(this);
         timelineButton = new TimelineButton(language);
-        timelineButton.addClickListener(this);
         yellowPagesButton = new YellowPagesButton(language);
-        yellowPagesButton.addClickListener(this);
 
         addControl(homeButton);
         addControl(vitaeButton);
@@ -70,25 +66,6 @@ class UserMenu extends LifetimeMenu {
 
     public YellowPagesButton getYellowPagesButton() {
         return yellowPagesButton;
-    }
-
-    @Override
-    public void buttonClick(Button.ClickEvent event) {
-        Button b = event.getButton();
-        if (b == homeButton) {
-            Page.getCurrent().setLocation(Location.HOME);
-        } else if (b == vitaeButton) {
-            getUI().getNavigator().navigateTo(Navigation.VITAE_VIEW);
-            Notification.show(NOT_IMPLEMENTED_YET, Notification.Type.ERROR_MESSAGE);
-        } else if (b == timelineButton) {
-            getUI().getNavigator().navigateTo(Navigation.TIMELINE_VIEW);
-            Notification.show(NOT_IMPLEMENTED_YET, Notification.Type.ERROR_MESSAGE);
-        } else if (b == yellowPagesButton) {
-            getUI().getNavigator().navigateTo(Navigation.YELLOW_PAGES_VIEW);
-            Notification.show(NOT_IMPLEMENTED_YET, Notification.Type.ERROR_MESSAGE);
-        } else {
-            Notification.show("Unknown button: " + b, Notification.Type.ERROR_MESSAGE);
-        }
     }
 
     @Override

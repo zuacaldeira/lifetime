@@ -16,6 +16,7 @@
 package lifetime.view.user;
 
 import com.vaadin.server.FontAwesome;
+import lifetime.ui.Navigation;
 import lifetime.view.custom.LifetimeButtonLink;
 
 /**
@@ -26,6 +27,13 @@ class YellowPagesButton extends LifetimeButtonLink {
 
     public YellowPagesButton(String language) {
         super("Yellow Pages", language, FontAwesome.PAGELINES);
+        addClickListener(new ClickListener() {
+
+            @Override
+            public void buttonClick(ClickEvent event) {
+                getUI().getNavigator().navigateTo(Navigation.YELLOW_PAGES_VIEW);
+            }
+        });
     }
-    
+
 }

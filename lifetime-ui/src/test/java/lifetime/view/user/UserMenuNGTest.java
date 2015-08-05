@@ -15,8 +15,6 @@
  */
 package lifetime.view.user;
 
-import com.vaadin.ui.Button;
-import lifetime.view.custom.LifetimeHomeButton;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
@@ -33,12 +31,14 @@ public class UserMenuNGTest {
     /**
      * Test of buttonClick method, of class UserMenu.
      */
-    @Test(expectedExceptions = NullPointerException.class)
+    @Test
     public void testButtonClick() {
         System.out.println("buttonClick");
         UserMenu instance = new UserMenu("pt");
-        Button.ClickEvent event = new Button.ClickEvent(instance.getHomeButton());
-        instance.buttonClick(event);
+        Assert.assertTrue(instance.getHomeButton().isEnabled());
+        Assert.assertTrue(instance.getVitaeButton().isEnabled());
+        Assert.assertTrue(instance.getTimelineButton().isEnabled());
+        Assert.assertTrue(instance.getYellowPagesButton().isEnabled());
     }
 
     /**

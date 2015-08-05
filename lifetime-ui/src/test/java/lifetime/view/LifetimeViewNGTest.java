@@ -16,7 +16,6 @@
 package lifetime.view;
 
 import com.vaadin.server.ThemeResource;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.Image;
 import lifetime.view.welcome.WelcomeBackground;
 import lifetime.view.welcome.WelcomeContent;
@@ -46,10 +45,6 @@ public class LifetimeViewNGTest {
             @Override
             protected LifetimeMenu createMenu() {
                 return new LifetimeMenu(getLanguage()) {
-
-                    @Override
-                    public void buttonClick(Button.ClickEvent event) {
-                    }
                 };
             }
 
@@ -80,10 +75,6 @@ public class LifetimeViewNGTest {
             @Override
             protected LifetimeMenu createMenu() {
                 return new LifetimeMenu(getLanguage()) {
-
-                    @Override
-                    public void buttonClick(Button.ClickEvent event) {
-                    }
                 };
             }
 
@@ -114,10 +105,6 @@ public class LifetimeViewNGTest {
             @Override
             protected LifetimeMenu createMenu() {
                 return new LifetimeMenu(getLanguage()) {
-
-                    @Override
-                    public void buttonClick(Button.ClickEvent event) {
-                    }
                 };
             }
 
@@ -148,10 +135,6 @@ public class LifetimeViewNGTest {
             @Override
             protected LifetimeMenu createMenu() {
                 return new LifetimeMenu(getLanguage()) {
-
-                    @Override
-                    public void buttonClick(Button.ClickEvent event) {
-                    }
                 };
             }
 

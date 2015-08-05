@@ -26,17 +26,17 @@ import lifetime.util.Translator;
  *
  * @author lifetime
  */
-public class ContactButton extends LifetimeButtonLink implements Button.ClickListener {
-    
+public class ContactButton extends LifetimeButtonLink {
+
     public ContactButton(String language) {
         super(Translator.getTranslation("Contact", language), language, FontAwesome.COFFEE);
         setId(StyleClassName.CONTACT_BUTTON);
-        addClickListener(this);
+        addClickListener(new ClickListener() {
+            @Override
+            public void buttonClick(ClickEvent event) {
+                getUI().getNavigator().navigateTo(Navigation.CONTACT_VIEW);
+            }
+        });
     }
-    
-    @Override
-    public void buttonClick(ClickEvent event) {
-        getUI().getNavigator().navigateTo(Navigation.CONTACT_VIEW);
-    }
-    
+
 }
