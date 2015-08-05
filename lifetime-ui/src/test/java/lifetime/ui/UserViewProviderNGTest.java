@@ -36,7 +36,7 @@ public class UserViewProviderNGTest {
     public void testGetViewName() {
         System.out.println("getViewName");
         UserViewProvider provider = new UserViewProvider("pt");
-        Assert.assertEquals(provider.getViewName(Navigation.USER_VIEW), Navigation.USER_VIEW);
+        Assert.assertEquals(provider.getViewName(Navigation.USER_VIEW.getName()), Navigation.USER_VIEW.getName());
     }
 
     /**
@@ -46,7 +46,7 @@ public class UserViewProviderNGTest {
     public void testGetView() {
         System.out.println("getView");
         UserViewProvider provider = new UserViewProvider("pt");
-        Assert.assertNotNull(provider.getView(provider.getViewName(Navigation.USER_VIEW)));
+        Assert.assertNotNull(provider.getView(provider.getViewName(Navigation.USER_VIEW.getName())));
     }
 
 }

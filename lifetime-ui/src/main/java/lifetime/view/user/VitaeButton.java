@@ -35,7 +35,7 @@ public class VitaeButton extends LifetimeButtonLink {
 
             @Override
             public void buttonClick(ClickEvent event) {
-                getUI().getNavigator().navigateTo(Navigation.VITAE_VIEW);
+                getUI().getNavigator().navigateTo(Navigation.VITAE_VIEW.getName());
             }
         });
     }

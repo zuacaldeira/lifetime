@@ -34,7 +34,7 @@ public class ContactButton extends LifetimeButtonLink {
         addClickListener(new ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
-                getUI().getNavigator().navigateTo(Navigation.CONTACT_VIEW);
+                getUI().getNavigator().navigateTo(Navigation.CONTACT_VIEW.getName());
             }
         });
     }

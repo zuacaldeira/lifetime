@@ -19,7 +19,7 @@ public class UserUI extends LifetimeUI {
         setId(StyleClassName.USER_UI);
         setNavigator(new Navigator(this, this));
         getNavigator().addProvider(LifetimeViewProvider.getUserViewProvider(getLanguage()));
-        getNavigator().navigateTo(Navigation.USER_VIEW);
+        getNavigator().navigateTo(Navigation.USER_VIEW.getName());
     }
 
     /**

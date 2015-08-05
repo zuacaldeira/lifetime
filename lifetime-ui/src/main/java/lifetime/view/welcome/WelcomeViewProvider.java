@@ -35,9 +35,9 @@ public class WelcomeViewProvider implements ViewProvider {
     public WelcomeViewProvider(String language) {
         this.language = language;
         viewMap = new HashMap();
-        viewMap.put(Navigation.WELCOME_VIEW, new WelcomeView(language));
-        viewMap.put(Navigation.REGISTER_VIEW, new RegisterView(language));
-        viewMap.put(Navigation.CONTACT_VIEW, new ContactView(language));
+        viewMap.put(Navigation.WELCOME_VIEW.getName(), new WelcomeView(language));
+        viewMap.put(Navigation.REGISTER_VIEW.getName(), new RegisterView(language));
+        viewMap.put(Navigation.CONTACT_VIEW.getName(), new ContactView(language));
     }
 
     @Override

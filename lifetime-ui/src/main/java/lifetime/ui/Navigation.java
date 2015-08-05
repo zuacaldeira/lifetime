@@ -19,16 +19,18 @@ package lifetime.ui;
  *
  * @author zua
  */
-public class Navigation {
+public enum Navigation {
 
-    public static final String WELCOME_VIEW = "welcome";
-    public static final String REGISTER_VIEW = "register";
-    public static final String CONTACT_VIEW = "contact";
-    public static final String USER_VIEW = "user";
-    public static final String VITAE_VIEW = "vitae";
-    public static final String TIMELINE_VIEW = "timeline";
-    public static final String YELLOW_PAGES_VIEW = "yellowpages";
+    WELCOME_VIEW("welcome"), REGISTER_VIEW("register"), CONTACT_VIEW("contact"), 
+    USER_VIEW("user"), VITAE_VIEW("vitae"), TIMELINE_VIEW("timeline"), YELLOW_PAGES_VIEW("yellowpages");
 
-    private Navigation() {
+    private String name;
+    
+    private Navigation(String name) {
+        this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }    
 }

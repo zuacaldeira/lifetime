@@ -31,7 +31,7 @@ class YellowPagesButton extends LifetimeButtonLink {
 
             @Override
             public void buttonClick(ClickEvent event) {
-                getUI().getNavigator().navigateTo(Navigation.YELLOW_PAGES_VIEW);
+                getUI().getNavigator().navigateTo(Navigation.YELLOW_PAGES_VIEW.getName());
             }
         });
     }

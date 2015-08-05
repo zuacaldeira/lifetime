@@ -31,7 +31,7 @@ class TimelineButton extends LifetimeButtonLink {
 
             @Override
             public void buttonClick(ClickEvent event) {
-                getUI().getNavigator().navigateTo(Navigation.TIMELINE_VIEW);
+                getUI().getNavigator().navigateTo(Navigation.TIMELINE_VIEW.getName());
             }
         });
     }

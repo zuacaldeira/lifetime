@@ -36,7 +36,7 @@ public class RegisterButton extends LifetimeButtonLink implements Button.ClickLi
 
     @Override
     public void buttonClick(ClickEvent event) {
-        getUI().getNavigator().navigateTo(Navigation.REGISTER_VIEW);
+        getUI().getNavigator().navigateTo(Navigation.REGISTER_VIEW.getName());
     }
 
 }

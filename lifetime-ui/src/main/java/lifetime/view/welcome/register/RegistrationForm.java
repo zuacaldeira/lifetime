@@ -152,7 +152,7 @@ public class RegistrationForm extends HorizontalLayout {
         // Upon successfull registration, return to the welcome page
         if (successfullRegistration) {
             Notification.show("Registration concluded.", Notification.Type.TRAY_NOTIFICATION);
-            getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW);
+            getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW.getName());
         } else {
             Notification.show("Registration failed. Try again later.", Notification.Type.WARNING_MESSAGE);
         }

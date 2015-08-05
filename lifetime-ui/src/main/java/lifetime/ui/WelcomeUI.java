@@ -19,7 +19,7 @@ public class WelcomeUI extends LifetimeUI {
         setId(StyleClassName.WELCOME_UI);
         setNavigator(new Navigator(this, this));
         getNavigator().addProvider(LifetimeViewProvider.getWelcomeViewProvider(getLanguage()));
-        getNavigator().navigateTo(Navigation.WELCOME_VIEW);
+        getNavigator().navigateTo(Navigation.WELCOME_VIEW.getName());
     }
 
     /**
