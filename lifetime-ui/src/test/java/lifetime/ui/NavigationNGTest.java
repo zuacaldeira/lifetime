@@ -26,9 +26,9 @@ public class NavigationNGTest {
 
     @Test
     public void test() {
-        Assert.assertEquals(Navigation.WELCOME_VIEW, "welcome");
-        Assert.assertEquals(Navigation.REGISTER_VIEW, "register");
-        Assert.assertEquals(Navigation.CONTACT_VIEW, "contact");
+        Assert.assertEquals(Navigation.WELCOME_VIEW.getName(), "welcome");
+        Assert.assertEquals(Navigation.REGISTER_VIEW.getName(), "register");
+        Assert.assertEquals(Navigation.CONTACT_VIEW.getName(), "contact");
     }
 
 }

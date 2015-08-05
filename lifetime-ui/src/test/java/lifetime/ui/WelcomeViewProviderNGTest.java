@@ -49,18 +49,18 @@ public class WelcomeViewProviderNGTest {
     @DataProvider(name = "viewNames")
     private Object[][] provideViewNames() {
         return new Object[][]{
-            {"!#welcome", Navigation.WELCOME_VIEW},
-            {"!#register", Navigation.REGISTER_VIEW},
-            {"!#contact", Navigation.CONTACT_VIEW}
+            {"!#welcome", Navigation.WELCOME_VIEW.getName()},
+            {"!#register", Navigation.REGISTER_VIEW.getName()},
+            {"!#contact", Navigation.CONTACT_VIEW.getName()}
         };
     }
 
     @DataProvider(name = "views")
     private Object[][] provideViews() {
         return new Object[][]{
-            {Navigation.WELCOME_VIEW, WelcomeView.class},
-            {Navigation.REGISTER_VIEW, RegisterView.class},
-            {Navigation.CONTACT_VIEW, ContactView.class}
+            {Navigation.WELCOME_VIEW.getName(), WelcomeView.class},
+            {Navigation.REGISTER_VIEW.getName(), RegisterView.class},
+            {Navigation.CONTACT_VIEW.getName(), ContactView.class}
         };
     }
 
