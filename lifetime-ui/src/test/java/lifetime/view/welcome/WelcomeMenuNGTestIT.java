@@ -18,7 +18,6 @@ package lifetime.view.welcome;
 import java.util.concurrent.TimeUnit;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -34,10 +33,10 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import usecase.XPathIds;
+import usecase.XPathByIds;
 
 /**
- * @author zua
+ * @author <a href="mailto:zuacaldeira@gmail.com">Alexandre Caldeira</a>
  */
 @Test
 @RunAsClient
@@ -59,7 +58,7 @@ public class WelcomeMenuNGTestIT extends LifetimeArquillian {
     @Deployment(testable = false)
     public static Archive createDeployment() {
         // pick up a deployment
-        WebArchive result = ShrinkWrap.create(WebArchive.class, "test.war")
+        WebArchive result = ShrinkWrap.create(WebArchive.class, "WelcomeMenuNGTestIT.war")
                 //.addAsLibraries(files)
                 .addAsResource(EmptyAsset.INSTANCE,
                         ArchivePaths.create("beans.xml"));
@@ -87,28 +86,28 @@ public class WelcomeMenuNGTestIT extends LifetimeArquillian {
          * Has a welcome menu...
          */
         getLogger().info("Looking for a lifetime menu...");
-        WebElement lifetimeMenu = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_MENU));
+        WebElement lifetimeMenu = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_MENU));
         Assert.assertNotNull(lifetimeMenu, "Lifetime menu not found");
 
         /**
          * with a login button...
          */
         getLogger().info("Looking for the login button...");
-        WebElement loginButton = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.LOGIN_BUTTON));
+        WebElement loginButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.LOGIN_BUTTON));
         Assert.assertNotNull(loginButton, "Login button not found");
 
         /**
          * with a login button...
          */
         getLogger().info("Looking for the register button...");
-        WebElement registerButton = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.REGISTER_BUTTON));
+        WebElement registerButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.REGISTER_BUTTON));
         Assert.assertNotNull(registerButton, "Register button not found");
 
         /**
          * with a contact button...
          */
         getLogger().info("Looking for the contact button...");
-        WebElement contactButton = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.CONTACT_BUTTON));
+        WebElement contactButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.CONTACT_BUTTON));
         Assert.assertNotNull(contactButton, "Contact button not found");
 
         // That's it!

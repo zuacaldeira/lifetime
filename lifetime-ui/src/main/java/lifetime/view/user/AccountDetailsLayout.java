@@ -21,9 +21,9 @@ import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.VerticalLayout;
 import java.text.DateFormat;
 import java.util.Objects;
-import lifetime.persistence.Contact;
-import lifetime.service.LifetimeAccountService;
-import lifetime.service.ServiceLocator;
+import lifetime.backend.persistence.Contact;
+import lifetime.backend.service.LifetimeAccountService;
+import lifetime.backend.util.ServiceLocator;
 import lifetime.view.custom.InfoView;
 
 /**

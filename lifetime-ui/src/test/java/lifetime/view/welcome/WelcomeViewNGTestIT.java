@@ -34,7 +34,7 @@ import org.jboss.arquillian.testng.Arquillian;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import usecase.XPathIds;
+import usecase.XPathByIds;
 
 /**
  * Test suite for <b>structural, navigational and functional</b> requirements of
@@ -105,26 +105,26 @@ public class WelcomeViewNGTestIT extends Arquillian {
          * Has a top level ui element...
          */
         getLogger().info("Looking for a lifetime page...");
-        WebElement lifetimeWebPage = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_UI));
+        WebElement lifetimeWebPage = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_UI));
         Assert.assertNotNull(lifetimeWebPage, "Lifetime page not found");
         /**
          * with a welcome view...
          */
         getLogger().info("Looking for a welcome view...");
-        WebElement lifetimeView = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_VIEW));
+        WebElement lifetimeView = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_VIEW));
         Assert.assertNotNull(lifetimeView, "Welcome View not found");
 
         /**
          * and with a welcome menu...
          */
         getLogger().info("Looking for a welcome menu...");
-        WebElement lifetimeMenu = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_MENU));
+        WebElement lifetimeMenu = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_MENU));
         Assert.assertNotNull(lifetimeMenu, "Welcome Menu not found");
         /**
          * and a welcome content.
          */
         getLogger().info("Looking for a welcome content...");
-        WebElement lifetimeContent = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_CONTENT));
+        WebElement lifetimeContent = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_CONTENT));
         Assert.assertNotNull(lifetimeContent, "Welcome Content not found");
         webDriver.close();
     }

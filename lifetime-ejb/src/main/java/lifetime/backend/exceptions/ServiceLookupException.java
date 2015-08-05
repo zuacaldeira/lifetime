@@ -13,36 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.ui;
+package lifetime.backend.exceptions;
 
 /**
  *
  * @author zua
  */
-public class TestBundle {
+public class ServiceLookupException extends LifetimeException {
 
     /**
      *
+     * @param ex
      */
-    public static final String HOME_URL = "http://localhost:8080/lifetime/#!welcome";
-
-    /**
-     *
-     */
-    public static final String CONTACT_URL = "http://localhost:8080/lifetime/#!contact";
-
-    /**
-     *
-     */
-    public static final String USER_URL = "http://localhost:8080/lifetime/user";
-
-    /**
-     *
-     */
-    public static final String REGISTER_URL = "http://localhost:8080/lifetime/#!Register";
-
-    /**
-     *
-     */
-    public static final String LOGIN_URL = "http://localhost:8080/lifetime/user";
+    public ServiceLookupException(Exception ex) {
+        super(ex);
+    }
+    
 }

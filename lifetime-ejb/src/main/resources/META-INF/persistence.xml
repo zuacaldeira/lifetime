@@ -3,13 +3,13 @@
   <persistence-unit name="lifetimePU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>jdbc/lifetime</jta-data-source>
-    <class>lifetime.persistence.Account</class>
-    <class>lifetime.persistence.Role</class>
-    <class>lifetime.persistence.User</class>
-    <class>lifetime.persistence.Photo</class>
-    <class>lifetime.persistence.Contact</class>
     <class>lifetime.persistence.Adress</class>
-    <class>lifetime.persistence.Address</class>
+    <class>lifetime.backend.persistence.Photo</class>
+    <class>lifetime.backend.persistence.Address</class>
+    <class>lifetime.backend.persistence.Contact</class>
+    <class>lifetime.backend.persistence.Role</class>
+    <class>lifetime.backend.persistence.Account</class>
+    <class>lifetime.backend.persistence.User</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="eclipselink.deploy-on-startup" value="true"/>

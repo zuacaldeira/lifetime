@@ -18,6 +18,7 @@ package usecase;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import lifetime.backend.util.TestHelper;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
@@ -96,13 +97,14 @@ public class ResgistrationUseCaseTestIT extends Arquillian {
 
         webDriver.get(TestBundle.HOME_URL);
         getLogger().info("Page title: " + webDriver.getTitle());
+        getLogger().info("HOME_URL: " + webDriver.getCurrentUrl());
 
-        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         /**
          * Has a top level element...
          */
         getLogger().info("Looking for register button...");
-        WebElement registerButton = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.REGISTER_BUTTON));
+        WebElement registerButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.REGISTER_BUTTON));
         Assert.assertNotNull(registerButton, "Register button not found!");
 
         // Click on button
@@ -110,31 +112,31 @@ public class ResgistrationUseCaseTestIT extends Arquillian {
 
         // Check we're on the registration form
         getLogger().info("Looking for the form...");
-        WebElement registrationForm = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.REGISTRATION_FORM));
+        WebElement registrationForm = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.REGISTRATION_FORM));
         Assert.assertNotNull(registrationForm, "Registration form not found!");
 
         // Firstnames
         getLogger().info("Looking for the birth firstname...");
-        WebElement weFirstnames = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_FIRSTNAME));
+        WebElement weFirstnames = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_FIRSTNAME));
         weFirstnames.sendKeys(firstname);
 
         // Lastnames
         getLogger().info("Looking for the lastname...");
-        WebElement weLastname = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_LASTNAME));
+        WebElement weLastname = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_LASTNAME));
         weLastname.sendKeys(lastname);
 
         // Email
         getLogger().info("Looking for the email...");
-        WebElement weEmail = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_EMAIL));
+        WebElement weEmail = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_EMAIL));
         weEmail.sendKeys(email);
 
         // Password        
         getLogger().info("Looking for the password...");
-        WebElement wePassword = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_ENCRYPTED));
+        WebElement wePassword = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_ENCRYPTED));
         wePassword.sendKeys(password);
         // Password repeat
         getLogger().info("Looking for the repeat password...");
-        WebElement wePasswordRepeat = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_ENCRYPTED_REPEAT));
+        WebElement wePasswordRepeat = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_ENCRYPTED_REPEAT));
         wePasswordRepeat.sendKeys(passwordRepeat);
 
         // Birth date
@@ -147,19 +149,19 @@ public class ResgistrationUseCaseTestIT extends Arquillian {
 
         // Birth place
         getLogger().info("Looking for the birth place...");
-        WebElement weBirthplace = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_BIRTHPLACE));
+        WebElement weBirthplace = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_BIRTHPLACE));
         weBirthplace.sendKeys(birthPlace);
 
         // Submit form
         getLogger().info("Looking for the ok button...");
-        WebElement ok = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.OK_BUTTON));
+        WebElement ok = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.OK_BUTTON));
         ok.click();
         
         getLogger().info("Wait for page to load...");
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         getLogger().info("Looking for the welcome view...");
-        WebElement welcome = webDriver.findElementByXPath(XPathIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_VIEW));
+        WebElement welcome = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_VIEW));
         Assert.assertNotNull(welcome, "welcome view not found!");
         
         webDriver.close();
@@ -168,7 +170,7 @@ public class ResgistrationUseCaseTestIT extends Arquillian {
     @DataProvider(name = "registration")
     private Object[][] provideRegistrationData() {
         return new Object[][]{
-            {"Alexandre", "Zua Caldeira", "zuacaldeira@lifetime.com", "Password1!", "Password1!", new Date(), "Piri, Angola"}
+            {"Alexandre", "Zua Caldeira", TestHelper.getRandomString() + "@selenium-test.com", "Password1!", "Password1!", new Date(), "Piri, Angola"}
         };
     }
 

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="com.github.zuacaldeira_lifetime-ejb_jar_1.0-SNAPSHOT_persistence">
+<suite name="com.github.zuacaldeira_lifetime-ejb_jar_1.0-SNAPSHOT_service">
 
     <!--
     see examples at http://testng.org/doc/documentation-main.html#testng-xml
@@ -18,9 +18,12 @@
     </test>
     -->
     
-    <test name="lifetime.persistence suite">
+    <test name="lifetime suite">
+        <classes>
+            <class name="lifetime.TestConfig" />
+        </classes>
         <packages>
-            <package name="lifetime.persistence"/>
+            <package name="lifetime.backend.service" />
         </packages>
     </test>
 
