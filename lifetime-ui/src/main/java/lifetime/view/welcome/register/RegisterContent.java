@@ -47,8 +47,8 @@ public class RegisterContent extends LifetimeContent {
         setSizeFull();
         addComponent(registerForm);
         setComponentAlignment(registerForm, Alignment.MIDDLE_CENTER);
-        setStyleName(StyleClassName.REGISTER_CONTENT);
-        setId(StyleClassName.REGISTER_CONTENT);
+        setStyleName(StyleClassName.REGISTER_CONTENT.getStyleName());
+        setId(StyleClassName.REGISTER_CONTENT.getId());
     }
 
     /**

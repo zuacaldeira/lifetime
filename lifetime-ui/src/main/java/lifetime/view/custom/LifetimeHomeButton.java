@@ -30,7 +30,7 @@ public class LifetimeHomeButton extends LifetimeButtonLink {
     public LifetimeHomeButton(String language) {
         super(Translator.getTranslation("Home", language), language, FontAwesome.HOME);
         setDescription(Translator.getTranslation("Home", language));
-        setId(StyleClassName.HOME_BUTTON);
+        setId(StyleClassName.HOME_BUTTON.getId());
         addClickListener(new ClickListener() {
 
             @Override

@@ -35,7 +35,7 @@ public class LoginButton extends LifetimeButtonLink {
         super(Translator.getTranslation("Login", language), language, FontAwesome.KEY);
         this.text = Translator.getTranslation("Login", language);
         setDescription(text);
-        setId(StyleClassName.LOGIN_BUTTON);
+        setId(StyleClassName.LOGIN_BUTTON.getId());
         addClickListener(new ClickListener() {
 
             @Override

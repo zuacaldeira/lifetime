@@ -34,8 +34,8 @@ class UserContent extends LifetimeContent {
 
     public UserContent(String language) {
         super(language);
-        setId(StyleClassName.USER_CONTENT);
-        setStyleName(StyleClassName.USER_CONTENT);
+        setId(StyleClassName.USER_CONTENT.getId());
+        setStyleName(StyleClassName.USER_CONTENT.getStyleName());
     }
 
     @Override

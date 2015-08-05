@@ -30,7 +30,7 @@ public class OKButton extends LifetimeButtonLink implements Button.ClickListener
     public OKButton(Integer userId, String language) {
         super(userId, language, "OK", FontAwesome.CHECK);
         setCaption(getDescription());
-        setId(StyleClassName.OK_BUTTON);
+        setId(StyleClassName.OK_BUTTON.getId());
         addClickListener(this);
     }
     

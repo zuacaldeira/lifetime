@@ -33,8 +33,8 @@ public class WelcomeContent extends LifetimeContent {
         contentView = new HomeView(getLanguage());
         addComponent(contentView);
         setComponentAlignment(contentView, Alignment.MIDDLE_CENTER);
-        setStyleName(StyleClassName.WELCOME_CONTENT);
-        setId(StyleClassName.WELCOME_CONTENT);
+        setStyleName(StyleClassName.WELCOME_CONTENT.getStyleName());
+        setId(StyleClassName.WELCOME_CONTENT.getId());
     }
 
     @Override

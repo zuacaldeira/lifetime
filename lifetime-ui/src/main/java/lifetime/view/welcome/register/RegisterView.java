@@ -39,8 +39,8 @@ public class RegisterView extends WelcomeView {
 
     public RegisterView(String language) {
         super(language);
-        setStyleName(StyleClassName.REGISTER_VIEW);
-        setId(StyleClassName.REGISTER_VIEW);
+        setStyleName(StyleClassName.REGISTER_VIEW.getStyleName());
+        setId(StyleClassName.REGISTER_VIEW.getId());
     }
 
     @Override

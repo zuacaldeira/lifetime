@@ -29,8 +29,8 @@ public class UserView extends LifetimeView {
 
     public UserView(String language) {
         super(language);
-        setId(StyleClassName.USER_VIEW);
-        setStyleName(StyleClassName.USER_VIEW);
+        setId(StyleClassName.USER_VIEW.getId());
+        setStyleName(StyleClassName.USER_VIEW.getStyleName());
     }
 
     @Override

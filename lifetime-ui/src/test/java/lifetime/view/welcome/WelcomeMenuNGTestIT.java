@@ -86,28 +86,28 @@ public class WelcomeMenuNGTestIT extends LifetimeArquillian {
          * Has a welcome menu...
          */
         getLogger().info("Looking for a lifetime menu...");
-        WebElement lifetimeMenu = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_MENU));
+        WebElement lifetimeMenu = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_MENU.getId()));
         Assert.assertNotNull(lifetimeMenu, "Lifetime menu not found");
 
         /**
          * with a login button...
          */
         getLogger().info("Looking for the login button...");
-        WebElement loginButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.LOGIN_BUTTON));
+        WebElement loginButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.LOGIN_BUTTON.getId()));
         Assert.assertNotNull(loginButton, "Login button not found");
 
         /**
          * with a login button...
          */
         getLogger().info("Looking for the register button...");
-        WebElement registerButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.REGISTER_BUTTON));
+        WebElement registerButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.REGISTER_BUTTON.getId()));
         Assert.assertNotNull(registerButton, "Register button not found");
 
         /**
          * with a contact button...
          */
         getLogger().info("Looking for the contact button...");
-        WebElement contactButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.CONTACT_BUTTON));
+        WebElement contactButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.CONTACT_BUTTON.getId()));
         Assert.assertNotNull(contactButton, "Contact button not found");
 
         // That's it!

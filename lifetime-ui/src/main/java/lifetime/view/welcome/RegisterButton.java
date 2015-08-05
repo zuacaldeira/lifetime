@@ -30,7 +30,7 @@ public class RegisterButton extends LifetimeButtonLink implements Button.ClickLi
 
     public RegisterButton(String language) {
         super(Translator.getTranslation("Register", language), language, FontAwesome.PLUS);
-        setId(StyleClassName.REGISTER_BUTTON);
+        setId(StyleClassName.REGISTER_BUTTON.getId());
         addClickListener(this);
     }
 

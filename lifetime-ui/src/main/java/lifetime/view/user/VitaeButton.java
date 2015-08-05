@@ -30,7 +30,7 @@ public class VitaeButton extends LifetimeButtonLink {
     public VitaeButton(String language) {
         super(Translator.getTranslation("Vitae", language), language, FontAwesome.TREE);
         setDescription(Translator.getTranslation("Vitae", language));
-        setId(StyleClassName.VITAE_BUTTON);
+        setId(StyleClassName.VITAE_BUTTON.getId());
         addClickListener(new ClickListener() {
 
             @Override

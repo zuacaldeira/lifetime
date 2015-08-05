@@ -64,43 +64,43 @@ public class RegistrationForm extends HorizontalLayout {
         firstname = new LifetimeTextField("Firstname"); // Creates text field
         firstname.addValidator(new NameValidator()); // Register Validator
         firstname.setValidationVisible(true); // Automatic validation
-        firstname.setId(StyleClassName.REGISTRATION_FORM_FIRSTNAME);
+        firstname.setId(StyleClassName.REGISTRATION_FORM_FIRSTNAME.getId());
 
         /* Creates lastnames text field and registers a validator */
         lastname = new LifetimeTextField("Lastname");
         lastname.addValidator(new NameValidator());
         lastname.setValidationVisible(true);
         lastname.setRequired(true);
-        lastname.setId(StyleClassName.REGISTRATION_FORM_LASTNAME);
+        lastname.setId(StyleClassName.REGISTRATION_FORM_LASTNAME.getId());
 
         /* Creates email text field and registers a validator */
         email = new LifetimeTextField("Email / Username");
         email.addValidator(new EmailValidator("Invalid email address"));
         email.setValidationVisible(true);
-        email.setId(StyleClassName.REGISTRATION_FORM_EMAIL);
+        email.setId(StyleClassName.REGISTRATION_FORM_EMAIL.getId());
 
         /* Creates password text field and registers a validator */
         password = new PasswordField("Password");
         password.addValidator(new PasswordValidator());
-        password.setId(StyleClassName.REGISTRATION_FORM_ENCRYPTED);
+        password.setId(StyleClassName.REGISTRATION_FORM_ENCRYPTED.getId());
 
         passwordRepeat = new PasswordField("Repeat password");
-        passwordRepeat.setId(StyleClassName.REGISTRATION_FORM_ENCRYPTED_REPEAT);
+        passwordRepeat.setId(StyleClassName.REGISTRATION_FORM_ENCRYPTED_REPEAT.getId());
 
         birthDate = new DateField("Birthdate");
         birthDate.setLocale(new Locale(language));
-        birthDate.setId(StyleClassName.REGISTRATION_FORM_BIRTHDATE);
+        birthDate.setId(StyleClassName.REGISTRATION_FORM_BIRTHDATE.getId());
 
 //
         birthPlace = new LifetimeTextField("Birth place");
-        birthPlace.setId(StyleClassName.REGISTRATION_FORM_BIRTHPLACE);
+        birthPlace.setId(StyleClassName.REGISTRATION_FORM_BIRTHPLACE.getId());
 
         VerticalLayout personalData = new VerticalLayout(defaultLanguage, firstname, lastname, email, password, passwordRepeat);
         VerticalLayout birthData = new VerticalLayout(birthDate, birthPlace);
         birthData.setDefaultComponentAlignment(Alignment.MIDDLE_RIGHT);
         addComponents(personalData, birthData);
-        setStyleName(StyleClassName.REGISTRATION_FORM);
-        setId(StyleClassName.REGISTRATION_FORM);
+        setStyleName(StyleClassName.REGISTRATION_FORM.getStyleName());
+        setId(StyleClassName.REGISTRATION_FORM.getId());
     }
 
     public LifetimeTextField getFirstname() {

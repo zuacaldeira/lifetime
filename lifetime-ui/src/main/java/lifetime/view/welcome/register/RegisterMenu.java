@@ -18,7 +18,6 @@ package lifetime.view.welcome.register;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import java.util.Objects;
-import lifetime.ui.Navigation;
 import lifetime.view.custom.LifetimeHomeButton;
 import lifetime.view.LifetimeMenu;
 import lifetime.util.StyleClassName;
@@ -55,8 +54,8 @@ public class RegisterMenu extends LifetimeMenu {
         addControl(homeButton);
         addControl(cancelButton);
         addControl(okButton);
-        setId(StyleClassName.REGISTER_MENU);
-        setStyleName(StyleClassName.REGISTER_MENU);
+        setId(StyleClassName.REGISTER_MENU.getId());
+        setStyleName(StyleClassName.REGISTER_MENU.getStyleName());
     }
 
     public LifetimeHomeButton getHomeButton() {

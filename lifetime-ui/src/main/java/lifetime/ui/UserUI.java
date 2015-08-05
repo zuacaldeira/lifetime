@@ -15,8 +15,8 @@ public class UserUI extends LifetimeUI {
 
     @Override
     protected void init(VaadinRequest request) {
-        setStyleName(StyleClassName.USER_UI);
-        setId(StyleClassName.USER_UI);
+        setStyleName(StyleClassName.USER_UI.getStyleName());
+        setId(StyleClassName.USER_UI.getId());
         setNavigator(new Navigator(this, this));
         getNavigator().addProvider(LifetimeViewProvider.getUserViewProvider(getLanguage()));
         getNavigator().navigateTo(Navigation.USER_VIEW.getName());

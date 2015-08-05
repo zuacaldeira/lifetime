@@ -104,7 +104,7 @@ public class ResgistrationUseCaseTestIT extends Arquillian {
          * Has a top level element...
          */
         getLogger().info("Looking for register button...");
-        WebElement registerButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.REGISTER_BUTTON));
+        WebElement registerButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.REGISTER_BUTTON.getId()));
         Assert.assertNotNull(registerButton, "Register button not found!");
 
         // Click on button
@@ -112,31 +112,31 @@ public class ResgistrationUseCaseTestIT extends Arquillian {
 
         // Check we're on the registration form
         getLogger().info("Looking for the form...");
-        WebElement registrationForm = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.REGISTRATION_FORM));
+        WebElement registrationForm = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.REGISTRATION_FORM.getId()));
         Assert.assertNotNull(registrationForm, "Registration form not found!");
 
         // Firstnames
         getLogger().info("Looking for the birth firstname...");
-        WebElement weFirstnames = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_FIRSTNAME));
+        WebElement weFirstnames = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_FIRSTNAME.getId()));
         weFirstnames.sendKeys(firstname);
 
         // Lastnames
         getLogger().info("Looking for the lastname...");
-        WebElement weLastname = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_LASTNAME));
+        WebElement weLastname = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_LASTNAME.getId()));
         weLastname.sendKeys(lastname);
 
         // Email
         getLogger().info("Looking for the email...");
-        WebElement weEmail = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_EMAIL));
+        WebElement weEmail = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_EMAIL.getId()));
         weEmail.sendKeys(email);
 
         // Password        
         getLogger().info("Looking for the password...");
-        WebElement wePassword = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_ENCRYPTED));
+        WebElement wePassword = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_ENCRYPTED.getId()));
         wePassword.sendKeys(password);
         // Password repeat
         getLogger().info("Looking for the repeat password...");
-        WebElement wePasswordRepeat = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_ENCRYPTED_REPEAT));
+        WebElement wePasswordRepeat = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_ENCRYPTED_REPEAT.getId()));
         wePasswordRepeat.sendKeys(passwordRepeat);
 
         // Birth date
@@ -149,19 +149,19 @@ public class ResgistrationUseCaseTestIT extends Arquillian {
 
         // Birth place
         getLogger().info("Looking for the birth place...");
-        WebElement weBirthplace = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_BIRTHPLACE));
+        WebElement weBirthplace = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.REGISTRATION_FORM_BIRTHPLACE.getId()));
         weBirthplace.sendKeys(birthPlace);
 
         // Submit form
         getLogger().info("Looking for the ok button...");
-        WebElement ok = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.OK_BUTTON));
+        WebElement ok = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.OK_BUTTON.getId()));
         ok.click();
         
         getLogger().info("Wait for page to load...");
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         getLogger().info("Looking for the welcome view...");
-        WebElement welcome = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_VIEW));
+        WebElement welcome = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_VIEW.getId()));
         Assert.assertNotNull(welcome, "welcome view not found!");
         
         webDriver.close();

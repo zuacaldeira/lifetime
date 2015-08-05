@@ -105,26 +105,26 @@ public class WelcomeViewNGTestIT extends Arquillian {
          * Has a top level ui element...
          */
         getLogger().info("Looking for a lifetime page...");
-        WebElement lifetimeWebPage = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_UI));
+        WebElement lifetimeWebPage = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_UI.getId()));
         Assert.assertNotNull(lifetimeWebPage, "Lifetime page not found");
         /**
          * with a welcome view...
          */
         getLogger().info("Looking for a welcome view...");
-        WebElement lifetimeView = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_VIEW));
+        WebElement lifetimeView = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_VIEW.getId()));
         Assert.assertNotNull(lifetimeView, "Welcome View not found");
 
         /**
          * and with a welcome menu...
          */
         getLogger().info("Looking for a welcome menu...");
-        WebElement lifetimeMenu = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_MENU));
+        WebElement lifetimeMenu = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_MENU.getId()));
         Assert.assertNotNull(lifetimeMenu, "Welcome Menu not found");
         /**
          * and a welcome content.
          */
         getLogger().info("Looking for a welcome content...");
-        WebElement lifetimeContent = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_CONTENT));
+        WebElement lifetimeContent = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.WELCOME_CONTENT.getId()));
         Assert.assertNotNull(lifetimeContent, "Welcome Content not found");
         webDriver.close();
     }

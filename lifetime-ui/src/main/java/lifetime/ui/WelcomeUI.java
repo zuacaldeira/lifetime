@@ -15,8 +15,8 @@ public class WelcomeUI extends LifetimeUI {
 
     @Override
     protected void init(VaadinRequest request) {
-        setStyleName(StyleClassName.WELCOME_UI);
-        setId(StyleClassName.WELCOME_UI);
+        setStyleName(StyleClassName.WELCOME_UI.getStyleName());
+        setId(StyleClassName.WELCOME_UI.getId());
         setNavigator(new Navigator(this, this));
         getNavigator().addProvider(LifetimeViewProvider.getWelcomeViewProvider(getLanguage()));
         getNavigator().navigateTo(Navigation.WELCOME_VIEW.getName());

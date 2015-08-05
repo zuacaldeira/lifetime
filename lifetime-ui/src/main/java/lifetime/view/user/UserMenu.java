@@ -15,12 +15,7 @@
  */
 package lifetime.view.user;
 
-import com.vaadin.server.Page;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Notification;
 import java.util.Objects;
-import lifetime.ui.Location;
-import lifetime.ui.Navigation;
 import lifetime.view.LifetimeMenu;
 import lifetime.util.StyleClassName;
 import lifetime.view.custom.LifetimeHomeButton;
@@ -35,12 +30,11 @@ class UserMenu extends LifetimeMenu {
     private final VitaeButton vitaeButton;
     private final TimelineButton timelineButton;
     private final YellowPagesButton yellowPagesButton;
-    private static final String NOT_IMPLEMENTED_YET = "Not Implememted Yet";
 
     public UserMenu(String language) {
         super(language);
-        setId(StyleClassName.USER_MENU);
-        setStyleName(StyleClassName.USER_MENU);
+        setId(StyleClassName.USER_MENU.getId());
+        setStyleName(StyleClassName.USER_MENU.getStyleName());
         homeButton = new LifetimeHomeButton(language);
         vitaeButton = new VitaeButton(language);
         timelineButton = new TimelineButton(language);
