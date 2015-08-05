@@ -53,7 +53,25 @@ public class LifetimeAccountServiceTestIT /*extends Arquillian implements Serial
     public void testRegisterAccount(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
         Assert.assertNotNull(accountService, "REGISTER: Lifetime Account Service lookup failed");
         if (!accountService.hasAccount(email)) {
-            accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace);
+            Assert.assertTrue(accountService.register(firstName, lastName, email, password, language, birthDate, birthPlace));
+        }
+    }
+
+    @Test(dataProvider = "registerData", groups = "READ_ACCOUNT")
+    public void testReadAccount(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
+        Assert.assertNotNull(accountService, "REGISTER: Lifetime Account Service lookup failed");
+        if (accountService.hasAccount(email)) {
+            Assert.assertEquals(accountService.getFullName(email), firstName + " " + lastName);
+            Assert.assertEquals(accountService.getBirthdate(email), birthDate);
+            Assert.assertEquals(accountService.getBirthPlace(email), birthPlace);
+        }
+    }
+
+    @Test(dataProvider = "registerData", groups = {"DELETE_ACCOUNT"})
+    public void testDeleteAccount(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
+        Assert.assertNotNull(accountService, "Service not initialized");
+        if (accountService.hasAccount(email)) {
+            Assert.assertTrue(accountService.deleteAccount(email));
         }
     }
 
@@ -65,43 +83,11 @@ public class LifetimeAccountServiceTestIT /*extends Arquillian implements Serial
         }
     }
 
-    @Test(dataProvider = "contact", groups = "CREATE_CONTACT")
-    public void testCreateContact(Contact contact) {
-        Assert.assertNotNull(accountService, "Service not initialized");
-        if (!accountService.hasContact(contact.getUsername())) {
-            Assert.assertTrue(accountService.addContact(contact));
-        }
-    }
-
-    @Test(dataProvider = "address", groups = "CREATE_ADDRESS")
-    public void testCreateAddress(Address address) {
-        Assert.assertNotNull(accountService, "Service not initialized");
-        if (!accountService.hasAddress(address.getUsername())) {
-            Assert.assertTrue(accountService.addAddress(address));
-        }
-    }
-
     @Test(dataProvider = "email", groups = "READ_PHOTO")
     public void testGetPhoto(String email) {
         Assert.assertNotNull(accountService, "Service not initialized");
         if (accountService.hasPhoto(email)) {
             Assert.assertNotNull(accountService.getPhoto(email));
-        }
-    }
-
-    @Test(dataProvider = "email", groups = "READ_CONTACT")
-    public void testGetContact(String email) {
-        Assert.assertNotNull(accountService, "Service not initialized");
-        if (accountService.hasContact(email)) {
-            Assert.assertNotNull(accountService.getContact(email));
-        }
-    }
-
-    @Test(dataProvider = "email")
-    public void testGetAddress(String email) {
-        Assert.assertNotNull(accountService, "Service not initialized");
-        if (accountService.hasAddress(email)) {
-            Assert.assertNotNull(accountService.getAddress(email));
         }
     }
 
@@ -113,11 +99,43 @@ public class LifetimeAccountServiceTestIT /*extends Arquillian implements Serial
         }
     }
 
+    @Test(dataProvider = "address", groups = "CREATE_ADDRESS")
+    public void testCreateAddress(Address address) {
+        Assert.assertNotNull(accountService, "Service not initialized");
+        if (!accountService.hasAddress(address.getUsername())) {
+            Assert.assertTrue(accountService.addAddress(address));
+        }
+    }
+
+    @Test(dataProvider = "email")
+    public void testGetAddress(String email) {
+        Assert.assertNotNull(accountService, "Service not initialized");
+        if (accountService.hasAddress(email)) {
+            Assert.assertNotNull(accountService.getAddress(email));
+        }
+    }
+
     @Test(dataProvider = "address")
     public void testDeleteAddress(Address address) {
         Assert.assertNotNull(accountService, "Service not initialized");
         if (accountService.hasAddress(address.getUsername())) {
             Assert.assertTrue(accountService.deleteAddress(address));
+        }
+    }
+
+    @Test(dataProvider = "contact", groups = "CREATE_CONTACT")
+    public void testCreateContact(Contact contact) {
+        Assert.assertNotNull(accountService, "Service not initialized");
+        if (!accountService.hasContact(contact.getUsername())) {
+            Assert.assertTrue(accountService.addContact(contact));
+        }
+    }
+
+    @Test(dataProvider = "email", groups = "READ_CONTACT")
+    public void testGetContact(String email) {
+        Assert.assertNotNull(accountService, "Service not initialized");
+        if (accountService.hasContact(email)) {
+            Assert.assertNotNull(accountService.getContact(email));
         }
     }
 
@@ -129,13 +147,6 @@ public class LifetimeAccountServiceTestIT /*extends Arquillian implements Serial
         }
     }
 
-    @Test(dataProvider = "registerData")
-    public void testDeleteAccount(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
-        Assert.assertNotNull(accountService, "Service not initialized");
-        if (accountService.hasAccount(email)) {
-            Assert.assertTrue(accountService.deleteAccount(email));
-        }
-    }
 
     /*    @Test(dataProvider = "registerNegativeData", groups = "CREATE_BAD_ACCOUNT", dependsOnGroups = "DELETE_ACCOUNT")
      public void testBadRegistration(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
