@@ -35,7 +35,7 @@ public class LifetimeHomeButton extends LifetimeButtonLink {
 
             @Override
             public void buttonClick(ClickEvent event) {
-                Page.getCurrent().setLocation(Location.HOME);
+                Page.getCurrent().setLocation(Location.HOME.getLocation());
             }
         });
     }

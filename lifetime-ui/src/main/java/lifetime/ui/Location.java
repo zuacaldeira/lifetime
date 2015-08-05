@@ -19,11 +19,18 @@ package lifetime.ui;
  *
  * @author zua
  */
-public class Location {
-    public static final String HOME = "/lifetime";
-    public static final String USER = "/lifetime/user";
+public enum Location {
 
-    private Location() {
+    HOME("/lifetime"), USER("/lifetime/user");
+
+    private final String location;
+
+    private Location(String location) {
+        this.location = location;
     }
-    
+
+    public String getLocation() {
+        return location;
+    }
+
 }

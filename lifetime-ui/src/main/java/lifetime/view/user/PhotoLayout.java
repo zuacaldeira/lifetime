@@ -30,7 +30,7 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lifetime.backend.persistence.Photo;
-import lifetime.backend.util.ServiceLocator;
+import lifetime.util.ServiceLocator;
 
 /**
  *

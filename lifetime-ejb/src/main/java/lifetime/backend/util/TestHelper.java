@@ -15,27 +15,28 @@ import org.apache.commons.lang.RandomStringUtils;
 public class TestHelper {
 
     /**
-     *
+     * Configuration file property name.
      */
-    public static String getEmbeddedGlassFishDomainPropertyName = "org.glassfish.ejb.embedded.glassfish.configuration.file";
+    public static final String CONFIGURATION_FILE_PROPERTY = "org.glassfish.ejb.embedded.glassfish.configuration.file";
 
     /**
-     *
+     * Configuration file property value.
      */
-    public static String getEmbeddedGlassFishDomainPropertyValue = "/Applications/NetBeans/glassfish-4.1/glassfish/domains/domain1/config/domain.xml";
+    public static final String CONFIGURATION_FILE = "/Applications/NetBeans/glassfish-4.1/glassfish/domains/domain1/config/domain.xml";
 
     /**
+     * Returns a random integer.
      *
-     * @return
+     * @return A random integer value
      */
     public static Integer getRandomId() {
-        Integer result = new Random().nextInt();
-        return result;
+        return new Random().nextInt();
     }
 
     /**
+     * Returns a new random byte array.
      *
-     * @return
+     * @return A byte array.
      */
     public static byte[] getRandomByteArray() {
         byte[] result = new byte[1024];
@@ -44,12 +45,12 @@ public class TestHelper {
     }
 
     /**
+     * Returns a random string.
      *
-     * @return
+     * @return A random string.
      */
     public static String getRandomString() {
-        String result = RandomStringUtils.randomAlphanumeric(20);
-        return result;
+        return RandomStringUtils.randomAlphanumeric(20);
     }
 
 }

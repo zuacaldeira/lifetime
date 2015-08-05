@@ -40,7 +40,7 @@ public class LoginButton extends LifetimeButtonLink {
 
             @Override
             public void buttonClick(ClickEvent event) {
-                Page.getCurrent().setLocation(Location.USER);
+                Page.getCurrent().setLocation(Location.USER.getLocation());
             }
         });
     }

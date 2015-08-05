@@ -26,7 +26,7 @@ import com.vaadin.ui.VerticalLayout;
 import java.util.Locale;
 import java.util.Objects;
 import lifetime.backend.service.LifetimeAccountService;
-import lifetime.backend.util.ServiceLocator;
+import lifetime.util.ServiceLocator;
 import lifetime.ui.Navigation;
 import lifetime.view.validator.NameValidator;
 import lifetime.view.validator.PasswordValidator;

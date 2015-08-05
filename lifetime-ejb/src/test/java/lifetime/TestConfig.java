@@ -23,8 +23,8 @@ public class TestConfig {
         if (container == null) {
             System.out.println("Starting the container".toUpperCase());
             Map<String, Object> p = new HashMap<String, Object>();
-            p.put(TestHelper.getEmbeddedGlassFishDomainPropertyName,
-                    TestHelper.getEmbeddedGlassFishDomainPropertyValue
+            p.put(TestHelper.CONFIGURATION_FILE_PROPERTY,
+                    TestHelper.CONFIGURATION_FILE
             );
             container = EJBContainer.createEJBContainer(p);
         }
