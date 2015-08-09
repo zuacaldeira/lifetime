@@ -17,62 +17,60 @@ package lifetime.view.user;
 
 import com.vaadin.server.Resource;
 import com.vaadin.server.StreamResource;
-import com.vaadin.ui.CustomComponent;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Upload;
 import com.vaadin.ui.VerticalLayout;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import lifetime.backend.persistence.Photo;
+import lifetime.backend.service.LifetimeAccountService;
 import lifetime.util.ServiceLocator;
 
 /**
  *
- * @author zua
+ * @author <a href="mailto:zuacaldeira@gmail.com>Alexandre Caldeira</a>
  */
-public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upload.SucceededListener {
+public class PhotoLayout extends VerticalLayout {
 
     private final String username;
-    private transient ByteArrayOutputStream baos;
-    private VerticalLayout root;
+    private PhotoReceiver receiver;
+    private Image image;
+    private Upload upload;
+    private LifetimeAccountService service;
 
-    public PhotoLayout(String username) {
+    public PhotoLayout(String username, String language) {
         this.username = username;
-        baos = new ByteArrayOutputStream();
-        root = new VerticalLayout();
-        showPhoto();
-        setCompositionRoot(root);
+        setSizeFull();
     }
 
     @Override
-    public OutputStream receiveUpload(String filename, String mimeType) {
-        return baos;
+    protected void focus() {
+        super.focus(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void uploadSucceeded(Upload.SucceededEvent event) {
-        try {
-            baos.close();
-            ServiceLocator.findLifetimeAccountService().addPhoto(new Photo(null, username, baos.toByteArray()));
-            showPhoto();
-        } catch (IOException ex) {
-            Logger.getLogger(UserContent.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void detach() {
+        super.detach(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void showPhoto() {
+    @Override
+    public void attach() {
+        super.attach(); //To change body of generated methods, choose Tools | Templates.
         clean();
-        Photo userPhoto = ServiceLocator.findLifetimeAccountService().getPhoto(username);
-        if (userPhoto != null) {
-            addPhoto(userPhoto);
+        initService();
+        showPhoto();
+    }
+
+    final void showPhoto() {
+        if (service != null) {
+            Photo userPhoto = service.getPhoto(username);
+            if (userPhoto != null) {
+                addPhoto(userPhoto);
+            }
+            //addUpload();
         }
-        addUpload();
     }
 
     @Override
@@ -92,21 +90,24 @@ public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upl
     }
 
     private void clean() {
-        root.removeAllComponents();
+        removeAllComponents();
     }
 
     private void addPhoto(Photo userPhoto) {
-        Image image = new Image("", getPhotoResource(userPhoto));
-        image.setWidth("50%");
-        root.addComponent(image);
+        image = new Image("", getPhotoResource(userPhoto));
+        image.setHeight("50%");
+        addComponent(image);
+        setComponentAlignment(image, Alignment.MIDDLE_LEFT);
     }
 
     private void addUpload() {
+        receiver = new PhotoReceiver(username, this);
         // Upload layout
-        Upload upload = new Upload("Add your favourite photo", this);
-        upload.addSucceededListener(this);
+        upload = new Upload("Add your favourite photo", receiver);
+        upload.addSucceededListener(receiver);
         upload.setImmediate(true);
-        root.addComponent(upload);
+        //upload.setWidth(image.getWidth(), image.getWidthUnits());
+        addComponent(upload);
     }
 
     private Resource getPhotoResource(final Photo p) {
@@ -116,6 +117,10 @@ public class PhotoLayout extends CustomComponent implements Upload.Receiver, Upl
                 return new ByteArrayInputStream(p.getImage());
             }
         }, "photo-" + username + "-" + Math.random());
+    }
+
+    private void initService() {
+        service = ServiceLocator.findLifetimeAccountService();
     }
 
 }

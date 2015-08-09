@@ -20,6 +20,8 @@ import lifetime.backend.persistence.Account;
 import lifetime.backend.persistence.Address;
 import lifetime.backend.persistence.Contact;
 import lifetime.backend.persistence.Photo;
+import lifetime.backend.persistence.User;
+import lifetime.backend.service.controller.UserController;
 
 /**
  * The Lifetime Account Management Service. It provides services for users to
@@ -37,6 +39,8 @@ public class LifetimeAccountService {
      */
     @EJB
     private AccountController accountController;
+    @EJB
+    private UserController userController;
     @EJB
     private PhotoController photoController;
     @EJB
@@ -224,6 +228,21 @@ public class LifetimeAccountService {
      */
     public boolean deletePhoto(String email) {
         return photoController.delete(email);
+    }
+
+    /**
+     * Returns the user data representing the person owning the account
+     * registered with the given username.
+     *
+     * @param username The user's username
+     * @return The user.
+     */
+    public User getUser(String username) {
+        return userController.read(username);
+    }
+
+    public boolean update(User user) {
+        return userController.update(user);
     }
 
 }

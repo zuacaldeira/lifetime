@@ -945,7 +945,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "7.5.2";
+	content: "7.5.1";
 }
 
 .v-widget {
@@ -4269,7 +4269,6 @@ div.v-layout.v-horizontal.v-widget {
 	outline: none;
 	padding: 0 4px;
 	text-align: right;
-	line-height: 1;
 }
 
 .mytheme .v-grid-sidebar.v-contextmenu .v-grid-sidebar-button::-moz-focus-inner {
@@ -4292,8 +4291,8 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-grid-sidebar.v-contextmenu.open .v-grid-sidebar-button:after {
-	content: "\f0c9";
-	font-size: 14px;
+	content: "\00d7";
+	font-size: 16px;
 	line-height: 1;
 }
 
@@ -4302,12 +4301,11 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .v-ie8 .mytheme .v-grid-sidebar.v-contextmenu.open .v-grid-sidebar-button:after {
-	vertical-align: middle;
-	text-align: center;
 	display: inline;
 }
 
 .mytheme .v-grid-sidebar.v-contextmenu .v-grid-sidebar-content {
+	border-top: 1px solid #d4d4d4;
 	padding: 4px 0;
 }
 
@@ -4347,13 +4345,6 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-grid-row > td:first-child, .mytheme .v-grid-editor-cells > div:first-child {
-	border-left: none;
-}
-
-.mytheme .v-grid-editor-cells.frozen > div {
-	-webkit-box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
-	box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
-	border-right: 1px solid #d4d4d4;
 	border-left: none;
 }
 
@@ -4477,10 +4468,6 @@ div.v-layout.v-horizontal.v-widget {
 .mytheme .v-grid-editor-cells {
 	position: relative;
 	white-space: nowrap;
-}
-
-.mytheme .v-grid-editor-cells.frozen {
-	z-index: 2;
 }
 
 .mytheme .v-grid-editor-cells  > div {
@@ -4793,6 +4780,10 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-grid-spacer {
 	margin-top: -1px;
+}
+
+.mytheme .v-grid-sidebar.v-contextmenu.open .v-grid-sidebar-button:after {
+	font-size: 20px;
 }
 
 .mytheme .v-grid-sidebar.v-contextmenu.open .v-grid-sidebar-content {
@@ -12757,28 +12748,6 @@ div.v-layout.v-horizontal.v-widget {
 	background: black;
 }
 
-.mytheme .welcome-view .welcome-menu {
-	background: white;
-	opacity: 0.75;
-}
-
-.mytheme .welcome-view .welcome-content {
-	background: black;
-	opacity: 0.75;
-	color: white;
-	font-weight: bold;
-}
-
-.mytheme .welcome-view .welcome-content .tag {
-	font-size: 150%;
-}
-
-.mytheme .welcome-view .welcome-content .value {
-	font-size: 200%;
-	font-weight: bold;
-	color: deeppink;
-}
-
 .mytheme .welcome-view .v-button-link {
 	background-color: deeppink;
 	margin-top: 1mm;
@@ -12787,20 +12756,30 @@ div.v-layout.v-horizontal.v-widget {
 	color: white;
 }
 
-.mytheme .register-view {
-	background: black;
-}
-
-.mytheme .register-view .register-menu {
+.mytheme .welcome-menu {
 	background: white;
 	opacity: 0.75;
 }
 
-.mytheme .register-view .register-content {
+.mytheme .welcome-content {
 	background: black;
 	opacity: 0.75;
 	color: white;
 	font-weight: bold;
+}
+
+.mytheme .welcome-content .tag {
+	font-size: 150%;
+}
+
+.mytheme .welcome-content .value {
+	font-size: 200%;
+	font-weight: bold;
+	color: deeppink;
+}
+
+.mytheme .register-view {
+	background: black;
 }
 
 .mytheme .register-view .v-button-link {
@@ -12811,35 +12790,27 @@ div.v-layout.v-horizontal.v-widget {
 	color: white;
 }
 
-.mytheme .user-view {
-	background: black;
-}
-
-.mytheme .user-view .user-menu {
+.mytheme .register-menu {
 	background: white;
 	opacity: 0.75;
 }
 
-.mytheme .user-view .user-content {
+.mytheme .register-content {
 	background: black;
-	opacity: 0.9;
-}
-
-.mytheme .user-view .user-content .photo-layout {
-	background: black;
-}
-
-.mytheme .user-view .user-content .account-details {
-	opacity: 0.9;
+	opacity: 0.75;
 	color: white;
 	font-weight: bold;
 }
 
-.mytheme .user-view .user-content .account-details .tag {
+.mytheme .user-view {
+	background: black;
+}
+
+.mytheme .user-view .tag {
 	font-size: 100%;
 }
 
-.mytheme .user-view .user-content .account-details .value {
+.mytheme .user-view .value {
 	font-size: 150%;
 	font-weight: bold;
 	color: tomato;
@@ -12850,6 +12821,44 @@ div.v-layout.v-horizontal.v-widget {
 	margin-top: 1mm;
 	margin-right: 1mm;
 	margin-bottom: 1mm;
+	color: white;
+}
+
+.mytheme .user-content {
+	background: black;
+	opacity: 0.9;
+}
+
+.mytheme .photo-layout {
+	background: black;
+}
+
+.mytheme .account-details {
+	color: white;
+	font-weight: bold;
+}
+
+.mytheme .user-menu {
+	background: white;
+	opacity: 0.75;
+}
+
+.mytheme .personal-info {
+	background: transparent;
+}
+
+.mytheme .editable-label {
+	background-color: white;
+	color: white;
+}
+
+.mytheme .editable-label .v-label {
+	font-size: 300%;
+}
+
+.mytheme .editable-label .v-textfield {
+	background: black;
+	font-size: 300%;
 	color: white;
 }
 
@@ -12892,4 +12901,18 @@ div.v-layout.v-horizontal.v-widget {
 	background: white;
 	opacity: 0.9;
 	color: black;
+}
+
+.mytheme .tile-white {
+	background-color: white;
+}
+
+.mytheme .tile-gray {
+	background-color: gray;
+}
+
+.mytheme .birthdata {
+	background: black;
+	color: white;
+	font-size: 200%;
 }

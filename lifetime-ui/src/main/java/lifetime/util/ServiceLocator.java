@@ -5,6 +5,8 @@
  */
 package lifetime.util;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -25,20 +27,22 @@ public final class ServiceLocator {
     }
 
     /**
+     * Returns an instance to the back-end lifetime account service.
      *
-     * @return
+     * @return An instance of {@link LifetimeAccountService}
      */
     public static LifetimeAccountService findLifetimeAccountService() {
         return (LifetimeAccountService) lookupService(JNDI_LIFETIME_ACCOUNT_BUSINESS);
     }
-    
+
     private static Object lookupService(String name) {
         try {
             Context context = new InitialContext();
             return (LifetimeAccountService) context.lookup(name);
-        } catch(NamingException ex) {
-            throw new ServiceLookupException(ex);
+        } catch (NamingException ex) {
+            Logger.getLogger(ServiceLocator.class.getName()).log(Level.SEVERE, "Lookup failed for {0}", name);
         }
+        return null;
     }
 
 }

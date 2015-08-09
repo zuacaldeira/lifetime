@@ -18,6 +18,7 @@ package lifetime.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.Date;
 
 /**
  *
@@ -25,9 +26,18 @@ import java.util.Base64;
  */
 public final class Util {
 
+    private static final String GOOGLE_MAPS_API_KEY = "AIzaSyAEKt6gXiX6yTRbJymZVb4_qdKSd4Jr23g";
+
+    public static int getDaysInInterval(Date start, Date end) {
+        // TODO
+        return 10;
+    }
     private Util() {
     }
 
+    public static String getGoogleMapsApiKey() {
+        return GOOGLE_MAPS_API_KEY;
+    }
     
     
     /**

@@ -13,29 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.custom;
+package lifetime.view.user;
 
-import lifetime.view.welcome.RegisterButton;
 import com.vaadin.server.FontAwesome;
-import lifetime.util.StyleClassName;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import lifetime.view.custom.LifetimeButtonLink;
 
 /**
  *
  * @author zua
  */
-public class RegisterButtonNGTest {
-    
-    public RegisterButtonNGTest() {
-    }
+class ProfileLockerButton extends LifetimeButtonLink {
 
-    @Test
-    public void testRegisterButton() {
-        String language = "en";
-        RegisterButton button = new RegisterButton(language);
-        Assert.assertEquals(button.getId(), StyleClassName.REGISTER_BUTTON);
-        Assert.assertEquals(button.getIcon(), FontAwesome.PLUS);
+    public ProfileLockerButton(String caption, String username, FontAwesome fontAwesome) {
+        super(caption, username, fontAwesome);
     }
     
 }

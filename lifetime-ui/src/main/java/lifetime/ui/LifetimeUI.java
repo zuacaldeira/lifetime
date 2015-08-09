@@ -8,6 +8,7 @@ import com.vaadin.ui.UI;
  * Top level class of our application UI hierarchy.
  */
 @Theme("mytheme")
+//@Widgetset("LifetimeWidgetSet")
 public abstract class LifetimeUI extends UI {
 
     /**

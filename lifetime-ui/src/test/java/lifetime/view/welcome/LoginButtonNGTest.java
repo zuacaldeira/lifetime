@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.custom;
+package lifetime.view.welcome;
 
 import lifetime.view.welcome.LoginButton;
 import static org.testng.Assert.*;

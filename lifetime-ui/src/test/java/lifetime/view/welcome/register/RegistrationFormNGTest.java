@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.custom;
+package lifetime.view.welcome.register;
 
 import lifetime.view.welcome.register.RegistrationForm;
 import java.util.Date;
@@ -125,7 +125,7 @@ public class RegistrationFormNGTest {
      *
      * @param form
      */
-    @Test(dataProvider = "valid", expectedExceptions = ServiceLookupException.class)
+    @Test(dataProvider = "valid")
     public void testSubmit(RegistrationForm form) {
         System.out.println("submit");
         form.submit();

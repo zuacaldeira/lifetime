@@ -51,34 +51,34 @@ public class LifetimeUINGTest {
      * class has a not initialized, i.e, null assigned {@link LifetimeView},
      * which will be implemented using the <b>bridge design pattern</b>.
      */
-/*    @Test
-    public void testGetView() {
-        System.out.println("getView");
-        LifetimeUI instance = new LifetimeUIImpl();
-        Assert.assertNull(instance.getLifetimeView());
-    }
-    @Test
-    public void testEquals() {
-        System.out.println("equals");
-        LifetimeUI instance1 = new LifetimeUIImpl();
-        LifetimeUI instance2 = new LifetimeUIImpl();
-        Assert.assertTrue(instance1.equals(instance2));
-        Assert.assertFalse(instance1.equals(null));
-        Assert.assertFalse(instance1.equals(""));
-    }
+    /*    @Test
+     public void testGetView() {
+     System.out.println("getView");
+     LifetimeUI instance = new LifetimeUIImpl();
+     Assert.assertNull(instance.getLifetimeView());
+     }
+     @Test
+     public void testEquals() {
+     System.out.println("equals");
+     LifetimeUI instance1 = new LifetimeUIImpl();
+     LifetimeUI instance2 = new LifetimeUIImpl();
+     Assert.assertTrue(instance1.equals(instance2));
+     Assert.assertFalse(instance1.equals(null));
+     Assert.assertFalse(instance1.equals(""));
+     }
     
-    @Test
-    public void testSetLifetimeView() {
-        System.out.println("equals");
-        LifetimeUI instance = new LifetimeUIImpl();
-        Assert.assertNull(instance.getLifetimeView());
+     @Test
+     public void testSetLifetimeView() {
+     System.out.println("equals");
+     LifetimeUI instance = new LifetimeUIImpl();
+     Assert.assertNull(instance.getLifetimeView());
         
-        LifetimeView lv = new WelcomeView("pt");
-        instance.setLifetimeView(lv);
-        Assert.assertEquals(instance.getLifetimeView(), lv);
+     LifetimeView lv = new WelcomeView("pt");
+     instance.setLifetimeView(lv);
+     Assert.assertEquals(instance.getLifetimeView(), lv);
         
-    }
-*/
+     }
+     */
     public class LifetimeUIImpl extends LifetimeUI {
 
         @Override

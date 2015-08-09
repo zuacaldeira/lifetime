@@ -16,20 +16,19 @@
 package lifetime.view.user;
 
 import com.vaadin.server.VaadinService;
-import com.vaadin.ui.Alignment;
 import java.security.Principal;
 import java.util.Objects;
+import lifetime.util.ServiceLocator;
 import lifetime.view.LifetimeContent;
 import lifetime.util.StyleClassName;
 
 /**
  *
- * @author zua
+ * @author <a href="mailto:zuacaldeira@gmail.com>Alexandre Caldeira</a>
  */
 class UserContent extends LifetimeContent {
 
-    private PhotoLayout photoLayout;
-    private AccountDetailsLayout accountDetails;
+    private ProfileSummaryLayout profile;
     private String username;
 
     public UserContent(String language) {
@@ -41,16 +40,22 @@ class UserContent extends LifetimeContent {
     @Override
     public void attach() {
         super.attach(); //To change body of generated methods, choose Tools | Templates.
-        init();
+        initCredentials();
+        initLayout();
     }
 
-    private void initUsername() {
+    private void initCredentials() {
         Principal p = VaadinService.getCurrentRequest().getUserPrincipal();
         if (p != null) {
             username = p.getName();
         } else {
             username = "zuacaldeira@gmail.com";
         }
+    }
+
+    private void initLayout() {
+        profile = new ProfileSummaryLayout(username, ServiceLocator.findLifetimeAccountService().getUser(username));
+        addComponent(profile);
     }
 
     @Override
@@ -67,17 +72,6 @@ class UserContent extends LifetimeContent {
         }
         final UserContent other = (UserContent) obj;
         return Objects.equals(this.getLanguage(), other.getLanguage());
-    }
-
-    private void init() {
-        initUsername();
-        photoLayout = new PhotoLayout(username);
-        accountDetails = new AccountDetailsLayout(username);
-        addComponents(photoLayout, accountDetails);
-        setExpandRatio(photoLayout, .4f);
-        setExpandRatio(accountDetails, .6f);
-        setComponentAlignment(photoLayout, Alignment.MIDDLE_RIGHT);
-        setComponentAlignment(accountDetails, Alignment.MIDDLE_LEFT);
     }
 
 }

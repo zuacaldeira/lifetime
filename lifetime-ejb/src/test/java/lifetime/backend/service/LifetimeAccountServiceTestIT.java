@@ -57,17 +57,25 @@ public class LifetimeAccountServiceTestIT /*extends Arquillian implements Serial
         }
     }
 
-    @Test(dataProvider = "registerData", groups = "READ_ACCOUNT")
+    @Test(dataProvider = "registerData", groups = "READ_ACCOUNT", dependsOnGroups = {"CREATE_ACCOUNT"})
     public void testReadAccount(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
         Assert.assertNotNull(accountService, "REGISTER: Lifetime Account Service lookup failed");
         if (accountService.hasAccount(email)) {
             Assert.assertEquals(accountService.getFullName(email), firstName + " " + lastName);
-            Assert.assertEquals(accountService.getBirthdate(email), birthDate);
-            Assert.assertEquals(accountService.getBirthPlace(email), birthPlace);
         }
     }
 
-    @Test(dataProvider = "registerData", groups = {"DELETE_ACCOUNT"})
+    @Test(dataProvider = "email", groups = "READ_ACCOUNT", dependsOnGroups = {"CREATE_ACCOUNT"})
+    public void testReadFullname(String email) {
+        Assert.assertNotNull(accountService, "REGISTER: Lifetime Account Service lookup failed");
+        if (accountService.hasAccount(email)) {
+            Assert.assertNotNull(accountService.getFullName(email));
+            Assert.assertNotNull(accountService.getBirthdate(email));
+            Assert.assertNotNull(accountService.getBirthPlace(email));
+        }
+    }
+
+    @Test(dataProvider = "registerData", groups = {"DELETE_ACCOUNT"}, dependsOnGroups = {"CREATE_ACCOUNT", "READ_ACCOUNT"})
     public void testDeleteAccount(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
         Assert.assertNotNull(accountService, "Service not initialized");
         if (accountService.hasAccount(email)) {
@@ -83,7 +91,7 @@ public class LifetimeAccountServiceTestIT /*extends Arquillian implements Serial
         }
     }
 
-    @Test(dataProvider = "email", groups = "READ_PHOTO")
+    @Test(dataProvider = "email", groups = "READ_PHOTO", dependsOnGroups = {"CREATE_PHOTO"})
     public void testGetPhoto(String email) {
         Assert.assertNotNull(accountService, "Service not initialized");
         if (accountService.hasPhoto(email)) {
@@ -91,7 +99,7 @@ public class LifetimeAccountServiceTestIT /*extends Arquillian implements Serial
         }
     }
 
-    @Test(dataProvider = "email")
+    @Test(dataProvider = "email", dependsOnGroups = {"READ_PHOTO"})
     public void testDeletePhoto(String email) {
         Assert.assertNotNull(accountService, "Service not initialized");
         if (accountService.hasPhoto(email)) {
@@ -107,7 +115,7 @@ public class LifetimeAccountServiceTestIT /*extends Arquillian implements Serial
         }
     }
 
-    @Test(dataProvider = "email")
+    @Test(dataProvider = "email", groups = {"READ_ADDRESS"}, dependsOnGroups = {"CREATE_ADDRESS"})
     public void testGetAddress(String email) {
         Assert.assertNotNull(accountService, "Service not initialized");
         if (accountService.hasAddress(email)) {
@@ -115,7 +123,7 @@ public class LifetimeAccountServiceTestIT /*extends Arquillian implements Serial
         }
     }
 
-    @Test(dataProvider = "address")
+    @Test(dataProvider = "address", dependsOnGroups = {"READ_ADDRESS"})
     public void testDeleteAddress(Address address) {
         Assert.assertNotNull(accountService, "Service not initialized");
         if (accountService.hasAddress(address.getUsername())) {
@@ -131,7 +139,7 @@ public class LifetimeAccountServiceTestIT /*extends Arquillian implements Serial
         }
     }
 
-    @Test(dataProvider = "email", groups = "READ_CONTACT")
+    @Test(dataProvider = "email", groups = "READ_CONTACT", dependsOnGroups = {"CREATE_CONTACT"})
     public void testGetContact(String email) {
         Assert.assertNotNull(accountService, "Service not initialized");
         if (accountService.hasContact(email)) {
@@ -139,7 +147,7 @@ public class LifetimeAccountServiceTestIT /*extends Arquillian implements Serial
         }
     }
 
-    @Test(dataProvider = "contact")
+    @Test(dataProvider = "contact", dependsOnGroups = {"READ_CONTACT"})
     public void testDeleteContact(Contact contact) {
         Assert.assertNotNull(accountService, "Service not initialized");
         if (accountService.hasContact(contact.getUsername())) {

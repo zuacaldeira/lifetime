@@ -39,24 +39,6 @@
 
     .welcome-view {
         background: black;
-        .welcome-menu {
-            background: white;
-            opacity: 0.75;
-        }
-        .welcome-content {
-            background: black;
-            opacity: 0.75;
-            color: white;
-            font-weight: bold;
-            .tag{
-                font-size: 150%;
-            }
-            .value{
-                font-size: 200%;
-                font-weight: bold;
-                color: deeppink;
-            }
-        }
         .v-button-link {
             background-color: deeppink;
             margin-top: 1mm;
@@ -65,20 +47,28 @@
             color: white;
         }
 
+    }
+    .welcome-menu {
+        background: white;
+        opacity: 0.75;
+    }
+    .welcome-content {
+        background: black;
+        opacity: 0.75;
+        color: white;
+        font-weight: bold;
+        .tag{
+            font-size: 150%;
+        }
+        .value{
+            font-size: 200%;
+            font-weight: bold;
+            color: deeppink;
+        }
     }
 
     .register-view {
         background: black;
-        .register-menu {
-            background: white;
-            opacity: 0.75;
-        }
-        .register-content {
-            background: black;
-            opacity: 0.75;
-            color: white;
-            font-weight: bold;
-        }
         .v-button-link {
             background-color: deeppink;
             margin-top: 1mm;
@@ -89,39 +79,68 @@
 
     }
 
+    .register-menu {
+        background: white;
+        opacity: 0.75;
+    }
+    .register-content {
+        background: black;
+        opacity: 0.75;
+        color: white;
+        font-weight: bold;
+    }
+
     .user-view {
         background: black;
-        .user-menu {
-            background: white;
-            opacity: 0.75;
+        .tag{
+            font-size: 100%;
         }
-        .user-content {
-            background: black;
-            opacity: 0.9;
-            //color: tomato;
-            .photo-layout {
-                background: black;
-            }
-            .account-details {
-                opacity: 0.90;
-                color: white;
-                font-weight: bold;
+        .value{
+            font-size: 150%;
+            font-weight: bold;
+            color: tomato;
+        }
 
-                .tag{
-                    font-size: 100%;
-                }
-                .value{
-                    font-size: 150%;
-                    font-weight: bold;
-                    color: tomato;
-                }
-            }
-        }
         .v-button-link {
             background-color: tomato;
             margin-top: 1mm;
             margin-right: 1mm;
             margin-bottom: 1mm;
+            color: white;
+        }
+    }
+
+    .user-content {
+        background: black;
+        opacity: 0.9;
+    }
+
+    .photo-layout {
+        background: black;
+    }
+    .account-details {
+        color: white;
+        font-weight: bold;
+    }
+
+    .user-menu {
+        background: white;
+        opacity: 0.75;
+    }
+
+    .personal-info {
+        background: transparent;        
+    }
+
+    .editable-label {
+        background-color: white;
+        color: white;
+        .v-label {
+            font-size: 300%;
+        }
+        .v-textfield {
+            background: black;
+            font-size: 300%;
             color: white;
         }
     }
@@ -166,4 +185,19 @@
         opacity: .9;
         color: black;
     }
+
+    .tile-white{
+        background-color: white;
+    }
+
+    .tile-gray{
+        background-color: gray;
+    }
+
+    .birthdata {
+        background: black;
+        color: white;
+        font-size: 200%;
+    }
+
 }

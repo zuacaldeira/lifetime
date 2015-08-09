@@ -48,7 +48,9 @@ public enum StyleClassName {
     REGISTRATION_FORM_ENCRYPTED("rf-encrypted"),
     REGISTRATION_FORM_ENCRYPTED_REPEAT("rf-encrypted-repeat"),
     REGISTRATION_FORM_BIRTHDATE("rf-birthdate"),
-    REGISTRATION_FORM_BIRTHPLACE("rf-birthplace");
+    REGISTRATION_FORM_BIRTHPLACE("rf-birthplace"), 
+    PERSONAL_INFO_LAYOUT("personal-info"), 
+    EDITABLE_LABEL("editable-label");
 
     private final String styleName;
 

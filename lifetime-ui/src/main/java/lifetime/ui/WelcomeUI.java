@@ -25,7 +25,7 @@ public class WelcomeUI extends LifetimeUI {
     /**
      * Servlet listening to requests at non secure part of the application.
      */
-    @WebServlet(urlPatterns = {"/*", "/VAADIN/*"}, name = "WelcomeUIServlet", asyncSupported = true)
+    @WebServlet(urlPatterns = {"/*"}, name = "WelcomeUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = WelcomeUI.class, productionMode = false)
     public static class WelcomeUIServlet extends VaadinServlet {
     }

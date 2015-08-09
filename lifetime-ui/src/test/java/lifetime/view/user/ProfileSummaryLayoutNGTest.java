@@ -15,6 +15,8 @@
  */
 package lifetime.view.user;
 
+import java.util.Date;
+import lifetime.backend.persistence.User;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 
@@ -25,6 +27,7 @@ import org.testng.annotations.Test;
 public class ProfileSummaryLayoutNGTest {
 
     private String USERNAME;
+    private User u = new User(null, "Alexandre", "Z. Caldeira", new Date(), "Piri, Angola", "pt");
 
     /**
      * Test of hashCode method, of class ProfileSummaryLayout.
@@ -32,8 +35,8 @@ public class ProfileSummaryLayoutNGTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        ProfileSummaryLayout instance = new ProfileSummaryLayout(USERNAME);
-        ProfileSummaryLayout instance2 = new ProfileSummaryLayout(USERNAME);
+        ProfileSummaryLayout instance = new ProfileSummaryLayout(USERNAME, u);
+        ProfileSummaryLayout instance2 = new ProfileSummaryLayout(USERNAME, u);
         assertEquals(instance.hashCode(), instance2.hashCode());
     }
 
@@ -43,8 +46,8 @@ public class ProfileSummaryLayoutNGTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        ProfileSummaryLayout instance = new ProfileSummaryLayout(USERNAME);
-        ProfileSummaryLayout instance2 = new ProfileSummaryLayout(USERNAME);
+        ProfileSummaryLayout instance = new ProfileSummaryLayout(USERNAME, u);
+        ProfileSummaryLayout instance2 = new ProfileSummaryLayout(USERNAME, u);
         assertTrue(instance.equals(instance2));
     }
 
@@ -54,8 +57,8 @@ public class ProfileSummaryLayoutNGTest {
     @Test
     public void testInequals() {
         System.out.println("inequals");
-        ProfileSummaryLayout instance = new ProfileSummaryLayout(USERNAME);
-        ProfileSummaryLayout instance2 = new ProfileSummaryLayout(USERNAME+"a");
+        ProfileSummaryLayout instance = new ProfileSummaryLayout(USERNAME, u);
+        ProfileSummaryLayout instance2 = new ProfileSummaryLayout(USERNAME + "a", u);
         ProfileSummaryLayout instance3 = null;
         String instance4 = "";
         assertFalse(instance.equals(instance2));

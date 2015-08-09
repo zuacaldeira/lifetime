@@ -15,7 +15,6 @@
  */
 package lifetime.view.user;
 
-import lifetime.util.ServiceLookupException;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.DataProvider;
@@ -45,16 +44,16 @@ public class AccountDetailsLayoutNGTest {
     @DataProvider(name = "equalsProvider")
     private Object[][] provideEqualsData() {
         return new Object[][]{
-            {new AccountDetailsLayout(USERNAME), new AccountDetailsLayout(USERNAME)}
+            {new AccountDetailsLayout(USERNAME, "pt"), new AccountDetailsLayout(USERNAME, "pt")}
         };
     }
 
     @DataProvider(name = "inequalsProvider")
     private Object[][] provideInequalsData() {
         return new Object[][]{
-            {new AccountDetailsLayout(USERNAME), new AccountDetailsLayout(USERNAME2)},
-            {new AccountDetailsLayout(USERNAME), null},
-            {new AccountDetailsLayout(USERNAME), "Hi"}
+            {new AccountDetailsLayout(USERNAME, "pt"), new AccountDetailsLayout(USERNAME2, "en")},
+            {new AccountDetailsLayout(USERNAME, "pt"), null},
+            {new AccountDetailsLayout(USERNAME, "pt"), "Hi"}
         };
     }
 

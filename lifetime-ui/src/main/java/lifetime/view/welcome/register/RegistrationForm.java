@@ -147,14 +147,16 @@ public class RegistrationForm extends HorizontalLayout {
     public void submit() {
         // Lookup a reference for the account business interface
         LifetimeAccountService service = ServiceLocator.findLifetimeAccountService();
-        // Call backend to register with the collected and verified data
-        boolean successfullRegistration = service.register(firstname.getValue(), lastname.getValue(), email.getValue(), Util.getEncodedPassword(password.getValue()), defaultLanguage.getValue().toString(), birthDate.getValue(), birthPlace.getValue());
-        // Upon successfull registration, return to the welcome page
-        if (successfullRegistration) {
-            Notification.show("Registration concluded.", Notification.Type.TRAY_NOTIFICATION);
-            getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW.getName());
-        } else {
-            Notification.show("Registration failed. Try again later.", Notification.Type.WARNING_MESSAGE);
+        if (service != null) {
+            // Call backend to register with the collected and verified data
+            boolean successfullRegistration = service.register(firstname.getValue(), lastname.getValue(), email.getValue(), Util.getEncodedPassword(password.getValue()), defaultLanguage.getValue().toString(), birthDate.getValue(), birthPlace.getValue());
+            // Upon successfull registration, return to the welcome page
+            if (successfullRegistration) {
+                Notification.show("Registration concluded.", Notification.Type.TRAY_NOTIFICATION);
+                getUI().getNavigator().navigateTo(Navigation.WELCOME_VIEW.getName());
+            } else {
+                Notification.show("Registration failed. Try again later.", Notification.Type.WARNING_MESSAGE);
+            }
         }
     }
 

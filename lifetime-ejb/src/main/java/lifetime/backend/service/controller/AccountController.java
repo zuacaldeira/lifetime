@@ -68,7 +68,7 @@ public class AccountController {
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     @Interceptors({BooleanExceptionInterceptor.class})
     public boolean deleteAccount(String email) {
-        em.remove(getAccount(email));
+        em.remove(read(email));
         return true;
     }
 
@@ -79,11 +79,11 @@ public class AccountController {
      */
     @Interceptors({BooleanExceptionInterceptor.class})
     public boolean hasAccount(String email) {
-        return getAccount(email) != null;
+        return read(email) != null;
     }
 
     @Interceptors({ObjectExceptionInterceptor.class})
-    private Account getAccount(String email) {
+    public Account read(String email) {
         Query q = em.createNamedQuery("Account.findByEmail", Account.class);
         q.setParameter(EMAIL, email);
         List<Account> accounts = q.getResultList();
@@ -101,7 +101,7 @@ public class AccountController {
     @Interceptors({ObjectExceptionInterceptor.class})
     public String getFullName(String username) {
         if (hasAccount(username)) {
-            Account a = getAccount(username);
+            Account a = read(username);
             User u = a.getUser();
             return u.getFirstname() + " " + u.getLastname();
         }
@@ -116,7 +116,7 @@ public class AccountController {
     @Interceptors({ObjectExceptionInterceptor.class})
     public Date getBirthdate(String username) {
         if (hasAccount(username)) {
-            User u = getAccount(username).getUser();
+            User u = read(username).getUser();
             return u.getBirthDate();
         }
         return null;
@@ -130,10 +130,9 @@ public class AccountController {
     @Interceptors({ObjectExceptionInterceptor.class})
     public String getBirthPlace(String username) {
         if (hasAccount(username)) {
-            User u = getAccount(username).getUser();
+            User u = read(username).getUser();
             return u.getBirthPlace();
         }
         return null;
     }
-
 }

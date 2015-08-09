@@ -84,12 +84,6 @@
         <!-- Testing -->
 
         <dependency>
-            <groupId>org.vaadin.addons</groupId>
-            <artifactId>wizards-for-vaadin</artifactId>
-            <version>1.1.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.5.0</version>
@@ -139,6 +133,18 @@
             <type>jar</type>
         </dependency>
         <dependency>
+            <groupId>com.vaadin.tapio</groupId>
+            <artifactId>googlemaps</artifactId>
+            <version>1.1.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.4</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
@@ -165,7 +171,7 @@
             <version>4.1</version>
             <scope>test</scope>
             <type>jar</type>
-        </dependency>
+        </dependency>    
     </dependencies>
         
     <build>

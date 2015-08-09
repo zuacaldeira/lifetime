@@ -31,7 +31,7 @@
 
     <properties>
         <!-- Vaadin specific properties -->
-        <vaadin.version>7.5.2</vaadin.version>
+        <vaadin.version>7.5.1</vaadin.version>
         <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
         <jetty.plugin.version>9.2.3.v20140905</jetty.plugin.version>
         <project.source.version>1.8</project.source.version>
@@ -217,7 +217,6 @@
                     <encoding>${project.encoding}</encoding>
                 </configuration>
             </plugin>
-            
         </plugins>
         
         <pluginManagement>
@@ -317,6 +316,20 @@
             </snapshots>
         </repository>
     </repositories>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>codehaus-snapshots</id>
+            <url>http://nexus.codehaus.org/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+    
     <modules>
         <module>lifetime-ui</module>
         <module>lifetime-production</module>

@@ -13,22 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.util;
+package lifetime.view.welcome;
 
-import lifetime.backend.exceptions.LifetimeException;
+import lifetime.view.welcome.RegisterButton;
+import com.vaadin.server.FontAwesome;
+import lifetime.util.StyleClassName;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-public class ServiceLookupException extends LifetimeException {
+public class RegisterButtonNGTest {
 
-    /**
-     *
-     * @param ex
-     */
-    public ServiceLookupException(Exception ex) {
-        super(ex);
+    public RegisterButtonNGTest() {
+    }
+
+    @Test
+    public void testRegisterButton() {
+        String language = "en";
+        RegisterButton button = new RegisterButton(language);
+        Assert.assertEquals(button.getId(), StyleClassName.REGISTER_BUTTON.getId());
+        Assert.assertEquals(button.getIcon(), FontAwesome.PLUS);
     }
 
 }
