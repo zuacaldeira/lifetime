@@ -29,7 +29,7 @@ public enum Location {
         this.url = url;
     }
 
-    public String getUrl() {
+    public String getUri() {
         return url;
     }
 

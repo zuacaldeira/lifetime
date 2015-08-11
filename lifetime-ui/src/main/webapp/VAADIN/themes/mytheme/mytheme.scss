@@ -33,12 +33,12 @@
     @include valo;
 
     // Insert your own theme rules here
-    .welcome-ui {
+    .lifetime-ui {
         background-color: transparent;
     }
 
-    .welcome-view {
-        background: black;
+    .lifetime-view {
+        background: white;
         .v-button-link {
             background-color: deeppink;
             margin-top: 1mm;
@@ -48,11 +48,12 @@
         }
 
     }
-    .welcome-menu {
+    .lifetime-menu {
         background: white;
         opacity: 0.75;
     }
-    .welcome-content {
+
+    .lifetime-content {
         background: black;
         opacity: 0.75;
         color: white;
@@ -67,107 +68,6 @@
         }
     }
 
-    .register-view {
-        background: black;
-        .v-button-link {
-            background-color: deeppink;
-            margin-top: 1mm;
-            margin-right: 1mm;
-            margin-bottom: 1mm;
-            color: white;
-        }
-
-    }
-
-    .register-menu {
-        background: white;
-        opacity: 0.75;
-    }
-    .register-content {
-        background: black;
-        opacity: 0.75;
-        color: white;
-        font-weight: bold;
-    }
-
-    .user-view {
-        background: black;
-        .tag{
-            font-size: 100%;
-        }
-        .value{
-            font-size: 150%;
-            font-weight: bold;
-            color: tomato;
-        }
-
-        .v-button-link {
-            background-color: tomato;
-            margin-top: 1mm;
-            margin-right: 1mm;
-            margin-bottom: 1mm;
-            color: white;
-        }
-    }
-
-    .user-content {
-        background: black;
-        opacity: 0.9;
-    }
-
-    .photo-layout {
-        background: black;
-    }
-    .account-details {
-        color: white;
-        font-weight: bold;
-    }
-
-    .user-menu {
-        background: white;
-        opacity: 0.75;
-    }
-
-    .personal-info {
-        background: transparent;        
-    }
-
-    .editable-label {
-        background-color: white;
-        color: white;
-        .v-label {
-            font-size: 300%;
-        }
-        .v-textfield {
-            background: black;
-            font-size: 300%;
-            color: white;
-        }
-    }
-
-    .tag{
-        font-size: 100%;
-    }
-
-    .value{
-        font-size: 150%;
-        font-weight: bold;
-    }
-
-    .v-button-small{
-        background-color: black;
-        color: white;
-    }
-
-    .v-textarea {
-        background: transparent;
-        border: none;
-        color: red;
-        font-size: large;
-        font-family: monospace;
-        text-align: justify center;
-    }
-
     .forms {
         background: transparent;
         color: white;
@@ -180,24 +80,15 @@
         font-weight: bolder;
     }
 
-    .combo-box{
-        background: white;
-        opacity: .9;
-        color: black;
+    .data {
+        color: url;
+        font-size: 150%;
     }
-
-    .tile-white{
-        background-color: white;
-    }
-
-    .tile-gray{
-        background-color: gray;
-    }
-
-    .birthdata {
-        background: black;
-        color: white;
+    .data:hover {
+        opacity: .5;
+        color: deeppink;
         font-size: 200%;
+        font-weight: bolder;
     }
 
 }

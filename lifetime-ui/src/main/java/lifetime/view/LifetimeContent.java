@@ -37,14 +37,18 @@ public abstract class LifetimeContent extends HorizontalLayout {
 
     @Override
     public int hashCode() {
-        int hash = super.hashCode();
-        hash = 79 * hash + Objects.hashCode(this.language);
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.language);
         return hash;
     }
 
+
     @Override
     public boolean equals(Object obj) {
-        if (!super.equals(obj)) {
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof LifetimeContent)) {
             return false;
         }
         final LifetimeContent other = (LifetimeContent) obj;

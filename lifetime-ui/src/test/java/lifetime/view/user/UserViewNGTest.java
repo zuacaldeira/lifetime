@@ -15,6 +15,7 @@
  */
 package lifetime.view.user;
 
+import lifetime.backend.util.TestHelper;
 import lifetime.view.LifetimeBackground;
 import lifetime.view.LifetimeContent;
 import lifetime.view.LifetimeMenu;
@@ -37,7 +38,8 @@ public class UserViewNGTest {
     @Test
     public void testCreateMenu() {
         System.out.println("createMenu");
-        UserView view = new UserView("pt");
+        String username = TestHelper.getRandomString();
+        UserView view = new UserView(username, "pt");
         LifetimeMenu menu = view.getMenu();
         Assert.assertNotNull(menu);
         assertTrue(menu instanceof UserMenu);
@@ -50,7 +52,8 @@ public class UserViewNGTest {
     @Test
     public void testCreateContent() {
         System.out.println("createContent");
-        UserView view = new UserView("pt");
+        String username = TestHelper.getRandomString();
+        UserView view = new UserView(username, "pt");
         LifetimeContent content = view.getContent();
         Assert.assertNotNull(content);
         assertTrue(content instanceof UserContent);
@@ -62,7 +65,8 @@ public class UserViewNGTest {
     @Test
     public void testCreateBackground() {
         System.out.println("createBackground");
-        UserView view = new UserView("pt");
+        String username = TestHelper.getRandomString();
+        UserView view = new UserView(username, "pt");
         LifetimeBackground background = view.getBackground();
         Assert.assertNotNull(background);
         assertTrue(background instanceof UserBackground);

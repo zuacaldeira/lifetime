@@ -30,9 +30,11 @@ class UserMenu extends LifetimeMenu {
     private final VitaeButton vitaeButton;
     private final TimelineButton timelineButton;
     private final YellowPagesButton yellowPagesButton;
+    private final String username;
 
-    public UserMenu(String language) {
+    public UserMenu(String username, String language) {
         super(language);
+        this.username = username;
         setId(StyleClassName.USER_MENU.getId());
         setStyleName(StyleClassName.USER_MENU.getStyleName());
         homeButton = new LifetimeHomeButton(language);

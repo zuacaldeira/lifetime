@@ -47,13 +47,13 @@ public class LocationNGTest {
     }
 
     /**
-     * Test of getUrl method, of class Location.
+     * Test of getUri method, of class Location.
      */
     @Test
     public void testGetUrl() {
         System.out.println("getUrl");
-        Assert.assertEquals(Location.HOME.getUrl(), "/lifetime");
-        Assert.assertEquals(Location.USER.getUrl(), "/lifetime/user");
+        Assert.assertEquals(Location.HOME.getUri(), "/lifetime");
+        Assert.assertEquals(Location.USER.getUri(), "/lifetime/user");
     }
 
 }

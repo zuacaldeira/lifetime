@@ -12740,15 +12740,15 @@ div.v-layout.v-horizontal.v-widget {
 	overflow: hidden;
 }
 
-.mytheme .welcome-ui {
+.mytheme .lifetime-ui {
 	background-color: transparent;
 }
 
-.mytheme .welcome-view {
+.mytheme .lifetime-view {
 	background: black;
 }
 
-.mytheme .welcome-view .v-button-link {
+.mytheme .lifetime-view .v-button-link {
 	background-color: deeppink;
 	margin-top: 1mm;
 	margin-right: 1mm;
@@ -12756,133 +12756,26 @@ div.v-layout.v-horizontal.v-widget {
 	color: white;
 }
 
-.mytheme .welcome-menu {
+.mytheme .lifetime-menu {
 	background: white;
 	opacity: 0.75;
 }
 
-.mytheme .welcome-content {
+.mytheme .lifetime-content {
 	background: black;
 	opacity: 0.75;
 	color: white;
 	font-weight: bold;
 }
 
-.mytheme .welcome-content .tag {
+.mytheme .lifetime-content .tag {
 	font-size: 150%;
 }
 
-.mytheme .welcome-content .value {
+.mytheme .lifetime-content .value {
 	font-size: 200%;
 	font-weight: bold;
 	color: deeppink;
-}
-
-.mytheme .register-view {
-	background: black;
-}
-
-.mytheme .register-view .v-button-link {
-	background-color: deeppink;
-	margin-top: 1mm;
-	margin-right: 1mm;
-	margin-bottom: 1mm;
-	color: white;
-}
-
-.mytheme .register-menu {
-	background: white;
-	opacity: 0.75;
-}
-
-.mytheme .register-content {
-	background: black;
-	opacity: 0.75;
-	color: white;
-	font-weight: bold;
-}
-
-.mytheme .user-view {
-	background: black;
-}
-
-.mytheme .user-view .tag {
-	font-size: 100%;
-}
-
-.mytheme .user-view .value {
-	font-size: 150%;
-	font-weight: bold;
-	color: tomato;
-}
-
-.mytheme .user-view .v-button-link {
-	background-color: tomato;
-	margin-top: 1mm;
-	margin-right: 1mm;
-	margin-bottom: 1mm;
-	color: white;
-}
-
-.mytheme .user-content {
-	background: black;
-	opacity: 0.9;
-}
-
-.mytheme .photo-layout {
-	background: black;
-}
-
-.mytheme .account-details {
-	color: white;
-	font-weight: bold;
-}
-
-.mytheme .user-menu {
-	background: white;
-	opacity: 0.75;
-}
-
-.mytheme .personal-info {
-	background: transparent;
-}
-
-.mytheme .editable-label {
-	background-color: white;
-	color: white;
-}
-
-.mytheme .editable-label .v-label {
-	font-size: 300%;
-}
-
-.mytheme .editable-label .v-textfield {
-	background: black;
-	font-size: 300%;
-	color: white;
-}
-
-.mytheme .tag {
-	font-size: 100%;
-}
-
-.mytheme .value {
-	font-size: 150%;
-	font-weight: bold;
-}
-
-.mytheme .v-button-small {
-	background-color: black;
-	color: white;
-}
-
-.mytheme .v-textarea {
-	background: transparent;
-	border: none;
-	color: red;
-	font-size: large;
-	font-family: monospace;
-	text-align: justify center;
 }
 
 .mytheme .forms {
@@ -12897,22 +12790,17 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: bolder;
 }
 
-.mytheme .combo-box {
+.mytheme .data {
 	background: white;
-	opacity: 0.9;
-	color: black;
-}
-
-.mytheme .tile-white {
-	background-color: white;
-}
-
-.mytheme .tile-gray {
-	background-color: gray;
-}
-
-.mytheme .birthdata {
-	background: black;
+	opacity: 0.95;
 	color: white;
-	font-size: 200%;
+	font-size: 150%;
+	font-weight: bold;
+}
+
+.mytheme .data:hover {
+	opacity: 0.5;
+	color: deeppink;
+	font-size: 150%;
+	font-weight: bolder;
 }

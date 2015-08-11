@@ -15,6 +15,7 @@
  */
 package lifetime.view.user;
 
+import lifetime.backend.util.TestHelper;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 
@@ -22,18 +23,19 @@ import org.testng.annotations.Test;
  *
  * @author zua
  */
-public class UserContentNGTest {
+public class ProfileViewNGTest {
 
     /**
-     * Test of hashCode method, of class UserContent.
+     * Test of hashCode method, of class ProfileView.
      */
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        UserContent instancePt1 = new UserContent("pt");
-        UserContent instancePt2 = new UserContent("pt");
-        UserContent instanceEn1 = new UserContent("en");
-        UserContent instanceEn2 = new UserContent("en");
+        String username = TestHelper.getRandomString();
+        ProfileView instancePt1 = new ProfileView(username, "pt");
+        ProfileView instancePt2 = new ProfileView(username, "pt");
+        ProfileView instanceEn1 = new ProfileView(username, "en");
+        ProfileView instanceEn2 = new ProfileView(username, "en");
         assertEquals(instancePt1.hashCode(), instancePt2.hashCode());
         assertEquals(instanceEn1.hashCode(), instanceEn2.hashCode());
         assertNotEquals(instancePt1.hashCode(), instanceEn1.hashCode());
@@ -41,15 +43,16 @@ public class UserContentNGTest {
     }
 
     /**
-     * Test of equals method, of class UserContent.
+     * Test of equals method, of class ProfileView.
      */
     @Test
     public void testEquals() {
         System.out.println("equals");
-        UserContent instancePt1 = new UserContent("pt");
-        UserContent instancePt2 = new UserContent("pt");
-        UserContent instanceEn1 = new UserContent("en");
-        UserContent instanceEn2 = new UserContent("en");
+        String username = TestHelper.getRandomString();
+        ProfileView instancePt1 = new ProfileView(username, "pt");
+        ProfileView instancePt2 = new ProfileView(username, "pt");
+        ProfileView instanceEn1 = new ProfileView(username, "en");
+        ProfileView instanceEn2 = new ProfileView(username, "en");
         assertTrue(instancePt1.equals(instancePt2));
         assertTrue(instanceEn1.equals(instanceEn2));
         assertFalse(instancePt1.equals(instanceEn1));
@@ -57,13 +60,13 @@ public class UserContentNGTest {
     }
 
     /**
-     * Test of equals method, of class UserContent.
+     * Test of equals method, of class ProfileView.
      */
     @Test
     public void testInequals() {
         System.out.println("inequals");
-        UserContent instancePt = new UserContent("pt");
-        UserContent instanceEn = new UserContent("en");
+        ProfileView instancePt = new ProfileView(TestHelper.getRandomString(), "pt");
+        ProfileView instanceEn = new ProfileView(TestHelper.getRandomString(), "en");
         assertFalse(instancePt.equals(instanceEn));
         assertFalse(instanceEn.equals(instancePt));
         assertFalse(instancePt.equals(null));

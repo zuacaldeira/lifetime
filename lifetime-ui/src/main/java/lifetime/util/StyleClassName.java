@@ -23,9 +23,13 @@ public enum StyleClassName {
 
     /**
      * UIs.
+     *//**
+     * UIs.
      */
+    LIFETIME_UI("lifetime-ui"),
     WELCOME_UI("welcome-ui"),
     USER_UI("user-ui"),
+    LIFETIME_VIEW("lifetime-view"),
     WELCOME_VIEW("welcome-view"),
     USER_VIEW("user-view"),
     REGISTER_VIEW("register-view"),

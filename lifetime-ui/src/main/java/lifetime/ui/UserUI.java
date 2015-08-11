@@ -6,6 +6,7 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import java.security.Principal;
 import javax.servlet.annotation.WebServlet;
 import lifetime.util.StyleClassName;
 
@@ -15,11 +16,27 @@ public class UserUI extends LifetimeUI {
 
     @Override
     protected void init(VaadinRequest request) {
+
         setStyleName(StyleClassName.USER_UI.getStyleName());
         setId(StyleClassName.USER_UI.getId());
-        setNavigator(new Navigator(this, this));
-        getNavigator().addProvider(LifetimeViewProvider.getUserViewProvider(getLanguage()));
-        getNavigator().navigateTo(Navigation.USER_VIEW.getName());
+
+        // check credentials
+        Principal p = request.getUserPrincipal();
+        if (p != null) {
+            setNavigator(new Navigator(this, this));
+            getNavigator().addProvider(LifetimeViewProvider.getUserViewProvider(p.getName(), getLanguage()));
+            getNavigator().navigateTo(Navigation.USER_VIEW.getName());
+        }/* UNCOMMENT else {
+         System.out.println("I am here " + Page.getCurrent());
+         getNavigator().addProvider(LifetimeViewProvider.getUserViewProvider(p.getName(), getLanguage()));
+         Page.getCurrent().setLocation(Location.HOME.getUri()); 
+         }UNCOMMENT */ else { // TODO: Development - remove after security
+            setNavigator(new Navigator(this, this));
+            getNavigator().addProvider(LifetimeViewProvider.getUserViewProvider("zuacaldeira@gmail.com", getLanguage()));
+            getNavigator().navigateTo(Navigation.USER_VIEW.getName());
+
+        }
+
     }
 
     /**

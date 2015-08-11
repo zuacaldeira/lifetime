@@ -32,9 +32,9 @@ public class PhotoReceiver implements Upload.Receiver, Upload.SucceededListener 
 
     private transient ByteArrayOutputStream baos;
     private final String username;
-    private final PhotoLayout layout;
+    private final ProfileView layout;
 
-    public PhotoReceiver(String username, PhotoLayout layout) {
+    public PhotoReceiver(String username, ProfileView layout) {
         this.username = username;
         this.layout = layout;
         this.baos = new ByteArrayOutputStream();
@@ -50,7 +50,7 @@ public class PhotoReceiver implements Upload.Receiver, Upload.SucceededListener 
         try {
             baos.close();
             ServiceLocator.findLifetimeAccountService().addPhoto(new Photo(null, username, baos.toByteArray()));
-            layout.showPhoto();
+            layout.addPhoto();
         } catch (IOException ex) {
             Logger.getLogger(UserContent.class.getName()).log(Level.SEVERE, null, ex);
         }

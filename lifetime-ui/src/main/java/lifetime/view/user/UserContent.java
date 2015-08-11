@@ -15,10 +15,6 @@
  */
 package lifetime.view.user;
 
-import com.vaadin.server.VaadinService;
-import java.security.Principal;
-import java.util.Objects;
-import lifetime.util.ServiceLocator;
 import lifetime.view.LifetimeContent;
 import lifetime.util.StyleClassName;
 
@@ -26,52 +22,14 @@ import lifetime.util.StyleClassName;
  *
  * @author <a href="mailto:zuacaldeira@gmail.com>Alexandre Caldeira</a>
  */
-class UserContent extends LifetimeContent {
-
-    private ProfileSummaryLayout profile;
-    private String username;
+public abstract class UserContent extends LifetimeContent {
 
     public UserContent(String language) {
         super(language);
         setId(StyleClassName.USER_CONTENT.getId());
         setStyleName(StyleClassName.USER_CONTENT.getStyleName());
     }
-
-    @Override
-    public void attach() {
-        super.attach(); //To change body of generated methods, choose Tools | Templates.
-        initCredentials();
-        initLayout();
-    }
-
-    private void initCredentials() {
-        Principal p = VaadinService.getCurrentRequest().getUserPrincipal();
-        if (p != null) {
-            username = p.getName();
-        } else {
-            username = "zuacaldeira@gmail.com";
-        }
-    }
-
-    private void initLayout() {
-        profile = new ProfileSummaryLayout(username, ServiceLocator.findLifetimeAccountService().getUser(username));
-        addComponent(profile);
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(getLanguage());
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof UserContent)) {
-            return false;
-        }
-        final UserContent other = (UserContent) obj;
-        return Objects.equals(this.getLanguage(), other.getLanguage());
-    }
+    
+    
 
 }

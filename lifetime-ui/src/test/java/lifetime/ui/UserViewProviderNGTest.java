@@ -15,9 +15,8 @@
  */
 package lifetime.ui;
 
-import com.vaadin.navigator.View;
+import lifetime.backend.util.TestHelper;
 import org.testng.Assert;
-import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 
 /**
@@ -35,7 +34,7 @@ public class UserViewProviderNGTest {
     @Test
     public void testGetViewName() {
         System.out.println("getViewName");
-        UserViewProvider provider = new UserViewProvider("pt");
+        UserViewProvider provider = new UserViewProvider(TestHelper.getRandomString(), "pt");
         Assert.assertEquals(provider.getViewName(Navigation.USER_VIEW.getName()), Navigation.USER_VIEW.getName());
     }
 
@@ -45,7 +44,7 @@ public class UserViewProviderNGTest {
     @Test
     public void testGetView() {
         System.out.println("getView");
-        UserViewProvider provider = new UserViewProvider("pt");
+        UserViewProvider provider = new UserViewProvider(TestHelper.getRandomString(), "pt");
         Assert.assertNotNull(provider.getView(provider.getViewName(Navigation.USER_VIEW.getName())));
     }
 

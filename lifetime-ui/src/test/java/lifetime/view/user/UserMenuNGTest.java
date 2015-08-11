@@ -15,6 +15,7 @@
  */
 package lifetime.view.user;
 
+import lifetime.backend.util.TestHelper;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
@@ -34,7 +35,7 @@ public class UserMenuNGTest {
     @Test
     public void testButtonClick() {
         System.out.println("buttonClick");
-        UserMenu instance = new UserMenu("pt");
+        UserMenu instance = new UserMenu(TestHelper.getRandomString(), "pt");
         Assert.assertTrue(instance.getHomeButton().isEnabled());
         Assert.assertTrue(instance.getVitaeButton().isEnabled());
         Assert.assertTrue(instance.getTimelineButton().isEnabled());
@@ -47,8 +48,9 @@ public class UserMenuNGTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        UserMenu instance = new UserMenu("pt");
-        UserMenu instance2 = new UserMenu("pt");
+        String username = TestHelper.getRandomString();
+        UserMenu instance = new UserMenu(username, "pt");
+        UserMenu instance2 = new UserMenu(username, "pt");
         assertEquals(instance.hashCode(), instance2.hashCode());
     }
 
@@ -58,8 +60,9 @@ public class UserMenuNGTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        UserMenu instance = new UserMenu("pt");
-        UserMenu instance2 = new UserMenu("pt");
+        String username = TestHelper.getRandomString();
+        UserMenu instance = new UserMenu(username, "pt");
+        UserMenu instance2 = new UserMenu(username, "pt");
         assertTrue(instance.equals(instance2));
     }
 
@@ -69,8 +72,9 @@ public class UserMenuNGTest {
     @Test
     public void testInequals() {
         System.out.println("inequals");
-        UserMenu instance = new UserMenu("pt");
-        UserMenu instance2 = new UserMenu("en");
+        String username = TestHelper.getRandomString();
+        UserMenu instance = new UserMenu(username, "pt");
+        UserMenu instance2 = new UserMenu(username, "en");
         UserMenu instance3 = null;
         Object instance4 = "Hi";
         assertFalse(instance.equals(instance2));
@@ -83,7 +87,8 @@ public class UserMenuNGTest {
      */
     @Test
     public void testGetLifetimeButton() {
-        UserMenu userMenu = new UserMenu("pt");
+        String username = TestHelper.getRandomString();
+        UserMenu userMenu = new UserMenu(username, "pt");
         Assert.assertNotNull(userMenu.getTimelineButton());
     }
 
@@ -92,7 +97,8 @@ public class UserMenuNGTest {
      */
     @Test
     public void testGetVitaeButton() {
-        UserMenu userMenu = new UserMenu("pt");
+        String username = TestHelper.getRandomString();
+        UserMenu userMenu = new UserMenu(username, "pt");
         Assert.assertNotNull(userMenu.getVitaeButton());
     }
 
@@ -101,7 +107,8 @@ public class UserMenuNGTest {
      */
     @Test
     public void testGetYellowPages() {
-        UserMenu userMenu = new UserMenu("pt");
+        String username = TestHelper.getRandomString();
+        UserMenu userMenu = new UserMenu(username, "pt");
         Assert.assertNotNull(userMenu.getYellowPagesButton());
     }
 }

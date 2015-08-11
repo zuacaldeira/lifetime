@@ -37,8 +37,8 @@ public class LifetimeViewProvider {
         return new WelcomeViewProvider(language);
     }
     
-    public static ViewProvider getUserViewProvider(String language) {
-        return new UserViewProvider(language);
+    public static ViewProvider getUserViewProvider(String username, String language) {
+        return new UserViewProvider(username, language);
     }
 
     

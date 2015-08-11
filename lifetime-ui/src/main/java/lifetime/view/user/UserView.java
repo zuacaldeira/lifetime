@@ -27,20 +27,23 @@ import lifetime.util.StyleClassName;
  */
 public class UserView extends LifetimeView {
 
-    public UserView(String language) {
+    private final String username;
+
+    public UserView(String username, String language) {
         super(language);
+        this.username = username;
         setId(StyleClassName.USER_VIEW.getId());
-        setStyleName(StyleClassName.USER_VIEW.getStyleName());
+        setStyleName(StyleClassName.LIFETIME_VIEW.getStyleName());
     }
 
     @Override
     protected LifetimeMenu createMenu() {
-        return new UserMenu(getLanguage());
+        return new UserMenu(username, getLanguage());
     }
 
     @Override
     protected LifetimeContent createContent() {
-        return new UserContent(getLanguage());
+        return new ProfileView(username, getLanguage());
     }
 
     @Override

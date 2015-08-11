@@ -26,9 +26,11 @@ import lifetime.view.user.UserView;
 public class UserViewProvider implements ViewProvider {
 
     private final String language;
+    private final String username;
 
-    public UserViewProvider(String language) {
+    public UserViewProvider(String username, String language) {
         this.language = language;
+        this.username = username;
     }
 
     @Override
@@ -38,6 +40,6 @@ public class UserViewProvider implements ViewProvider {
 
     @Override
     public View getView(String viewName) {
-        return new UserView(language);
+        return new UserView(username, language);
     }
 }
