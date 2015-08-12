@@ -15,19 +15,17 @@
  */
 package lifetime.view.user;
 
-import lifetime.view.LifetimeContent;
-import lifetime.util.StyleClassName;
+import com.vaadin.server.FontAwesome;
+import lifetime.view.custom.LifetimeButtonLink;
 
 /**
  *
- * @author <a href="mailto:zuacaldeira@gmail.com>Alexandre Caldeira</a>
+ * @author zua
  */
-public abstract class UserContent extends LifetimeContent {
+public class WorkButton extends LifetimeButtonLink {
 
-    public UserContent(String language) {
-        super(language);
-        setId(StyleClassName.USER_CONTENT.getId());
-        setStyleName(StyleClassName.LIFETIME_CONTENT.getStyleName());
+    public WorkButton(String language) {
+        super("Work", language, FontAwesome.WRENCH);
     }
 
 }

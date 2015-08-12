@@ -31,21 +31,25 @@ class UserMenu extends LifetimeMenu {
     private final TimelineButton timelineButton;
     private final YellowPagesButton yellowPagesButton;
     private final String username;
+    private final WorkButton work;
 
     public UserMenu(String username, String language) {
         super(language);
         this.username = username;
+        System.out.println("USERNAME IN USER_MENU-> " + username);
         setId(StyleClassName.USER_MENU.getId());
-        setStyleName(StyleClassName.USER_MENU.getStyleName());
+        setStyleName(StyleClassName.LIFETIME_MENU.getStyleName());
         homeButton = new LifetimeHomeButton(language);
         vitaeButton = new VitaeButton(language);
         timelineButton = new TimelineButton(language);
         yellowPagesButton = new YellowPagesButton(language);
+        work = new WorkButton(language);
 
         addControl(homeButton);
         addControl(vitaeButton);
         addControl(timelineButton);
         addControl(yellowPagesButton);
+        addControl(work);
     }
 
     public LifetimeHomeButton getHomeButton() {

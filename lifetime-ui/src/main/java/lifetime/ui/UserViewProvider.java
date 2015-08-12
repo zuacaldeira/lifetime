@@ -40,6 +40,8 @@ public class UserViewProvider implements ViewProvider {
 
     @Override
     public View getView(String viewName) {
+        System.out.println("UserViewProvider#getView(): USERNAME -> " + username);
+        System.out.println("UserViewProvider#getView(): VIEW_NAME -> " + viewName);
         return new UserView(username, language);
     }
 }

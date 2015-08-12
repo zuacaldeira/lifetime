@@ -25,6 +25,7 @@ import lifetime.util.StyleClassName;
  * @author zua
  */
 public class WelcomeContent extends LifetimeContent {
+
     private final HomeView contentView;
 
     public WelcomeContent(String language) {
@@ -33,8 +34,8 @@ public class WelcomeContent extends LifetimeContent {
         contentView = new HomeView(getLanguage());
         addComponent(contentView);
         setComponentAlignment(contentView, Alignment.MIDDLE_CENTER);
-        setStyleName(StyleClassName.WELCOME_CONTENT.getStyleName());
         setId(StyleClassName.WELCOME_CONTENT.getId());
+        setStyleName(StyleClassName.LIFETIME_CONTENT.getStyleName());
     }
 
     @Override
@@ -59,8 +60,5 @@ public class WelcomeContent extends LifetimeContent {
     public HomeView getContentView() {
         return contentView;
     }
-
-    
-    
 
 }

@@ -84,6 +84,10 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
      * layer of this absolute layout
      */
     private VerticalLayout base;
+    /**
+     * The interacting user.
+     */
+    private final String username;
 
     /**
      * Initializes the structure of user interface. Delegates the choice of
@@ -91,8 +95,9 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
      *
      * @param language The language the user is interacting with the system.
      */
-    public LifetimeView(String language) {
+    public LifetimeView(String username, String language) {
         this.language = language;
+        this.username = username;
 
         // Let subclasses initiate the adapters for the background, menu and content
         setSizeFull();
@@ -142,6 +147,15 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
      */
     public String getLanguage() {
         return language;
+    }
+
+    /**
+     * Retrieves the username of the user interacting with the system.
+     *
+     * @return
+     */
+    public String getUsername() {
+        return username;
     }
 
     /**
@@ -197,6 +211,7 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
+
     }
 
     @Override

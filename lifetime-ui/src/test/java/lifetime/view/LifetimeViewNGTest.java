@@ -40,7 +40,7 @@ public class LifetimeViewNGTest {
     @Test
     public void testGetBackground() {
         System.out.println("getBackground");
-        LifetimeView instance = new LifetimeView("en") {
+        LifetimeView instance = new LifetimeView(null,"en") {
 
             @Override
             protected LifetimeMenu createMenu() {
@@ -70,7 +70,7 @@ public class LifetimeViewNGTest {
     @Test
     public void testGetMenu() {
         System.out.println("getMenu");
-        LifetimeView instance = new LifetimeView("en") {
+        LifetimeView instance = new LifetimeView(null,"en") {
 
             @Override
             protected LifetimeMenu createMenu() {
@@ -100,7 +100,7 @@ public class LifetimeViewNGTest {
     @Test
     public void testGetContent() {
         System.out.println("getContent");
-        LifetimeView instance = new LifetimeView("en") {
+        LifetimeView instance = new LifetimeView(null,"en") {
 
             @Override
             protected LifetimeMenu createMenu() {
@@ -130,7 +130,7 @@ public class LifetimeViewNGTest {
     @Test
     public void testGetLanguage() {
         System.out.println("getLanguage");
-        LifetimeView instance = new LifetimeView("en") {
+        LifetimeView instance = new LifetimeView(null,"en") {
 
             @Override
             protected LifetimeMenu createMenu() {
@@ -158,7 +158,7 @@ public class LifetimeViewNGTest {
     public void testEquals() {
         final String language = "pt";
         final String language2 = "en";
-        LifetimeView lView1 = new LifetimeView(language) {
+        LifetimeView lView1 = new LifetimeView(null,language) {
             @Override
             protected LifetimeMenu createMenu() {
                 return new WelcomeMenu(language);
@@ -175,7 +175,7 @@ public class LifetimeViewNGTest {
             }
         };
 
-        LifetimeView lView2 = new LifetimeView(language) {
+        LifetimeView lView2 = new LifetimeView(null,language) {
             @Override
             protected LifetimeMenu createMenu() {
                 return new WelcomeMenu(language);
@@ -193,7 +193,7 @@ public class LifetimeViewNGTest {
             }
         };
 
-        LifetimeView lView4 = new LifetimeView(language2) {
+        LifetimeView lView4 = new LifetimeView(null,language2) {
             @Override
             protected LifetimeMenu createMenu() {
                 return new WelcomeMenu(language2);

@@ -12745,7 +12745,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .lifetime-view {
-	background: black;
+	background: white;
 }
 
 .mytheme .lifetime-view .v-button-link {
@@ -12791,16 +12791,13 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .data {
-	background: white;
-	opacity: 0.95;
-	color: white;
+	color: url;
 	font-size: 150%;
-	font-weight: bold;
 }
 
 .mytheme .data:hover {
 	opacity: 0.5;
 	color: deeppink;
-	font-size: 150%;
+	font-size: 200%;
 	font-weight: bolder;
 }

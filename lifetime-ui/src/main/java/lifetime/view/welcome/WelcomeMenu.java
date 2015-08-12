@@ -38,7 +38,7 @@ public class WelcomeMenu extends LifetimeMenu {
         addControl(registerButton);
         addControl(loginButton);
         addControl(contactButton);
-        setStyleName(StyleClassName.WELCOME_MENU.getStyleName());
+        setStyleName(StyleClassName.LIFETIME_MENU.getStyleName());
         setId(StyleClassName.WELCOME_MENU.getId());
     }
 

@@ -19,6 +19,7 @@ public class UserUI extends LifetimeUI {
 
         setStyleName(StyleClassName.USER_UI.getStyleName());
         setId(StyleClassName.USER_UI.getId());
+        setNavigator(new Navigator(this, this));
 
         // check credentials
         Principal p = request.getUserPrincipal();
@@ -26,13 +27,15 @@ public class UserUI extends LifetimeUI {
             setNavigator(new Navigator(this, this));
             getNavigator().addProvider(LifetimeViewProvider.getUserViewProvider(p.getName(), getLanguage()));
             getNavigator().navigateTo(Navigation.USER_VIEW.getName());
-        }/* UNCOMMENT else {
-         System.out.println("I am here " + Page.getCurrent());
+        } /* 
+         UNCOMMENT else {
          getNavigator().addProvider(LifetimeViewProvider.getUserViewProvider(p.getName(), getLanguage()));
          Page.getCurrent().setLocation(Location.HOME.getUri()); 
-         }UNCOMMENT */ else { // TODO: Development - remove after security
+         }
+         UNCOMMENT */ else { // TODO: Development - remove after security
             setNavigator(new Navigator(this, this));
-            getNavigator().addProvider(LifetimeViewProvider.getUserViewProvider("zuacaldeira@gmail.com", getLanguage()));
+            getNavigator().addProvider(LifetimeViewProvider.getGuestViewProvider("zuacaldeira@gmail.com", getLanguage()));
+            System.out.println("I am here " + getNavigator().getState());
             getNavigator().navigateTo(Navigation.USER_VIEW.getName());
 
         }

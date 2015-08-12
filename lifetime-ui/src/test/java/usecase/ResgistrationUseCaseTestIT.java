@@ -170,7 +170,7 @@ public class ResgistrationUseCaseTestIT extends Arquillian {
     @DataProvider(name = "registration")
     private Object[][] provideRegistrationData() {
         return new Object[][]{
-            {"Alexandre", "Zua Caldeira", TestHelper.getRandomString() + "@selenium-test.com", "Password1!", "Password1!", new Date(), "Piri, Angola"}
+            {"Alexandre-test", "Zua Caldeira-test", TestHelper.getRandomString() + "@selenium-test.com", "Password1!", "Password1!", new Date(), "Lisboa, Portugal"}
         };
     }
 

@@ -72,13 +72,14 @@ public class ProfileView extends UserContent {
     public ProfileView(String username, String language) {
         super(language);
         this.username = username;
+        System.out.println("USERNAME PASSED TO ProfILE VIEW -> " + username);
         base = new HorizontalLayout();
         base.setSizeFull();
         //base.setHeight("75%");
         //setCaption("Who am I?");
         base.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
         setSizeFull();
-
+        
         addComponent(base);
         //setStyleName(username);
     }
