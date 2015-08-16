@@ -28,6 +28,11 @@ class LifetimeEventView extends AbsoluteLayout {
 
     public LifetimeEventView(LifetimeEvent event) {
         this.event = event;
+        
+    }
+
+    public LifetimeEvent getEvent() {
+        return event;
     }
 
 }

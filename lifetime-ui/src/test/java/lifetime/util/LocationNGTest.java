@@ -34,7 +34,7 @@ public class LocationNGTest {
     @Test
     public void testValues() {
         System.out.println("values");
-        Assert.assertEquals(Location.values(), new Location[]{Location.HOME, Location.USER});
+        Assert.assertEquals(Location.values(), new Location[]{Location.HOME, Location.USER, Location.VITAE});
     }
 
     /**

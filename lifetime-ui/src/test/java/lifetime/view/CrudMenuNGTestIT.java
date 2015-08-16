@@ -15,6 +15,7 @@
  */
 package lifetime.view;
 
+import java.util.concurrent.TimeUnit;
 import util.TestBundle;
 import lifetime.util.StyleClassName;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -70,14 +71,22 @@ public class CrudMenuNGTestIT extends Arquillian {
         System.out.println("addControls IT");
         // load page lifetime/user#!vitae
         webDriver.get(TestBundle.VITAE_URL);
-        // Find the add button
-        WebElement profile = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.BACK_TO_PROFILE_BUTTON.getId()));
-        WebElement cButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.C_BUTTON.getId()));
-        WebElement rButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.R_BUTTON.getId()));
-        WebElement uButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.U_BUTTON.getId()));
-        WebElement dButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionINPUT(StyleClassName.D_BUTTON.getId()));
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+        WebElement goVitae = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.VITAE_BUTTON.getId()));
+        goVitae.click();
         
-        Assert.assertNotNull(profile);
+        
+
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        // Find the add button
+        WebElement profile = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.BACK_TO_PROFILE_BUTTON.getId()));
+        WebElement cButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.C_BUTTON.getId()));
+        WebElement rButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.R_BUTTON.getId()));
+        WebElement uButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.U_BUTTON.getId()));
+        WebElement dButton = webDriver.findElementByXPath(XPathByIds.getXPathIdExpressionDIV(StyleClassName.D_BUTTON.getId()));
+
+        //Assert.assertNotNull(profile);
         Assert.assertNotNull(cButton);
         Assert.assertNotNull(rButton);
         Assert.assertNotNull(uButton);

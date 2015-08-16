@@ -19,6 +19,7 @@ import lifetime.util.Navigation;
 import lifetime.view.CrudMenu;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
+import lifetime.util.StyleClassName;
 import lifetime.view.custom.LifetimeButtonLink;
 
 /**
@@ -38,6 +39,7 @@ public class VitaeMenu extends CrudMenu {
     @Override
     protected void addControls() {
         profileButton = new LifetimeButtonLink("Back to Profile", getLanguage(), FontAwesome.BACKWARD);
+        profileButton.setId(StyleClassName.BACK_TO_PROFILE_BUTTON.getId());
         profileButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {

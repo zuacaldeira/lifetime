@@ -6,6 +6,7 @@
 package lifetime.backend.persistence;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -14,94 +15,103 @@ import java.util.List;
  */
 public class Timed implements ITimed {
 
+    private Date startTime;
+    private Date finishTime;
+    private List<Date> pauseTimes;
+    private List<Date> resumeTimes;
+    private boolean isFinished;
+    private boolean isStarted;
+    private boolean isPaused;
+    private boolean isResumed;
+
+    public Timed() {
+        pauseTimes = new LinkedList();
+        resumeTimes = new LinkedList();
+    }
+
     @Override
     public void start() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        startTime = new Date();
+        isStarted = true;
     }
 
     @Override
     public void finish() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        finishTime = new Date();
+        isFinished = true;
+        isResumed = false;
+        isPaused = false;
+        isStarted = false;
     }
 
     @Override
     public void pause() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        pauseTimes.add(new Date());
+        isPaused = true;
+        isResumed = false;
     }
 
     @Override
     public void resume() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setStartTime(Date startTime) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setFinishTime(Date finishTime) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setPausedTime(Date pauseTime) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setResumeTime(Date resumeTime) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        resumeTimes.add(new Date());
+        isResumed = true;
+        isPaused = false;
     }
 
     @Override
     public Date getStartTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return startTime;
     }
 
     @Override
     public Date getFinishedTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return finishTime;
     }
 
     @Override
     public Date getLastPausedAt() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (pauseTimes.isEmpty()) {
+            return null;
+        }
+        return pauseTimes.get(pauseTimes.size() - 1);
     }
 
     @Override
     public Date getLastResumedAt() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (resumeTimes.isEmpty()) {
+            return null;
+        }
+        return resumeTimes.get(resumeTimes.size() - 1);
     }
 
     @Override
     public List<Date> getPauseTimes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return pauseTimes;
     }
 
     @Override
     public List<Date> getResumeTimes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return resumeTimes;
     }
 
     @Override
     public boolean isStarted() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return isStarted;
     }
 
     @Override
     public boolean isFinished() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return isFinished;
     }
 
     @Override
     public boolean isPaused() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return isPaused;
     }
 
     @Override
     public boolean isResumed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return isResumed;
     }
-    
+
 }

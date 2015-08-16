@@ -73,4 +73,59 @@ public class ProfileViewNGTest {
         assertFalse(instancePt.equals(""));
     }
 
+    /**
+     * Test of initUploadAndReceiver method, of class ProfileView.
+     */
+    @Test
+    public void testInitUploadAndReceiver() {
+        System.out.println("initUploadAndReceiver");
+        ProfileView instance = new ProfileView("username", "en");
+        instance.initUploadAndReceiver();
+        assertNotNull(instance.getUpload());
+        assertNotNull(instance.getReceiver());
+    }
+
+    /**
+     * Test of initPhoto method, of class ProfileView.
+     */
+    @Test
+    public void testInitPhoto() {
+        System.out.println("initPhoto");
+        ProfileView instance = new ProfileView("username", "en");
+        instance.initPhoto();
+        assertNotNull(instance.getImage());
+    }
+
+    /**
+     * Test of initBirthData method, of class ProfileView.
+     */
+    @Test
+    public void testInitBirthData() {
+        System.out.println("initBirthData");
+        ProfileView instance = new ProfileView("username", "en");
+        instance.initBirthDataLayout();
+        assertNotNull(instance.getBirthDataLayout());
+    }
+
+    /**
+     * Test of initAddressLayout method, of class ProfileView.
+     */
+    @Test
+    public void testInitAddress() {
+        System.out.println("initAddress");
+        ProfileView instance = new ProfileView("username", "en");
+        instance.initAddressLayout();
+        assertNotNull(instance.getAddressLayout());
+    }
+
+    /**
+     * Test of initContactLayout method, of class ProfileView.
+     */
+    @Test
+    public void testInitContact() {
+        System.out.println("initContact");
+        ProfileView instance = new ProfileView("username", "en");
+        instance.initContactLayout();
+        assertNotNull(instance.getContactLayout());
+    }
 }

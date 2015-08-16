@@ -15,9 +15,13 @@
  */
 package lifetime.view.user;
 
+import com.vaadin.server.Resource;
+import com.vaadin.server.StreamResource;
 import com.vaadin.ui.Upload;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,11 +53,21 @@ public class PhotoReceiver implements Upload.Receiver, Upload.SucceededListener 
     public void uploadSucceeded(Upload.SucceededEvent event) {
         try {
             baos.close();
-            ServiceLocator.findLifetimeAccountService().addPhoto(new Photo(null, username, baos.toByteArray()));
-            layout.addPhoto();
+            Photo photo = new Photo(null, username, baos.toByteArray());
+            ServiceLocator.findLifetimeAccountService().addPhoto(photo);
+            layout.markAsDirty();
         } catch (IOException ex) {
             Logger.getLogger(UserContent.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public Resource getPhotoResource(final Photo p) {
+        return new StreamResource(new StreamResource.StreamSource() {
+            @Override
+            public InputStream getStream() {
+                return new ByteArrayInputStream(p.getImage());
+            }
+        }, "photo-" + username + "-" + Math.random());
     }
 
 }

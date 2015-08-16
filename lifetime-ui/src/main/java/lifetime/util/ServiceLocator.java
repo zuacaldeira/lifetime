@@ -39,7 +39,7 @@ public final class ServiceLocator {
         try {
             Context context = new InitialContext();
             return (LifetimeAccountService) context.lookup(name);
-        } catch (NamingException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ServiceLocator.class.getName()).log(Level.SEVERE, "Lookup failed for {0}", name);
         }
         return null;

@@ -22,15 +22,6 @@ public interface ITimed {
 
     public void resume();
 
-    public void setStartTime(Date startTime);
-
-    public void setFinishTime(Date finishTime);
-
-    public void setPausedTime(Date pauseTime);
-
-    public void setResumeTime(Date resumeTime);
-
-
     public Date getStartTime();
 
     public Date getFinishedTime();
@@ -43,7 +34,6 @@ public interface ITimed {
 
     public List<Date> getResumeTimes();
 
-    
     public boolean isStarted();
 
     public boolean isFinished();
@@ -51,6 +41,5 @@ public interface ITimed {
     public boolean isPaused();
 
     public boolean isResumed();
-
 
 }

@@ -13,28 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.user.vitae;
+package lifetime.view.user;
 
-import lifetime.backend.persistence.LifetimeEvent;
-import static org.testng.Assert.assertNotNull;
+import lifetime.backend.persistence.Contact;
+import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-public class LifetimeEventViewNGTest {
+public class ContactLayoutNGTest {
 
-    public LifetimeEventViewNGTest() {
+    public ContactLayoutNGTest() {
     }
 
     @Test
-    public void testCreation() {
-        // TODO review the generated test code and remove the default call to fail.
-        LifetimeEventView eventView = new LifetimeEventView(new LifetimeEvent() {
-        });
-        assertNotNull(eventView.getEvent());
-
+    public void testSomeMethod() {
+        ContactLayout contactLayout = new ContactLayout(new Contact(1, "username", "telephone1", "mobile1", "fax1"));
+        assertNotNull(contactLayout.getContact());
     }
 
 }

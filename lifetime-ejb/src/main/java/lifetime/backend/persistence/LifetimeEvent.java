@@ -12,16 +12,14 @@ import java.util.List;
  *
  * @author zua
  */
-public abstract class LifetimeEvent implements ITimed, ILocated, ITranslatable {
+public class LifetimeEvent implements ITimed, ILocated, ITranslatable {
 
     private ITimed timed;
     private ILocated located;
-    private ITranslatable translatable;
 
     public LifetimeEvent() {
         this.timed = new Timed();
         this.located = new Located();
-        this.translatable = new Translatable();
     }
 
     @Override
@@ -42,26 +40,6 @@ public abstract class LifetimeEvent implements ITimed, ILocated, ITranslatable {
     @Override
     public void resume() {
         timed.resume();
-    }
-
-    @Override
-    public void setStartTime(Date startTime) {
-        timed.setStartTime(startTime);
-    }
-
-    @Override
-    public void setFinishTime(Date finishTime) {
-        timed.setFinishTime(finishTime);
-    }
-
-    @Override
-    public void setPausedTime(Date pauseTime) {
-        timed.setPausedTime(pauseTime);
-    }
-
-    @Override
-    public void setResumeTime(Date resumeTime) {
-        timed.setResumeTime(resumeTime);
     }
 
     @Override
@@ -145,8 +123,8 @@ public abstract class LifetimeEvent implements ITimed, ILocated, ITranslatable {
     }
 
     @Override
-    public ITranslatable translateTo(String language) {
-        return translatable.translateTo(language);
+    public LifetimeEvent translateTo(String language) {
+        return this;
     }
 
 }

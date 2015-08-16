@@ -11,34 +11,38 @@ package lifetime.backend.persistence;
  */
 public class Located implements ILocated {
 
+    private double latitude;
+    private double longitude;
+    private double azimuth;
+
     @Override
     public double getLatitude() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return latitude;
     }
 
     @Override
     public double getLongitude() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return longitude;
     }
 
     @Override
     public double getAzimuth() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return azimuth;
     }
 
     @Override
     public void setLatitude(double latitude) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.latitude = latitude;
     }
 
     @Override
     public void setLongitude(double longitude) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.longitude = longitude;
     }
 
     @Override
-    public void setAzimuth(double latitude) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setAzimuth(double azimuth) {
+        this.azimuth = azimuth;
     }
 
 }

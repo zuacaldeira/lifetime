@@ -15,19 +15,10 @@
  */
 package lifetime.view.user;
 
-import com.vaadin.server.FontAwesome;
-import com.vaadin.server.Resource;
-import com.vaadin.server.StreamResource;
-import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Upload;
-import com.vaadin.ui.VerticalLayout;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.text.DateFormat;
 import java.util.Objects;
 import lifetime.backend.persistence.Address;
 import lifetime.backend.persistence.Contact;
@@ -45,9 +36,8 @@ public class ProfileView extends UserContent {
     /**
      * Backend data and user specific data.
      */
-    private LifetimeAccountService service;
+    private transient LifetimeAccountService service;
     private final String username;
-    private User user;
     private Address address;
     private Contact contact;
 
@@ -57,10 +47,10 @@ public class ProfileView extends UserContent {
     private PhotoReceiver receiver;
     private Upload upload;
     private Image image;
-    private VerticalLayout birthData;
-    private VerticalLayout addressLayout;
-    private VerticalLayout contactLayout;
     private final HorizontalLayout base;
+    private BirthDataLayout birthDataLayout;
+    private AddressLayout addressLayout;
+    private ContactLayout contactLayout;
 
     /**
      * Constructs a new photo layout, with only the {@code username}
@@ -75,35 +65,99 @@ public class ProfileView extends UserContent {
         System.out.println("USERNAME PASSED TO ProfILE VIEW -> " + username);
         base = new HorizontalLayout();
         base.setSizeFull();
-        //base.setHeight("75%");
-        //setCaption("Who am I?");
         base.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
         setSizeFull();
-        
         addComponent(base);
-        //setStyleName(username);
+        init();
     }
 
-    @Override
-    public void attach() {
-        super.attach(); //To change body of generated methods, choose Tools | Templates.
+    public PhotoReceiver getReceiver() {
+        return receiver;
+    }
+
+    public Upload getUpload() {
+        return upload;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    private void init() {
         clean();
         initService();
-        addPhoto();
-        addBirthData();
-        addAddress();
-        addContact();
+        if (service != null) {
+            initUploadAndReceiver();
+            initPhoto();
+            initBirthDataLayout();
+            initAddressLayout();
+            initContactLayout();
+        }
 
     }
 
-    final void addPhoto() {
-        if (service != null) {
-            Photo userPhoto = service.getPhoto(username);
-            if (userPhoto != null) {
-                ProfileView.this.addPhoto(userPhoto);
-            }
+    private void clean() {
+        base.removeAllComponents();
+    }
+
+    private void initService() {
+        service = ServiceLocator.findLifetimeAccountService();
+    }
+
+    protected void initUploadAndReceiver() {
+        receiver = new PhotoReceiver(username, this);
+        // Upload layout
+        upload = new Upload("Add your favourite photo", receiver);
+        upload.addSucceededListener(receiver);
+        upload.setImmediate(true);
+        //upload.setWidth(image.getWidth(), image.getWidthUnits());
+        base.addComponent(upload);
+    }
+
+    protected void initPhoto() {
+        if (service != null && service.getPhoto(username) != null) {
+            image = new Image("", receiver.getPhotoResource(service.getPhoto(username)));
+        } else {
+            image = new Image("");
             //addUpload();
         }
+
+        image.setHeight("60%");
+        base.addComponent(image);
+
+        base.setComponentAlignment(image, Alignment.MIDDLE_CENTER);
+    }
+
+    protected void initBirthDataLayout() {
+        if (service != null && service.getUser(username) != null) {
+            birthDataLayout = new BirthDataLayout(service.getUser(username));
+        } else {
+            birthDataLayout = new BirthDataLayout(new User());
+        }
+        base.addComponent(birthDataLayout);
+    }
+
+    protected void initAddressLayout() {
+        // User's address
+        if (service != null && service.getAddress(username) != null) {
+            addressLayout = new AddressLayout(service.getAddress(username));
+        } else {
+            addressLayout = new AddressLayout(new Address());
+        }
+        base.addComponent(addressLayout);
+
+    }
+
+    /**
+     * Adds the user main contacts to it's profile view.
+     */
+    protected void initContactLayout() {
+        if (contact != null && service.getContact(username) != null) {
+            contactLayout = new ContactLayout(service.getContact(username));
+        } else {
+            contactLayout = new ContactLayout(new Contact());
+        }
+        base.addComponent(contactLayout);
     }
 
     @Override
@@ -125,117 +179,16 @@ public class ProfileView extends UserContent {
         return Objects.equals(this.username, other.username);
     }
 
-    private void clean() {
-        base.removeAllComponents();
+    public BirthDataLayout getBirthDataLayout() {
+        return birthDataLayout;
     }
 
-    private void addPhoto(Photo userPhoto) {
-        image = new Image("", getPhotoResource(userPhoto));
-        image.setHeight("60%");
-        base.addComponent(image);
-        base.setComponentAlignment(image, Alignment.MIDDLE_CENTER);
+    public AddressLayout getAddressLayout() {
+        return addressLayout;
     }
 
-    private void addUpload() {
-        receiver = new PhotoReceiver(username, this);
-        // Upload layout
-        upload = new Upload("Add your favourite photo", receiver);
-        upload.addSucceededListener(receiver);
-        upload.setImmediate(true);
-        //upload.setWidth(image.getWidth(), image.getWidthUnits());
-        base.addComponent(upload);
-    }
-
-    private Resource getPhotoResource(final Photo p) {
-        return new StreamResource(new StreamResource.StreamSource() {
-            @Override
-            public InputStream getStream() {
-                return new ByteArrayInputStream(p.getImage());
-            }
-        }, "photo-" + username + "-" + Math.random());
-    }
-
-    private void initService() {
-        service = ServiceLocator.findLifetimeAccountService();
-    }
-
-    private void addBirthData() {
-        user = service.getUser(username);
-        // Name
-        Label name = new Label(user.getFirstname() + " " + user.getLastname());
-        // Date
-        Label date = new Label(DateFormat.getInstance().format(user.getBirthDate()));
-        Label dateIcon = new Label(FontAwesome.CLOCK_O.getHtml(), ContentMode.HTML);
-        HorizontalLayout dateLayout = new HorizontalLayout(dateIcon, date);
-        dateLayout.setSpacing(true);
-        // Place
-        Label place = new Label(user.getBirthPlace());
-        Label placeIcon = new Label(FontAwesome.MAP_MARKER.getHtml(), ContentMode.HTML);
-        HorizontalLayout placeLayout = new HorizontalLayout(placeIcon, place);
-        placeLayout.setSpacing(true);
-        // Container layout
-        birthData = new VerticalLayout(name,
-                dateLayout,
-                placeLayout);
-        // add the data container to the panel
-        base.addComponent(birthData);
-        base.setComponentAlignment(birthData, Alignment.MIDDLE_RIGHT);
-    }
-
-    private void addAddress() {
-        // User's address
-        address = service.getAddress(username);
-
-        // Street, door and floor coordinates
-        HorizontalLayout street = new HorizontalLayout(
-                new Label(address.getStreet()),
-                new Label(address.getDoor()),
-                new Label(address.getFloor()));
-        street.setSpacing(true);
-        Label streetIcon = new Label(FontAwesome.ENVELOPE.getHtml(), ContentMode.HTML);
-
-        HorizontalLayout streetLayout = new HorizontalLayout(streetIcon, street);
-        streetLayout.setSpacing(true);
-
-        // Postal code and city/locality
-        HorizontalLayout locality = new HorizontalLayout(
-                new Label(address.getPostalCode()),
-                new Label(address.getLocality()));
-        locality.setSpacing(true);
-
-        // Region and country
-        HorizontalLayout country = new HorizontalLayout(
-                new Label(address.getRegion()),
-                new Label(address.getCountry()));
-        country.setSpacing(true);
-
-        // Final address layout
-        addressLayout = new VerticalLayout(streetLayout, locality, country);
-        // add in to base content
-        base.addComponent(addressLayout);
-        base.setComponentAlignment(addressLayout, Alignment.MIDDLE_RIGHT);
-    }
-
-    /**
-     * Adds the user main contacts to it's profile view.
-     */
-    private void addContact() {
-        contact = service.getContact(username);
-        // personal telephone
-        Label phone = new Label(contact.getTelephone1());
-        Label phoneIcon = new Label(FontAwesome.PHONE.getHtml(), ContentMode.HTML);
-        HorizontalLayout phoneLayout = new HorizontalLayout(phoneIcon, phone);
-        phoneLayout.setSpacing(true);
-        // mobile
-        Label mobile = new Label(contact.getMobile1());
-        Label mobileIcon = new Label(FontAwesome.MOBILE.getHtml(), ContentMode.HTML);
-        HorizontalLayout mobileLayout = new HorizontalLayout(mobileIcon, mobile);
-        mobileLayout.setSpacing(true);
-        // contacts container
-        contactLayout = new VerticalLayout(phoneLayout, mobileLayout);
-        // add to base panel
-        base.addComponent(contactLayout);
-        base.setComponentAlignment(contactLayout, Alignment.MIDDLE_RIGHT);
+    public ContactLayout getContactLayout() {
+        return contactLayout;
     }
 
 }
