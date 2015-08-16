@@ -15,6 +15,7 @@
  */
 package lifetime.ui;
 
+import lifetime.util.Navigation;
 import lifetime.view.welcome.WelcomeViewProvider;
 import lifetime.view.welcome.WelcomeView;
 import lifetime.view.welcome.contact.ContactView;

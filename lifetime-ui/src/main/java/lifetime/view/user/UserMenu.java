@@ -24,14 +24,14 @@ import lifetime.view.custom.LifetimeHomeButton;
  *
  * @author zua
  */
-class UserMenu extends LifetimeMenu {
+public class UserMenu extends LifetimeMenu {
 
-    private final LifetimeHomeButton homeButton;
-    private final VitaeButton vitaeButton;
-    private final TimelineButton timelineButton;
-    private final YellowPagesButton yellowPagesButton;
-    private final String username;
-    private final WorkButton work;
+    private LifetimeHomeButton homeButton;
+    private VitaeButton vitaeButton;
+    private TimelineButton timelineButton;
+    private YellowPagesButton yellowPagesButton;
+    private String username;
+    private WorkButton work;
 
     public UserMenu(String username, String language) {
         super(language);
@@ -39,17 +39,6 @@ class UserMenu extends LifetimeMenu {
         System.out.println("USERNAME IN USER_MENU-> " + username);
         setId(StyleClassName.USER_MENU.getId());
         setStyleName(StyleClassName.LIFETIME_MENU.getStyleName());
-        homeButton = new LifetimeHomeButton(language);
-        vitaeButton = new VitaeButton(language);
-        timelineButton = new TimelineButton(language);
-        yellowPagesButton = new YellowPagesButton(language);
-        work = new WorkButton(language);
-
-        addControl(homeButton);
-        addControl(vitaeButton);
-        addControl(timelineButton);
-        addControl(yellowPagesButton);
-        addControl(work);
     }
 
     public LifetimeHomeButton getHomeButton() {
@@ -82,6 +71,20 @@ class UserMenu extends LifetimeMenu {
         }
         final UserMenu other = (UserMenu) obj;
         return Objects.equals(getLanguage(), other.getLanguage());
+    }
+
+    @Override
+    protected void addControls() {
+        homeButton = new LifetimeHomeButton(getLanguage());
+        vitaeButton = new VitaeButton(getLanguage());
+        timelineButton = new TimelineButton(getLanguage());
+        yellowPagesButton = new YellowPagesButton(getLanguage());
+        work = new WorkButton(getLanguage());
+        addControl(homeButton);
+        addControl(vitaeButton);
+        addControl(timelineButton);
+        addControl(yellowPagesButton);
+        addControl(work);
     }
 
 }

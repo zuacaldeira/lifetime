@@ -13,19 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.user;
-
-import com.vaadin.server.FontAwesome;
-import lifetime.view.custom.LifetimeButtonLink;
+package lifetime.util;
 
 /**
  *
  * @author zua
  */
-class ProfileLockerButton extends LifetimeButtonLink {
+public enum Navigation {
 
-    public ProfileLockerButton(String caption, String username, FontAwesome fontAwesome) {
-        super(caption, username, fontAwesome);
-    }
+    WELCOME_VIEW("welcome"), REGISTER_VIEW("register"), CONTACT_VIEW("contact"), 
+    USER_VIEW("user"), VITAE_VIEW("vitae"), TIMELINE_VIEW("timeline"), YELLOW_PAGES_VIEW("yellowpages");
+
+    private String name;
     
+    private Navigation(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }    
 }

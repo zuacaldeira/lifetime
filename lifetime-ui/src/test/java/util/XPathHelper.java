@@ -13,22 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.ui;
-
-import org.testng.Assert;
-import org.testng.annotations.Test;
+package util;
 
 /**
  *
  * @author zua
  */
-public class NavigationNGTest {
+class XPathHelper {
 
-    @Test
-    public void test() {
-        Assert.assertEquals(Navigation.WELCOME_VIEW.getName(), "welcome");
-        Assert.assertEquals(Navigation.REGISTER_VIEW.getName(), "register");
-        Assert.assertEquals(Navigation.CONTACT_VIEW.getName(), "contact");
+    static String getXPathExpression(String id) {
+        return "//div[@id='" + id + "']";
     }
-
+    
 }

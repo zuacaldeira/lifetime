@@ -11,31 +11,49 @@ import java.util.Objects;
 import lifetime.util.Translator;
 
 /**
+ * Lifetime buttons are stylized extensions of vaadin buttons. This is
+ * temporary, since all components infrastructure will be redesigned to allow
+ * translations, development and other decorations.
  *
  * @author azc
  */
 public abstract class LifetimeButton extends Button {
 
-    private Integer userId;
+    /**
+     * The currently interacting user.
+     */
+    private String username;
+    /**
+     * The interaction language.
+     */
     private String language;
 
-    public LifetimeButton(Integer userId, String language, String caption, Resource icon) {
+    /**
+     * Creates a new lifetime button, with description and caption set with and
+     * properly translated.
+     *
+     * @param username The currently interacting user
+     * @param language The interaction language
+     * @param caption Caption
+     * @param icon The Button icon
+     */
+    public LifetimeButton(String username, String language, String caption, Resource icon) {
         super("", icon);
-        this.userId = userId;
+        this.username = username;
         this.language = language;
         setDescription(Translator.getTranslation(caption, language));
         setCaption(getDescription());
     }
 
-    public LifetimeButton(String caption, String language, Resource icon) {
+    protected LifetimeButton(String caption, String language, Resource icon) {
         super("", icon);
         this.language = language;
         setDescription(caption);
         setCaption(getDescription());
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
     public String getLanguage() {
@@ -53,7 +71,7 @@ public abstract class LifetimeButton extends Button {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.userId);
+        hash = 97 * hash + Objects.hashCode(this.username);
         hash = 97 * hash + Objects.hashCode(this.language);
         return hash;
     }
@@ -63,11 +81,11 @@ public abstract class LifetimeButton extends Button {
         if (obj == null) {
             return false;
         }
-        if (! (obj instanceof LifetimeButton)) {
+        if (!(obj instanceof LifetimeButton)) {
             return false;
         }
         final LifetimeButton other = (LifetimeButton) obj;
-        if (!Objects.equals(this.userId, other.userId)) {
+        if (!Objects.equals(this.username, other.username)) {
             return false;
         }
         return Objects.equals(this.language, other.language) && Objects.equals(this.getCaption(), other.getCaption());

@@ -13,16 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view;
+package util;
+
+import org.jboss.arquillian.testng.Arquillian;
 
 /**
  *
  * @author zua
  */
-class XPathHelper {
-
-    static String getXPathExpression(String id) {
-        return "//div[@id='" + id + "']";
-    }
+public abstract class LifetimeArquillian extends Arquillian {
     
+
+    
+    
+    
+    
+
+
 }

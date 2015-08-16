@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.ui;
+package util;
 
 /**
  *
@@ -45,4 +45,8 @@ public class TestBundle {
      *
      */
     public static final String LOGIN_URL = "http://localhost:8080/lifetime/user";
+    /**
+     *
+     */
+    public static final String VITAE_URL = "http://localhost:8080/lifetime/user#!vitae";
 }

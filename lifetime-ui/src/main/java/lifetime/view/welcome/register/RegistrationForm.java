@@ -27,7 +27,7 @@ import java.util.Locale;
 import java.util.Objects;
 import lifetime.backend.service.LifetimeAccountService;
 import lifetime.util.ServiceLocator;
-import lifetime.ui.Navigation;
+import lifetime.util.Navigation;
 import lifetime.view.validator.NameValidator;
 import lifetime.view.validator.PasswordValidator;
 import lifetime.util.Util;

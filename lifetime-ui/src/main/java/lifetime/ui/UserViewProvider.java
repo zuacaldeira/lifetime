@@ -15,6 +15,8 @@
  */
 package lifetime.ui;
 
+import lifetime.view.user.vitae.VitaeView;
+import lifetime.util.Navigation;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewProvider;
 import lifetime.view.user.UserView;
@@ -42,6 +44,9 @@ public class UserViewProvider implements ViewProvider {
     public View getView(String viewName) {
         System.out.println("UserViewProvider#getView(): USERNAME -> " + username);
         System.out.println("UserViewProvider#getView(): VIEW_NAME -> " + viewName);
+        if (viewName.equals(Navigation.VITAE_VIEW.getName())) {
+            return new VitaeView(username, language);
+        }
         return new UserView(username, language);
     }
 }

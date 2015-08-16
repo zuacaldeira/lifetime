@@ -19,7 +19,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewProvider;
 import java.util.HashMap;
 import java.util.Map;
-import lifetime.ui.Navigation;
+import lifetime.util.Navigation;
 import lifetime.view.welcome.contact.ContactView;
 import lifetime.view.welcome.register.RegisterView;
 

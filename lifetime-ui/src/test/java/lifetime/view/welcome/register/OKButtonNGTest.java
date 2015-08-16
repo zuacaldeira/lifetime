@@ -15,7 +15,6 @@
  */
 package lifetime.view.welcome.register;
 
-import lifetime.view.welcome.register.OKButton;
 import com.vaadin.server.FontAwesome;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -25,17 +24,17 @@ import org.testng.annotations.Test;
  * @author zua
  */
 public class OKButtonNGTest {
-    
+
     public OKButtonNGTest() {
     }
 
     @Test
     public void testConstructor() {
-        Integer userId = 1;
+        String username = "username";
         String language = "en";
-        OKButton okButton = new OKButton(userId, language);
+        OKButton okButton = new OKButton(username, language);
         Assert.assertEquals(okButton.getCaption(), "OK");
         Assert.assertEquals(okButton.getIcon(), FontAwesome.CHECK);
     }
-    
+
 }

@@ -16,7 +16,7 @@
 package lifetime.view.welcome;
 
 import lifetime.view.LifetimeBackground;
-import lifetime.view.user.Backgrounds;
+import lifetime.view.Backgrounds;
 
 /**
  *

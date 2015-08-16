@@ -15,6 +15,7 @@
  */
 package lifetime.view.user;
 
+import lifetime.view.Backgrounds;
 import lifetime.view.LifetimeBackground;
 
 /**

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.ui;
+package lifetime.util;
 
 /**
  *
@@ -21,7 +21,8 @@ package lifetime.ui;
  */
 public enum Location {
 
-    HOME("/lifetime"), USER("/lifetime/user");
+    HOME("/lifetime"), USER("/lifetime/user"), VITAE("/lifetime/user");
+    
 
     private final String url;
 

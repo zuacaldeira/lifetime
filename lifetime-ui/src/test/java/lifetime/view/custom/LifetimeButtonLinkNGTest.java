@@ -30,17 +30,17 @@ import org.testng.annotations.Test;
 public class LifetimeButtonLinkNGTest  {
 
     /**
-     * Test of getUserId method, of class LifetimeButton.
+     * Test of getUsername method, of class LifetimeButton.
      */
     @Test
     public void testGetUserId() {
         System.out.println("testGetUserId()");
-        Integer userId = 1;
+        String username = "username";
         String caption = "caption";
         String language = "pt";
         Resource icon = FontAwesome.ADJUST;
-        LifetimeButton instance = new LifetimeButtonLink(userId, language, caption, icon);
-        assertEquals(instance.getUserId(), userId);
+        LifetimeButton instance = new LifetimeButtonLink(username, language, caption, icon);
+        assertEquals(instance.getUsername(), username);
     }
 
     /**
@@ -49,11 +49,11 @@ public class LifetimeButtonLinkNGTest  {
     @Test
     public void testGetLanguage() {
         System.out.println("testGetLanguage()");
-        Integer userId = 1;
+        String username = "username";
         String caption = "caption";
         String language = "pt";
         Resource icon = FontAwesome.ADJUST;
-        LifetimeButton instance = new LifetimeButtonLink(userId, language, caption, icon);
+        LifetimeButton instance = new LifetimeButtonLink(username, language, caption, icon);
         assertEquals(instance.getLanguage(), language);
     }
 
@@ -63,11 +63,11 @@ public class LifetimeButtonLinkNGTest  {
     @Test
     public void testShowCaption() {
         System.out.println("testShowCaption()");
-        Integer userId = 1;
+        String username = "username";
         String caption = "caption";
         String language = "pt";
         Resource icon = FontAwesome.ADJUST;
-        LifetimeButton instance = new LifetimeButtonLink(userId, language, caption, icon);
+        LifetimeButton instance = new LifetimeButtonLink(username, language, caption, icon);
         instance.showCaption();
         assertNotNull(instance.getCaption());
     }
@@ -78,11 +78,11 @@ public class LifetimeButtonLinkNGTest  {
     @Test
     public void testHideCaption() {
         System.out.println("testHideCaption()");
-        Integer userId = 1;
+        String username = "username";
         String caption = "caption";
         String language = "pt";
         Resource icon = FontAwesome.ADJUST;
-        LifetimeButton instance = new LifetimeButtonLink(userId, language, caption, icon);
+        LifetimeButton instance = new LifetimeButtonLink(username, language, caption, icon);
         instance.hideCaption();
         assertNull(instance.getCaption());
     }
@@ -93,12 +93,12 @@ public class LifetimeButtonLinkNGTest  {
     @Test
     public void testHashCode() {
         System.out.println("testHashCode()");
-        Integer userId = 1;
+        String username = "username";
         String caption = "caption";
         String language = "pt";
         Resource icon = FontAwesome.ADJUST;
-        LifetimeButton instance1 = new LifetimeButtonLink(userId, language, caption, icon);
-        LifetimeButton instance2 = new LifetimeButtonLink(userId, language, caption, icon);
+        LifetimeButton instance1 = new LifetimeButtonLink(username, language, caption, icon);
+        LifetimeButton instance2 = new LifetimeButtonLink(username, language, caption, icon);
         assertEquals(instance1.hashCode(), instance2.hashCode());
     }
 
@@ -108,12 +108,12 @@ public class LifetimeButtonLinkNGTest  {
     @Test
     public void testEquals() {
         System.out.println("testEquals()");
-        Integer userId = 1;
+        String username = "username";
         String caption = "caption";
         String language = "pt";
         Resource icon = FontAwesome.ADJUST;
-        LifetimeButton instance1 = new LifetimeButtonLink(userId, language, caption, icon);
-        LifetimeButton instance2 = new LifetimeButtonLink(userId, language, caption, icon);
+        LifetimeButton instance1 = new LifetimeButtonLink(username, language, caption, icon);
+        LifetimeButton instance2 = new LifetimeButtonLink(username, language, caption, icon);
         assertTrue(instance1.equals(instance2));
     }
 }

@@ -29,6 +29,7 @@ public abstract class LifetimeContent extends HorizontalLayout {
     public LifetimeContent(String language) {
         this.language = language;
         setSizeFull();
+        setStyleName("lifetime-content");
     }
 
     public String getLanguage() {

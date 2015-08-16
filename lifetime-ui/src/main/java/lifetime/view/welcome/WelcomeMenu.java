@@ -20,25 +20,33 @@ import lifetime.view.LifetimeMenu;
 import lifetime.util.StyleClassName;
 
 /**
+ * The welcoming menu, presenting guest enabled actions.
  *
  * @author zua
  */
 public class WelcomeMenu extends LifetimeMenu {
 
-    private final RegisterButton registerButton;
-    private final LoginButton loginButton;
-    private final ContactButton contactButton;
+    /**
+     * Register button, starts the {@literal register} use case.
+     */
+    private RegisterButton registerButton;
+    /**
+     * Login button, starts the {@literal login} use case.
+     */
+    private LoginButton loginButton;
+    /**
+     * Contact button, starts the {@literal contact} use case.
+     */
+    private ContactButton contactButton;
 
+    /**
+     * Constructs a welcome menu instance.
+     *
+     * @param language The current user interaction language.
+     */
     public WelcomeMenu(String language) {
         super(language);
         setSizeFull();
-        registerButton = new RegisterButton(language);
-        loginButton = new LoginButton(language);
-        contactButton = new ContactButton(language);
-        addControl(registerButton);
-        addControl(loginButton);
-        addControl(contactButton);
-        setStyleName(StyleClassName.LIFETIME_MENU.getStyleName());
         setId(StyleClassName.WELCOME_MENU.getId());
     }
 
@@ -70,6 +78,16 @@ public class WelcomeMenu extends LifetimeMenu {
         }
         final WelcomeMenu other = (WelcomeMenu) obj;
         return Objects.equals(getLanguage(), other.getLanguage());
+    }
+
+    @Override
+    protected void addControls() {
+        registerButton = new RegisterButton(getLanguage());
+        loginButton = new LoginButton(getLanguage());
+        contactButton = new ContactButton(getLanguage());
+        addControl(registerButton);
+        addControl(loginButton);
+        addControl(contactButton);
     }
 
 }

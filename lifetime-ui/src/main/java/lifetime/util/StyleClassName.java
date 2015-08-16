@@ -22,41 +22,51 @@ package lifetime.util;
 public enum StyleClassName {
 
     /**
-     * UIs.
-     *//**
-     * UIs.
+     * Top level components styles and identifiers.
      */
     LIFETIME_UI("lifetime-ui"),
-    WELCOME_UI("welcome-ui"),
-    USER_UI("user-ui"),
     LIFETIME_VIEW("lifetime-view"),
-    WELCOME_VIEW("welcome-view"),
-    USER_VIEW("user-view"),
-    REGISTER_VIEW("register-view"),
     LIFETIME_MENU("lifetime-menu"),
+    LIFETIME_CONTENT("lifetime-content"),
+    /**
+     * Inner components identifiers.
+     */
+    WELCOME_UI("welcome-ui"),
+    WELCOME_VIEW("welcome-view"),
     WELCOME_MENU("welcome-menu"),
+    WELCOME_CONTENT("welcome-content"),
+    /* Main Views. */
+    USER_UI("user-ui"),
+    USER_VIEW("user-view"),
     USER_MENU("user-menu"),
+    USER_CONTENT("user-content"),
+    /* Menus. */
+    REGISTER_VIEW("register-view"),
     REGISTER_MENU("register-menu"),
+    REGISTER_CONTENT("register-content"),
+    /* Content. */
+    /* Buttons. */
     HOME_BUTTON("home-button"),
     REGISTER_BUTTON("register-button"),
     LOGIN_BUTTON("login-button"),
     CONTACT_BUTTON("contact-button"),
     VITAE_BUTTON("vitae-button"),
     OK_BUTTON("ok-button"),
-    LIFETIME_CONTENT("lifetime-content"),
-    WELCOME_CONTENT("welcome-content"),
-    USER_CONTENT("user-content"),
-    REGISTER_CONTENT("register-content"),
+    /*Forms.*/
     REGISTRATION_FORM("registration-form"),
+    /*Form Fields */
     REGISTRATION_FORM_FIRSTNAME("rf-firstname"),
     REGISTRATION_FORM_LASTNAME("rf-lastname"),
     REGISTRATION_FORM_EMAIL("rf-email"),
     REGISTRATION_FORM_ENCRYPTED("rf-encrypted"),
     REGISTRATION_FORM_ENCRYPTED_REPEAT("rf-encrypted-repeat"),
     REGISTRATION_FORM_BIRTHDATE("rf-birthdate"),
-    REGISTRATION_FORM_BIRTHPLACE("rf-birthplace"), 
-    PERSONAL_INFO_LAYOUT("personal-info"), 
-    EDITABLE_LABEL("editable-label");
+    REGISTRATION_FORM_BIRTHPLACE("rf-birthplace"),
+    BACK_TO_PROFILE_BUTTON("back-to-profile-button"),
+    C_BUTTON("c-button"),
+    R_BUTTON("r-button"),
+    U_BUTTON("u-button"),
+    D_BUTTON("d-button");
 
     private final String styleName;
 
@@ -71,4 +81,5 @@ public enum StyleClassName {
     public String getId() {
         return styleName;
     }
+
 }

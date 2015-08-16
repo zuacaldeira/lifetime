@@ -14,19 +14,15 @@ import com.vaadin.ui.themes.Reindeer;
  */
 public class LifetimeButtonLink extends LifetimeButton {
 
-    public LifetimeButtonLink(Integer userId, String language, String caption, Resource icon) {
-        super(userId, language, caption, icon);
+    public LifetimeButtonLink(String username, String language, String caption, Resource icon) {
+        super(username, language, caption, icon);
         setDescription(caption);
         setData(language);
         setStyleName(Reindeer.BUTTON_LINK);
     }
 
     public LifetimeButtonLink(String caption, String language, Resource icon) {
-        this(null, language, caption,icon);
-    }
-
-    public LifetimeButtonLink(Resource icon) {
-        this(null, null, null, icon);
+        this(null, language, caption, icon);
     }
 
 }

@@ -31,14 +31,14 @@ import org.testng.annotations.Test;
 public class LifetimeButtonSmallNGTest {
 
     /**
-     * Test of getUserId method, of class LifetimeButton.
+     * Test of getUsername method, of class LifetimeButton.
      *
      * @param instance
      */
     @Test(dataProvider = "valid")
     public void testGetUserId(LifetimeButtonSmall instance) {
         System.out.println("testGetUserId()");
-        assertNotNull(instance.getUserId());
+        assertNotNull(instance.getUsername());
     }
 
     /**
@@ -108,23 +108,23 @@ public class LifetimeButtonSmallNGTest {
 
     @DataProvider(name = "valid")
     private Object[][] getValidData() {
-        LifetimeButtonSmall button = new LifetimeButtonSmall(1, "en", "a button", FontAwesome.ADJUST);
-        LifetimeButtonSmall button2 = new LifetimeButtonSmall(1, "pt", "a button", FontAwesome.ADJUST);
+        LifetimeButtonSmall button = new LifetimeButtonSmall("username", "en", "a button", FontAwesome.ADJUST);
+        LifetimeButtonSmall button2 = new LifetimeButtonSmall("username", "pt", "a button", FontAwesome.ADJUST);
         return new Object[][]{{button}, {button2}};
     }
 
     @DataProvider(name = "validEquals")
     private Object[][] getEqualsData() {
-        LifetimeButtonSmall button = new LifetimeButtonSmall(1, "en", "a button", FontAwesome.ADJUST);
-        LifetimeButtonSmall button2 = new LifetimeButtonSmall(1, "en", "a button", FontAwesome.ADJUST);
+        LifetimeButtonSmall button = new LifetimeButtonSmall("username", "en", "a button", FontAwesome.ADJUST);
+        LifetimeButtonSmall button2 = new LifetimeButtonSmall("username", "en", "a button", FontAwesome.ADJUST);
         return new Object[][]{{button, button}, {button2, button2}};
     }
 
     @DataProvider(name = "invalidEquals")
     private Object[][] getNotEqualsData() {
-        LifetimeButtonSmall button = new LifetimeButtonSmall(1, "en", "a button", FontAwesome.ADJUST);
-        LifetimeButtonSmall button2 = new LifetimeButtonSmall(2, "en", "a button", FontAwesome.ADJUST);
-        LifetimeButtonSmall button3 = new LifetimeButtonSmall(1, "pt", "a button", FontAwesome.ADJUST);
+        LifetimeButtonSmall button = new LifetimeButtonSmall("username", "en", "a button", FontAwesome.ADJUST);
+        LifetimeButtonSmall button2 = new LifetimeButtonSmall("username2", "en", "a button", FontAwesome.ADJUST);
+        LifetimeButtonSmall button3 = new LifetimeButtonSmall("username", "pt", "a button", FontAwesome.ADJUST);
 
         return new Object[][]{{button, button2}, {button2, button}, {button, null}, {button, ""}, {button, button3}};
     }

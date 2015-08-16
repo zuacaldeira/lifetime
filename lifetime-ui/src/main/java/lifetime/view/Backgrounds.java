@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.user;
+package lifetime.view;
 
 import com.vaadin.server.Resource;
 import com.vaadin.server.ThemeResource;
@@ -25,8 +25,9 @@ import com.vaadin.ui.Image;
  */
 public enum Backgrounds {
 
+    WELCOME_BACKGROUND(new ThemeResource("../img/background.jpg")),
     USER_BACKGROUND(new ThemeResource("../img/background.jpg")),
-    WELCOME_BACKGROUND(new ThemeResource("../img/background.jpg"));
+    VITAE_BACKGROUND(new ThemeResource("../img/background.jpg"));
 
     private Resource resource;
 

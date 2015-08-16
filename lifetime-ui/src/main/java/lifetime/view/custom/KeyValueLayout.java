@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.user;
+package lifetime.view.custom;
 
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;

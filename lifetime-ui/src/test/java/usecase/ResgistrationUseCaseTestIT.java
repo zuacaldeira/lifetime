@@ -30,7 +30,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import lifetime.ui.TestBundle;
+import util.TestBundle;
 import lifetime.util.StyleClassName;
 import org.jboss.arquillian.testng.Arquillian;
 import org.openqa.selenium.WebElement;

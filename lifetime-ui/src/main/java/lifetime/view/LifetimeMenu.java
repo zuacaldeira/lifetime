@@ -19,6 +19,7 @@ import lifetime.view.custom.LifetimeButtonLink;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.HorizontalLayout;
 import java.util.Objects;
+import lifetime.util.StyleClassName;
 
 /**
  *
@@ -27,16 +28,15 @@ import java.util.Objects;
 public abstract class LifetimeMenu extends HorizontalLayout {
 
     private final String language;
-    private final HorizontalLayout controls;
+    private HorizontalLayout controls;
 
     public LifetimeMenu(String language) {
         this.language = language;
-        controls = new HorizontalLayout();
-        controls.setSizeUndefined();
-        setSizeFull();
+        initControls();
         addComponent(controls);
         setComponentAlignment(controls, Alignment.MIDDLE_RIGHT);
-
+        setStyleName(StyleClassName.LIFETIME_MENU.getStyleName());
+        setSizeFull();
     }
 
     public HorizontalLayout getControls() {
@@ -65,5 +65,13 @@ public abstract class LifetimeMenu extends HorizontalLayout {
         }
         return Objects.equals(this.language, ((LifetimeMenu) obj).language);
     }
+
+    private void initControls() {
+        controls = new HorizontalLayout();
+        controls.setWidthUndefined();
+        addControls();
+    }
+
+    protected abstract void addControls();
 
 }

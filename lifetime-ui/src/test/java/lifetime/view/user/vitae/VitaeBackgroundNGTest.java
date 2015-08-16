@@ -13,21 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view;
+package lifetime.view.user.vitae;
 
-import org.jboss.arquillian.testng.Arquillian;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-public abstract class LifetimeArquillian extends Arquillian {
-    
+public class VitaeBackgroundNGTest {
 
-    
-    
-    
-    
+    public VitaeBackgroundNGTest() {
+    }
 
+    @Test
+    public void testSomeMethod() {
+        // TODO review the generated test code and remove the default call to fail.
+        VitaeBackground background = new VitaeBackground("pt");
+    }
 
 }

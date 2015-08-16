@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.ui;
+package lifetime.util;
 
+import lifetime.util.Location;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

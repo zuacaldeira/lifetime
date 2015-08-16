@@ -28,32 +28,13 @@ import lifetime.util.StyleClassName;
  */
 public class RegisterMenu extends LifetimeMenu {
 
-    private final LifetimeHomeButton homeButton;
-    private final CancelButton cancelButton;
-    private final OKButton okButton;
+    private LifetimeHomeButton homeButton;
+    private CancelButton cancelButton;
+    private OKButton okButton;
 
     public RegisterMenu(String language) {
         super(language);
         setSizeFull();
-        homeButton = new LifetimeHomeButton(language);
-        cancelButton = new CancelButton(language);
-        cancelButton.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                getRegistrationForm().clear();
-            }
-        });
-        okButton = new OKButton(null, language);
-        okButton.addClickListener(new Button.ClickListener() {
-
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                getRegistrationForm().submit();
-            }
-        });
-        addControl(homeButton);
-        addControl(cancelButton);
-        addControl(okButton);
         setId(StyleClassName.REGISTER_MENU.getId());
         setStyleName(StyleClassName.REGISTER_MENU.getStyleName());
     }
@@ -98,6 +79,29 @@ public class RegisterMenu extends LifetimeMenu {
         } else {
             return null;
         }
+    }
+
+    @Override
+    protected void addControls() {
+        homeButton = new LifetimeHomeButton(getLanguage());
+        cancelButton = new CancelButton(getLanguage());
+        cancelButton.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                getRegistrationForm().clear();
+            }
+        });
+        okButton = new OKButton(null, getLanguage());
+        okButton.addClickListener(new Button.ClickListener() {
+
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                getRegistrationForm().submit();
+            }
+        });
+        addControl(homeButton);
+        addControl(cancelButton);
+        addControl(okButton);
     }
 
 }

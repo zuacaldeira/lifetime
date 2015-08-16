@@ -12757,13 +12757,13 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .lifetime-menu {
-	background: white;
+	background: whitesmoke;
 	opacity: 0.75;
 }
 
 .mytheme .lifetime-content {
 	background: black;
-	opacity: 0.75;
+	opacity: 0.85;
 	color: white;
 	font-weight: bold;
 }

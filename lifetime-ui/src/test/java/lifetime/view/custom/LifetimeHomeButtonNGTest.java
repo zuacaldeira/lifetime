@@ -28,7 +28,7 @@ public class LifetimeHomeButtonNGTest {
     }
 
     /**
-     * Test of getUserId method, of class LifetimeButton.
+     * Test of getUsername method, of class LifetimeButton.
      */
     @Test
     public void testHomeButton() {

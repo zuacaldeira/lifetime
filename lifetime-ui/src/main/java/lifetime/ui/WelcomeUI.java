@@ -1,5 +1,6 @@
 package lifetime.ui;
 
+import lifetime.util.Navigation;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -11,6 +12,7 @@ import lifetime.util.StyleClassName;
 
 @Theme("mytheme")
 @Title("Lifetime home")
+//@Widgetset("lifetime.ui.AppWidgetSet")
 public class WelcomeUI extends LifetimeUI {
 
     @Override
@@ -25,7 +27,7 @@ public class WelcomeUI extends LifetimeUI {
     /**
      * Servlet listening to requests at non secure part of the application.
      */
-    @WebServlet(urlPatterns = {"/*"}, name = "WelcomeUIServlet", asyncSupported = true)
+    @WebServlet(urlPatterns = {"/*", "/VAADIN/*"}, name = "WelcomeUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = WelcomeUI.class, productionMode = false)
     public static class WelcomeUIServlet extends VaadinServlet {
     }

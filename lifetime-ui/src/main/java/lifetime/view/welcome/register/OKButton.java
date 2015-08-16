@@ -27,26 +27,25 @@ import lifetime.view.custom.LifetimeButtonLink;
  */
 public class OKButton extends LifetimeButtonLink implements Button.ClickListener {
 
-    public OKButton(Integer userId, String language) {
-        super(userId, language, "OK", FontAwesome.CHECK);
+    public OKButton(String username, String language) {
+        super(username, language, "OK", FontAwesome.CHECK);
         setCaption(getDescription());
         setId(StyleClassName.OK_BUTTON.getId());
         addClickListener(this);
     }
-    
+
     @Override
     public void buttonClick(ClickEvent event) {
         getRegistrationForm().submit();
     }
-    
-    
+
     private RegistrationForm getRegistrationForm() {
-        Component view  = getParent();
-        
-        while(!(view instanceof RegisterView)) {
+        Component view = getParent();
+
+        while (!(view instanceof RegisterView)) {
             view = view.getParent();
         }
-        
+
         RegisterView rView = (RegisterView) view;
         return rView.getContent().getRegisterForm();
     }

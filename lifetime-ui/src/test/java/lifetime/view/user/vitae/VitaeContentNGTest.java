@@ -13,24 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.ui;
+package lifetime.view.user.vitae;
+
+import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-public enum Navigation {
+public class VitaeContentNGTest {
 
-    WELCOME_VIEW("welcome"), REGISTER_VIEW("register"), CONTACT_VIEW("contact"), 
-    USER_VIEW("user"), VITAE_VIEW("vitae"), TIMELINE_VIEW("timeline"), YELLOW_PAGES_VIEW("yellowpages");
-
-    private String name;
-    
-    private Navigation(String name) {
-        this.name = name;
+    public VitaeContentNGTest() {
     }
 
-    public String getName() {
-        return name;
-    }    
+    @Test
+    public void testSomeMethod() {
+        // TODO review the generated test code and remove the default call to fail.
+        VitaeContent content = new VitaeContent("username", "pt");
+    }
+
 }

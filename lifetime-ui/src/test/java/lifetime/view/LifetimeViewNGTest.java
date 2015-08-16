@@ -45,6 +45,10 @@ public class LifetimeViewNGTest {
             @Override
             protected LifetimeMenu createMenu() {
                 return new LifetimeMenu(getLanguage()) {
+
+                    @Override
+                    protected void addControls() {
+                    }
                 };
             }
 
@@ -75,6 +79,10 @@ public class LifetimeViewNGTest {
             @Override
             protected LifetimeMenu createMenu() {
                 return new LifetimeMenu(getLanguage()) {
+
+                    @Override
+                    protected void addControls() {
+                    }
                 };
             }
 
@@ -105,6 +113,10 @@ public class LifetimeViewNGTest {
             @Override
             protected LifetimeMenu createMenu() {
                 return new LifetimeMenu(getLanguage()) {
+
+                    @Override
+                    protected void addControls() {
+                    }
                 };
             }
 
@@ -135,6 +147,10 @@ public class LifetimeViewNGTest {
             @Override
             protected LifetimeMenu createMenu() {
                 return new LifetimeMenu(getLanguage()) {
+
+                    @Override
+                    protected void addControls() {
+                    }
                 };
             }
 

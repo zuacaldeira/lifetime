@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.view.user;
+package lifetime.view.user.timeline;
 
 import com.vaadin.data.Property;
 import com.vaadin.server.FontAwesome;
@@ -61,9 +61,9 @@ class Timeline extends HorizontalLayout implements Property.ValueChangeListener 
 
     private Component getUnitTile(int i) {
         if (i % 2 == 0) {
-            return new LifetimeButtonLink(FontAwesome.LINK);
+            return new LifetimeButtonLink(null, "en", FontAwesome.LINK);
         } else {
-            return new LifetimeButtonLink(FontAwesome.LIFE_RING);
+            return new LifetimeButtonLink(null, "en", FontAwesome.LIFE_RING);
         }
     }
 
