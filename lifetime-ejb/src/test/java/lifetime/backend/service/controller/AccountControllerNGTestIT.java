@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lifetime.backend.service;
+package lifetime.backend.service.controller;
 
 import lifetime.backend.service.controller.AccountController;
 import java.util.Date;
@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import lifetime.TestConfig;
+import lifetime.backend.service.LifetimeAccountServiceTestIT;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;

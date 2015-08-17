@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lifetime.backend.service;
+package lifetime.backend.service.controller;
 
 import lifetime.backend.service.controller.PhotoController;
 import java.util.logging.Level;
@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 import lifetime.TestConfig;
 import lifetime.backend.persistence.Photo;
+import lifetime.backend.service.LifetimeAccountServiceTestIT;
 import lifetime.backend.util.TestHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
