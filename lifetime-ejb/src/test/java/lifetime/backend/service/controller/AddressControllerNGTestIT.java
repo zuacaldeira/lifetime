@@ -11,7 +11,7 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 import lifetime.TestConfig;
 import lifetime.backend.persistence.Address;
-import lifetime.backend.service.LifetimeAccountServiceTestIT;
+import lifetime.backend.service.LifetimeAccountServiceNGTestIT;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -41,7 +41,7 @@ public class AddressControllerNGTestIT {
      * @param address
      * @throws java.lang.Exception
      */
-    @Test(dataProvider = "address", dataProviderClass = LifetimeAccountServiceTestIT.class)
+    @Test(dataProvider = "address", dataProviderClass = LifetimeAccountServiceNGTestIT.class)
     public void testCreate(Address address) throws Exception {
         System.out.println("testAddAddress()");
         if (!addressController.hasAddress(address.getUsername())) {
@@ -55,7 +55,7 @@ public class AddressControllerNGTestIT {
      * @param email
      * @throws java.lang.Exception
      */
-    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceTestIT.class)
+    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceNGTestIT.class)
     public void testRead(String email) throws Exception {
         System.out.println("testGetAddress()");
         if (addressController.hasAddress(email)) {
@@ -69,7 +69,7 @@ public class AddressControllerNGTestIT {
      * @param email
      * @throws java.lang.Exception
      */
-    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceTestIT.class)
+    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceNGTestIT.class)
     public void testDelete(String email) throws Exception {
         System.out.println("testDeleteAddress()");
         if (addressController.hasAddress(email)) {

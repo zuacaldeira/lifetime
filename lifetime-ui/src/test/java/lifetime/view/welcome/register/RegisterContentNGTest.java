@@ -30,13 +30,13 @@ public class RegisterContentNGTest {
     }
 
     /**
-     * Test of getRegisterForm method, of class RegisterContent.
+     * Test of getRegistrationForm method, of class RegisterContent.
      */
     @Test
     public void testGetRegisterForm() {
         System.out.println("testGetRegisterForm()");
         RegisterContent content = new RegisterContent("en");
-        Assert.assertNotNull(content.getRegisterForm());
+        Assert.assertNotNull(content.getRegistrationForm());
     }
 
     /**

@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import lifetime.TestConfig;
-import lifetime.backend.service.LifetimeAccountServiceTestIT;
+import lifetime.backend.service.LifetimeAccountServiceNGTestIT;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -49,7 +49,7 @@ public class AccountControllerNGTestIT {
      * @param birthPlace
      * @param language
      */
-    @Test(dataProvider = "registerData", dataProviderClass = LifetimeAccountServiceTestIT.class, groups = "CREATE_ACCOUNT")
+    @Test(dataProvider = "registerData", dataProviderClass = LifetimeAccountServiceNGTestIT.class, groups = "CREATE_ACCOUNT")
     public void testRegister(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {
         System.out.println("register");
         if (!controller.hasAccount(email)) {
@@ -63,7 +63,7 @@ public class AccountControllerNGTestIT {
      * @param email
      * @throws java.lang.Exception
      */
-    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceTestIT.class, groups = "DELETE_ACCOUNT", dependsOnGroups = "READ_ACCOUNT")
+    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceNGTestIT.class, groups = "DELETE_ACCOUNT", dependsOnGroups = "READ_ACCOUNT")
     public void testDeleteAccount(String email) throws Exception {
         System.out.println("deleteAccount");
         if (!email.equals("zuacaldeira@gmail.com") && controller.hasAccount(email)) {
@@ -78,7 +78,7 @@ public class AccountControllerNGTestIT {
      * @param email
      * @throws java.lang.Exception
      */
-    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceTestIT.class, groups = "READ_ACCOUNT", dependsOnGroups = "CREATE_ACCOUNT")
+    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceNGTestIT.class, groups = "READ_ACCOUNT", dependsOnGroups = "CREATE_ACCOUNT")
     public void testHasAccount(String email) throws Exception {
         System.out.println("hasAccount");
         controller.hasAccount(email);
@@ -90,7 +90,7 @@ public class AccountControllerNGTestIT {
      * @param email
      * @throws java.lang.Exception
      */
-    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceTestIT.class, groups = "READ_ACCOUNT", dependsOnGroups = "CREATE_ACCOUNT")
+    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceNGTestIT.class, groups = "READ_ACCOUNT", dependsOnGroups = "CREATE_ACCOUNT")
     public void testGetFullName(String email) throws Exception {
         System.out.println("getFullName");
         if (controller.hasAccount(email)) {
@@ -104,7 +104,7 @@ public class AccountControllerNGTestIT {
      * @param email
      * @throws java.lang.Exception
      */
-    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceTestIT.class, groups = "READ_ACCOUNT", dependsOnGroups = "CREATE_ACCOUNT")
+    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceNGTestIT.class, groups = "READ_ACCOUNT", dependsOnGroups = "CREATE_ACCOUNT")
     public void testGetBirthdate(String email) throws Exception {
         System.out.println("getBirthdate");
         if (controller.hasAccount(email)) {
@@ -118,7 +118,7 @@ public class AccountControllerNGTestIT {
      * @param email
      * @throws java.lang.Exception
      */
-    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceTestIT.class, groups = "READ_ACCOUNT", dependsOnGroups = "CREATE_ACCOUNT")
+    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceNGTestIT.class, groups = "READ_ACCOUNT", dependsOnGroups = "CREATE_ACCOUNT")
     public void testGetBirthPlace(String email) throws Exception {
         System.out.println("getBirthPlace");
         if (controller.hasAccount(email)) {

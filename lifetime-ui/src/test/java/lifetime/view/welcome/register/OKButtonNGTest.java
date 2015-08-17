@@ -30,6 +30,7 @@ public class OKButtonNGTest {
 
     @Test
     public void testConstructor() {
+        System.out.println(getClass().getName() + "#OKButton()");
         String username = "username";
         String language = "en";
         OKButton okButton = new OKButton(username, language);
@@ -37,4 +38,17 @@ public class OKButtonNGTest {
         Assert.assertEquals(okButton.getIcon(), FontAwesome.CHECK);
     }
 
+    @Test
+    public void testClick() {
+        System.out.println(getClass().getName() + "#testClick()");
+        RegisterView registerView = new RegisterView("pt");
+        registerView.getMenu().getOkButton().click();
+    }
+
+    @Test
+    public void testGetRegistrationForm() {
+        System.out.println(getClass().getName() + "#testGetRegistrationForm()");
+        RegisterView registerView = new RegisterView("pt");
+        Assert.assertSame(registerView.getMenu().getOkButton().getRegistrationForm(), registerView.getContent().getRegistrationForm());
+    }
 }

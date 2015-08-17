@@ -43,7 +43,7 @@ public class UserControllerNGTestIT {
      */
     @Test(groups = {"CREATE"})
     public void testCreate() throws Exception {
-        System.out.println("create");
+        System.out.println(getClass().getName() + "#testCreate()");
         assertTrue(userController.create(new User(null, "username", "lastname", new Date(), "birth place", "pt")));
     }
 
@@ -52,19 +52,21 @@ public class UserControllerNGTestIT {
      */
     @Test(groups = {"READ"}, dependsOnGroups = {"CREATE"})
     public void testRead() throws Exception {
-        System.out.println("read");
+        System.out.println(getClass().getName() + "#testRead()");
         User user = userController.read("username");
     }
 
     /**
      * Test of update method, of class UserController.
      */
-    @Test(groups = {"UPADTE"}, dependsOnGroups = {"CREATE", "READ"})
+    @Test(groups = {"UPDATE"}, dependsOnGroups = {"CREATE", "READ"})
     public void testUpdate() throws Exception {
-        System.out.println("update");
+        System.out.println(getClass().getName() + "#testUpdate()");
         User user = userController.read("username");
-        user.setBirthPlace("UNKNOWN");
-        assertTrue(userController.update(user));
+        if (user != null) {
+            user.setBirthPlace("UNKNOWN");
+            assertTrue(userController.update(user));
+        }
 
     }
 
@@ -73,7 +75,7 @@ public class UserControllerNGTestIT {
      */
     @Test(dependsOnGroups = {"CREATE", "READ", "UPDATE"})
     public void testDelete() throws Exception {
-        System.out.println("delete");
+        System.out.println(getClass().getName() + "#testDelete()");
         assertTrue(userController.delete("username"));
     }
 

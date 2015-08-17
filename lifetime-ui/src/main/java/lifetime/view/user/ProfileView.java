@@ -22,7 +22,6 @@ import com.vaadin.ui.Upload;
 import java.util.Objects;
 import lifetime.backend.persistence.Address;
 import lifetime.backend.persistence.Contact;
-import lifetime.backend.persistence.Photo;
 import lifetime.backend.persistence.User;
 import lifetime.backend.service.LifetimeAccountService;
 import lifetime.util.ServiceLocator;
@@ -38,8 +37,6 @@ public class ProfileView extends UserContent {
      */
     private transient LifetimeAccountService service;
     private final String username;
-    private Address address;
-    private Contact contact;
 
     /**
      * Layout components.
@@ -86,14 +83,11 @@ public class ProfileView extends UserContent {
     private void init() {
         clean();
         initService();
-        if (service != null) {
-            initUploadAndReceiver();
-            initPhoto();
-            initBirthDataLayout();
-            initAddressLayout();
-            initContactLayout();
-        }
-
+        //initUploadAndReceiver();
+        initPhoto();
+        initBirthDataLayout();
+        initAddressLayout();
+        initContactLayout();
     }
 
     private void clean() {
@@ -110,7 +104,6 @@ public class ProfileView extends UserContent {
         upload = new Upload("Add your favourite photo", receiver);
         upload.addSucceededListener(receiver);
         upload.setImmediate(true);
-        //upload.setWidth(image.getWidth(), image.getWidthUnits());
         base.addComponent(upload);
     }
 
@@ -119,7 +112,6 @@ public class ProfileView extends UserContent {
             image = new Image("", receiver.getPhotoResource(service.getPhoto(username)));
         } else {
             image = new Image("");
-            //addUpload();
         }
 
         image.setHeight("60%");
@@ -152,7 +144,7 @@ public class ProfileView extends UserContent {
      * Adds the user main contacts to it's profile view.
      */
     protected void initContactLayout() {
-        if (contact != null && service.getContact(username) != null) {
+        if (service != null && service.getContact(username) != null) {
             contactLayout = new ContactLayout(service.getContact(username));
         } else {
             contactLayout = new ContactLayout(new Contact());

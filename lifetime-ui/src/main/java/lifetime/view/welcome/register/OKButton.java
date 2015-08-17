@@ -39,7 +39,7 @@ public class OKButton extends LifetimeButtonLink implements Button.ClickListener
         getRegistrationForm().submit();
     }
 
-    private RegistrationForm getRegistrationForm() {
+    protected RegistrationForm getRegistrationForm() {
         Component view = getParent();
 
         while (!(view instanceof RegisterView)) {
@@ -47,7 +47,7 @@ public class OKButton extends LifetimeButtonLink implements Button.ClickListener
         }
 
         RegisterView rView = (RegisterView) view;
-        return rView.getContent().getRegisterForm();
+        return rView.getContent().getRegistrationForm();
     }
 
 }

@@ -56,7 +56,7 @@ public class RegisterContent extends LifetimeContent {
      *
      * @return An instance of {@link RegistrationForm}
      */
-    public RegistrationForm getRegisterForm() {
+    public RegistrationForm getRegistrationForm() {
         return registerForm;
     }
 

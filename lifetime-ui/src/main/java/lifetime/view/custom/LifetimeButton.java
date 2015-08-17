@@ -45,13 +45,6 @@ public abstract class LifetimeButton extends Button {
         setCaption(getDescription());
     }
 
-    protected LifetimeButton(String caption, String language, Resource icon) {
-        super("", icon);
-        this.language = language;
-        setDescription(caption);
-        setCaption(getDescription());
-    }
-
     public String getUsername() {
         return username;
     }

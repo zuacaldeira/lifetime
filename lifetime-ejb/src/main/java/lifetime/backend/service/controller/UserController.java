@@ -29,7 +29,7 @@ public class UserController extends CrudController<User> {
 
     @Override
     public User read(String username) {
-        if(accountController.hasAccount(username)) {
+        if (accountController.hasAccount(username)) {
             return accountController.read(username).getUser();
         }
         return null;
@@ -48,7 +48,9 @@ public class UserController extends CrudController<User> {
 
     @Override
     public boolean delete(String username) {
-        em.remove(read(username));
+        if (accountController.hasAccount(username)) {
+            em.remove(read(username));
+        }
         return true;
     }
 

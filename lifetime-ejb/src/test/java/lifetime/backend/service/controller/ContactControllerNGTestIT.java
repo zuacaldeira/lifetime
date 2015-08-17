@@ -11,7 +11,7 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 import lifetime.TestConfig;
 import lifetime.backend.persistence.Contact;
-import lifetime.backend.service.LifetimeAccountServiceTestIT;
+import lifetime.backend.service.LifetimeAccountServiceNGTestIT;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -31,7 +31,7 @@ public class ContactControllerNGTestIT {
         try {
             contactController = (ContactController) context.lookup("java:global/classes/ContactController");
         } catch (NamingException ex) {
-            java.util.logging.Logger.getLogger(LifetimeAccountServiceTestIT.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LifetimeAccountServiceNGTestIT.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -42,7 +42,7 @@ public class ContactControllerNGTestIT {
      * @param contact
      * @throws java.lang.Exception
      */
-    @Test(dataProvider = "contact", dataProviderClass = LifetimeAccountServiceTestIT.class)
+    @Test(dataProvider = "contact", dataProviderClass = LifetimeAccountServiceNGTestIT.class)
     public void testAddContact(Contact contact) throws Exception {
         System.out.println("testAddContact()");
         if (!contactController.hasContact(contact.getUsername())) {
@@ -56,7 +56,7 @@ public class ContactControllerNGTestIT {
      * @param email
      * @throws java.lang.Exception
      */
-    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceTestIT.class)
+    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceNGTestIT.class)
     public void testGetContact(String email) throws Exception {
         System.out.println("testGetContact()");
         if (contactController.hasContact(email)) {
@@ -70,7 +70,7 @@ public class ContactControllerNGTestIT {
      * @param email
      * @throws java.lang.Exception
      */
-    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceTestIT.class)
+    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceNGTestIT.class)
     public void testDeleteContact(String email) throws Exception {
         System.out.println("testDeleteContact()");
         if (contactController.hasContact(email)) {

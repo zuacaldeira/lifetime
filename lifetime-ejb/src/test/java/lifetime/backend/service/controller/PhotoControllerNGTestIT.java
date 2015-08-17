@@ -11,7 +11,7 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 import lifetime.TestConfig;
 import lifetime.backend.persistence.Photo;
-import lifetime.backend.service.LifetimeAccountServiceTestIT;
+import lifetime.backend.service.LifetimeAccountServiceNGTestIT;
 import lifetime.backend.util.TestHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -42,7 +42,7 @@ public class PhotoControllerNGTestIT {
      * @param email
      * @throws java.lang.Exception
      */
-    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceTestIT.class)
+    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceNGTestIT.class)
     public void testGetPhoto(String email) throws Exception {
         System.out.println("getPhoto");
         if(photoController.hasPhoto(email)) {
@@ -56,7 +56,7 @@ public class PhotoControllerNGTestIT {
      * @param email
      * @throws java.lang.Exception
      */
-    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceTestIT.class)
+    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceNGTestIT.class)
     public void testDeletePhoto(String email) throws Exception {
         System.out.println("getPhoto");
         if(photoController.hasPhoto(email)) {
@@ -70,7 +70,7 @@ public class PhotoControllerNGTestIT {
      * @param email
      * @throws java.lang.Exception
      */
-    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceTestIT.class)
+    @Test(dataProvider = "email", dataProviderClass = LifetimeAccountServiceNGTestIT.class)
     public void testAddPhoto(String email) throws Exception {
         System.out.println("addPhoto");
         if(!photoController.hasPhoto(email)) {

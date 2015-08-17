@@ -13,8 +13,10 @@ import lifetime.TestConfig;
 import lifetime.backend.persistence.Address;
 import lifetime.backend.persistence.Contact;
 import lifetime.backend.persistence.Photo;
+import lifetime.backend.persistence.User;
 import lifetime.backend.util.TestHelper;
 import org.testng.Assert;
+import static org.testng.Assert.assertTrue;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -23,7 +25,7 @@ import org.testng.annotations.Test;
  *
  * @author zua
  */
-public class LifetimeAccountServiceTestIT /*extends Arquillian implements Serializable */ {
+public class LifetimeAccountServiceNGTestIT /*extends Arquillian implements Serializable */ {
 
     private LifetimeAccountService accountService;
     private static Context ctx;
@@ -34,7 +36,7 @@ public class LifetimeAccountServiceTestIT /*extends Arquillian implements Serial
         try {
             accountService = (LifetimeAccountService) ctx.lookup("java:global/classes/LifetimeAccountService");
         } catch (NamingException ex) {
-            java.util.logging.Logger.getLogger(LifetimeAccountServiceTestIT.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LifetimeAccountServiceNGTestIT.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -155,6 +157,19 @@ public class LifetimeAccountServiceTestIT /*extends Arquillian implements Serial
         }
     }
 
+    @Test(dataProvider = "email", groups = {"READ_USER"}, dependsOnGroups = {"CREATE_ACCOUNT"})
+    public void testReadUser(String email) {
+        accountService.getUser(email);
+    }
+
+    @Test(dataProvider = "email", dependsOnGroups = {"CREATE_ACCOUNT", "READ_USER"})
+    public void testUpdateUser(String email) {
+        User u = accountService.getUser(email);
+        if (u != null) {
+            u.setBirthDate(new Date());
+            assertTrue(accountService.update(u));
+        }
+    }
 
     /*    @Test(dataProvider = "registerNegativeData", groups = "CREATE_BAD_ACCOUNT", dependsOnGroups = "DELETE_ACCOUNT")
      public void testBadRegistration(String firstName, String lastName, String email, String password, Date birthDate, String language, String birthPlace) {

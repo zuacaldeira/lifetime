@@ -75,7 +75,7 @@ public class RegisterMenu extends LifetimeMenu {
                 parent = parent.getParent();
             }
             RegisterView registerView = (RegisterView) parent;
-            return registerView.getContent().getRegisterForm();
+            return registerView.getContent().getRegistrationForm();
         } else {
             return null;
         }
