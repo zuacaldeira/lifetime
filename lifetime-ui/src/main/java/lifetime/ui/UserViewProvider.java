@@ -15,11 +15,11 @@
  */
 package lifetime.ui;
 
-import lifetime.view.user.vitae.VitaeView;
+import lifetime.component.timeline.TimelineView;
+import lifetime.component.user.vitae.VitaeView;
 import lifetime.util.Navigation;
-import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewProvider;
-import lifetime.view.user.UserView;
+import lifetime.component.user.UserView;
 
 /**
  *
@@ -41,12 +41,16 @@ public class UserViewProvider implements ViewProvider {
     }
 
     @Override
-    public View getView(String viewName) {
+    public UserView getView(String viewName) {
         System.out.println("UserViewProvider#getView(): USERNAME -> " + username);
         System.out.println("UserViewProvider#getView(): VIEW_NAME -> " + viewName);
         if (viewName.equals(Navigation.VITAE_VIEW.getName())) {
             return new VitaeView(username, language);
         }
-        return new UserView(username, language);
+        if (viewName.equals(Navigation.TIMELINE_VIEW.getName())) {
+            return new TimelineView(username, language);
+        } else {
+            return new UserView(username, language);
+        }
     }
 }

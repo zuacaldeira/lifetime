@@ -68,6 +68,20 @@
         }
     }
 
+    .time-mark{
+        font-size: 50%;
+    }
+
+    .time-axis {
+        background: red;
+        font-size: 50%;
+        border-color: blue;
+        v-horizontal-layout {
+            background: white;
+            font-size: 50%;
+        }
+    }
+
     .forms {
         background: transparent;
         color: white;

@@ -334,5 +334,5 @@
         <module>lifetime-ui</module>
         <module>lifetime-production</module>
         <module>lifetime-ejb</module>
-    </modules>
+  </modules>
 </project>

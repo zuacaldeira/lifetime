@@ -15,7 +15,7 @@
  */
 package lifetime.ui;
 
-import lifetime.view.welcome.WelcomeViewProvider;
+import lifetime.component.welcome.WelcomeViewProvider;
 import com.vaadin.navigator.ViewProvider;
 
 /**

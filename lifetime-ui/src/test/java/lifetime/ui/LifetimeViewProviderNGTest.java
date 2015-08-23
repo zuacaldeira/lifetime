@@ -16,7 +16,7 @@
 package lifetime.ui;
 
 import com.vaadin.navigator.ViewProvider;
-import lifetime.view.welcome.WelcomeViewProvider;
+import lifetime.component.welcome.WelcomeViewProvider;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 

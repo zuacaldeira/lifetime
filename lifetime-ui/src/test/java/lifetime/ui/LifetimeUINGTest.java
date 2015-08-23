@@ -18,7 +18,7 @@ package lifetime.ui;
 import com.vaadin.server.VaadinRequest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import lifetime.view.LifetimeView;
+import lifetime.component.LifetimeView;
 
 /**
  *

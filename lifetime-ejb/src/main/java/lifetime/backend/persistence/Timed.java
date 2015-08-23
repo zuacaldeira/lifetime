@@ -114,4 +114,35 @@ public class Timed implements ITimed {
         return isResumed;
     }
 
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+        Date now = new Date();
+        if (startTime.before(now)) {
+            isStarted = true;
+        }
+    }
+
+    public void addPauseTime(Date pause) {
+        pauseTimes.add(pause);
+        Date now = new Date();
+        if (pause.before(now) && getLastResumedAt() != null && pause.after(getLastResumedAt())) {
+            isPaused = true;
+            isResumed = false;
+        }
+    }
+
+    public void addResumeTime(Date resume) {
+        resumeTimes.add(resume);
+        Date now = new Date();
+        if (resume.before(now) && getLastPausedAt() != null && resume.after(getLastPausedAt())) {
+            isPaused = false;
+            isResumed = true;
+        }
+    }
+
+    public void setFinishTime(Date finishTime) {
+        this.finishTime = finishTime;
+        isFinished = true;
+    }
+
 }

@@ -16,10 +16,10 @@
 package lifetime.ui;
 
 import lifetime.util.Navigation;
-import lifetime.view.welcome.WelcomeViewProvider;
-import lifetime.view.welcome.WelcomeView;
-import lifetime.view.welcome.contact.ContactView;
-import lifetime.view.welcome.register.RegisterView;
+import lifetime.component.welcome.WelcomeViewProvider;
+import lifetime.component.welcome.WelcomeView;
+import lifetime.component.welcome.contact.ContactView;
+import lifetime.component.welcome.register.RegisterView;
 import static org.testng.Assert.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
