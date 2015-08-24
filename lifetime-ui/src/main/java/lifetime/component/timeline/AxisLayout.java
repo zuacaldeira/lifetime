@@ -13,38 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.logic.timeline;
+package lifetime.component.timeline;
+
+import com.vaadin.ui.AbsoluteLayout;
+import lifetime.logic.timeline.Axis;
 
 /**
  *
  * @author zua
- * @param <X>
- * @param <Y>
  */
-public class Plan<X extends Axis, Y extends Axis> {
+abstract class AxisLayout extends AbsoluteLayout {
 
-    private X xAxis;
-    private Y yAxis;
+    private final Axis axis;
 
-    public Plan(X xAxis, Y yAxis) {
-        this.xAxis = xAxis;
-        this.yAxis = yAxis;
+    public AxisLayout(Axis axis) {
+        this.axis = axis;
+        setStyleName("axis");
+        initLayout();
+
     }
 
-    public X getOrdinateAxis() {
-        return xAxis;
+    private void initLayout() {
+        float delta = 100f / axis.getNumberOfUnits();
+
+        for (int i = 1; i < 100; i++) {
+            addMark(delta * i);
+        }
     }
 
-    public void setxAxis(X xAxis) {
-        this.xAxis = xAxis;
-    }
-
-    public Y getCoordinateAxis() {
-        return yAxis;
-    }
-
-    public void setyAxis(Y yAxis) {
-        this.yAxis = yAxis;
-    }
+    protected abstract void addMark(float f);
 
 }

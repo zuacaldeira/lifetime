@@ -16,11 +16,10 @@
 package lifetime.component.timeline;
 
 import com.vaadin.server.FontAwesome;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.AbsoluteLayout;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import java.util.Date;
-import lifetime.component.custom.LifetimeButtonSmall;
 import lifetime.logic.timeline.Axis;
 import lifetime.logic.timeline.MeasureUnit;
 import lifetime.logic.timeline.Point;
@@ -49,7 +48,7 @@ public class TimelineLayout extends AbsoluteLayout {
         TimeAxis timeAxis = new TimeAxis(new TimeUnit("year", "y", 1, 0), 100);
         Axis yAxis = new Axis(new MeasureUnit("%", "%", 1, 0), 100);
         this.timedPlan = new TimePlan<>(timeAxis, yAxis);
-        origin = new Point(5.0, 5.0);
+        origin = new Point(0.0, 0.0);
         originPosition = new ComponentPosition();
         originPosition.setBottom((float) origin.getY(), Unit.PERCENTAGE);
         originPosition.setLeft((float) origin.getX(), Unit.PERCENTAGE);
@@ -62,27 +61,14 @@ public class TimelineLayout extends AbsoluteLayout {
      *
      */
     private void drawPlan() {
-        drawOrigin();
-        drawTimeAxis();
-        drawImageAxis();
+        addOrigin();
+        addComponent(TimelineLayoutProvider.getPlanLayout(timedPlan));
     }
 
-    private void drawOrigin() {
-        LifetimeButtonSmall originMark = new LifetimeButtonSmall(null, null, null, FontAwesome.DOT_CIRCLE_O);
+    private void addOrigin() {
+        Label originMark = new Label(FontAwesome.DOT_CIRCLE_O.getHtml(), ContentMode.HTML);
         addComponent(originMark);
         setPosition(originMark, originPosition);
-    }
-
-    private void drawTimeAxis() {
-        HorizontalLayout timeAxisLayout = new HorizontalLayout(new Label("I am the time axis"));
-        timeAxisLayout.setStyleName("time-axis");
-        timeAxisLayout.setHeight(10f, Unit.PIXELS);
-        timeAxisLayout.setWidth(100f, Unit.PERCENTAGE);
-        addComponent(timeAxisLayout);
-        setPosition(timeAxisLayout, originPosition);
-    }
-
-    private void drawImageAxis() {
     }
 
 }

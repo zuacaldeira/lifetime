@@ -12778,6 +12778,21 @@ div.v-layout.v-horizontal.v-widget {
 	color: deeppink;
 }
 
+.mytheme .time-mark {
+	font-size: 50%;
+}
+
+.mytheme .axis {
+	background: red;
+	font-size: 50%;
+	border-color: blue;
+}
+
+.mytheme .axis v-horizontal-layout {
+	background: white;
+	font-size: 50%;
+}
+
 .mytheme .forms {
 	background: transparent;
 	color: white;

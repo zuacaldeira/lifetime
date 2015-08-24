@@ -13,38 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lifetime.logic.timeline;
+package lifetime.component.timeline;
+
+import com.vaadin.ui.Label;
+import lifetime.logic.timeline.Axis;
 
 /**
  *
  * @author zua
- * @param <X>
- * @param <Y>
  */
-public class Plan<X extends Axis, Y extends Axis> {
+class HorizontalAxisLayout extends AxisLayout {
 
-    private X xAxis;
-    private Y yAxis;
-
-    public Plan(X xAxis, Y yAxis) {
-        this.xAxis = xAxis;
-        this.yAxis = yAxis;
+    public HorizontalAxisLayout(Axis axis) {
+        super(axis);
+        setHeight(4f, Unit.PIXELS);
+        setWidth("100%");
     }
 
-    public X getOrdinateAxis() {
-        return xAxis;
+    @Override
+    protected void addMark(float f) {
+        Label mark = new Label(".");
+        addComponent(mark, "left:" +f);
     }
-
-    public void setxAxis(X xAxis) {
-        this.xAxis = xAxis;
-    }
-
-    public Y getCoordinateAxis() {
-        return yAxis;
-    }
-
-    public void setyAxis(Y yAxis) {
-        this.yAxis = yAxis;
-    }
-
+    
 }
