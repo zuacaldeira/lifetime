@@ -9,6 +9,8 @@ import com.vaadin.server.Resource;
 import com.vaadin.ui.themes.Reindeer;
 
 /**
+ * Lifetime's link button, with specific customization to be used throughout our
+ * application.
  *
  * @author azc
  */

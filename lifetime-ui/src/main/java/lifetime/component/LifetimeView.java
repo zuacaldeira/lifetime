@@ -76,6 +76,10 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
      */
     private LifetimeContent content;
     /**
+     * Lifetime's footer
+     */
+    private LifetimeFooter footer;
+    /**
      * The current user or system language
      */
     private final String language;
@@ -93,6 +97,7 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
      * Initializes the structure of user interface. Delegates the choice of
      * individual adapters to subclasses.
      *
+     * @param username The current interacting user
      * @param language The language the user is interacting with the system.
      */
     public LifetimeView(String username, String language) {
@@ -104,12 +109,14 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
         initBackground();
         initMenu();
         initContent();
+        initFooter();
         //
         // Compose the view structure
-        base = new VerticalLayout(menu, content);
+        base = new VerticalLayout(menu, content, footer);
         base.setSizeFull();
         base.setExpandRatio(menu, .1f);
-        base.setExpandRatio(content, .9f);
+        base.setExpandRatio(content, .8f);
+        base.setExpandRatio(footer, .1f);
         addComponents(background, base);
     }
 
@@ -180,6 +187,13 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
     }
 
     /**
+     * Initializes the Lifetime's footer
+     */
+    private void initFooter() {
+        footer = createFooter();
+    }
+
+    /**
      * Creates a new menu compatible with the view concrete implementation.
      * Implementors must provide an implementation of the adapter class
      * LifetimeMenu. This imposes a requirement on concrete subclass to provide
@@ -199,6 +213,15 @@ public abstract class LifetimeView extends AbsoluteLayout implements View {
      */
     protected abstract LifetimeContent createContent();
 
+    /**
+     * Creates a new footer view. Footers are independent from views, as they
+     * traverse the full application.
+     * @return the application footer
+     */
+    protected  LifetimeFooter createFooter() {
+        return new LifetimeFooter();
+    }
+    
     /**
      * Creates a new background wrapper class, compatible with the concrete
      * implementation. Implementors must provide an implementation of the
