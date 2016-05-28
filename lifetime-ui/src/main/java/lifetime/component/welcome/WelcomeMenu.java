@@ -47,7 +47,7 @@ public class WelcomeMenu extends LifetimeMenu {
     public WelcomeMenu(String language) {
         super(language);
         setSizeFull();
-        setId(StyleClassName.WELCOME_MENU.getId());
+        setStyleName(StyleClassName.WELCOME_MENU.getStyleName());
     }
 
     public RegisterButton getRegisterButton() {

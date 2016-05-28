@@ -40,6 +40,8 @@ public enum Backgrounds {
     }
 
     public static Image getBackground(Backgrounds background) {
-        return new Image("", background.getResource());
+        Image i = new Image("", background.getResource());
+        i.setSizeUndefined();
+        return i;
     }
 }

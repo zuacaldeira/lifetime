@@ -21,6 +21,7 @@ public class LifetimeButtonLink extends LifetimeButton {
         setDescription(caption);
         setData(language);
         setStyleName(Reindeer.BUTTON_LINK);
+        setHeight("1cm");
     }
 
     public LifetimeButtonLink(String caption, String language, Resource icon) {

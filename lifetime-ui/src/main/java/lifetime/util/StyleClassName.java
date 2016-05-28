@@ -31,10 +31,10 @@ public enum StyleClassName {
     /**
      * Inner components identifiers.
      */
-    WELCOME_UI("welcome-ui"),
-    WELCOME_VIEW("welcome-view"),
-    WELCOME_MENU("welcome-menu"),
-    WELCOME_CONTENT("welcome-content"),
+    WELCOME_UI(LIFETIME_UI.getStyleName()),
+    WELCOME_VIEW(LIFETIME_VIEW.getStyleName()),
+    WELCOME_MENU(LIFETIME_MENU.getStyleName()),
+    WELCOME_CONTENT(LIFETIME_CONTENT.getStyleName()),
     /* Main Views. */
     USER_UI("user-ui"),
     USER_VIEW("user-view"),

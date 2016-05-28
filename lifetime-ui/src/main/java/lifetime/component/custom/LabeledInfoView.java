@@ -15,49 +15,51 @@
  */
 package lifetime.component.custom;
 
-import com.vaadin.ui.Component;
+import com.vaadin.server.FontAwesome;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import java.util.Objects;
+import java.text.DecimalFormat;
 
 /**
  *
  * @author zua
  */
-public class LabeledInfoView extends HorizontalLayout {
+public abstract class LabeledInfoView extends HorizontalLayout {
 
-    private final Component info;
+    private final Label info;
+    private final Label label;
+    private final Label iconLabel;
+    private static final DecimalFormat format = new DecimalFormat("###,###");
 
-    public LabeledInfoView(Component info) {
-        this.info = info;
+    public LabeledInfoView(String key, Object value, FontAwesome icon) {
+        this.info = (value instanceof Number)? new Label(format.format(value)) : new Label(value.toString());
+        this.label = new Label(key);
+        this.iconLabel = (icon == null) ? new Label() : new Label(icon.getHtml(), ContentMode.HTML);
         // customize components
-        info.setStyleName("value");
-        info.setSizeFull();
+        info.addStyleName("i-value");
+        label.addStyleName("i-tag");
+        iconLabel.addStyleName("i-icon");
         // add components to layout
-        super.addComponents(info);
+        super.addComponents(this.iconLabel, this.info, this.label);
+        super.setStyleName("l-info");
+        super.setSizeUndefined();
+        super.setSpacing(true);
     }
 
-    public Component getInfo() {
+
+    public Label getInfo() {
         return info;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + this.info.hashCode();
-        return hash;
+    public Label getLabel() {
+        return label;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final LabeledInfoView other = (LabeledInfoView) obj;
-        return Objects.equals(this.info, other.info);
+    public Label getIconLabel() {
+        return iconLabel;
     }
 
+
+    
 }

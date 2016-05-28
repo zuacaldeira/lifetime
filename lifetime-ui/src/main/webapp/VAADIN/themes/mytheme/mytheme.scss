@@ -38,38 +38,48 @@
     }
 
     .lifetime-view {
-        background: white;
+        background: transparent;
         .v-button-link {
             background-color: deeppink;
-            margin-top: 1mm;
-            margin-right: 1mm;
-            margin-bottom: 1mm;
             color: white;
+            alignment-adjust: baseline;
+        }
+        
+        
+        .lifetime-menu {
+            background: transparent;
+            //opacity: 0.75;
         }
 
-    }
-    .lifetime-menu {
-        background: whitesmoke;
-        opacity: 0.75;
-    }
-
-    .lifetime-content {
-        background: black;
-        opacity: 0.85;
-        color: white;
-        font-weight: bold;
-
-        .tag{
-            font-size: 150%;
-            text-align: center;
-        }
-        .value{
-            font-size: 200%;
+        .lifetime-content {
+            background: black;
+            opacity: 0.85;
+            color: white;
             font-weight: bold;
-            color: deeppink;
-            text-align: center;
+            .l-info {
+                background: transparent;
+                border-radius: 50%;
+                //width: 200px;
+                //height: 200px; 
+                .i-icon{
+                    font-size: 500%;                
+                    color: deeppink;
+                }
+                .i-tag{
+                    font-size: 150%;
+                    text-align: center;
+                }
+                .i-value{
+                    font-size: 200%;
+                    font-weight: bold;
+                    color: deeppink;
+                    text-align: center;
+                }
+            }
         }
     }
+
+
 
     .time-mark{
         font-size: 50%;

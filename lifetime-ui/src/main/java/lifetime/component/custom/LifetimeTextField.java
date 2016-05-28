@@ -16,6 +16,7 @@
 package lifetime.component.custom;
 
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.themes.ValoTheme;
 
 /**
  *
@@ -25,8 +26,9 @@ public class LifetimeTextField extends TextField  {
 
     public LifetimeTextField(String caption) {
         super(caption);
-        setImmediate(true);
-        setWidth("400px");
+        super.setImmediate(true);
+        super.setSizeUndefined();
+        setStyleName(ValoTheme.TEXTFIELD_ALIGN_CENTER);
     }
     
     public LifetimeTextField() {

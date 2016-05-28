@@ -73,4 +73,11 @@
                 <goal>deploy:deploy</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-update-widgetset</actionName>
+            <displayName>update-widgetset</displayName>
+            <goals>
+                <goal>update-widgetset:update-widgetset</goal>
+            </goals>
+        </action>
     </actions>
