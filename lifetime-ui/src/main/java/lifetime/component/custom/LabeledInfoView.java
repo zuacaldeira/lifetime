@@ -16,30 +16,25 @@
 package lifetime.component.custom;
 
 import com.vaadin.ui.Component;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.VerticalLayout;
 import java.util.Objects;
 
 /**
  *
  * @author zua
  */
-public class LabeledInfoView extends VerticalLayout {
+public class LabeledInfoView extends HorizontalLayout {
 
-    private final Label key;
     private final Component info;
 
-    public LabeledInfoView(Label key, Component info) {
-        this.key = key;
+    public LabeledInfoView(Component info) {
         this.info = info;
-        setSizeUndefined();
-        key.setStyleName("tag");
+        // customize components
         info.setStyleName("value");
-        addComponents(key, info);
-    }
-
-    public Label getKey() {
-        return key;
+        info.setSizeFull();
+        // add components to layout
+        super.addComponents(info);
     }
 
     public Component getInfo() {
@@ -49,7 +44,7 @@ public class LabeledInfoView extends VerticalLayout {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.key.getValue());
+        hash = 23 * hash + this.info.hashCode();
         return hash;
     }
 
@@ -62,7 +57,7 @@ public class LabeledInfoView extends VerticalLayout {
             return false;
         }
         final LabeledInfoView other = (LabeledInfoView) obj;
-        return Objects.equals(this.key.getValue(), other.key.getValue());
+        return Objects.equals(this.info, other.info);
     }
 
 }

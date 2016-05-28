@@ -58,13 +58,16 @@
         opacity: 0.85;
         color: white;
         font-weight: bold;
+
         .tag{
             font-size: 150%;
+            text-align: center;
         }
         .value{
             font-size: 200%;
             font-weight: bold;
             color: deeppink;
+            text-align: center;
         }
     }
 

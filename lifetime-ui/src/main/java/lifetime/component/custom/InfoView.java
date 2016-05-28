@@ -15,6 +15,7 @@
  */
 package lifetime.component.custom;
 
+import com.vaadin.server.Resource;
 import com.vaadin.ui.Label;
 import java.text.DecimalFormat;
 import java.util.Objects;
@@ -23,20 +24,18 @@ import java.util.Objects;
  *
  * @author zua
  */
-public class InfoView extends LabeledInfoView {
+public class InfoView extends IconedLabeledInfoView {
 
     private static final DecimalFormat format = new DecimalFormat("###,###");
     private final String tag;
     private final transient Object value;
 
-    public InfoView(String key, Number value) {
-        super(new Label(key), new Label(format.format(value)));
-        this.tag = key;
-        this.value = value;
+    public InfoView(String key, Object value) {
+        this(key, value, null);
     }
 
-    public InfoView(String key, Object value) {
-        super(new Label(key), new Label(value.toString()));
+    public InfoView(String key, Object value, Resource icon) {
+        super(new Label(value.toString() + " " + key), icon);
         this.tag = key;
         this.value = value;
     }

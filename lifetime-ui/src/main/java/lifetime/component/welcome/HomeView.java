@@ -34,15 +34,17 @@ public class HomeView extends HorizontalLayout {
 
     public HomeView(String language) {
         this.language = language;
-        setSizeFull();
-        nUsers = new InfoView("# Users", 10000000);
-        nJobs = new InfoView("# Job Offers", 10000);
-        nCourses = new InfoView("# Course Offers", 10000);
+        super.setSizeFull();
+        nUsers = new InfoView("users", 10000000);
+        nJobs = new InfoView("jobs", 10000);
+        nCourses = new InfoView("courses", 10000);
         nUsers.setIcon(FontAwesome.USERS);
-        addComponents(nUsers, nJobs, nCourses);
-        setComponentAlignment(nUsers, Alignment.MIDDLE_CENTER);
-        setComponentAlignment(nJobs, Alignment.MIDDLE_CENTER);
-        setComponentAlignment(nCourses, Alignment.MIDDLE_CENTER);
+        nJobs.setIcon(FontAwesome.BRIEFCASE);
+        nCourses.setIcon(FontAwesome.FILE);
+        super.addComponents(nUsers, nJobs, nCourses);
+        super.setComponentAlignment(nUsers, Alignment.MIDDLE_CENTER);
+        super.setComponentAlignment(nJobs, Alignment.MIDDLE_CENTER);
+        super.setComponentAlignment(nCourses, Alignment.MIDDLE_CENTER);
     }
 
     /**
@@ -65,29 +67,30 @@ public class HomeView extends HorizontalLayout {
     public InfoView getnCourses() {
         return nCourses;
     }
-    
-    
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.language);
         return hash;
     }
 
-    /**
-     * Compares this view with another object for equality.
-     *
-     * @param obj the object we are comparing with
-     * @return {@code true} if they are equal
-     */
     @Override
     public boolean equals(Object obj) {
-        if (!super.equals(obj)) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final HomeView other = (HomeView) obj;
-        return Objects.equals(this.language, other.language);
+        if (!Objects.equals(this.language, other.language)) {
+            return false;
+        }
+        return true;
     }
 
+    
 }

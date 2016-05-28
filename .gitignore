@@ -20,4 +20,8 @@ hs_err_pid*
 # image files
 *.jpg
 *.gif
+
+# widgetset cached files
+*.js
+*cache*.*
 /target/
