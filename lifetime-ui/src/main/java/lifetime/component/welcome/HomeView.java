@@ -15,6 +15,7 @@
  */
 package lifetime.component.welcome;
 
+import com.vaadin.server.FontAwesome;
 import lifetime.component.custom.InfoView;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.HorizontalLayout;
@@ -37,6 +38,7 @@ public class HomeView extends HorizontalLayout {
         nUsers = new InfoView("# Users", 10000000);
         nJobs = new InfoView("# Job Offers", 10000);
         nCourses = new InfoView("# Course Offers", 10000);
+        nUsers.setIcon(FontAwesome.USERS);
         addComponents(nUsers, nJobs, nCourses);
         setComponentAlignment(nUsers, Alignment.MIDDLE_CENTER);
         setComponentAlignment(nJobs, Alignment.MIDDLE_CENTER);
