@@ -5,7 +5,6 @@
  */
 package lifetime.backend.util;
 
-import com.mysql.cj.jdbc.MysqlDataSource;
 import org.flywaydb.core.Flyway;
 
 /**
@@ -17,21 +16,14 @@ public class MainFlyway {
     private static final String USER = "zua";
     private static final String PASSWORD = "unicidade";
     private static final String URL = "jdbc:mysql://localhost:3306/lifetime?zeroDateTimeBehavior=convertToNull";
-    private static final String MIGRATION_DIR = "src/main/resources/db/migration/";
 
-    public static void main(String[] args) throws Exception {
-        try {
-            System.out.println("Run db migrations");
-            migrate();  // Migrate
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    private static void migrate() {
+    /**
+     * Execute lifetime migrations. The migration {@literal sql} files are
+     * placed under default location.
+     */
+    public static void migrate() {
         Flyway flyway = new Flyway();
         flyway.setDataSource(URL, USER, PASSWORD);
-        //flyway.setLocations("filesystem:" + MIGRATION_DIR);
         flyway.migrate();
     }
 

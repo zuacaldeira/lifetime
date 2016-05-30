@@ -111,7 +111,7 @@
         </dependency>
         <dependency>
             <groupId>org.jooq</groupId>
-            <artifactId>jooq-codegen-maven</artifactId>
+            <artifactId>jooq-codegen</artifactId>
             <version>3.8.1</version>
         </dependency>
         <dependency>

@@ -8,7 +8,7 @@ and open the template in the editor.
 <configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.8.0.xsd">
   <!-- Configure the database connection here -->
   <jdbc>
-    <driver>com.mysql.cl.jdbc.Driver</driver>
+    <driver>com.mysql.cj.jdbc.Driver</driver>
     <url>jdbc:mysql://localhost:3306/lifetime?zeroDateTimeBehavior=convertToNull</url>
     <user>zua</user>
     <password>unicidade</password>
@@ -44,10 +44,10 @@ and open the template in the editor.
 
     <target>
       <!-- The destination package of your generated classes (within the destination directory) -->
-      <packageName>jooq</packageName>
+      <packageName>lifetime.db.generated.jooq</packageName>
 
       <!-- The destination directory of your generated classes -->
-      <directory>C:\Users\zuacaldeira\Documents\GitHub\lifetime\lifetime-ejb\src\main\java\db\generated</directory>
+      <directory>C:\Users\zuacaldeira\Documents\GitHub\lifetime\lifetime-ejb\src\main\java</directory>
     </target>
   </generator>
 </configuration>
