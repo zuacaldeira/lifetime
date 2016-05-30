@@ -19,6 +19,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <db.url>jdbc:mysql://localhost:3306/lifetime?zeroDateTimeBehavior=convertToNull</db.url>
+        <db.username>zua</db.username>
+        <db.password>unicidade</db.password>
     </properties>
  
 
@@ -115,7 +118,13 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>6.0.2</version>
-        </dependency>        
+        </dependency>
+        <!-- Database access -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>4.0.1</version>
+        </dependency>          
     </dependencies>
 
 
@@ -157,32 +166,28 @@
             </plugin>
 
             <!-- Flyway integration -->
+            
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>4.0.1</version>
+                <version>3.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>migrate</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <user>zua</user>
-                    <password>unicidade</password>
-                    <url>jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull</url>
-                    <!-- 
-                    <schemas>
-                        <schema>schema1</schema>
-                        <schema>schema2</schema>
-                        <schema>schema3</schema>
-                    </schemas>
-                    <placeholders>
-                        <keyABC>valueXYZ</keyABC>
-                        <otherplaceholder>value123</otherplaceholder>
-                    </placeholders>
-                    -->
+                    <url>${db.url}</url>
+                    <user>${db.username}</user>
+                    <password>${db.password}</password>
+                    <locations>
+                        <location>filesystem:src/main/resources/db/migration</location>
+                    </locations>
                 </configuration>
-            </plugin>
-            
+            </plugin>            
         </plugins>
     </build>
-    
-    
-    
-
 </project>

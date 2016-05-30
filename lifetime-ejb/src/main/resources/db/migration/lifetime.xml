@@ -47,7 +47,7 @@ and open the template in the editor.
       <packageName>generated</packageName>
 
       <!-- The destination directory of your generated classes -->
-      <directory>C:\Users\zuacaldeira\Documents\NetBeansProjects\lifetime\lifetime-ejb\src\main\java\lifetime\backend\persistence</directory>
+      <directory>C:\Users\zuacaldeira\Documents\GitHub\lifetime\lifetime-ejb\src\main\java\lifetime\backend\persistence</directory>
     </target>
   </generator>
 </configuration>
