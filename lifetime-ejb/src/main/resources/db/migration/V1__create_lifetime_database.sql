@@ -8,8 +8,7 @@
  * Created: May 29, 2016
  */
 
--- V1__create_account_and_lifetime_user
-CREATE TABLE `Account` (
-    `id` INT NOT NULL,
-    
-);
+-- V1__ create_lifetime_database
+-- DROP DATABASE IF EXISTS lifetime;
+CREATE DATABASE IF NOT EXISTS lifetime;
+USE lifetime;

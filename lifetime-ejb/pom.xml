@@ -102,29 +102,28 @@
         <dependency>
             <groupId>org.jooq</groupId>
             <artifactId>jooq</artifactId>
-            <version>3.8.0</version>
+            <version>3.8.1</version>
         </dependency>
         <dependency>
             <groupId>org.jooq</groupId>
             <artifactId>jooq-meta</artifactId>
-            <version>3.8.0</version>
+            <version>3.8.1</version>
         </dependency>
         <dependency>
             <groupId>org.jooq</groupId>
-            <artifactId>jooq-codegen</artifactId>
-            <version>3.8.0</version>
+            <artifactId>jooq-codegen-maven</artifactId>
+            <version>3.8.1</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>6.0.2</version>
         </dependency>
-        <!-- Database access -->
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>4.0.1</version>
-        </dependency>          
+        </dependency>
     </dependencies>
 
 
@@ -166,28 +165,6 @@
             </plugin>
 
             <!-- Flyway integration -->
-            
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>3.0</version>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>migrate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <url>${db.url}</url>
-                    <user>${db.username}</user>
-                    <password>${db.password}</password>
-                    <locations>
-                        <location>filesystem:src/main/resources/db/migration</location>
-                    </locations>
-                </configuration>
-            </plugin>            
         </plugins>
     </build>
 </project>

@@ -8,7 +8,10 @@
  * Created: May 29, 2016
  */
 
--- V0__ create_lifetime_database
-CREATE DATABASE `lifetime`;
-
-USE `lifetime`;
+-- V2__create_table_account
+CREATE TABLE IF NOT EXISTS `lifetime`.`account` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB
