@@ -44,7 +44,7 @@ and open the template in the editor.
 
     <target>
       <!-- The destination package of your generated classes (within the destination directory) -->
-      <packageName>lifetime.db.generated.jooq</packageName>
+      <packageName>lifetime.backend.persistence.jooq</packageName>
 
       <!-- The destination directory of your generated classes -->
       <directory>C:\Users\zuacaldeira\Documents\GitHub\lifetime\lifetime-ejb\src\main\java</directory>

@@ -16,11 +16,11 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
-import lifetime.backend.persistence.Account;
-import lifetime.backend.persistence.Address;
-import lifetime.backend.persistence.Contact;
-import lifetime.backend.persistence.Photo;
-import lifetime.backend.persistence.User;
+import lifetime.backend.persistence.jooq.tables.Account;
+import lifetime.backend.persistence.jooq.tables.Address;
+import lifetime.backend.persistence.jooq.tables.Contact;
+import lifetime.backend.persistence.jooq.tables.Photo;
+import lifetime.backend.persistence.jooq.tables.User;
 import lifetime.backend.service.controller.UserController;
 
 /**
