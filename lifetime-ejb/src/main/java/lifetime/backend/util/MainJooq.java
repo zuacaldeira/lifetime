@@ -22,7 +22,7 @@ public class MainJooq {
     private static final String USER = "zua";
     private static final String PASSWORD = "unicidade";
     private static final String URL = "jdbc:mysql://localhost:3306/lifetime?zeroDateTimeBehavior=convertToNull";
-    private static final String GENERATOR_DIR = "src/main/resources/db/generator/";
+    private static final String GENERATOR_DIR = "src/main/setup/";
 
     public static void generate() throws Exception {
         Configuration configuration = JAXB.unmarshal(new File(GENERATOR_DIR + "lifetime.xml"), Configuration.class);
