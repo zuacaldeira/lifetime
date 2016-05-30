@@ -156,6 +156,29 @@
                 </executions>
             </plugin>
 
+            <!-- Flyway integration -->
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>4.0.1</version>
+                <configuration>
+                    <user>zua</user>
+                    <password>unicidade</password>
+                    <url>jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull</url>
+                    <!-- 
+                    <schemas>
+                        <schema>schema1</schema>
+                        <schema>schema2</schema>
+                        <schema>schema3</schema>
+                    </schemas>
+                    <placeholders>
+                        <keyABC>valueXYZ</keyABC>
+                        <otherplaceholder>value123</otherplaceholder>
+                    </placeholders>
+                    -->
+                </configuration>
+            </plugin>
+            
         </plugins>
     </build>
     

@@ -9,7 +9,7 @@ and open the template in the editor.
   <!-- Configure the database connection here -->
   <jdbc>
     <driver>com.mysql.jdbc.Driver</driver>
-    <url>jdbc:mysql://localhost:3306/lifetime</url>
+    <url>jdbc:mysql://localhost:3306/lifetime?zeroDateTimeBehavior=convertToNull</url>
     <user>zua</user>
     <password>unicidade</password>
   </jdbc>
