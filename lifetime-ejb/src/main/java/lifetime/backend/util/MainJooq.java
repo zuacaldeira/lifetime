@@ -22,10 +22,10 @@ public class MainJooq {
     private static final String USER = "zua";
     private static final String PASSWORD = "unicidade";
     private static final String URL = "jdbc:mysql://localhost:3306/lifetime?zeroDateTimeBehavior=convertToNull";
-    private static final String MIGRATION_DIR = "src/main/resources/db/migration/";
+    private static final String GENERATOR_DIR = "src/main/resources/db/generator/";
 
     public static void generate() throws Exception {
-        Configuration configuration = JAXB.unmarshal(new File(MIGRATION_DIR + "lifetime.xml"), Configuration.class);
+        Configuration configuration = JAXB.unmarshal(new File(GENERATOR_DIR + "lifetime.xml"), Configuration.class);
         Jdbc jdbc = configuration.getJdbc()
                 .withUser(USER)
                 .withPassword(PASSWORD)
