@@ -12,7 +12,19 @@ import javax.annotation.Generated;
 
 import lifetime.db.generated.jooq.tables.Account;
 import lifetime.db.generated.jooq.tables.Address;
+import lifetime.db.generated.jooq.tables.Competition;
+import lifetime.db.generated.jooq.tables.Course;
+import lifetime.db.generated.jooq.tables.Lecture;
+import lifetime.db.generated.jooq.tables.LifetimeEvent;
+import lifetime.db.generated.jooq.tables.LifetimeOrg;
+import lifetime.db.generated.jooq.tables.LifetimeUser;
+import lifetime.db.generated.jooq.tables.Project;
 import lifetime.db.generated.jooq.tables.SchemaVersion;
+import lifetime.db.generated.jooq.tables.Sport;
+import lifetime.db.generated.jooq.tables.Study;
+import lifetime.db.generated.jooq.tables.Task;
+import lifetime.db.generated.jooq.tables.Training;
+import lifetime.db.generated.jooq.tables.Work;
 
 import org.jooq.Catalog;
 import org.jooq.Table;
@@ -32,7 +44,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Lifetime extends SchemaImpl {
 
-    private static final long serialVersionUID = -1634151851;
+    private static final long serialVersionUID = -2104835281;
 
     /**
      * The reference instance of <code>lifetime</code>
@@ -50,9 +62,69 @@ public class Lifetime extends SchemaImpl {
     public final Address ADDRESS = lifetime.db.generated.jooq.tables.Address.ADDRESS;
 
     /**
+     * The table <code>lifetime.competition</code>.
+     */
+    public final Competition COMPETITION = lifetime.db.generated.jooq.tables.Competition.COMPETITION;
+
+    /**
+     * The table <code>lifetime.course</code>.
+     */
+    public final Course COURSE = lifetime.db.generated.jooq.tables.Course.COURSE;
+
+    /**
+     * The table <code>lifetime.lecture</code>.
+     */
+    public final Lecture LECTURE = lifetime.db.generated.jooq.tables.Lecture.LECTURE;
+
+    /**
+     * The table <code>lifetime.lifetime_event</code>.
+     */
+    public final LifetimeEvent LIFETIME_EVENT = lifetime.db.generated.jooq.tables.LifetimeEvent.LIFETIME_EVENT;
+
+    /**
+     * The table <code>lifetime.lifetime_org</code>.
+     */
+    public final LifetimeOrg LIFETIME_ORG = lifetime.db.generated.jooq.tables.LifetimeOrg.LIFETIME_ORG;
+
+    /**
+     * The table <code>lifetime.lifetime_user</code>.
+     */
+    public final LifetimeUser LIFETIME_USER = lifetime.db.generated.jooq.tables.LifetimeUser.LIFETIME_USER;
+
+    /**
+     * The table <code>lifetime.project</code>.
+     */
+    public final Project PROJECT = lifetime.db.generated.jooq.tables.Project.PROJECT;
+
+    /**
      * The table <code>lifetime.schema_version</code>.
      */
     public final SchemaVersion SCHEMA_VERSION = lifetime.db.generated.jooq.tables.SchemaVersion.SCHEMA_VERSION;
+
+    /**
+     * The table <code>lifetime.sport</code>.
+     */
+    public final Sport SPORT = lifetime.db.generated.jooq.tables.Sport.SPORT;
+
+    /**
+     * The table <code>lifetime.study</code>.
+     */
+    public final Study STUDY = lifetime.db.generated.jooq.tables.Study.STUDY;
+
+    /**
+     * The table <code>lifetime.task</code>.
+     */
+    public final Task TASK = lifetime.db.generated.jooq.tables.Task.TASK;
+
+    /**
+     * The table <code>lifetime.training</code>.
+     */
+    public final Training TRAINING = lifetime.db.generated.jooq.tables.Training.TRAINING;
+
+    /**
+     * The table <code>lifetime.work</code>.
+     */
+    public final Work WORK = lifetime.db.generated.jooq.tables.Work.WORK;
 
     /**
      * No further instances allowed
@@ -81,6 +153,18 @@ public class Lifetime extends SchemaImpl {
         return Arrays.<Table<?>>asList(
             Account.ACCOUNT,
             Address.ADDRESS,
-            SchemaVersion.SCHEMA_VERSION);
+            Competition.COMPETITION,
+            Course.COURSE,
+            Lecture.LECTURE,
+            LifetimeEvent.LIFETIME_EVENT,
+            LifetimeOrg.LIFETIME_ORG,
+            LifetimeUser.LIFETIME_USER,
+            Project.PROJECT,
+            SchemaVersion.SCHEMA_VERSION,
+            Sport.SPORT,
+            Study.STUDY,
+            Task.TASK,
+            Training.TRAINING,
+            Work.WORK);
     }
 }

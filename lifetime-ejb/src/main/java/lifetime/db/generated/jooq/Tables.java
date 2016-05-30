@@ -8,7 +8,19 @@ import javax.annotation.Generated;
 
 import lifetime.db.generated.jooq.tables.Account;
 import lifetime.db.generated.jooq.tables.Address;
+import lifetime.db.generated.jooq.tables.Competition;
+import lifetime.db.generated.jooq.tables.Course;
+import lifetime.db.generated.jooq.tables.Lecture;
+import lifetime.db.generated.jooq.tables.LifetimeEvent;
+import lifetime.db.generated.jooq.tables.LifetimeOrg;
+import lifetime.db.generated.jooq.tables.LifetimeUser;
+import lifetime.db.generated.jooq.tables.Project;
 import lifetime.db.generated.jooq.tables.SchemaVersion;
+import lifetime.db.generated.jooq.tables.Sport;
+import lifetime.db.generated.jooq.tables.Study;
+import lifetime.db.generated.jooq.tables.Task;
+import lifetime.db.generated.jooq.tables.Training;
+import lifetime.db.generated.jooq.tables.Work;
 
 
 /**
@@ -35,7 +47,67 @@ public class Tables {
     public static final Address ADDRESS = lifetime.db.generated.jooq.tables.Address.ADDRESS;
 
     /**
+     * The table <code>lifetime.competition</code>.
+     */
+    public static final Competition COMPETITION = lifetime.db.generated.jooq.tables.Competition.COMPETITION;
+
+    /**
+     * The table <code>lifetime.course</code>.
+     */
+    public static final Course COURSE = lifetime.db.generated.jooq.tables.Course.COURSE;
+
+    /**
+     * The table <code>lifetime.lecture</code>.
+     */
+    public static final Lecture LECTURE = lifetime.db.generated.jooq.tables.Lecture.LECTURE;
+
+    /**
+     * The table <code>lifetime.lifetime_event</code>.
+     */
+    public static final LifetimeEvent LIFETIME_EVENT = lifetime.db.generated.jooq.tables.LifetimeEvent.LIFETIME_EVENT;
+
+    /**
+     * The table <code>lifetime.lifetime_org</code>.
+     */
+    public static final LifetimeOrg LIFETIME_ORG = lifetime.db.generated.jooq.tables.LifetimeOrg.LIFETIME_ORG;
+
+    /**
+     * The table <code>lifetime.lifetime_user</code>.
+     */
+    public static final LifetimeUser LIFETIME_USER = lifetime.db.generated.jooq.tables.LifetimeUser.LIFETIME_USER;
+
+    /**
+     * The table <code>lifetime.project</code>.
+     */
+    public static final Project PROJECT = lifetime.db.generated.jooq.tables.Project.PROJECT;
+
+    /**
      * The table <code>lifetime.schema_version</code>.
      */
     public static final SchemaVersion SCHEMA_VERSION = lifetime.db.generated.jooq.tables.SchemaVersion.SCHEMA_VERSION;
+
+    /**
+     * The table <code>lifetime.sport</code>.
+     */
+    public static final Sport SPORT = lifetime.db.generated.jooq.tables.Sport.SPORT;
+
+    /**
+     * The table <code>lifetime.study</code>.
+     */
+    public static final Study STUDY = lifetime.db.generated.jooq.tables.Study.STUDY;
+
+    /**
+     * The table <code>lifetime.task</code>.
+     */
+    public static final Task TASK = lifetime.db.generated.jooq.tables.Task.TASK;
+
+    /**
+     * The table <code>lifetime.training</code>.
+     */
+    public static final Training TRAINING = lifetime.db.generated.jooq.tables.Training.TRAINING;
+
+    /**
+     * The table <code>lifetime.work</code>.
+     */
+    public static final Work WORK = lifetime.db.generated.jooq.tables.Work.WORK;
 }
