@@ -16,7 +16,7 @@
 package lifetime.component.user.vitae;
 
 import com.vaadin.ui.AbsoluteLayout;
-import lifetime.backend.persistence.LifetimeEvent;
+import lifetime.backend.persistence.jooq.tables.LifetimeEvent;
 
 /**
  *

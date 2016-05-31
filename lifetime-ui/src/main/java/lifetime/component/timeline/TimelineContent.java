@@ -15,11 +15,8 @@
  */
 package lifetime.component.timeline;
 
-import com.vaadin.ui.Notification;
 import java.util.Calendar;
 import java.util.Date;
-import lifetime.backend.persistence.Timed;
-import lifetime.util.ServiceLocator;
 import lifetime.component.LifetimeContent;
 
 /**
@@ -37,11 +34,10 @@ class TimelineContent extends LifetimeContent {
         timeline = new TimelineLayout(getBirthDate(username), new Date());
         addComponent(timeline);
         setSizeFull();
-        initDummyData();
     }
 
     private Date getBirthDate(String username) {
-        return ServiceLocator.findLifetimeAccountService().getUser(username).getBirthDate();
+        return null;//ServiceLocator.findLifetimeAccountService().getUser(username).getBirthDate();
     }
 
     private void initDummyData() {
@@ -57,16 +53,6 @@ class TimelineContent extends LifetimeContent {
 
         cal.set(2005, 3, 10);
         Date death = cal.getTime();
-
-        Timed timed = new Timed();
-        timed.setStartTime(birth);
-        timed.addPauseTime(pause);
-        timed.addResumeTime(resume);
-        timed.setFinishTime(death);
-        
-        
-        Notification.show("Timed Object :: " + timed.getStartTime() + " :: " + timed.getFinishedTime());
-        //timeline.addTimed(timed);
     }
 
 }

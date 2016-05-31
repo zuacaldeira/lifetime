@@ -21,7 +21,6 @@ import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
-import lifetime.backend.persistence.Contact;
 
 /**
  *
@@ -29,22 +28,14 @@ import lifetime.backend.persistence.Contact;
  */
 class ContactLayout extends AbsoluteLayout {
 
-    private final Contact contact;
     private VerticalLayout contactLayout;
 
-    public ContactLayout(Contact contact) {
-        this.contact = contact;
-        initContactLayout();
+    public ContactLayout() {
     }
 
-    public Contact getContact() {
-        return contact;
-    }
-
-    
     private void initContactLayout() {
         // personal telephone
-        Label phone = new Label(contact.getTelephone1());
+        /* Label phone = new Label(contact.getTelephone1());
         Label phoneIcon = new Label(FontAwesome.PHONE.getHtml(), ContentMode.HTML);
         HorizontalLayout phoneLayout = new HorizontalLayout(phoneIcon, phone);
         phoneLayout.setSpacing(true);
@@ -57,6 +48,7 @@ class ContactLayout extends AbsoluteLayout {
         contactLayout = new VerticalLayout(phoneLayout, mobileLayout);
         // add to base panel
         addComponent(contactLayout);
+         */
     }
 
 }

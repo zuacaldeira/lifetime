@@ -6,9 +6,6 @@
 package lifetime.backend.service;
 
 import lifetime.backend.service.controller.AccountController;
-import lifetime.backend.service.controller.AddressController;
-import lifetime.backend.service.controller.PhotoController;
-import lifetime.backend.service.controller.ContactController;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -17,11 +14,10 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import lifetime.backend.persistence.jooq.tables.Account;
-import lifetime.backend.persistence.jooq.tables.Address;
-import lifetime.backend.persistence.jooq.tables.Contact;
-import lifetime.backend.persistence.jooq.tables.Photo;
-import lifetime.backend.persistence.jooq.tables.User;
-import lifetime.backend.service.controller.UserController;
+//import lifetime.backend.persistence.jooq.tables.Contact;
+//import lifetime.backend.persistence.jooq.tables.Photo;
+//import lifetime.backend.persistence.jooq.tables.User;
+//import lifetime.backend.service.controller.UserController;
 
 /**
  * The Lifetime Account Management Service. It provides services for users to
@@ -39,14 +35,6 @@ public class LifetimeAccountService {
      */
     @EJB
     private AccountController accountController;
-    @EJB
-    private UserController userController;
-    @EJB
-    private PhotoController photoController;
-    @EJB
-    private AddressController addressController;
-    @EJB
-    private ContactController contactController;
 
     /**
      * Registers a new user into the system. Given a set of assumed input data,
@@ -75,174 +63,6 @@ public class LifetimeAccountService {
             Date birthdate,
             String birthPlace) {
         return accountController.register(firstname, lastname, email, password, language, birthdate, birthPlace);
-    }
-
-    /**
-     *
-     * @param email
-     * @return
-     */
-    public boolean hasAccount(String email) {
-        return accountController.hasAccount(email);
-    }
-
-    /**
-     *
-     * @param email
-     * @return
-     */
-    public boolean deleteAccount(String email) {
-        return accountController.deleteAccount(email);
-    }
-
-    /**
-     *
-     * @param username
-     * @return
-     */
-    public String getFullName(String username) {
-        return accountController.getFullName(username);
-    }
-
-    /**
-     *
-     * @param username
-     * @return
-     */
-    public String getBirthPlace(String username) {
-        return accountController.getBirthPlace(username);
-    }
-
-    /**
-     *
-     * @param username
-     * @return
-     */
-    public Date getBirthdate(String username) {
-        return accountController.getBirthdate(username);
-    }
-
-    /**
-     *
-     * @param username
-     * @return
-     */
-    public Contact getContact(String username) {
-        return contactController.read(username);
-    }
-
-    /**
-     *
-     * @param username
-     * @return
-     */
-    public Address getAddress(String username) {
-        return addressController.read(username);
-    }
-
-    /**
-     *
-     * @param p
-     * @return
-     */
-    public boolean addPhoto(Photo p) {
-        return photoController.create(p);
-    }
-
-    /**
-     *
-     * @param username
-     * @return
-     */
-    public Photo getPhoto(String username) {
-        return photoController.read(username);
-    }
-
-    /**
-     *
-     * @param email
-     * @return
-     */
-    public boolean hasPhoto(String email) {
-        return photoController.hasPhoto(email);
-    }
-
-    /**
-     *
-     * @param contact
-     * @return
-     */
-    public boolean addContact(Contact contact) {
-        return contactController.create(contact);
-    }
-
-    /**
-     *
-     * @param email
-     * @return
-     */
-    public boolean hasAddress(String email) {
-        return addressController.hasAddress(email);
-    }
-
-    /**
-     *
-     * @param address
-     * @return
-     */
-    public boolean addAddress(Address address) {
-        return addressController.create(address);
-    }
-
-    /**
-     *
-     * @param address
-     * @return
-     */
-    public boolean deleteAddress(Address address) {
-        return addressController.delete(address.getUsername());
-    }
-
-    /**
-     *
-     * @param contact
-     * @return
-     */
-    public boolean deleteContact(Contact contact) {
-        return contactController.delete(contact.getUsername());
-    }
-
-    /**
-     *
-     * @param username
-     * @return
-     */
-    public boolean hasContact(String username) {
-        return contactController.hasContact(username);
-    }
-
-    /**
-     *
-     * @param email
-     * @return
-     */
-    public boolean deletePhoto(String email) {
-        return photoController.delete(email);
-    }
-
-    /**
-     * Returns the user data representing the person owning the account
-     * registered with the given username.
-     *
-     * @param username The user's username
-     * @return The user.
-     */
-    public User getUser(String username) {
-        return userController.read(username);
-    }
-
-    public boolean update(User user) {
-        return userController.update(user);
     }
 
 }

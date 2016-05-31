@@ -15,8 +15,7 @@
  */
 package lifetime.component.user.vitae;
 
-import lifetime.component.user.vitae.LifetimeEventView;
-import lifetime.backend.persistence.LifetimeEvent;
+import lifetime.backend.persistence.jooq.tables.LifetimeEvent;
 import static org.testng.Assert.assertNotNull;
 import org.testng.annotations.Test;
 

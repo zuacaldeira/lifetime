@@ -5,8 +5,13 @@
  */
 package lifetime.backend.service.controller;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -17,9 +22,12 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import lifetime.backend.interceptors.BooleanExceptionInterceptor;
 import lifetime.backend.interceptors.ObjectExceptionInterceptor;
-import lifetime.backend.persistence.Account;
-import lifetime.backend.persistence.User;
+import lifetime.backend.persistence.jooq.tables.Account;
+import lifetime.backend.persistence.jooq.tables.LifetimeUser;
 import lifetime.backend.util.SecurityRoles;
+import org.jooq.DSLContext;
+import org.jooq.SQLDialect;
+import org.jooq.impl.DSL;
 
 /**
  *
@@ -29,9 +37,10 @@ import lifetime.backend.util.SecurityRoles;
 public class AccountController {
 
     private static final String EMAIL = "email";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/lifetime?zeroDateTimeBehavior=convertToNull";
+    private static final String DB_USER = "zua";
+    private static final String DB_PASSWORD = "unicidade";
 
-    @EJB
-    private RoleController roleController;
     /**
      * Persistence Context.
      */
@@ -51,88 +60,20 @@ public class AccountController {
      */
     @Interceptors({BooleanExceptionInterceptor.class})
     public boolean register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace) {
-        User user = new User(null, firstname, lastname, birthdate, birthPlace, language);
-        Account account = new Account(null, email, password);
-        account.setUser(user);
-        account.setRole(roleController.getRole(SecurityRoles.USER));
-        em.persist(account);
-        return true;
-    }
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            DSL.using(conn, SQLDialect.MYSQL)
+                    .insertInto(Account.ACCOUNT, Account.ACCOUNT.EMAIL, Account.ACCOUNT.PASSWORD)
+                    .values(email, password)
+                    .execute();
 
-    /**
-     * Deletes the account associated with the given email.
-     *
-     * @param email
-     * @return true if terminates
-     */
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    @Interceptors({BooleanExceptionInterceptor.class})
-    public boolean deleteAccount(String email) {
-        em.remove(read(email));
-        return true;
-    }
-
-    /**
-     *
-     * @param email
-     * @return
-     */
-    @Interceptors({BooleanExceptionInterceptor.class})
-    public boolean hasAccount(String email) {
-        return read(email) != null;
-    }
-
-    @Interceptors({ObjectExceptionInterceptor.class})
-    public Account read(String email) {
-        Query q = em.createNamedQuery("Account.findByEmail", Account.class);
-        q.setParameter(EMAIL, email);
-        List<Account> accounts = q.getResultList();
-        if (!accounts.isEmpty()) {
-            return accounts.get(0);
+            /*DSL.using(conn, SQLDialect.MYSQL)
+                    .insertInto(LifetimeUser.LIFETIME_USER, LifetimeUser.LIFETIME_USER.FIRST_NAME, LifetimeUser.LIFETIME_USER.LAST_NAME, LifetimeUser.LIFETIME_USER.ACCOUNT_ID)
+                    .values(firstname, lastname, )
+                    .execute();*/
+            return true;
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
         }
-        return null;
-    }
-
-    /**
-     *
-     * @param username
-     * @return
-     */
-    @Interceptors({ObjectExceptionInterceptor.class})
-    public String getFullName(String username) {
-        if (hasAccount(username)) {
-            Account a = read(username);
-            User u = a.getUser();
-            return u.getFirstname() + " " + u.getLastname();
-        }
-        return null;
-    }
-
-    /**
-     *
-     * @param username
-     * @return
-     */
-    @Interceptors({ObjectExceptionInterceptor.class})
-    public Date getBirthdate(String username) {
-        if (hasAccount(username)) {
-            User u = read(username).getUser();
-            return u.getBirthDate();
-        }
-        return null;
-    }
-
-    /**
-     *
-     * @param username
-     * @return
-     */
-    @Interceptors({ObjectExceptionInterceptor.class})
-    public String getBirthPlace(String username) {
-        if (hasAccount(username)) {
-            User u = read(username).getUser();
-            return u.getBirthPlace();
-        }
-        return null;
     }
 }

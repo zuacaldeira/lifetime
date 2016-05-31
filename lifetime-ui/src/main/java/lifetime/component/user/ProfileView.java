@@ -20,9 +20,6 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Upload;
 import java.util.Objects;
-import lifetime.backend.persistence.Address;
-import lifetime.backend.persistence.Contact;
-import lifetime.backend.persistence.User;
 import lifetime.backend.service.LifetimeAccountService;
 import lifetime.util.ServiceLocator;
 
@@ -108,52 +105,18 @@ public class ProfileView extends UserContent {
     }
 
     protected void initPhoto() {
-        if (service != null && service.getPhoto(username) != null) {
-            image = new Image("", receiver.getPhotoResource(service.getPhoto(username)));
-        } else {
-            image = new Image("");
-        }
-
-        image.setHeight("60%");
-        base.addComponent(image);
-
-        base.setComponentAlignment(image, Alignment.MIDDLE_CENTER);
     }
 
     protected void initBirthDataLayout() {
-        if (service != null && service.getUser(username) != null) {
-            birthDataLayout = new BirthDataLayout(service.getUser(username));
-        } else {
-            birthDataLayout = new BirthDataLayout(new User());
-        }
-        base.addComponent(birthDataLayout);
-        base.setComponentAlignment(birthDataLayout, Alignment.MIDDLE_CENTER);
-
     }
 
     protected void initAddressLayout() {
-        // User's address
-        if (service != null && service.getAddress(username) != null) {
-            addressLayout = new AddressLayout(service.getAddress(username));
-        } else {
-            addressLayout = new AddressLayout(new Address());
-        }
-        base.addComponent(addressLayout);
-        base.setComponentAlignment(addressLayout, Alignment.MIDDLE_CENTER);
-
     }
 
     /**
      * Adds the user main contacts to it's profile view.
      */
     protected void initContactLayout() {
-        if (service != null && service.getContact(username) != null) {
-            contactLayout = new ContactLayout(service.getContact(username));
-        } else {
-            contactLayout = new ContactLayout(new Contact());
-        }
-        base.addComponent(contactLayout);
-        base.setComponentAlignment(contactLayout, Alignment.MIDDLE_CENTER);
     }
 
     @Override

@@ -15,15 +15,11 @@
  */
 package lifetime.component.user;
 
-import com.vaadin.server.FontAwesome;
-import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
-import java.text.DateFormat;
-import java.util.Date;
-import lifetime.backend.persistence.User;
+import lifetime.backend.persistence.jooq.tables.LifetimeUser;
 
 /**
  *
@@ -31,7 +27,6 @@ import lifetime.backend.persistence.User;
  */
 public class BirthDataLayout extends AbsoluteLayout {
 
-    private final User user;
     private VerticalLayout birthDataLayout;
     private Label name;
     private Label date;
@@ -42,43 +37,10 @@ public class BirthDataLayout extends AbsoluteLayout {
     private Label placeIcon;
     private HorizontalLayout placeLayout;
     private String UNKNOWN;
+    private final LifetimeUser user;
 
-    public BirthDataLayout(User user) {
+    public BirthDataLayout(LifetimeUser user) {
         this.user = user;
-        initPersonalDataLayout();
-    }
-    
-    public User getUser() {
-        return user;
-    }
-
-    private void initPersonalDataLayout() {
-        // Name
-        if (user.getFirstname() != null && user.getLastname() != null) {
-            name = new Label(user.getFirstname() + " " + user.getLastname());
-        }
-        else {
-            name = new Label(UNKNOWN);
-        }
-        // Date
-        if (user.getBirthDate() != null) {
-            date = new Label(DateFormat.getInstance().format(user.getBirthDate()));
-        } else {
-            date = new Label(DateFormat.getInstance().format(new Date()));
-        }
-
-        dateIcon = new Label(FontAwesome.CLOCK_O.getHtml(), ContentMode.HTML);
-        dateLayout = new HorizontalLayout(dateIcon, date);
-        dateLayout.setSpacing(true);
-        // Place
-        place = new Label(user.getBirthPlace());
-        placeIcon = new Label(FontAwesome.MAP_MARKER.getHtml(), ContentMode.HTML);
-        placeLayout = new HorizontalLayout(placeIcon, place);
-        placeLayout.setSpacing(true);
-        // Container layout
-        birthDataLayout = new VerticalLayout(name, dateLayout, placeLayout);
-        // add the data container to the panel
-        addComponent(birthDataLayout);
     }
 
 }

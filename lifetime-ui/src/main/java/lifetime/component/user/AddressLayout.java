@@ -21,7 +21,7 @@ import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
-import lifetime.backend.persistence.Address;
+import lifetime.backend.persistence.jooq.tables.Address;
 
 /**
  *
@@ -44,9 +44,7 @@ public class AddressLayout extends AbsoluteLayout {
     private void initLayout() {
         // Street, door and floor coordinates
         HorizontalLayout street = new HorizontalLayout(
-                new Label(address.getStreet()),
-                new Label(address.getDoor()),
-                new Label(address.getFloor()));
+                new Label(address.STREET.toString()));
         street.setSpacing(true);
         Label streetIcon = new Label(FontAwesome.ENVELOPE.getHtml(), ContentMode.HTML);
 
@@ -55,14 +53,13 @@ public class AddressLayout extends AbsoluteLayout {
 
         // Postal code and city/locality
         HorizontalLayout locality = new HorizontalLayout(
-                new Label(address.getPostalCode()),
-                new Label(address.getLocality()));
+                new Label(address.POSTAL_CODE.toString()),
+                new Label(address.LOCALITY.toString()));
         locality.setSpacing(true);
 
         // Region and country
         HorizontalLayout country = new HorizontalLayout(
-                new Label(address.getRegion()),
-                new Label(address.getCountry()));
+                new Label(address.COUNTRY.toString()));
         country.setSpacing(true);
 
         // Final address layout
