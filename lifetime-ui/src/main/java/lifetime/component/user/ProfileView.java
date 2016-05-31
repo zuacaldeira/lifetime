@@ -20,6 +20,8 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Upload;
 import java.util.Objects;
+import lifetime.backend.persistence.jooq.tables.Address;
+import lifetime.backend.persistence.jooq.tables.LifetimeUser;
 import lifetime.backend.service.LifetimeAccountService;
 import lifetime.util.ServiceLocator;
 
@@ -33,17 +35,31 @@ public class ProfileView extends UserContent {
      * Backend data and user specific data.
      */
     private transient LifetimeAccountService service;
-    private final String username;
-
     /**
-     * Layout components.
+     * Current user.
+     */
+    private final String username;
+    /**
+     * Base placeholder component.
+     */
+    private HorizontalLayout base;
+    /**
+     * Photo management.
      */
     private PhotoReceiver receiver;
     private Upload upload;
     private Image image;
-    private final HorizontalLayout base;
+    /**
+     * Personal data
+     */
     private BirthDataLayout birthDataLayout;
+    /**
+     * Address data.
+     */
     private AddressLayout addressLayout;
+    /**
+     * Contact data.
+     */
     private ContactLayout contactLayout;
 
     /**
@@ -56,13 +72,9 @@ public class ProfileView extends UserContent {
     public ProfileView(String username, String language) {
         super(language);
         this.username = username;
-        System.out.println("USERNAME PASSED TO ProfILE VIEW -> " + username);
-        base = new HorizontalLayout();
-        base.setSizeFull();
-        base.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
-        setSizeFull();
-        addComponent(base);
-        init();
+        this.init();
+        super.setSizeFull();
+        super.addComponent(base);
     }
 
     public PhotoReceiver getReceiver() {
@@ -88,14 +100,20 @@ public class ProfileView extends UserContent {
     }
 
     private void clean() {
-        base.removeAllComponents();
+        if (base == null) {
+            base = new HorizontalLayout();
+            base.setSizeFull();
+            base.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+        } else {
+            base.removeAllComponents();
+        }
     }
 
     private void initService() {
         service = ServiceLocator.findLifetimeAccountService();
     }
 
-    protected void initUploadAndReceiver() {
+    private void initUploadAndReceiver() {
         receiver = new PhotoReceiver(username, this);
         // Upload layout
         upload = new Upload("Add your favourite photo", receiver);
@@ -104,19 +122,29 @@ public class ProfileView extends UserContent {
         //base.addComponent(upload);
     }
 
+    /**
+     * @TODO Add Photo in database:
+     */
     protected void initPhoto() {
+        // Get photo from db
+        
+        // If not found, add upload view
+        initUploadAndReceiver();
     }
 
     protected void initBirthDataLayout() {
+        birthDataLayout = createBirthLayout();
     }
 
     protected void initAddressLayout() {
+        addressLayout = createAddressLayout();
     }
 
     /**
      * Adds the user main contacts to it's profile view.
      */
     protected void initContactLayout() {
+        contactLayout = createContactLayout();
     }
 
     @Override
@@ -148,6 +176,18 @@ public class ProfileView extends UserContent {
 
     public ContactLayout getContactLayout() {
         return contactLayout;
+    }
+
+    private AddressLayout createAddressLayout() {
+        return new AddressLayout(new Address());
+    }
+
+    private BirthDataLayout createBirthLayout() {
+        return new BirthDataLayout(new LifetimeUser());
+    }
+
+    private ContactLayout createContactLayout() {
+        return new ContactLayout();
     }
 
 }

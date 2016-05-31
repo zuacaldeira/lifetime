@@ -25,3 +25,4 @@ hs_err_pid*
 *.js
 *cache*.*
 /target/
+/lifetime-ejb/nbproject/

@@ -32,16 +32,36 @@ public class LifetimeTextFieldNGTest {
     public void testZeroAryConstructor() {
         LifetimeTextField instance = new LifetimeTextField();
         Assert.assertEquals(instance.getCaption(), "");
-        Assert.assertEquals(instance.getWidth(), 400f);
         Assert.assertTrue(instance.isImmediate());
     }
     
     @Test
     public void testUnaryConstructor() {
-        String caption = "That's it!";
+        String caption = "testUnaryConstructor";
         LifetimeTextField instance = new LifetimeTextField(caption);
         Assert.assertEquals(instance.getCaption(), caption);
-        Assert.assertEquals(instance.getWidth(), 400f);
+        //Assert.assertEquals(instance.getWidth(), 400f);
+        Assert.assertTrue(instance.isImmediate());
+    }
+    
+    @Test
+    public void testWidth() {
+        String caption = "testWidth";
+        LifetimeTextField instance = new LifetimeTextField(caption);
+        Assert.assertEquals(instance.getWidth(), -1f);
+    }
+    
+    @Test
+    public void testHeight() {
+        String caption = "testHeight";
+        LifetimeTextField instance = new LifetimeTextField(caption);
+        Assert.assertEquals(instance.getHeight(), -1f);
+    }
+    
+    @Test
+    public void testImmediate() {
+        String caption = "testImmediate";
+        LifetimeTextField instance = new LifetimeTextField(caption);
         Assert.assertTrue(instance.isImmediate());
     }
 }
