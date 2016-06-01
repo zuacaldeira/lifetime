@@ -6,7 +6,6 @@
 package lifetime.backend.service;
 
 import java.util.Date;
-import javax.ejb.embeddable.EJBContainer;
 import lifetime.TestConfig;
 import lifetime.backend.persistence.jooq.tables.Account;
 import static org.testng.Assert.*;
@@ -22,7 +21,7 @@ import org.testng.annotations.Test;
  */
 public class LifetimeAccountServiceNGTestIT {
 
-    private static final String ACCOUNT_SERVICE = "java:global/classes/LifetimeAccountService";
+    private static final String ACCOUNT_SERVICE = "java:global/lifetime-ui/LifetimeAccountService";
 
     public LifetimeAccountServiceNGTestIT() {
     }
@@ -57,14 +56,14 @@ public class LifetimeAccountServiceNGTestIT {
         Date birthdate = null;
         String birthPlace = "";
 
-        //EJBContainer container = TestConfig.getContainer();
         LifetimeAccountService instance = (LifetimeAccountService) TestConfig.lookupService(ACCOUNT_SERVICE);
-        boolean b = instance.register(firstname, lastname, email, password, language, birthdate, birthPlace);
-        Account result = instance.read(email, password);
-
-        assertTrue(b);
-        assertEquals(result.field("email"), email);
-        assertEquals(result.field("password"), password);
+        if (instance != null) {
+            boolean b = instance.register(firstname, lastname, email, password, language, birthdate, birthPlace);
+            Account result = instance.read(email, password);
+            assertTrue(b);
+            assertEquals(result.field("email"), email);
+            assertEquals(result.field("password"), password);
+        }
     }
 
     /**
@@ -74,12 +73,10 @@ public class LifetimeAccountServiceNGTestIT {
     public void testGetPhoto() throws Exception {
         System.out.println("getPhoto");
         String username = "";
-        EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
-        LifetimeAccountService instance = (LifetimeAccountService) container.getContext().lookup("java:global/classes/LifetimeAccountService");
-        //Photo expResult = null;
+        LifetimeAccountService instance = (LifetimeAccountService) TestConfig.lookupService(ACCOUNT_SERVICE);        //Photo expResult = null;
         //Photo result = instance.getPhoto(username);
         //assertEquals(result, expResult);
-        container.close();
+        //container.close();
         // TODO review the generated test code and remove the default call to fail.
     }
 

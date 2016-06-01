@@ -22,7 +22,6 @@ import lifetime.backend.persistence.jooq.tables.Study;
 import lifetime.backend.persistence.jooq.tables.Task;
 import lifetime.backend.persistence.jooq.tables.Training;
 import lifetime.backend.persistence.jooq.tables.Work;
-import org.jooq.Catalog;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -36,6 +35,8 @@ import org.testng.annotations.Test;
  */
 public class LifetimeNGTest {
     
+    private static final int NUMBER_OF_TABLES = 15;
+
     public LifetimeNGTest() {
     }
 
@@ -62,10 +63,7 @@ public class LifetimeNGTest {
     public void testGetCatalog() {
         System.out.println("getCatalog");
         Lifetime instance = Lifetime.LIFETIME;
-        Catalog expResult = DefaultCatalog.DEFAULT_CATALOG;
-        Catalog result = instance.getCatalog();
-        // Test lifetime schema has default catalog
-        assertEquals(result, expResult);
+        assertTrue(instance.getCatalog() == null);
     }
 
     /**
@@ -90,18 +88,17 @@ public class LifetimeNGTest {
         assertTrue(expResult.contains(Sport.SPORT));
         assertTrue(expResult.contains(Training.TRAINING));
         assertTrue(expResult.contains(Competition.COMPETITION));
-        if(expResult.contains(SchemaVersion.SCHEMA_VERSION)){
-            assertEquals(expResult.size()-1, 14);
-        }
-        else {
-            assertEquals(expResult.size(), 14);
+        if (expResult.contains(SchemaVersion.SCHEMA_VERSION)) {
+            assertEquals(expResult.size() - 1, NUMBER_OF_TABLES);
+        } else {
+            assertEquals(expResult.size(), NUMBER_OF_TABLES);
         }
     }
 
     private List getTablesData() {
         List tables = new ArrayList<>();
-        
+
         return tables;
     }
-    
+
 }

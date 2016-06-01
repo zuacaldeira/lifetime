@@ -12,7 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
-import javax.naming.InitialContext;
 import lifetime.backend.service.LifetimeAccountService;
 import org.glassfish.hk2.api.ServiceLocator;
 import org.testng.annotations.AfterSuite;
@@ -25,7 +24,7 @@ public class TestConfig {
 
     private static EJBContainer container;
 
-    public static EJBContainer getContainer() {
+    private static EJBContainer getContainer() {
         if (container == null) {
             System.out.println("Starting the container".toUpperCase());
             Map<String, Object> p = new HashMap<String, Object>();
@@ -39,12 +38,13 @@ public class TestConfig {
 
     public static Object lookupService(String name) {
         try {
-            Context context = new InitialContext();
+            Context context = getContainer().getContext();
             return (LifetimeAccountService) context.lookup(name);
         } catch (Exception ex) {
             Logger.getLogger(ServiceLocator.class.getName()).log(Level.SEVERE, "Lookup failed for {0}", name);
+            throw new RuntimeException(ex);
         }
-        return null;
+
     }
 
     @AfterSuite
