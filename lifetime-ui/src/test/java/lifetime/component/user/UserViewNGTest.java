@@ -15,10 +15,6 @@
  */
 package lifetime.component.user;
 
-import lifetime.component.user.UserMenu;
-import lifetime.component.user.UserBackground;
-import lifetime.component.user.UserContent;
-import lifetime.component.user.UserView;
 import lifetime.backend.util.TestHelper;
 import lifetime.component.LifetimeBackground;
 import lifetime.component.LifetimeContent;

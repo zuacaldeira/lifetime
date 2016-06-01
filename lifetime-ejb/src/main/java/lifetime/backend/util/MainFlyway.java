@@ -24,6 +24,7 @@ public class MainFlyway {
     public static void migrate() {
         Flyway flyway = new Flyway();
         flyway.setDataSource(URL, USER, PASSWORD);
+        //flyway.baseline();
         flyway.migrate();
     }
 

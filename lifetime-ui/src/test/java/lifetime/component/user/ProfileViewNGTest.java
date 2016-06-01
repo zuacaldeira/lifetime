@@ -15,7 +15,6 @@
  */
 package lifetime.component.user;
 
-import lifetime.component.user.ProfileView;
 import lifetime.backend.util.TestHelper;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
@@ -81,7 +80,7 @@ public class ProfileViewNGTest {
     public void testInitUploadAndReceiver() {
         System.out.println("initUploadAndReceiver");
         ProfileView instance = new ProfileView("username", "en");
-        instance.initUploadAndReceiver();
+        //instance.initUploadAndReceiver();
         assertNotNull(instance.getUpload());
         assertNotNull(instance.getReceiver());
     }

@@ -15,7 +15,6 @@
  */
 package lifetime.component.user;
 
-import lifetime.component.user.UserMenu;
 import lifetime.backend.util.TestHelper;
 import org.testng.Assert;
 import static org.testng.Assert.*;

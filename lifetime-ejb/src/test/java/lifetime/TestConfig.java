@@ -5,10 +5,16 @@
  */
 package lifetime;
 
+import lifetime.backend.util.TestHelper;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.embeddable.EJBContainer;
-import lifetime.backend.util.TestHelper;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import lifetime.backend.service.LifetimeAccountService;
+import org.glassfish.hk2.api.ServiceLocator;
 import org.testng.annotations.AfterSuite;
 
 /**
@@ -29,6 +35,16 @@ public class TestConfig {
             container = EJBContainer.createEJBContainer(p);
         }
         return container;
+    }
+
+    public static Object lookupService(String name) {
+        try {
+            Context context = new InitialContext();
+            return (LifetimeAccountService) context.lookup(name);
+        } catch (Exception ex) {
+            Logger.getLogger(ServiceLocator.class.getName()).log(Level.SEVERE, "Lookup failed for {0}", name);
+        }
+        return null;
     }
 
     @AfterSuite

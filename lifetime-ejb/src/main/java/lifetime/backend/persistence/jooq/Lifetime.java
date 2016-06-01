@@ -18,6 +18,7 @@ import lifetime.backend.persistence.jooq.tables.Lecture;
 import lifetime.backend.persistence.jooq.tables.LifetimeEvent;
 import lifetime.backend.persistence.jooq.tables.LifetimeOrg;
 import lifetime.backend.persistence.jooq.tables.LifetimeUser;
+import lifetime.backend.persistence.jooq.tables.Photo;
 import lifetime.backend.persistence.jooq.tables.Project;
 import lifetime.backend.persistence.jooq.tables.SchemaVersion;
 import lifetime.backend.persistence.jooq.tables.Sport;
@@ -44,7 +45,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Lifetime extends SchemaImpl {
 
-    private static final long serialVersionUID = -1049385827;
+    private static final long serialVersionUID = -1370585623;
 
     /**
      * The reference instance of <code>lifetime</code>
@@ -90,6 +91,11 @@ public class Lifetime extends SchemaImpl {
      * The table <code>lifetime.lifetime_user</code>.
      */
     public final LifetimeUser LIFETIME_USER = lifetime.backend.persistence.jooq.tables.LifetimeUser.LIFETIME_USER;
+
+    /**
+     * The table <code>lifetime.photo</code>.
+     */
+    public final Photo PHOTO = lifetime.backend.persistence.jooq.tables.Photo.PHOTO;
 
     /**
      * The table <code>lifetime.project</code>.
@@ -159,6 +165,7 @@ public class Lifetime extends SchemaImpl {
             LifetimeEvent.LIFETIME_EVENT,
             LifetimeOrg.LIFETIME_ORG,
             LifetimeUser.LIFETIME_USER,
+            Photo.PHOTO,
             Project.PROJECT,
             SchemaVersion.SCHEMA_VERSION,
             Sport.SPORT,

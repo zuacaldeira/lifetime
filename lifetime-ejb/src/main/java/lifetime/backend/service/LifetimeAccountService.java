@@ -14,10 +14,6 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import lifetime.backend.persistence.jooq.tables.Account;
-//import lifetime.backend.persistence.jooq.tables.Contact;
-//import lifetime.backend.persistence.jooq.tables.Photo;
-//import lifetime.backend.persistence.jooq.tables.User;
-//import lifetime.backend.service.controller.UserController;
 
 /**
  * The Lifetime Account Management Service. It provides services for users to
@@ -39,15 +35,10 @@ public class LifetimeAccountService {
     /**
      * Registers a new user into the system. Given a set of assumed input data,
      * creates a new account related entities and persist them un the underlying
-     * database. At least instances of {@link Account} and {@link Users} will be
-     * created.
+     * database. At least instances of {@link Account} and {@link LifetimeUser}
+     * will be created.
      *
-     * <p>
      * @param birthPlace
-     * @return After the end returns without error the new transaction should be
-     * persisted: Check if the client transaction must be refreshed.
-     * </p>
-     *
      * @param firstname The user's first name.
      * @param lastname The user's last name
      * @param email The user's email
@@ -63,6 +54,22 @@ public class LifetimeAccountService {
             Date birthdate,
             String birthPlace) {
         return accountController.register(firstname, lastname, email, password, language, birthdate, birthPlace);
+    }
+
+    /**
+     * Check if there is an account for the given email and password.
+     *
+     * @param email email address
+     * @param password email's password
+     * @return {@code true} if there is an account in the database with this
+     * email and password; {@code } otherwise.
+     */
+    public boolean exists(String email, String password) {
+        return read(email, password) != null;
+    }
+
+    public Account read(String email, String password) {
+        return accountController.read(email, password);
     }
 
 }

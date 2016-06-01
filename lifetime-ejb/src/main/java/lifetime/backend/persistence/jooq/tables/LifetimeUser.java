@@ -36,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class LifetimeUser extends TableImpl<LifetimeUserRecord> {
 
-    private static final long serialVersionUID = 148602823;
+    private static final long serialVersionUID = 1726838439;
 
     /**
      * The reference instance of <code>lifetime.lifetime_user</code>
@@ -75,6 +75,11 @@ public class LifetimeUser extends TableImpl<LifetimeUserRecord> {
      * The column <code>lifetime.lifetime_user.account_id</code>.
      */
     public final TableField<LifetimeUserRecord, Integer> ACCOUNT_ID = createField("account_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+
+    /**
+     * The column <code>lifetime.lifetime_user.photo_id</code>.
+     */
+    public final TableField<LifetimeUserRecord, Integer> PHOTO_ID = createField("photo_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * Create a <code>lifetime.lifetime_user</code> table reference
@@ -135,7 +140,7 @@ public class LifetimeUser extends TableImpl<LifetimeUserRecord> {
      */
     @Override
     public List<ForeignKey<LifetimeUserRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<LifetimeUserRecord, ?>>asList(Keys.FK_LIFETIME_USER_ADDRESS1, Keys.FK_LIFETIME_USER_ACCOUNT1);
+        return Arrays.<ForeignKey<LifetimeUserRecord, ?>>asList(Keys.FK_LIFETIME_USER_ADDRESS1, Keys.FK_LIFETIME_USER_ACCOUNT1, Keys.FK_LIFETIME_USER_PHOTO1);
     }
 
     /**

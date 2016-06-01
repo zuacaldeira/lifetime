@@ -76,4 +76,8 @@ public class AccountController {
             throw new RuntimeException(ex);
         }
     }
+
+    public Account read(String email, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

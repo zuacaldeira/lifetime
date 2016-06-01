@@ -14,6 +14,7 @@ import lifetime.backend.persistence.jooq.tables.Lecture;
 import lifetime.backend.persistence.jooq.tables.LifetimeEvent;
 import lifetime.backend.persistence.jooq.tables.LifetimeOrg;
 import lifetime.backend.persistence.jooq.tables.LifetimeUser;
+import lifetime.backend.persistence.jooq.tables.Photo;
 import lifetime.backend.persistence.jooq.tables.Project;
 import lifetime.backend.persistence.jooq.tables.SchemaVersion;
 import lifetime.backend.persistence.jooq.tables.Sport;
@@ -75,6 +76,11 @@ public class Tables {
      * The table <code>lifetime.lifetime_user</code>.
      */
     public static final LifetimeUser LIFETIME_USER = lifetime.backend.persistence.jooq.tables.LifetimeUser.LIFETIME_USER;
+
+    /**
+     * The table <code>lifetime.photo</code>.
+     */
+    public static final Photo PHOTO = lifetime.backend.persistence.jooq.tables.Photo.PHOTO;
 
     /**
      * The table <code>lifetime.project</code>.
