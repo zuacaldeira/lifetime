@@ -9,23 +9,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import lifetime.backend.interceptors.BooleanExceptionInterceptor;
-import lifetime.backend.interceptors.ObjectExceptionInterceptor;
+import lifetime.backend.persistence.jooq.Tables;
 import lifetime.backend.persistence.jooq.tables.Account;
-import lifetime.backend.persistence.jooq.tables.LifetimeUser;
-import lifetime.backend.util.SecurityRoles;
-import org.jooq.DSLContext;
+import lifetime.backend.persistence.jooq.tables.records.AccountRecord;
 import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
 
@@ -78,6 +71,17 @@ public class AccountController {
     }
 
     public Account read(String email, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+
+            AccountRecord record = DSL.using(conn, SQLDialect.MYSQL)
+                    .selectFrom(Tables.ACCOUNT).where(Tables.ACCOUNT.EMAIL.equal(email).and(Tables.ACCOUNT.PASSWORD.equal(password))).fetchOne();
+            Logger.getLogger(AccountController.class.getName()).log(Level.INFO, "Found record " + record.get(Account.ACCOUNT.EMAIL));
+            
+            return (Account)record.getTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException(ex);
+        }
     }
 }
