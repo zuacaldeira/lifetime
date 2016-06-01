@@ -8,6 +8,7 @@ package lifetime.backend.service;
 import java.util.Date;
 import lifetime.TestConfig;
 import lifetime.backend.persistence.jooq.tables.Account;
+import lifetime.backend.persistence.jooq.tables.records.AccountRecord;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -19,11 +20,11 @@ import org.testng.annotations.Test;
  *
  * @author zuacaldeira
  */
-public class LifetimeAccountServiceNGTestIT {
+public class LifetimeAccountServiceNGTest {
 
     private static final String ACCOUNT_SERVICE = "java:global/lifetime-ui/LifetimeAccountService";
 
-    public LifetimeAccountServiceNGTestIT() {
+    public LifetimeAccountServiceNGTest() {
     }
 
     @BeforeClass
@@ -56,14 +57,12 @@ public class LifetimeAccountServiceNGTestIT {
         Date birthdate = null;
         String birthPlace = "";
 
-        LifetimeAccountService instance = (LifetimeAccountService) TestConfig.lookupService(ACCOUNT_SERVICE);
-        if (instance != null) {
-            boolean b = instance.register(firstname, lastname, email, password, language, birthdate, birthPlace);
-            Account result = instance.read(email, password);
-            assertTrue(b);
-            assertEquals(result.field("email"), email);
-            assertEquals(result.field("password"), password);
-        }
+        LifetimeAccountService instance = new LifetimeAccountService();
+        boolean b = instance.register(firstname, lastname, email, password, language, birthdate, birthPlace);
+        AccountRecord result = instance.read(email);
+        assertTrue(b);
+        assertEquals(result.getEmail(), email);
+        assertEquals(result.getPassword(), password);
     }
 
     /**
@@ -73,11 +72,9 @@ public class LifetimeAccountServiceNGTestIT {
     public void testGetPhoto() throws Exception {
         System.out.println("getPhoto");
         String username = "";
-        LifetimeAccountService instance = (LifetimeAccountService) TestConfig.lookupService(ACCOUNT_SERVICE);        //Photo expResult = null;
-        //Photo result = instance.getPhoto(username);
-        //assertEquals(result, expResult);
-        //container.close();
-        // TODO review the generated test code and remove the default call to fail.
+        LifetimeAccountService instance = new LifetimeAccountService();
+        //assertNull(instance.read(username).getEmail(username));
+
     }
 
 }

@@ -14,6 +14,8 @@ import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import lifetime.backend.persistence.jooq.tables.Account;
+import lifetime.backend.persistence.jooq.tables.LifetimeUser;
+import lifetime.backend.persistence.jooq.tables.records.AccountRecord;
 
 /**
  * The Lifetime Account Management Service. It provides services for users to
@@ -65,11 +67,11 @@ public class LifetimeAccountService {
      * email and password; {@code } otherwise.
      */
     public boolean exists(String email, String password) {
-        return read(email, password) != null;
+        return read(email) != null;
     }
 
-    public Account read(String email, String password) {
-        return accountController.read(email, password);
+    public AccountRecord read(String email) {
+        return accountController.read(email);
     }
 
 }

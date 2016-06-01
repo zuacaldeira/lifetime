@@ -18,6 +18,7 @@ import javax.persistence.PersistenceContext;
 import lifetime.backend.interceptors.BooleanExceptionInterceptor;
 import lifetime.backend.persistence.jooq.Tables;
 import lifetime.backend.persistence.jooq.tables.Account;
+import lifetime.backend.persistence.jooq.tables.LifetimeUser;
 import lifetime.backend.persistence.jooq.tables.records.AccountRecord;
 import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
@@ -59,26 +60,26 @@ public class AccountController {
                     .insertInto(Account.ACCOUNT, Account.ACCOUNT.EMAIL, Account.ACCOUNT.PASSWORD)
                     .values(email, password)
                     .execute();
-
-            /*DSL.using(conn, SQLDialect.MYSQL)
+            AccountRecord record = read(email);
+            DSL.using(conn, SQLDialect.MYSQL)
                     .insertInto(LifetimeUser.LIFETIME_USER, LifetimeUser.LIFETIME_USER.FIRST_NAME, LifetimeUser.LIFETIME_USER.LAST_NAME, LifetimeUser.LIFETIME_USER.ACCOUNT_ID)
-                    .values(firstname, lastname, )
-                    .execute();*/
+                    .values(firstname, lastname, record.getId())
+                    .execute();
             return true;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
     }
 
-    public Account read(String email, String password) {
+    public AccountRecord read(String email) {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
             AccountRecord record = DSL.using(conn, SQLDialect.MYSQL)
-                    .selectFrom(Tables.ACCOUNT).where(Tables.ACCOUNT.EMAIL.equal(email).and(Tables.ACCOUNT.PASSWORD.equal(password))).fetchOne();
+                    .selectFrom(Tables.ACCOUNT).where(Tables.ACCOUNT.EMAIL.equal(email)).fetchOne();
             Logger.getLogger(AccountController.class.getName()).log(Level.INFO, "Found record " + record.get(Account.ACCOUNT.EMAIL));
             
-            return (Account)record.getTable();
+            return record;
         } catch (SQLException ex) {
             Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex);
