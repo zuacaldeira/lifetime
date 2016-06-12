@@ -19,6 +19,7 @@ class LifetimeConnectionConfiguration extends Configuration {
     protected static final String DB_PASSWORD = "unicidade";
 
     public LifetimeConnectionConfiguration() {
+        
     }
 
 }

@@ -15,7 +15,6 @@ import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import lifetime.backend.interceptors.BooleanExceptionInterceptor;
 import lifetime.backend.persistence.jooq.Tables;
 import lifetime.backend.persistence.jooq.tables.Account;
 import lifetime.backend.persistence.jooq.tables.LifetimeUser;
@@ -52,7 +51,6 @@ public class AccountController {
      * @param birthPlace
      * @return
      */
-    @Interceptors({BooleanExceptionInterceptor.class})
     public boolean register(String firstname, String lastname, String email, String password, String language, Date birthdate, String birthPlace) {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);

@@ -5,6 +5,7 @@
  */
 package lifetime.backend.util;
 
+import lifetime.TestHelper;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,8 +20,6 @@ import org.testng.annotations.Test;
  */
 public class MainFlywayNGTest {
 
-    private final int NUMBER_OF_USER_TABLES = 18; 
-    private final int NUMBER_OF_TABLES = NUMBER_OF_USER_TABLES + 1;
 
     public MainFlywayNGTest() {
     }
@@ -53,7 +52,7 @@ public class MainFlywayNGTest {
 
     @DataProvider(name = "existenceProvider")
     private Object[][] getExistenceData() {
-        Object[][] result = new Object[NUMBER_OF_TABLES][1];
+        Object[][] result = new Object[TestHelper.NUMBER_OF_TABLES][1];
         int i = 0;
         result[0][0] = "lifetime_user";
         result[1][0] = "lifetime_org";
@@ -94,7 +93,7 @@ public class MainFlywayNGTest {
                 i++;
         } 
         //resultSet.close();
-        Assert.assertEquals(i, NUMBER_OF_TABLES);
+        Assert.assertEquals(i, TestHelper.NUMBER_OF_TABLES);
         // Assert about the number of expected tables in the database
         
     }

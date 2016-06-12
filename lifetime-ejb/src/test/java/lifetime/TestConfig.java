@@ -5,7 +5,6 @@
  */
 package lifetime;
 
-import lifetime.backend.util.TestHelper;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;

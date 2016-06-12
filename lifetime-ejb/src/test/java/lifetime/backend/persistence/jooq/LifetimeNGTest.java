@@ -22,11 +22,8 @@ import lifetime.backend.persistence.jooq.tables.Study;
 import lifetime.backend.persistence.jooq.tables.Task;
 import lifetime.backend.persistence.jooq.tables.Training;
 import lifetime.backend.persistence.jooq.tables.Work;
+import lifetime.TestHelper;
 import static org.testng.Assert.*;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -35,27 +32,6 @@ import org.testng.annotations.Test;
  */
 public class LifetimeNGTest {
     
-    private static final int NUMBER_OF_TABLES = 15;
-
-    public LifetimeNGTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @BeforeMethod
-    public void setUpMethod() throws Exception {
-    }
-
-    @AfterMethod
-    public void tearDownMethod() throws Exception {
-    }
-
     /**
      * Test of getCatalog method, of class Lifetime.
      */
@@ -63,7 +39,7 @@ public class LifetimeNGTest {
     public void testGetCatalog() {
         System.out.println("getCatalog");
         Lifetime instance = Lifetime.LIFETIME;
-        assertTrue(instance.getCatalog() == null);
+        assertNotNull(instance.getCatalog());
     }
 
     /**
@@ -89,9 +65,9 @@ public class LifetimeNGTest {
         assertTrue(expResult.contains(Training.TRAINING));
         assertTrue(expResult.contains(Competition.COMPETITION));
         if (expResult.contains(SchemaVersion.SCHEMA_VERSION)) {
-            assertEquals(expResult.size() - 1, NUMBER_OF_TABLES);
+            assertEquals(expResult.size(), TestHelper.NUMBER_OF_TABLES);
         } else {
-            assertEquals(expResult.size(), NUMBER_OF_TABLES);
+            assertEquals(expResult.size()-1, TestHelper.NUMBER_OF_TABLES);
         }
     }
 

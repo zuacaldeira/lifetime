@@ -1,9 +1,11 @@
+package lifetime;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lifetime.backend.util;
+
 
 import java.util.Random;
 import org.apache.commons.lang.RandomStringUtils;
@@ -23,6 +25,9 @@ public class TestHelper {
      * Configuration file property value.
      */
     public static final String CONFIGURATION_FILE = "/Applications/NetBeans/glassfish-4.1/glassfish/domains/domain1/config/domain.xml";
+
+    private final static int NUMBER_OF_USER_TABLES = 18; 
+    public static final int NUMBER_OF_TABLES = NUMBER_OF_USER_TABLES + 1;
 
     /**
      * Returns a random integer.

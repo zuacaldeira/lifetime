@@ -15,7 +15,7 @@
  */
 package lifetime.ui;
 
-import lifetime.backend.util.TestHelper;
+import lifetime.TestHelper;
 import lifetime.util.Navigation;
 import org.testng.Assert;
 import org.testng.annotations.Test;

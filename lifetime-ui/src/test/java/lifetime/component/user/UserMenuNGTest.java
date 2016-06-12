@@ -15,7 +15,7 @@
  */
 package lifetime.component.user;
 
-import lifetime.backend.util.TestHelper;
+import lifetime.TestHelper;
 import org.testng.Assert;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
