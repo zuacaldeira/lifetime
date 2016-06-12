@@ -6,8 +6,6 @@
 package lifetime.backend.service;
 
 import java.util.Date;
-import lifetime.TestConfig;
-import lifetime.backend.persistence.jooq.tables.Account;
 import lifetime.backend.persistence.jooq.tables.records.AccountRecord;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
@@ -20,11 +18,11 @@ import org.testng.annotations.Test;
  *
  * @author zuacaldeira
  */
-public class LifetimeAccountServiceNGTest {
+public class LifetimeAccountServiceNGTestIT {
 
     private static final String ACCOUNT_SERVICE = "java:global/lifetime-ui/LifetimeAccountService";
 
-    public LifetimeAccountServiceNGTest() {
+    public LifetimeAccountServiceNGTestIT() {
     }
 
     @BeforeClass

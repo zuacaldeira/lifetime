@@ -11,7 +11,7 @@ package lifetime.backend.persistence.jooq;
 @java.lang.SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Lifetime extends org.jooq.impl.SchemaImpl {
 
-	private static final long serialVersionUID = 1227677852;
+	private static final long serialVersionUID = 1530346963;
 
 	/**
 	 * The singleton instance of <code>lifetime</code>
@@ -38,6 +38,8 @@ public class Lifetime extends org.jooq.impl.SchemaImpl {
 			lifetime.backend.persistence.jooq.tables.Address.ADDRESS,
 			lifetime.backend.persistence.jooq.tables.Competition.COMPETITION,
 			lifetime.backend.persistence.jooq.tables.Course.COURSE,
+			lifetime.backend.persistence.jooq.tables.KnowledgeUnit.KNOWLEDGE_UNIT,
+			lifetime.backend.persistence.jooq.tables.KnowHowUnit.KNOW_HOW_UNIT,
 			lifetime.backend.persistence.jooq.tables.Lecture.LECTURE,
 			lifetime.backend.persistence.jooq.tables.LifetimeEvent.LIFETIME_EVENT,
 			lifetime.backend.persistence.jooq.tables.LifetimeOrg.LIFETIME_ORG,
@@ -49,6 +51,7 @@ public class Lifetime extends org.jooq.impl.SchemaImpl {
 			lifetime.backend.persistence.jooq.tables.Study.STUDY,
 			lifetime.backend.persistence.jooq.tables.Task.TASK,
 			lifetime.backend.persistence.jooq.tables.Training.TRAINING,
-			lifetime.backend.persistence.jooq.tables.Work.WORK);
+			lifetime.backend.persistence.jooq.tables.Work.WORK,
+			lifetime.backend.persistence.jooq.tables.WorkUnit.WORK_UNIT);
 	}
 }

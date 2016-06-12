@@ -34,6 +34,16 @@ public class Tables {
 	public static final lifetime.backend.persistence.jooq.tables.Course COURSE = lifetime.backend.persistence.jooq.tables.Course.COURSE;
 
 	/**
+	 * The table lifetime.knowledge_unit
+	 */
+	public static final lifetime.backend.persistence.jooq.tables.KnowledgeUnit KNOWLEDGE_UNIT = lifetime.backend.persistence.jooq.tables.KnowledgeUnit.KNOWLEDGE_UNIT;
+
+	/**
+	 * The table lifetime.know_how_unit
+	 */
+	public static final lifetime.backend.persistence.jooq.tables.KnowHowUnit KNOW_HOW_UNIT = lifetime.backend.persistence.jooq.tables.KnowHowUnit.KNOW_HOW_UNIT;
+
+	/**
 	 * The table lifetime.lecture
 	 */
 	public static final lifetime.backend.persistence.jooq.tables.Lecture LECTURE = lifetime.backend.persistence.jooq.tables.Lecture.LECTURE;
@@ -92,4 +102,9 @@ public class Tables {
 	 * The table lifetime.work
 	 */
 	public static final lifetime.backend.persistence.jooq.tables.Work WORK = lifetime.backend.persistence.jooq.tables.Work.WORK;
+
+	/**
+	 * The table lifetime.work_unit
+	 */
+	public static final lifetime.backend.persistence.jooq.tables.WorkUnit WORK_UNIT = lifetime.backend.persistence.jooq.tables.WorkUnit.WORK_UNIT;
 }

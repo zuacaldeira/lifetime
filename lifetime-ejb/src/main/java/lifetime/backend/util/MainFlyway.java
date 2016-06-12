@@ -16,16 +16,21 @@ public class MainFlyway {
     private static final String USER = "zua";
     private static final String PASSWORD = "unicidade";
     private static final String URL = "jdbc:mysql://localhost:3306/lifetime?zeroDateTimeBehavior=convertToNull";
-
+    
     /**
      * Execute lifetime migrations. The migration {@literal sql} files are
      * placed under default location.
      */
     public static void migrate() {
+        Flyway flyway = getFlywayInstance();
+        flyway.migrate();
+    }
+
+    public static Flyway getFlywayInstance() {
         Flyway flyway = new Flyway();
         flyway.setDataSource(URL, USER, PASSWORD);
+        return flyway;
         //flyway.baseline();
-        flyway.migrate();
     }
 
 }
