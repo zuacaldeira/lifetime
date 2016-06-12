@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
-import lifetime.backend.service.LifetimeAccountService;
+import lifetime.backend.service.RegistrationService;
 import org.glassfish.hk2.api.ServiceLocator;
 import org.testng.annotations.AfterSuite;
 
@@ -38,7 +38,7 @@ public class TestConfig {
     public static Object lookupService(String name) {
         try {
             Context context = getContainer().getContext();
-            return (LifetimeAccountService) context.lookup(name);
+            return (RegistrationService) context.lookup(name);
         } catch (Exception ex) {
             Logger.getLogger(ServiceLocator.class.getName()).log(Level.SEVERE, "Lookup failed for {0}", name);
             throw new RuntimeException(ex);

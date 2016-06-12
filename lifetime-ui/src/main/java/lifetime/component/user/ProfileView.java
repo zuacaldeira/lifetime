@@ -22,7 +22,7 @@ import com.vaadin.ui.Upload;
 import java.util.Objects;
 import lifetime.backend.persistence.jooq.tables.Address;
 import lifetime.backend.persistence.jooq.tables.LifetimeUser;
-import lifetime.backend.service.LifetimeAccountService;
+import lifetime.backend.service.RegistrationService;
 import lifetime.util.ServiceLocator;
 
 /**
@@ -34,7 +34,7 @@ public class ProfileView extends UserContent {
     /**
      * Backend data and user specific data.
      */
-    private transient LifetimeAccountService service;
+    private transient RegistrationService service;
     /**
      * Current user.
      */

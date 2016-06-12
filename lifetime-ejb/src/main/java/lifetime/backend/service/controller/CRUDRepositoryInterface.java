@@ -5,13 +5,16 @@
  */
 package lifetime.backend.service.controller;
 
+import java.util.Collection;
+
 /**
  *
  * @author zuacaldeira
  */
-interface CRUDController<T> {
+interface CRUDRepositoryInterface<T> {
     public T create(T item);
     public T read(Integer id);
     public T update(T item);
     public T delete(Integer id);
+    public Collection<T> getAll();
 }

@@ -8,14 +8,10 @@ package lifetime.backend.service;
 import lifetime.backend.service.controller.AccountController;
 import java.util.Date;
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
 import lifetime.backend.persistence.jooq.tables.Account;
 import lifetime.backend.persistence.jooq.tables.LifetimeUser;
 import lifetime.backend.persistence.jooq.tables.records.AccountRecord;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * The Lifetime Account Management Service. It provides services for users to
@@ -23,10 +19,8 @@ import lifetime.backend.persistence.jooq.tables.records.AccountRecord;
  *
  * @author <a href="mailto:zuacaldeira@gmail.com">Alexandre Caldeira</a>
  */
-@Stateless
-@TransactionManagement(TransactionManagementType.CONTAINER)
-@TransactionAttribute(TransactionAttributeType.REQUIRED)
-public class LifetimeAccountService {
+@RestController
+public class RegistrationService {
 
     /**
      * Account controller.
